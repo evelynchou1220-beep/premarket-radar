@@ -59,6 +59,14 @@ const instRows = inst && inst.date === d.basedOn
     ]
   : null;
 const lotsText = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n)}`;
+// 散戶：以融資（借錢買股）與融券（借股票賣）餘額的增減觀察，單位張
+const m = s.margin && s.margin.date === d.basedOn ? s.margin : null;
+const retailRows = m
+  ? [
+      { label: '融資增減', v: m.marginToday - m.marginPrev, note: `餘額 ${fmtNum(m.marginToday)}` },
+      { label: '融券增減', v: m.shortToday - m.shortPrev, note: `餘額 ${fmtNum(m.shortToday)}` },
+    ]
+  : null;
 
 const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
 const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
@@ -118,12 +126,18 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
     </article>
 
     <article class="pick">
-      <div class="pick-label">法人 {md(d.basedOn)}<span class="dim">（張）</span></div>
+      <div class="pick-label">籌碼 {md(d.basedOn)}<span class="dim">（張）</span></div>
       {instRows ? (
         <ul class="levels">
           {instRows.map((x) => <li class="two"><span class="muted">{x.label}</span><span class:list={['num', tone(x.v)]}>{lotsText(x.v)}</span></li>)}
         </ul>
-      ) : <p class="small muted">證交所尚未公布</p>}
+      ) : <p class="small muted">法人：證交所尚未公布</p>}
+      <div class="sub-label">散戶</div>
+      {retailRows ? (
+        <ul class="levels">
+          {retailRows.map((x) => <li class="two" title={x.note}><span class="muted">{x.label}</span><span class:list={['num', tone(x.v)]}>{lotsText(x.v)}</span></li>)}
+        </ul>
+      ) : <p class="small muted">融資融券：證交所尚未公布</p>}
     </article>
 
     <article class="pick">
@@ -266,6 +280,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
   .levels li:last-child { border-bottom: 0; }
   .role { font-size: 12px; text-align: right; }
   .levels li.two { grid-template-columns: 1fr auto; }
+  .sub-label { font-size: 12px; color: var(--muted); font-weight: 600; margin-top: 4px; padding-top: 6px; border-top: 1px dashed var(--line-strong); }
 
   .summary { font-size: 17px; margin: 14px 0 0; }
   .top { margin: 0; padding-left: 20px; }
