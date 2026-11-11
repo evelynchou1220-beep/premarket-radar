@@ -1,53 +1,100 @@
 ---
-// 隔夜行情條：只放對開盤影響最大的幾項（美股科技、夜盤、日韓、匯率、外資期貨）。資料取自最新一份快照。
+// 隔夜行情：分成「大盤」「期貨」「四大法人」三組，不需要左右捲動。資料取自最新一份快照。
 import { pct, tone, fmtNum, md } from '../lib/site.mjs';
 interface Props { snapshot: any }
 const { snapshot: s } = Astro.props;
 const g = s.global;
 const txf = s.market.txf;
 const oi = s.market.foreignFuturesOI;
-type Item = { label: string; value: string; change?: string; t: string; date?: string; hl?: boolean };
-const items: Item[] = [];
-const q = (key: string, label: string, invert = false) => {
-  const x = g[key];
-  if (x) items.push({ label, value: fmtNum(x.close, x.close < 100 ? 2 : 0), change: pct(x.changePct), t: tone(invert ? -x.changePct : x.changePct), date: md(x.date) });
-};
-q('sox', '費城半導體');
-q('nasdaq', '那斯達克');
-if (txf) {
-  items.push(txf.night
-    ? { label: '台指期夜盤', value: fmtNum(txf.night.close), change: pct(txf.night.changePct), t: tone(txf.night.changePct), date: md(txf.night.session), hl: true }
-    : { label: '台指期夜盤', value: '—', change: '未開盤', t: 'flat', hl: true });
-}
-q('nikkei', '日經');
-q('kospi', '韓國');
-q('usdtwd', '美元／台幣', true); // 美元兌新台幣上漲＝新台幣貶值，對台股偏空，顏色反過來
 const inst = s.market.institutional;
-const yi = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n, 1)} 億`;
-if (inst) {
-  items.push({ label: '外資（大盤）', value: yi(inst.foreign), t: tone(inst.foreign), date: md(inst.date) });
-  items.push({ label: '投信（大盤）', value: yi(inst.trust), t: tone(inst.trust), date: md(inst.date) });
-}
-if (oi) items.push({ label: '外資期貨', value: `${oi.net >= 0 ? '淨多' : '淨空'} ${fmtNum(Math.abs(oi.net))}`, t: tone(oi.net), date: md(oi.date) });
+
+type Item = { label: string; value: string; change?: string; t: string; date?: string; hl?: boolean };
+const quote = (key: string, label: string, invert = false): Item | null => {
+  const x = g[key];
+  return x ? { label, value: fmtNum(x.close, x.close < 100 ? 2 : 0), change: pct(x.changePct), t: tone(invert ? -x.changePct : x.changePct), date: md(x.date) } : null;
+};
+const yi = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n, 1)}`;
+
+const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = [
+  {
+    title: '大盤',
+    cols: 3,
+    items: [
+      quote('taiex', '台股加權'),
+      quote('sox', '費城半導體'),
+      quote('nasdaq', '那斯達克'),
+      quote('nikkei', '日經'),
+      quote('kospi', '韓國'),
+      quote('usdtwd', '美元／台幣', true), // 美元兌新台幣上漲＝新台幣貶值，對台股偏空，顏色反過來
+    ].filter(Boolean) as Item[],
+  },
+  {
+    title: '期貨',
+    cols: 1,
+    items: [
+      ...(txf ? [txf.night
+        ? { label: '台指期夜盤', value: fmtNum(txf.night.close), change: pct(txf.night.changePct), t: tone(txf.night.changePct), date: md(txf.night.session), hl: true }
+        : { label: '台指期夜盤', value: '—', change: '未開盤', t: 'flat', hl: true }] : []),
+      ...(oi ? [{ label: `外資淨${oi.net >= 0 ? '多' : '空'}單（口）`, value: fmtNum(Math.abs(oi.net)), t: tone(oi.net), date: md(oi.date) }] : []),
+    ],
+  },
+  {
+    title: '四大法人',
+    unit: inst ? `${md(inst.date)}・億元` : undefined,
+    cols: 2,
+    items: inst
+      ? [
+          { label: '外資', value: yi(inst.foreign), t: tone(inst.foreign) },
+          { label: '投信', value: yi(inst.trust), t: tone(inst.trust) },
+          ...(inst.dealerSelf != null
+            ? [{ label: '自營（自行）', value: yi(inst.dealerSelf), t: tone(inst.dealerSelf) }, { label: '自營（避險）', value: yi(inst.dealerHedge), t: tone(inst.dealerHedge) }]
+            : [{ label: '自營商', value: yi(inst.dealer), t: tone(inst.dealer) }]),
+        ]
+      : [],
+  },
+].filter((x) => x.items.length);
 ---
-<div class="strip">
-  {items.map((i) => (
-    <div class:list={['it', i.hl && 'hl']} title={i.date ? `資料日期 ${i.date}` : undefined}>
-      <span class="label">{i.label}</span>
-      <span class:list={['num value', !i.change && i.t]}>{i.value}</span>
-      {i.change && <span class:list={['num chg', i.t]}>{i.change}</span>}
-    </div>
+<div class="board">
+  {groups.map((grp) => (
+    <section class="grp" style={`--cols:${grp.cols}`}>
+      <div class="grp-title">{grp.title}{grp.unit && <span class="unit">{grp.unit}</span>}</div>
+      <div class="items">
+        {grp.items.map((i) => (
+          <div class:list={['it', i.hl && 'hl']} title={i.date ? `資料日期 ${i.date}` : undefined}>
+            <span class="label">{i.label}</span>
+            <span class:list={['num value', !i.change && i.t]}>{i.value}</span>
+            {i.change && <span class:list={['num chg', i.t]}>{i.change}</span>}
+          </div>
+        ))}
+      </div>
+    </section>
   ))}
 </div>
 
 <style>
-  .strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
-  .it { flex: 0 0 auto; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 8px 12px; min-width: 112px; }
+  /* 電腦版三組並排（比例依項目欄數），不捲動；平板以下改為上下排列 */
+  .board { display: grid; grid-template-columns: 3fr 1fr 2fr; gap: 12px; }
+  .grp { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px 12px; min-width: 0; }
+  .grp-title { font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 8px; display: flex; justify-content: space-between; gap: 8px; }
+  .unit { font-weight: 400; color: var(--dim); letter-spacing: 0; }
+  .items { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: 8px; }
+  .it { display: flex; flex-direction: column; background: var(--panel-2); border: 1px solid transparent; border-radius: var(--radius-sm); padding: 7px 10px; min-width: 0; }
+  .it.hl { border-color: var(--accent); }
+  .label { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .value { font-size: 16px; font-weight: 600; line-height: 1.3; }
   .value.up { color: var(--up); }
   .value.down { color: var(--down); }
-  .it.hl { border-color: var(--accent); }
-  .label { font-size: 12px; color: var(--muted); }
-  .value { font-size: 16px; font-weight: 600; line-height: 1.3; }
   .chg { font-size: 13px; font-weight: 600; }
-  @media (max-width: 640px) { .it { min-width: 96px; padding: 6px 10px; } .value { font-size: 15px; } }
+  @media (max-width: 900px) {
+    .board { grid-template-columns: 1fr; gap: 8px; }
+    .grp:nth-child(2) .items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grp:nth-child(3) .items { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .grp { padding: 8px 10px 10px; }
+    .items { gap: 6px; }
+    .it { padding: 6px 8px; }
+    .value { font-size: 15px; }
+    .grp:nth-child(3) .items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
 </style>

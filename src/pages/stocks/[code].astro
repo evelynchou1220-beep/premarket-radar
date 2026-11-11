@@ -1,9 +1,9 @@
 ---
-// 單一個股頁：最新走勢圖＋這檔股票的所有歷史預測與命中紀錄。
+// 單一個股頁：最新走勢圖＋這檔股票的所有歷史預測。
+// 歷史預測用「一筆一列」的清單呈現（手機自動變成卡片），不用寬表格，避免文字被擠成一欄。
 import Base from '../../layouts/Base.astro';
 import PriceCharts from '../../components/PriceCharts.astro';
-import VerdictBadge from '../../components/VerdictBadge.astro';
-import { getReports, stats, url, md, weekday, pct, tone } from '../../lib/site.mjs';
+import { getReports, stats, rateText, url, md, weekday, pct, tone, verdictTone, MODE_LABEL } from '../../lib/site.mjs';
 
 export async function getStaticPaths() {
   const reports = await getReports();
@@ -13,40 +13,79 @@ export async function getStaticPaths() {
 const { list } = Astro.props;
 const latest = list[0];
 const st = stats(list);
+const openSt = stats(list, 'open');
+const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
+const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
 ---
 <Base title={`${latest.data.code} ${latest.data.name}`} active="stocks">
-  <nav class="small muted" style="margin-bottom:12px"><a href={url('stocks')} style="color:var(--muted)">個股</a> / {latest.data.code}</nav>
+  <nav class="small muted hide-sm crumb"><a href={url('stocks')}>個股</a> / {latest.data.code}</nav>
   <div class="head">
-    <h1><span class="num" style="color:var(--accent)">{latest.data.code}</span> {latest.data.name}</h1>
-    <div class="small muted">共 {st.total} 份預測｜命中率 {st.rate == null ? '尚無驗證' : `${st.rate}%（${st.hits}/${st.verified}）`}</div>
+    <h1><span class="num code">{latest.data.code}</span> {latest.data.name}</h1>
+    <div class="small muted">{st.total} 份預測｜開盤命中 {rateText(openSt)}｜收盤命中 {rateText(st)}</div>
   </div>
 
   <section class="panel section">
-    <div class="panel-title">走勢圖（{md(latest.data.basedOn)} 為止）</div>
     <PriceCharts snapshot={latest.snapshot} initial="daily" />
   </section>
 
-  <section class="panel section">
-    <div class="panel-title">歷史預測</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>預測日</th><th>結論</th><th>一句話</th><th>實際收盤</th><th>結果</th></tr></thead>
-        <tbody>
-          {list.map((r) => (
-            <tr>
-              <td class="num"><a href={url(`reports/${r.id}`)}>{md(r.data.target)}（{weekday(r.data.target)}）</a></td>
-              <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
-              <td class="small">{r.data.summary}</td>
-              <td class:list={['num', r.result && tone(r.result.changePct)]}>{r.result ? pct(r.result.changePct) : '—'}</td>
-              <td>{r.void ? <span class="tag">⊘ 作廢</span> : r.result ? (r.result.hit ? <span class="tag accent">✔ 命中</span> : <span class="tag">✘ 未中</span>) : <span class="tag">⏳ 待驗證</span>}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  <section class="section">
+    <h2 class="title">歷史預測</h2>
+    <div class="hist">
+      {list.map((r) => {
+        const res = r.result && !r.void ? r.result : null;
+        return (
+          <a class="h" href={url(`reports/${r.id}`)}>
+            <div class="h-date">
+              <b class="num">{md(r.data.target)}</b><span class="muted">（{weekday(r.data.target)}）</span>
+              <span class:list={['mode', r.data.mode]}>{MODE_LABEL[r.data.mode]}</span>
+            </div>
+            <div class="h-call">
+              <span class="k">開盤</span>
+              <span class:list={['v', verdictTone(r.open.verdict)]}>{icon(r.open.verdict)} {r.open.label}</span>
+              {res?.openActual && <span class="act">實際 <span class:list={['num', tone(res.openPct)]}>{pct(res.openPct)}</span> {mark(res.openHit)}</span>}
+            </div>
+            <div class="h-call">
+              <span class="k">收盤</span>
+              <span class:list={['v', verdictTone(r.data.verdict)]}>{icon(r.data.verdict)} {r.data.verdict}</span>
+              {res && <span class="act">實際 <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span> {mark(res.hit)}</span>}
+            </div>
+            <div class="h-sum small muted">{r.data.summary}</div>
+            <div class="h-res small">{r.void ? '⊘ 作廢' : res ? '' : <span class="dim">待驗證</span>}</div>
+          </a>
+        );
+      })}
     </div>
   </section>
 </Base>
 
 <style>
-  .head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .crumb { margin-bottom: 10px; }
+  .crumb a { color: var(--muted); }
+  .head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+  .head h1 { margin: 0; }
+  .code { color: var(--accent); }
+  .title { font-size: 16px; margin-bottom: 10px; }
+  .hist { display: flex; flex-direction: column; gap: 6px; }
+  .h {
+    display: grid; grid-template-columns: 130px 170px 170px 1fr 60px; gap: 12px; align-items: center;
+    color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px;
+  }
+  .h:hover { border-color: var(--line-strong); text-decoration: none; }
+  .h-date { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 4px; }
+  .mode { font-size: 11px; color: var(--muted); width: 100%; }
+  .mode.ai { color: var(--info); }
+  .h-call { display: flex; flex-direction: column; }
+  .k { font-size: 11px; color: var(--muted); }
+  .v { font-weight: 800; font-size: 16px; }
+  .act { font-size: 12px; color: var(--muted); }
+  .h-res { text-align: right; }
+  @media (max-width: 760px) {
+    /* 手機：卡片式，日期一行、開盤／收盤並排、摘要獨佔一行 */
+    .h { grid-template-columns: 1fr 1fr; gap: 6px 12px; padding: 10px 12px; }
+    .h-date { grid-column: 1; }
+    .mode { width: auto; margin-left: 6px; }
+    .h-res { grid-column: 2; grid-row: 1; }
+    .h-sum { grid-column: 1 / -1; line-height: 1.5; }
+    .v { font-size: 18px; }
+  }
 </style>
