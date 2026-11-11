@@ -1,0 +1,84 @@
+---
+// 外資資金流向：近 20 個交易日的外資買賣超（長條，億元）＋美元兌台幣（折線，往上＝新台幣貶值）。
+// 判斷：近 N 日外資累計賣超且新台幣貶值 → 匯出；累計買超且升值 → 匯入；其餘不明顯。只顯示、不計分（CLAUDE.md §3.3）。
+// 用伺服器端產生的 SVG，不需要 JavaScript。
+import { fmtNum, md } from '../lib/site.mjs';
+import factorConfig from '../data/factors.json';
+interface Props { flows: { date: string; foreign: number | null; usdtwd: number | null }[] }
+const { flows } = Astro.props;
+const C = factorConfig.foreignFlow;
+const days = flows.slice(-C.chartDays);
+
+// 近 N 日判斷
+const recent = days.slice(-C.days);
+const sum = Math.round(recent.reduce((a, x) => a + (x.foreign ?? 0), 0) * 10) / 10;
+const rates = days.filter((x) => x.usdtwd != null);
+const lastRate = rates.at(-1)?.usdtwd ?? null;
+const baseRate = rates.at(-(C.days + 1))?.usdtwd ?? rates[0]?.usdtwd ?? null;
+const twdPct = lastRate && baseRate ? Math.round(((lastRate - baseRate) / baseRate) * 10000) / 100 : null; // 正＝新台幣貶值
+const verdict =
+  twdPct == null ? { label: '資料不足', t: 'flat' }
+  : sum <= -C.netYi && twdPct >= C.twdPct ? { label: '⚠ 匯出', t: 'down' }
+  : sum >= C.netYi && twdPct <= -C.twdPct ? { label: '匯入', t: 'up' }
+  : { label: '不明顯', t: 'flat' };
+
+// SVG 座標
+const W = 640, H = 170, L = 44, Rp = 44, T = 10, B = 22;
+const iw = W - L - Rp, ih = H - T - B;
+const n = Math.max(1, days.length);
+const bw = (iw / n) * 0.62;
+const x = (i: number) => L + (iw / n) * (i + 0.5);
+const maxAbs = Math.max(1, ...days.map((d) => Math.abs(d.foreign ?? 0)));
+const yBar = (v: number) => T + ih / 2 - (v / maxAbs) * (ih / 2);
+const rs = rates.map((d) => d.usdtwd as number);
+const rMin = Math.min(...rs), rMax = Math.max(...rs);
+const pad = (rMax - rMin) * 0.15 || 0.05;
+const yRate = (v: number) => T + ih - ((v - (rMin - pad)) / (rMax - rMin + pad * 2)) * ih;
+const line = days.map((d, i) => (d.usdtwd != null ? `${x(i).toFixed(1)},${yRate(d.usdtwd).toFixed(1)}` : null)).filter(Boolean).join(' ');
+const labelIdx = [0, Math.floor((n - 1) / 2), n - 1];
+---
+<section class="panel flow">
+  <div class="head">
+    <b>外資資金流向</b>
+    <span class:list={['tag', verdict.t]}>{verdict.label}</span>
+    <span class="small muted">近 {C.days} 日：外資 <b class:list={['num', sum > 0 ? 'up' : sum < 0 ? 'down' : '']}>{sum > 0 ? '+' : ''}{fmtNum(sum, 1)} 億</b>・新台幣{twdPct == null ? ' —' : <b class:list={['num', twdPct > 0 ? 'down' : twdPct < 0 ? 'up' : '']}>{twdPct > 0 ? `貶值 ${twdPct}%` : twdPct < 0 ? `升值 ${-twdPct}%` : '持平'}</b>}</span>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="近 20 日外資買賣超與美元兌台幣走勢">
+    <line x1={L} x2={W - Rp} y1={T + ih / 2} y2={T + ih / 2} class="zero" />
+    {days.map((d, i) => d.foreign != null && (
+      <rect x={x(i) - bw / 2} width={bw} y={Math.min(yBar(d.foreign), T + ih / 2)} height={Math.max(1, Math.abs(yBar(d.foreign) - (T + ih / 2)))} class={d.foreign >= 0 ? 'pos' : 'neg'}>
+        <title>{`${md(d.date)} 外資 ${d.foreign > 0 ? '+' : ''}${fmtNum(d.foreign, 1)} 億${d.usdtwd != null ? `｜美元兌台幣 ${d.usdtwd}` : ''}`}</title>
+      </rect>
+    ))}
+    {line && <polyline points={line} class="rate" />}
+    <text x={L - 6} y={T + 8} class="ax" text-anchor="end">+{fmtNum(maxAbs, 0)}</text>
+    <text x={L - 6} y={T + ih} class="ax" text-anchor="end">−{fmtNum(maxAbs, 0)}</text>
+    <text x={L - 6} y={T + ih / 2 + 3} class="ax" text-anchor="end">0</text>
+    {rs.length > 0 && <text x={W - Rp + 6} y={T + 8} class="ax rate-ax">{rMax.toFixed(2)}</text>}
+    {rs.length > 0 && <text x={W - Rp + 6} y={T + ih} class="ax rate-ax">{rMin.toFixed(2)}</text>}
+    {labelIdx.map((i) => days[i] && <text x={x(i)} y={H - 6} class="ax" text-anchor="middle">{md(days[i].date)}</text>)}
+  </svg>
+  <div class="legend small muted">
+    <span><i class="sw pos"></i><i class="sw neg"></i>外資買賣超（億元，左軸）</span>
+    <span><i class="sw line"></i>美元兌台幣（右軸，往上＝新台幣貶值）</span>
+  </div>
+  <p class="small dim foot hide-sm">外資賣股後換美金匯出，會同時出現「外資賣超」與「新台幣貶值」。近 {C.days} 日外資累計賣超 {C.netYi} 億以上且新台幣貶值 {C.twdPct}% 以上判為匯出；反之為匯入。只有一邊成立時，匯率可能是受美元本身強弱影響。</p>
+</section>
+
+<style>
+  .flow { padding: 12px 14px; }
+  .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 6px; }
+  svg { width: 100%; height: auto; display: block; }
+  .zero { stroke: var(--line-strong); stroke-width: 1; }
+  .pos { fill: var(--up); opacity: 0.85; }
+  .neg { fill: var(--down); opacity: 0.85; }
+  .rate { fill: none; stroke: var(--accent); stroke-width: 2; }
+  .ax { fill: var(--dim); font: 10px var(--mono); }
+  .rate-ax { fill: var(--accent); }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 4px; }
+  .sw { display: inline-block; width: 10px; height: 10px; margin-right: 3px; vertical-align: -1px; border-radius: 2px; }
+  .sw.pos { background: var(--up); }
+  .sw.neg { background: var(--down); margin-right: 6px; }
+  .sw.line { height: 2px; vertical-align: 3px; background: var(--accent); width: 16px; }
+  .foot { margin: 6px 0 0; }
+</style>

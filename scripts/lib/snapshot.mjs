@@ -29,6 +29,11 @@ async function yahooChart(symbol, range, interval) {
   const rows = r.timestamp.map((t, i) => ({
     ts: t, open: q.open[i], high: q.high[i], low: q.low[i], close: q.close[i], volume: q.volume[i] ?? 0,
   })).filter((x) => x.close != null && x.open != null);
+  // 日 K：市場還在交易時，最後一根是「盤中」價格，不是收盤。丟掉它，避免把盤中數字當成收盤（時序檢查也會因此正確判斷）
+  const reg = r.meta?.currentTradingPeriod?.regular;
+  const now = Date.now() / 1000;
+  // 外匯（=X）平日 24 小時交易，沒有「收盤」，不適用
+  if (interval === '1d' && !symbol.endsWith('=X') && reg && now >= reg.start && now < reg.end && rows.at(-1)?.ts >= reg.start - 86400) rows.pop();
   return { meta: r.meta, rows };
 }
 
@@ -130,6 +135,23 @@ async function twseMarketInstitutional(date) {
     dealerHedge: yi(get('自營商(避險)')),
     total: yi(get('合計')),
   };
+}
+
+// ---------- 外資資金流向（近 20 個交易日）----------
+/** 外資每日買賣超（億）＋美元兌台幣收盤。外資歷史快取在 data/flows.json，每天只補新的日期 */
+async function foreignFlows(dates) {
+  let cache = {};
+  try { cache = JSON.parse(await readFile('data/flows.json', 'utf8')).foreign ?? {}; } catch { /* 第一次 */ }
+  for (const d of dates) {
+    if (cache[d] != null) continue;
+    const m = await twseMarketInstitutional(d);
+    if (m) cache[d] = m.foreign;
+  }
+  const keep = Object.fromEntries(Object.entries(cache).sort().slice(-60)); // 只保留最近 60 天
+  await writeFile('data/flows.json', JSON.stringify({ updatedAt: new Date().toISOString(), foreign: keep }, null, 1) + '\n');
+  const fx = await yahooChart('TWD=X', '3mo', '1d');
+  const rate = Object.fromEntries(fx.rows.map((r) => [tpeDate(r.ts), round(r.close, 3)]));
+  return dates.map((date) => ({ date, foreign: keep[date] ?? null, usdtwd: rate[date] ?? null })).filter((x) => x.foreign != null || x.usdtwd != null);
 }
 
 // ---------- 正2／反1 多空雷達（CLAUDE.md §3.3）----------
@@ -369,6 +391,9 @@ sources.push({ name: '證交所 MI_MARGN 融資融券彙總', url: 'https://www.
 
 const marketInst = await once(`bfi-${basedOn}`, () => twseMarketInstitutional(basedOn));
 const leveraged = await once(`lev-${basedOn}`, () => leveragedEtfs(basedOn));
+let flows = null;
+try { flows = await once(`flows-${basedOn}`, () => foreignFlows(daily.slice(-20).map((d) => d.date))); }
+catch (e) { warnings.push(`外資資金流向取得失敗：${e.message}`); }
 sources.push({ name: '證交所 BFI82U 三大法人買賣金額', url: 'https://www.twse.com.tw/zh/trading/foreign/bfi82u.html' });
 
 const { global, globalWarnings } = await once('global', async () => {
@@ -439,7 +464,7 @@ const snapshot = {
   margin,
   lending,
   revenue,
-  market: { institutional: marketInst, txf, foreignFuturesOI, leveraged, options },
+  market: { institutional: marketInst, txf, foreignFuturesOI, leveraged, options, flows },
   global,
   adr,
 };

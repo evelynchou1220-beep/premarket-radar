@@ -1,8 +1,16 @@
 {
  "news": {
-  "fetchedAt": "2026-11-11T13:34:00.340Z",
+  "fetchedAt": "2026-11-11T15:28:56.873Z",
   "since": "2026-11-11T13:30+08:00",
   "stock": [
+   {
+    "title": "日月光投控成長加速！矽品CoWoS、CPO背後共同貴人是輝達 研發大將揭10年布局",
+    "source": "聚財網",
+    "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE1FTXVPWVp4a3AweW5RVkdiYWtUczRNTWZOSHhqU0gyQXk0dGFhYjJUcUlCLTZNZTUxNGxSV1JFTFZubnNKVFhMSmtaaHg?oc=5",
+    "time": "2026-11-11T15:21:29.000Z",
+    "tags": [],
+    "trusted": false
+   },
    {
     "title": "3711 日月光投控- CPU 封裝成為OSAT 重要戰場- 股市爆料同學會",
     "source": "CMoney",
@@ -13,44 +21,6 @@
    }
   ],
   "market": [
-   {
-    "title": "台股明天穩了？台指期夜盤4萬4失而復得 一度漲逾450點",
-    "source": "自由財經",
-    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5mQWtvUDVQOEJ3b3BDOFQwbEJtVzVjV25XTGxHM1lSZTJrRko0anE4cXhkTlozUnJHTDF4MGd5d3M2d0IxY25zS3lXZGRTZTE0VHJuME84bHY0TjVWaVVZ0gFkQVVfeXFMUHlGM3dINUhlMmQ3VzZJS3FSME56YXpMMjdpaDVRLVZUYmpZQWFOUmM0c2M0a0pCLVo2WXh5d2RkWkh5Q3g0MGpub01EVG5HSkxkNEoxU3AwVUxJRF82SkJXWUFCQw?oc=5",
-    "time": "2026-11-11T11:49:05.000Z",
-    "tags": [],
-    "trusted": true
-   },
-   {
-    "title": "台股跌逾萬點！國安基金第10度進場護盤 財長莊翠雲曝退場時間",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMikANBVV95cUxQQjNuaTZUX2MxcE02QUhKa19Ua1BmTVBwcGlYNEhEWEVQUWw1ZWg3ZjdYOU1FNHdzbjVpRVBMSERreUJsbTY2STE0MnlrY2dNbTRsRWliVV9fOXlOaEkwWjdKNXk2QkZBcVU2MFJpV1dxeDJHZkd2dVg1RlloZktJZl9mOUNOY1N4dWdyNmJTeTl5ZU1iRGZrdncyMlZGUmZYQUt1ZlJYWGlPYjdYUVBTa3o1ZVhOY0h5RVFXOWZRRG4yQ2RYTHlvMlhqNUJyRUtaVm4wd0FNdWMwcDRQSHdubEdRaFFUaEcwU1JpcHZaMFM3RlZoYUpTMTctVEZqMUl5cEVxUUp1eWx4TFA4NVdrb2FKa2pvNDlKaXpnY1RLZXBKa1BpU3FWenY2QWNwQ0NzRmU2cEhNb0FCbnl6N0JCakFBa1R3aXhtY1ZycF9lTm5LZnRzWU00Z3p2dDhtaDZTZk5JNnJ5YTJ0MkJBSVlLN2RmeXlHcWRFeE1rYUh1aDA0STBDQU5hd0J0anVsYTdM?oc=5",
-    "time": "2026-11-11T09:57:35.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台股市值膨脹 17 倍 國安基金額度 26 年沒變！財長莊翠雲首度表態支持擴至1兆元",
-    "source": "Business Insider Taiwan",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE53bm9rQUNSNENLMTlYVGhob2gtMlZmY01hbGx5RUZCSG1vOWFJOTVXX2trOFZDc2NNelZhRnV5Q2JRVDlLOGxaLXJDdkJEblE2THNzNjlR?oc=5",
-    "time": "2026-11-11T09:53:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金進場就底部？跟單穩賺？股海老牛破解10迷思：這點最厲害",
-    "source": "三立新聞網SETN.com",
-    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE43WTliaGVFaGVLcFBoS2VzbU1TMjBwTmJoR1RaeFdMcElNbC1fWnA4WEwtbWFtTjc1RU43ZkYzYlB5Y0xmUEhXYjc2SQ?oc=5",
-    "time": "2026-11-11T08:01:31.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
    {
     "title": "國安基金進場 台股大反攻 法人：AI股V型反轉拐點浮現",
     "source": "理財周刊",
@@ -82,16 +52,6 @@
     "trusted": false
    },
    {
-    "title": "進場就是底部？跟單就好？國安基金10大迷思一次看達人：最後一個最厲害- 上市櫃",
-    "source": "旺得富理財網",
-    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5uVkd3b0xyUXJ3RFpCS3VSOEMzZS1hTXc2TWQ1cjE2Q2NheDlYWWM0R2ktRmRhRVRhbVZ6YjhwM3hVVW93VG9PeGNZcVlMaS1tMDNnUGNvZjZ3SU9CU0dvNXotOGdGY3VjZEE?oc=5",
-    "time": "2026-11-11T06:49:17.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
     "title": "國安基金好威！ 台股大V轉反彈6420.1點",
     "source": "自由財經",
     "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1HeWEtT1FDSzZTeS11YWhxOWhBUmo2bzZrUm5HZmRQNmRsa1VvMUJiVEZKTmpXd3RlWV9YMDlFNEhYdXQyLXNLU0RTSlRLQ0lvYmV5YllrQjV6QXR2aThB0gFkQVVfeXFMTWZjbmdwNVRkdVM1Z0tuMkwxTnprNlctR1ZyanlRMkEtbDhjZUs1UXM2Q2dEejNoYmRNZ0ZGMDNRQ1lYR3hsTFpzOWMzbU1LNmoxNVdZYjBPRTZmRldNQUluX3BHYQ?oc=5",
@@ -100,16 +60,6 @@
      "國安基金"
     ],
     "trusted": true
-   },
-   {
-    "title": "國安基金擴至1兆抗外資？財政部長回應了",
-    "source": "三立新聞網SETN.com",
-    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE8xbzU5RGVIaF9SZVFKNXRmRkxlNDJOaTk3ZjlCdHMzb3ctSzhySHNsMUZEbzB4eUJhS2U1ZlVqTWppVnY0ZzFWckhzQQ?oc=5",
-    "time": "2026-11-11T06:17:11.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
    },
    {
     "title": "國安基金進場3日強彈4550點！分析師揭護盤真相、示警「第二隻腳」",
@@ -130,7 +80,7 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T13:34:00.340Z",
+  "fetchedAt": "2026-11-11T15:28:56.873Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -4766,9 +4716,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44633,
+    "close": 44560,
     "ref": 44136,
-    "changePct": 1.13
+    "changePct": 0.96
    }
   },
   "foreignFuturesOI": {
@@ -4836,7 +4786,109 @@
    },
    "putCallOIRatio": 66.54,
    "putCallVolumeRatio": 118.36
-  }
+  },
+  "flows": [
+   {
+    "date": "2026-10-13",
+    "foreign": -1652.9,
+    "usdtwd": 31.928
+   },
+   {
+    "date": "2026-10-14",
+    "foreign": -200.4,
+    "usdtwd": 32.105
+   },
+   {
+    "date": "2026-10-15",
+    "foreign": -3025.6,
+    "usdtwd": 32.19
+   },
+   {
+    "date": "2026-10-16",
+    "foreign": -461.5,
+    "usdtwd": 32.327
+   },
+   {
+    "date": "2026-10-19",
+    "foreign": -767.4,
+    "usdtwd": 32.387
+   },
+   {
+    "date": "2026-10-20",
+    "foreign": -795.4,
+    "usdtwd": 32.48
+   },
+   {
+    "date": "2026-10-21",
+    "foreign": 22.4,
+    "usdtwd": 32.578
+   },
+   {
+    "date": "2026-10-22",
+    "foreign": -815.8,
+    "usdtwd": 32.366
+   },
+   {
+    "date": "2026-10-27",
+    "foreign": -80.4,
+    "usdtwd": 32.535
+   },
+   {
+    "date": "2026-10-28",
+    "foreign": 159.6,
+    "usdtwd": 32.425
+   },
+   {
+    "date": "2026-10-29",
+    "foreign": -688.2,
+    "usdtwd": 32.383
+   },
+   {
+    "date": "2026-10-30",
+    "foreign": -1124.7,
+    "usdtwd": 32.567
+   },
+   {
+    "date": "2026-11-02",
+    "foreign": -735.2,
+    "usdtwd": 32.606
+   },
+   {
+    "date": "2026-11-03",
+    "foreign": -1073.1,
+    "usdtwd": 32.585
+   },
+   {
+    "date": "2026-11-04",
+    "foreign": -1499,
+    "usdtwd": 32.733
+   },
+   {
+    "date": "2026-11-05",
+    "foreign": -1024.6,
+    "usdtwd": 32.821
+   },
+   {
+    "date": "2026-11-06",
+    "foreign": -911.9,
+    "usdtwd": 33.109
+   },
+   {
+    "date": "2026-11-09",
+    "foreign": -900.6,
+    "usdtwd": 32.76
+   },
+   {
+    "date": "2026-11-10",
+    "foreign": -341.2,
+    "usdtwd": 32.789
+   },
+   {
+    "date": "2026-11-11",
+    "foreign": -7.7,
+    "usdtwd": 32.899
+   }
+  ]
  },
  "global": {
   "sox": {
@@ -4873,34 +4925,34 @@
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-11",
-   "close": 18.33,
-   "prevClose": 19.46,
-   "changePct": -5.81,
+   "date": "2026-11-10",
+   "close": 19.46,
+   "prevClose": 19.92,
+   "changePct": -2.31,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
    "symbol": "^N225",
-   "date": "2026-11-11",
-   "close": 61248.59,
-   "prevClose": 60459.58,
-   "changePct": 1.31,
+   "date": "2026-11-10",
+   "close": 60459.58,
+   "prevClose": 58775.5,
+   "changePct": 2.87,
    "label": "日經 225"
   },
   "kospi": {
    "symbol": "^KS11",
-   "date": "2026-11-11",
-   "close": 5375.36,
-   "prevClose": 5239.13,
-   "changePct": 2.6,
+   "date": "2026-11-10",
+   "close": 5239.13,
+   "prevClose": 5018.85,
+   "changePct": 4.39,
    "label": "韓國 KOSPI"
   },
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-11",
-   "close": 32.86,
+   "close": 32.9,
    "prevClose": 32.79,
-   "changePct": 0.21,
+   "changePct": 0.34,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4920,7 +4972,7 @@
   "changePct": 3.26,
   "name": "日月光投控 ADR",
   "ratio": 2,
-  "impliedTwd": 582.9
+  "impliedTwd": 583.6
  },
  "hints": {
   "kline": {
@@ -4973,8 +5025,8 @@
   },
   "txf": {
    "signal": "偏多",
-   "strength": "強",
-   "data": "臺指期116夜盤 44633（+1.13%，相對日盤收盤 44136）",
+   "strength": "中",
+   "data": "臺指期116夜盤 44560（+0.96%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -4998,7 +5050,7 @@
   "asia": {
    "signal": "偏多",
    "strength": "中",
-   "data": "日經 +1.31%、KOSPI +2.6%（平均 +1.96%，2026-11-11）",
+   "data": "日經 +2.87%、KOSPI +4.39%（平均 +3.63%，2026-11-10）",
    "source": "Yahoo Finance"
   },
   "revenue": {
@@ -5008,9 +5060,9 @@
    "source": "公開資訊觀測站 月營收，2026-10"
   },
   "fx": {
-   "signal": "中性",
-   "strength": null,
-   "data": "美元兌新台幣 32.86，新台幣貶值 0.21%",
+   "signal": "偏空",
+   "strength": "弱",
+   "data": "美元兌新台幣 32.9，新台幣貶值 0.34%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }

@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import MarketBoard from '../components/MarketBoard.astro';
 import NewsAlerts from '../components/NewsAlerts.astro';
 import LeveragedRadar from '../components/LeveragedRadar.astro';
+import ForeignFlow from '../components/ForeignFlow.astro';
 import { getReports, stats, rateText, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL, govBanks, toYi, fmtNum } from '../lib/site.mjs';
 
 const reports = await getReports();
@@ -61,6 +62,8 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
         <div class="small muted label">隔夜行情<span class="hide-sm">（{md(snap.meta.basedOn)} 台股收盤後）</span>{!snap.meta.timingOk && <span class="warn">・部分未更新</span>}<span class="dim">・<span class="frame">黃框</span>＝交易中</span></div>
         <MarketBoard snapshot={snap} />
       </section>
+
+      {snap.market.flows?.length > 0 && <div class="section"><ForeignFlow flows={snap.market.flows} /></div>}
 
       {(snap.market.leveraged || snap.market.options) && <div class="section"><LeveragedRadar market={snap.market} /></div>}
 

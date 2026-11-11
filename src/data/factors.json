@@ -153,6 +153,13 @@
     "openFactors": ["txf", "adr", "us_market", "asia", "fx"],
     "openBand": { "window": 20, "factor": 0.5, "min": 0.2 }
   },
+  "foreignFlow": {
+    "description": "外資資金流向（首頁，只顯示不計分）：近 N 個交易日外資累計買賣超（證交所 BFI82U，外資及陸資，億元）與美元兌新台幣（Yahoo TWD=X）變化同時成立才判斷。",
+    "days": 5,
+    "netYi": 300,
+    "twdPct": 0.3,
+    "chartDays": 20
+  },
   "newsPolicy": {
     "description": "AI 完整版採用新聞的規則（CLAUDE.md §4 步驟 3）。check 會檢查封鎖網域、喊盤用語與「強」需兩個來源。",
     "trustedSources": ["中央社", "CNA", "經濟日報", "UDN", "工商時報", "鉅亨網", "聯合新聞網", "自由財經", "中時新聞網", "MoneyDJ", "科技新報", "數位時代", "商業周刊", "天下雜誌", "財訊", "路透", "Reuters", "彭博", "Bloomberg", "日經", "公開資訊觀測站", "證交所", "金管會", "中央銀行", "行政院", "總統府", "國防部", "白宮", "美國商務部", "聯準會"],
