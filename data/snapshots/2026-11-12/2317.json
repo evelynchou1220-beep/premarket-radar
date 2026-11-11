@@ -1,6 +1,6 @@
 {
  "news": {
-  "fetchedAt": "2026-11-11T12:14:31.439Z",
+  "fetchedAt": "2026-11-11T13:31:09.207Z",
   "since": "2026-11-11T13:30+08:00",
   "stock": [
    {
@@ -124,16 +124,6 @@
     "trusted": false
    },
    {
-    "title": "台股市值膨脹 17 倍 國安基金額度 26 年沒變！財長莊翠雲首度表態支持擴至1兆元",
-    "source": "Business Insider Taiwan",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE53bm9rQUNSNENLMTlYVGhob2gtMlZmY01hbGx5RUZCSG1vOWFJOTVXX2trOFZDc2NNelZhRnV5Q2JRVDlLOGxaLXJDdkJEblE2THNzNjlR?oc=5",
-    "time": "2026-11-11T09:53:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
     "title": "國安基金進場就底部？跟單穩賺？股海老牛破解10迷思：這點最厲害",
     "source": "三立新聞網SETN.com",
     "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE43WTliaGVFaGVLcFBoS2VzbU1TMjBwTmJoR1RaeFdMcElNbC1fWnA4WEwtbWFtTjc1RU43ZkYzYlB5Y0xmUEhXYjc2SQ?oc=5",
@@ -148,6 +138,16 @@
     "source": "理財周刊",
     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPdm41RjkyVUxNVUJSUlNuQXFDTlJLaVlEUnhwcWRsWDkwQzVZS21EWWhlS3RHaEhJOTFDNHBGVmNRdjBiRml2Z3k4MEtpQ2VBdVJpaG1GRnhwNlBnQ19ZTXoxLWtEMFZoSVp2VXN2dUFhR1JDaTdmdDhSRVNsbzZNYWZVV2NYdXAyV2lGaWJxRzY4VmVzVWc?oc=5",
     "time": "2026-11-11T07:36:27.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金第十度護盤何時退場？財長莊翠雲：須委員會決議",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMikwNBVV95cUxNNGRSR3F2WE4xUXpyMVUyakhoRTQyVWNxSkc0VnhxbDRPREI5WWU2S0VCUFZMbFZMZkphTFpfNnVraVdoXzV5d0lCaS1reUJMMjk4dmRGZl91Q054Y1pocS1RZzFwbDRGLUw5WlJTYU02Vm5RbEh4OEd4NUh4bklsTnBJbGxXV3VHU2MtOTh0V2Q5dDhwVS0zbjZhS0dvSjYtczlmVTlyenMzWDIta29sMmVPbnRMdXNCTW9aUzJwcklvajBrXzd5WTU5a0ZEZk12al9mcExsRXhhaVpicXQ2MVF5ZWtIS3RNRV9FTjllN25ZaEVKcjlvaXJGeHRZU01pcDNvVGJUbjRhc2tJc2lQcE1iLXBWV3o5QnFUZ3dTOFNXZEJJMnpmQlFhM1NkY3ZUMVIybjVla3lmYnhNVlZWbF9NMjliNl9fM2JsZUFEdDV5aS1teDRhaGM3RVBXMnd6X19vSVFNVUxrenlQX2NIbmtrNmNkSHFaaEpzWnhiUlZKREdsWlhPWVJMTktiRGN4bFQ4?oc=5",
+    "time": "2026-11-11T07:21:57.000Z",
     "tags": [
      "國安基金"
     ],
@@ -202,14 +202,6 @@
      "國安基金"
     ],
     "trusted": false
-   },
-   {
-    "title": "跌後布局 台股急殺後 五萬點還有戲？ 七名家教戰 「理性貪婪」買好股",
-    "source": "今周刊",
-    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOVV9qOEFUSE8xdkhHMUhSaFVQNUxUZlltNUEwZ1pNVXJhb0RaZjY0XzRvUGpQeWQ5RVc4WkZwZDI1VEJXWnRjcFEwS1E0RE5pV1BVdzlQMXpEOXVSVFdNTGowenE0MHZITkxBWk0xaFY0OGo5ZG8zS3FiX0hfWFpZag?oc=5",
-    "time": "2026-11-11T05:40:00.000Z",
-    "tags": [],
-    "trusted": false
    }
   ]
  },
@@ -220,15 +212,13 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T12:14:31.439Z",
+  "fetchedAt": "2026-11-11T13:31:09.207Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
    "美股（2026-11-10）早於台股最後收盤日 2026-11-11"
   ],
   "warnings": [
-   "證交所尚未公布 2026-11-11 借券賣出餘額",
-   "證交所尚未公布 2026-11-11 融資融券",
    "⏰ 時序檢查未通過：美股（2026-11-10）早於台股最後收盤日 2026-11-11。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
   ],
   "sources": [
@@ -4800,8 +4790,21 @@
    "dealerHedge": -232
   }
  ],
- "margin": null,
- "lending": null,
+ "margin": {
+  "date": "2026-11-11",
+  "marginPrev": 51323,
+  "marginToday": 51588,
+  "shortPrev": 493,
+  "shortToday": 495
+ },
+ "lending": {
+  "date": "2026-11-11",
+  "prev": 98685,
+  "today": 98907,
+  "change": 222,
+  "sold": 657,
+  "returned": 435
+ },
  "revenue": {
   "month": "2026-10",
   "revenue": 1305319612,
@@ -4836,9 +4839,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44489,
+    "close": 44663,
     "ref": 44136,
-    "changePct": 0.8
+    "changePct": 1.19
    }
   },
   "foreignFuturesOI": {
@@ -4864,9 +4867,9 @@
       "dealerSelf": 2098,
       "dealerHedge": 73850
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": -14651,
+     "marginBalance": 332779,
+     "lendingChange": 59
     },
     {
      "code": "00632R",
@@ -4884,9 +4887,9 @@
       "dealerSelf": 3494,
       "dealerHedge": -93764
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": 28102,
+     "marginBalance": 260361,
+     "lendingChange": 510
     }
    ]
   },
@@ -4944,9 +4947,9 @@
   "vix": {
    "symbol": "^VIX",
    "date": "2026-11-11",
-   "close": 18.53,
+   "close": 18.43,
    "prevClose": 19.46,
-   "changePct": -4.78,
+   "changePct": -5.29,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -4970,7 +4973,7 @@
    "date": "2026-11-11",
    "close": 32.85,
    "prevClose": 32.79,
-   "changePct": 0.18,
+   "changePct": 0.19,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -5027,15 +5030,15 @@
    "source": "證交所 T86，2026-11-11"
   },
   "margin": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "證交所尚未公布 2026-11-11 融資融券資料",
-   "source": "證交所 MI_MARGN"
+   "data": "融資餘額 51,588 張（+0.52%），融券餘額 495 張",
+   "source": "證交所 MI_MARGN，2026-11-11"
   },
   "txf": {
    "signal": "偏多",
-   "strength": "中",
-   "data": "臺指期116夜盤 44489（+0.8%，相對日盤收盤 44136）",
+   "strength": "強",
+   "data": "臺指期116夜盤 44663（+1.19%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -5065,7 +5068,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.85，新台幣貶值 0.18%",
+   "data": "美元兌新台幣 32.85，新台幣貶值 0.19%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }
