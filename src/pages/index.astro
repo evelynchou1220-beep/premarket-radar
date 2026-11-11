@@ -47,7 +47,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
       <section class="top">
         <div>
           <h1>{md(latestTarget)}（{weekday(latestTarget)}）盤前預測</h1>
-          <p class="small muted">0050 前五大權值股<span class="hide-sm">，每個開盤日 06:40 自動更新，收盤後自動對答案</span></p>
+          <p class="small muted">0050 前六大權值股<span class="hide-sm">，每個開盤日 06:40 自動更新，收盤後自動對答案</span></p>
         </div>
         <a class="rates small" href={url('record')}>
           <span>開盤命中 <b class="num">{rateText(openSt)}</b></span>
