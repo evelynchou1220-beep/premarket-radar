@@ -11,10 +11,11 @@ const S = config.scoring;
  * @param {{close:number}[]} daily snapshot.daily
  * @returns {number} 例如 0.75 代表收盤漲跌在 ±0.75% 以內算盤整
  */
-export function flatBand(daily) {
-  const { window, factor, min } = S.flatBand;
-  const closes = (daily ?? []).slice(-(window + 1)).map((d) => d.close);
-  const moves = closes.slice(1).map((c, i) => Math.abs(((c - closes[i]) / closes[i]) * 100)).sort((a, b) => a - b);
+export function flatBand(daily, kind = 'close') {
+  const { window, factor, min } = kind === 'open' ? S.openBand : S.flatBand;
+  const rows = (daily ?? []).slice(-(window + 1));
+  // close：收盤相對前一日收盤；open：開盤相對前一日收盤（跳空幅度）
+  const moves = rows.slice(1).map((r, i) => Math.abs((((kind === 'open' ? r.open : r.close) - rows[i].close) / rows[i].close) * 100)).sort((a, b) => a - b);
   if (!moves.length) return min;
   const median = moves[Math.floor(moves.length / 2)];
   return Math.max(min, Math.round(median * factor * 100) / 100);
@@ -50,6 +51,19 @@ export function computeScore(factors) {
   confidence = Math.round(Math.min(S.confidenceCap, confidence) - missing * S.missingPenalty);
   confidence = Math.max(50, confidence);
   return { score, max, ratio: Math.round(ratio * 1000) / 1000, verdict, confidence, missing, bull, bear, neutral };
+}
+
+/** 開盤預測的文字：偏多→開高、偏空→開低、盤整→平盤 */
+export const OPEN_LABEL = { 偏多: '開高', 偏空: '開低', 盤整: '平盤' };
+
+/**
+ * 開盤預測：只用「台股收盤後才產生的隔夜資訊」（夜盤、ADR、美股、日韓、匯率，見 factors.json scoring.openFactors），
+ * 套用同一個評分公式。籌碼與技術面反映的是過去，對開盤跳空的解釋力較低，所以不納入。
+ * @param {{key:string,signal:string,strength?:string|null}[]} factors 報告的因子（AI 改判也會反映）
+ */
+export function openScore(factors) {
+  const s = computeScore((factors ?? []).filter((f) => S.openFactors.includes(f.key)));
+  return { ...s, label: OPEN_LABEL[s.verdict] };
 }
 
 /**

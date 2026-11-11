@@ -1,69 +1,44 @@
 ---
-// 盤前行情看板：國際指數、匯率、台指期夜盤、大盤法人。資料取自最新一份快照。
+// 隔夜行情條：只放對開盤影響最大的幾項（美股科技、夜盤、日韓、匯率、外資期貨）。資料取自最新一份快照。
 import { pct, tone, fmtNum, md } from '../lib/site.mjs';
 interface Props { snapshot: any }
 const { snapshot: s } = Astro.props;
-const order = ['sox', 'nasdaq', 'sp500', 'dow', 'vix', 'nikkei', 'kospi', 'usdtwd', 'taiex'];
-const quotes = order.map((k) => s.global[k] && { key: k, ...s.global[k] }).filter(Boolean);
+const g = s.global;
 const txf = s.market.txf;
-const inst = s.market.institutional;
 const oi = s.market.foreignFuturesOI;
-const yi = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n, 1)} 億`;
+type Item = { label: string; value: string; change?: string; t: string; date?: string; hl?: boolean };
+const items: Item[] = [];
+const q = (key: string, label: string, invert = false) => {
+  const x = g[key];
+  if (x) items.push({ label, value: fmtNum(x.close, x.close < 100 ? 2 : 0), change: pct(x.changePct), t: tone(invert ? -x.changePct : x.changePct), date: md(x.date) });
+};
+q('sox', '費城半導體');
+q('nasdaq', '那斯達克');
+if (txf) {
+  items.push(txf.night
+    ? { label: '台指期夜盤', value: fmtNum(txf.night.close), change: pct(txf.night.changePct), t: tone(txf.night.changePct), date: md(txf.night.session), hl: true }
+    : { label: '台指期夜盤', value: '—', change: '未開盤', t: 'flat', hl: true });
+}
+q('nikkei', '日經');
+q('kospi', '韓國');
+q('usdtwd', '美元／台幣', true); // 美元兌新台幣上漲＝新台幣貶值，對台股偏空，顏色反過來
+if (oi) items.push({ label: '外資期貨', value: `${oi.net >= 0 ? '淨多' : '淨空'} ${fmtNum(Math.abs(oi.net))}`, t: tone(oi.net), date: md(oi.date) });
 ---
-<div class="board">
-  {quotes.map((q: any) => {
-    // 美元兌新台幣上漲 = 新台幣貶值，顏色反過來看比較直覺（貶值對台股偏空）
-    const t = q.key === 'usdtwd' || q.key === 'vix' ? tone(-q.changePct) : tone(q.changePct);
-    return (
-      <div class="q">
-        <div class="label small muted">{q.label}</div>
-        <div class="price num">{fmtNum(q.close, q.close < 100 ? 2 : 0)}</div>
-        <div class:list={['chg num small', t]}>{pct(q.changePct)}</div>
-        <div class="date dim">{md(q.date)}</div>
-      </div>
-    );
-  })}
-  {txf && (
-    <div class="q hl">
-      <div class="label small muted">台指期夜盤</div>
-      {txf.night ? (
-        <>
-          <div class="price num">{fmtNum(txf.night.close)}</div>
-          <div class:list={['chg num small', tone(txf.night.changePct)]}>{pct(txf.night.changePct)}</div>
-          <div class="date dim">{md(txf.night.session)} 夜盤</div>
-        </>
-      ) : (
-        <>
-          <div class="price num dim">—</div>
-          <div class="chg small muted">夜盤未開始</div>
-          <div class="date dim">日盤 {pct(txf.day.changePct)}</div>
-        </>
-      )}
+<div class="strip">
+  {items.map((i) => (
+    <div class:list={['it', i.hl && 'hl']} title={i.date ? `資料日期 ${i.date}` : undefined}>
+      <span class="label">{i.label}</span>
+      <span class="num value">{i.value}</span>
+      {i.change && <span class:list={['num chg', i.t]}>{i.change}</span>}
     </div>
-  )}
-  {inst && (
-    <div class="q">
-      <div class="label small muted">外資（大盤）</div>
-      <div class:list={['price num', tone(inst.foreign)]}>{yi(inst.foreign)}</div>
-      <div class="chg small muted">投信 <span class:list={['num', tone(inst.trust)]}>{yi(inst.trust)}</span></div>
-      <div class="date dim">{md(inst.date)}</div>
-    </div>
-  )}
-  {oi && (
-    <div class="q">
-      <div class="label small muted">外資台指期未平倉</div>
-      <div class:list={['price num', tone(oi.net)]}>{oi.net > 0 ? '+' : ''}{fmtNum(oi.net)}</div>
-      <div class="chg small muted">口（{oi.net >= 0 ? '淨多' : '淨空'}）</div>
-      <div class="date dim">{md(oi.date)}</div>
-    </div>
-  )}
+  ))}
 </div>
 
 <style>
-  .board { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
-  .q { background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 12px; }
-  .q.hl { border-color: rgba(245, 165, 36, 0.45); }
-  .price { font-size: 18px; font-weight: 600; line-height: 1.3; }
-  .chg { font-weight: 600; }
-  .date { font-size: 11px; }
+  .strip { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; }
+  .it { flex: 0 0 auto; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 8px 12px; min-width: 112px; }
+  .it.hl { border-color: var(--accent); }
+  .label { font-size: 12px; color: var(--muted); }
+  .value { font-size: 16px; font-weight: 600; line-height: 1.3; }
+  .chg { font-size: 13px; font-weight: 600; }
 </style>

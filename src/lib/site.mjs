@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import factorConfig from '../data/factors.json' with { type: 'json' };
 import results from '../../data/results.json' with { type: 'json' };
-import { computeScore, programScore, flatBand } from './scoring.mjs';
+import { computeScore, programScore, flatBand, openScore } from './scoring.mjs';
 
 export const SITE_NAME = '盤前雷達';
 export const SITE_TAGLINE = '台股開盤前的 AI 個股多空分析';
@@ -43,6 +43,8 @@ export async function getReports() {
         score: computeScore(r.data.factors),
         program: programScore(snapshot?.hints), // 只用程式因子重算的判定，AI 完整版用來對照
         band: result?.band ?? flatBand(snapshot?.daily), // 盤整範圍（%）
+        open: openScore(r.data.factors), // 開盤預測（開高／開低／平盤）
+        openBand: result?.openBand ?? flatBand(snapshot?.daily, 'open'),
         void: Boolean(result?.void), // 預測日臨時休市，作廢
       };
     })
@@ -52,12 +54,12 @@ export async function getReports() {
 /**
  * 命中率統計（排除作廢）。
  * @param {any[]} reports
- * @param {'report'|'program'} [by] report＝以報告本身的結論計算；program＝以程式版判定計算（所有報告都有）
+ * @param {'report'|'program'|'open'} [by] report＝報告本身的結論；program＝程式版判定（所有報告都有）；open＝開盤預測
  */
 export function stats(reports, by = 'report') {
   const valid = reports.filter((r) => !r.void);
   const verified = valid.filter((r) => r.result);
-  const key = by === 'program' ? 'programHit' : 'hit';
+  const key = by === 'program' ? 'programHit' : by === 'open' ? 'openHit' : 'hit';
   const hits = verified.filter((r) => r.result[key]).length;
   return {
     total: valid.length,

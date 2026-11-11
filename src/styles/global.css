@@ -23,6 +23,18 @@
   --accent-bg: rgba(245, 165, 36, 0.12);
   --info: #4c9cff;
 
+  /* 技術指標線（PriceCharts 使用） */
+  --c-ma5: #f5a524;
+  --c-ma10: #facc15;
+  --c-ma20: #4c9cff;
+  --c-ma60: #c084fc;
+  --c-ma120: #2dd4bf;
+  --c-ma240: #f472b6;
+  --c-bb: #94a3b8;
+  --c-k: #f5a524;
+  --c-d: #4c9cff;
+  --c-rsi: #c084fc;
+
   --radius: 10px;
   --radius-sm: 6px;
   --gap: 16px;

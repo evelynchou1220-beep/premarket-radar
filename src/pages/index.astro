@@ -1,81 +1,138 @@
 ---
-// 首頁：盤前總覽。顯示最新快照的國際行情、最新一批預測、戰績摘要。
+// 首頁：一眼看完今天的盤前預測。只放重點：隔夜行情條＋每檔一列（開盤預測、收盤預測、最關鍵理由）。
 import Base from '../layouts/Base.astro';
 import MarketBoard from '../components/MarketBoard.astro';
-import ReportCard from '../components/ReportCard.astro';
-import { getReports, stats, rateText, watchlist, url, md, weekday, SITE_TAGLINE } from '../lib/site.mjs';
+import { getReports, stats, rateText, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL } from '../lib/site.mjs';
 
 const reports = await getReports();
 const latestTarget = reports[0]?.data.target;
 const latest = reports.filter((r) => r.data.target === latestTarget);
-const earlier = reports.filter((r) => r.data.target !== latestTarget).slice(0, 6);
+const earlier = reports.filter((r) => r.data.target !== latestTarget).slice(0, 10);
 const snap = latest.map((r) => r.snapshot).sort((a, b) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
 const st = stats(reports, 'program');
 const aiSt = stats(reports.filter((r) => r.data.mode === 'ai'));
-const bull = latest.filter((r) => r.data.verdict === '偏多').length;
-const bear = latest.filter((r) => r.data.verdict === '偏空').length;
+const openSt = stats(reports, 'open');
+
+const rank = { 強: 3, 中: 2, 弱: 1 } as Record<string, number>;
+const topFactor = (r: any) => r.data.factors.filter((f: any) => f.signal === '偏多' || f.signal === '偏空').sort((a: any, b: any) => (rank[b.strength] ?? 0) - (rank[a.strength] ?? 0))[0];
+const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
+const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
 ---
 <Base active="home">
-  <section class="intro">
-    <div>
-      <div class="eyebrow small">PRE-MARKET RADAR</div>
-      <h1>{SITE_TAGLINE}</h1>
-      <p class="muted">每個開盤日 07:00 前，排程自動抓取外資、投信、台指期夜盤、美股與匯率，替 0050 前五大權值股算出「偏多／偏空／盤整」與信心度；想看新聞面時，再請 AI 升級成完整版。收盤後自動對答案。</p>
-      <p class="small dim watch">每日自動追蹤：{watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('・')}｜週末與國定假日不預測</p>
-    </div>
-    <div class="kpis">
-      <div class="kpi"><span class="num">{rateText(st)}</span><span class="small muted">程式版命中率（{st.verified} 筆）</span></div>
-      <div class="kpi"><span class="num info">{rateText(aiSt)}</span><span class="small muted">AI 完整版（{aiSt.verified} 筆）</span></div>
-      <div class="kpi"><span class="num">{st.pending}</span><span class="small muted">待驗證</span></div>
-    </div>
-  </section>
-
   {!reports.length ? (
     <div class="panel section">
-      <h2>還沒有任何報告</h2>
-      <p class="muted">下一個開盤日早上，排程會自動產生第一批程式版預測；也可以對 AI 說「分析今天的 2330」。</p>
+      <h1>還沒有任何預測</h1>
+      <p class="muted">下一個開盤日 06:40 排程會自動產生第一批預測；也可以對 AI 說「分析今天的 2330」。</p>
       <a href={url('guide')}>查看使用方式 →</a>
     </div>
   ) : (
     <>
-      <section class="panel section">
-        <div class="panel-title">
-          <span>隔夜行情｜{md(snap.meta.basedOn)} 台股收盤後</span>
-          <span class="small dim">快照 {new Date(snap.meta.fetchedAt).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false })}</span>
+      <section class="top">
+        <div>
+          <h1>{md(latestTarget)}（{weekday(latestTarget)}）盤前預測</h1>
+          <p class="small muted">0050 前五大權值股，每個開盤日 06:40 自動更新，收盤後自動對答案</p>
         </div>
-        <MarketBoard snapshot={snap} />
-        {!snap.meta.timingOk && <p class="small" style="color:var(--accent);margin:12px 0 0">⏰ 此快照在美股收盤前抓取，部分國際資料尚未更新。</p>}
+        <a class="rates small" href={url('record')}>
+          <span>收盤命中 <b class="num">{rateText(st)}</b></span>
+          <span>開盤命中 <b class="num">{rateText(openSt)}</b></span>
+          <span>AI 完整版 <b class="num info">{rateText(aiSt)}</b></span>
+          <span class="dim">戰績 →</span>
+        </a>
       </section>
 
       <section class="section">
-        <div class="head">
-          <h2>{md(latestTarget)}（{weekday(latestTarget)}）盤前預測</h2>
-          <span class="small muted">{latest.length} 檔｜<span class="up">偏多 {bull}</span>・<span class="down">偏空 {bear}</span>・盤整 {latest.length - bull - bear}</span>
+        <div class="small muted label">隔夜行情（{md(snap.meta.basedOn)} 台股收盤後）{!snap.meta.timingOk && <span class="warn">・部分資料尚未更新</span>}</div>
+        <MarketBoard snapshot={snap} />
+      </section>
+
+      <section class="section list">
+        <div class="row head small muted">
+          <span>股票</span><span>開盤</span><span>收盤</span><span>最關鍵的理由</span><span>結果</span>
         </div>
-        <div class="grid grid-3">{latest.map((r) => <ReportCard report={r} />)}</div>
+        {latest.map((r) => {
+          const f = topFactor(r);
+          const res = r.result && !r.void ? r.result : null;
+          return (
+            <a class="row item" href={url(`reports/${r.id}`)}>
+              <span class="stock">
+                <b><span class="num code">{r.data.code}</span> {r.data.name}</b>
+                <span class:list={['mode', r.data.mode]}>{MODE_LABEL[r.data.mode]}</span>
+              </span>
+              <span class:list={['call', verdictTone(r.open.verdict)]} data-k="開盤">
+                {icon(r.open.verdict)} {r.open.label}<em class="num">{r.open.confidence}%</em>
+              </span>
+              <span class:list={['call', verdictTone(r.data.verdict)]} data-k="收盤">
+                {icon(r.data.verdict)} {r.data.verdict}<em class="num">{r.data.confidence}%</em>
+              </span>
+              <span class="why small">
+                {f ? <><span class={signalTone(f.signal)}>{signalIcon(f.signal)}</span> {factorDefs[f.key].label}：<span class="muted">{f.data}</span></> : <span class="muted">多空資訊不足</span>}
+              </span>
+              <span class="res small">
+                {r.void ? '⊘ 作廢' : res ? <>開 {mark(res.openHit)}　收 {mark(res.hit)}</> : <span class="dim">待驗證</span>}
+              </span>
+            </a>
+          );
+        })}
       </section>
 
       {earlier.length > 0 && (
         <section class="section">
-          <div class="head"><h2>先前的預測</h2><a class="small" href={url('record')}>完整戰績 →</a></div>
-          <div class="grid grid-3">{earlier.map((r) => <ReportCard report={r} />)}</div>
+          <div class="small muted label">先前的預測</div>
+          <div class="table-wrap">
+            <table class="small">
+              <thead><tr><th>日期</th><th>股票</th><th>開盤</th><th>收盤</th><th>結果</th></tr></thead>
+              <tbody>
+                {earlier.map((r) => (
+                  <tr>
+                    <td class="num">{md(r.data.target)}</td>
+                    <td><a href={url(`reports/${r.id}`)}>{r.data.code} {r.data.name}</a></td>
+                    <td class={verdictTone(r.open.verdict)}>{r.open.label}</td>
+                    <td class={verdictTone(r.data.verdict)}>{r.data.verdict}</td>
+                    <td>{r.void ? '作廢' : r.result ? `開 ${mark(r.result.openHit)}　收 ${mark(r.result.hit)}` : '待驗證'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
       )}
+
+      <p class="small dim foot">每日追蹤：{watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('・')}。週末與國定假日不預測。點任一列看完整理由與走勢圖。</p>
     </>
   )}
 </Base>
 
 <style>
-  .intro { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin: 8px 0 24px; }
-  .eyebrow { color: var(--accent); letter-spacing: 0.18em; font-weight: 600; margin-bottom: 6px; }
-  h1 { font-size: 28px; }
-  .intro p { max-width: 640px; margin: 0; }
-  .intro .watch { margin-top: 8px; }
-  .kpi .num.info { color: var(--info); }
-  .kpis { display: flex; gap: 10px; }
-  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; min-width: 120px; display: flex; flex-direction: column; }
-  .kpi .num { font-size: 24px; font-weight: 600; color: var(--accent); }
-  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
-  .head h2 { margin: 0; }
-  @media (max-width: 760px) { .intro { grid-template-columns: 1fr; } .kpis { flex-wrap: wrap; } .kpi { flex: 1; min-width: 100px; } }
+  .top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin: 4px 0 18px; }
+  h1 { font-size: 26px; margin: 0 0 2px; }
+  .top p { margin: 0; }
+  .rates { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 14px; }
+  .rates:hover { text-decoration: none; border-color: var(--line-strong); }
+  .rates b { color: var(--accent); font-size: 15px; }
+  .rates b.info { color: var(--info); }
+  .label { margin-bottom: 6px; }
+  .warn { color: var(--accent); }
+
+  .list { display: flex; flex-direction: column; gap: 6px; }
+  .row { display: grid; grid-template-columns: 1.3fr 0.9fr 0.9fr 2.4fr 0.8fr; gap: 12px; align-items: center; padding: 10px 14px; }
+  .head { padding-top: 0; padding-bottom: 0; }
+  .item { color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color 0.15s; }
+  .item:hover { border-color: var(--line-strong); text-decoration: none; }
+  .stock { display: flex; flex-direction: column; }
+  .code { color: var(--accent); }
+  .mode { font-size: 11px; color: var(--muted); }
+  .mode.ai { color: var(--info); }
+  .call { font-size: 18px; font-weight: 800; white-space: nowrap; }
+  .call em { font-style: normal; font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 6px; }
+  .why { line-height: 1.5; }
+  .res { white-space: nowrap; }
+  .foot { margin-top: 18px; }
+
+  @media (max-width: 760px) {
+    .head { display: none; }
+    .row { grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+    .stock { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: 8px; }
+    .call::before { content: attr(data-k) ' '; font-size: 12px; font-weight: 600; color: var(--muted); }
+    .why, .res { grid-column: 1 / -1; }
+  }
 </style>

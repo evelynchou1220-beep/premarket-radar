@@ -170,15 +170,15 @@ sources.push({ name: '證交所 STOCK_DAY（股票名稱）', url: 'https://www.
 
 let daily;
 try {
-  daily = await twseDaily(code, 7);
-  sources.push({ name: '證交所 STOCK_DAY 個股日成交資訊（7 個月）', url: 'https://www.twse.com.tw/zh/trading/historical/stock-day.html' });
+  daily = await twseDaily(code, 25); // 約 2 年，讓 MA240（年線）也能畫出 1 年以上
+  sources.push({ name: '證交所 STOCK_DAY 個股日成交資訊（2 年）', url: 'https://www.twse.com.tw/zh/trading/historical/stock-day.html' });
 } catch (e) {
   warnings.push(`證交所日成交資料取得失敗，改用 Yahoo（成交量可能與官方不同）：${e.message}`);
-  const yDaily = await yahooChart(`${code}.TW`, '6mo', '1d');
+  const yDaily = await yahooChart(`${code}.TW`, '2y', '1d');
   daily = yDaily.rows.map((r) => ({
     date: tpeDate(r.ts), open: round(r.open), high: round(r.high), low: round(r.low), close: round(r.close), volume: r.volume,
   }));
-  sources.push({ name: `Yahoo Finance ${code}.TW 日 K（6 個月）`, url: `https://finance.yahoo.com/quote/${code}.TW` });
+  sources.push({ name: `Yahoo Finance ${code}.TW 日 K（2 年）`, url: `https://finance.yahoo.com/quote/${code}.TW` });
 }
 const basedOn = daily.at(-1).date;
 target ??= nextTradingDay(basedOn);

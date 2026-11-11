@@ -1,9 +1,10 @@
 ---
-// 走勢圖：分時（最後交易日 5 分 K）＋日 K（6 個月，含 MA5/20/60 與成交量）。
-// 資料一律來自 data/snapshots 快照，不在瀏覽器端抓資料。
+// 走勢圖：分時（最後交易日 5 分 K）＋日 K／週 K（約 2 年）。
+// 技術指標可由使用者勾選：均線 MA5／10／20／60／120／240、布林通道；副圖：成交量、KD、RSI、MACD。
+// 勾選結果存在瀏覽器（localStorage），下次開啟保留。資料一律來自 data/snapshots 快照，不在瀏覽器端抓資料。
 import { md } from '../lib/site.mjs';
 interface Props { snapshot: any; initial?: 'intraday' | 'daily' }
-const { snapshot, initial = 'intraday' } = Astro.props;
+const { snapshot, initial = 'daily' } = Astro.props;
 const hasIntraday = snapshot.intraday?.length > 0;
 const start = hasIntraday ? initial : 'daily';
 const payload = {
@@ -12,20 +13,39 @@ const payload = {
   daily: snapshot.daily.map((x: any) => [x.date, x.open, x.high, x.low, x.close, x.volume]),
 };
 const day = snapshot.meta.basedOn;
+const overlays = [
+  ['ma5', 'MA5'], ['ma10', 'MA10'], ['ma20', 'MA20 月線'], ['ma60', 'MA60 季線'], ['ma120', 'MA120 半年線'], ['ma240', 'MA240 年線'], ['bb', '布林通道'],
+];
+const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MACD']];
 ---
 <div class="charts" data-start={start}>
-  <div class="tabs" role="tablist">
-    {hasIntraday && <button role="tab" data-tab="intraday" aria-selected={start === 'intraday'}>{md(day)} 分時走勢</button>}
-    <button role="tab" data-tab="daily" aria-selected={start === 'daily'}>日 K（6 個月）</button>
-    <span class="legend small" data-legend="daily" hidden={start !== 'daily'}>
-      <i style="--c:#f5a524"></i>MA5 <i style="--c:#4c9cff"></i>MA20 <i style="--c:#c084fc"></i>MA60
-    </span>
-    <span class="legend small" data-legend="intraday" hidden={start !== 'intraday'}>
-      <i style="--c:#8d97aa"></i>前日收盤 {snapshot.indicators.prevClose}
-    </span>
+  <div class="bar">
+    <div class="seg" role="tablist">
+      {hasIntraday && <button data-tab="intraday" aria-selected={start === 'intraday'}>{md(day)} 分時</button>}
+      <button data-tab="daily" aria-selected={start === 'daily'}>日 K</button>
+      <button data-tab="weekly" aria-selected="false">週 K</button>
+    </div>
+    <div class="seg k-only" data-ranges>
+      <button data-range="3m">3 月</button>
+      <button data-range="6m" aria-selected="true">6 月</button>
+      <button data-range="1y">1 年</button>
+      <button data-range="all">全部</button>
+    </div>
   </div>
-  <div class="chart" data-panel="intraday" hidden={start !== 'intraday'}></div>
-  <div class="chart" data-panel="daily" hidden={start !== 'daily'}></div>
+
+  <div class="toggles k-only small">
+    <span class="grp">主圖</span>
+    {overlays.map(([k, label]) => (
+      <label><input type="checkbox" data-ind={k} /><i style={`--c: var(--c-${k})`}></i>{label}</label>
+    ))}
+    <span class="grp">副圖</span>
+    {panes.map(([k, label]) => (
+      <label><input type="checkbox" data-ind={k} />{label}</label>
+    ))}
+  </div>
+
+  <div class="info num small" data-info></div>
+  <div class="chart" data-chart></div>
   <script type="application/json" set:html={JSON.stringify(payload)} />
 </div>
 
@@ -35,6 +55,14 @@ const day = snapshot.meta.basedOn;
   const css = getComputedStyle(document.documentElement);
   const v = (n: string) => css.getPropertyValue(n).trim();
   const UP = v('--up'), DOWN = v('--down');
+  const UP_A = 'rgba(240,69,75,.5)', DOWN_A = 'rgba(31,191,117,.5)';
+  const DEFAULT = ['ma5', 'ma20', 'ma60', 'vol'];
+  const STORE = 'pmr-chart-v1';
+  const RANGE: Record<string, [number, number]> = { '3m': [63, 13], '6m': [126, 26], '1y': [250, 52], all: [1e9, 1e9] }; // [日 K 根數, 週 K 根數]
+
+  const load = () => { try { return JSON.parse(localStorage.getItem(STORE) || 'null'); } catch { return null; } };
+  const save = (s: any) => { try { localStorage.setItem(STORE, JSON.stringify(s)); } catch { /* 無痕模式等情況忽略 */ } };
+
   const base = {
     autoSize: true,
     layout: { background: { type: ColorType.Solid, color: 'transparent' }, textColor: v('--muted'), fontFamily: v('--mono'), panes: { separatorColor: v('--line') } },
@@ -43,83 +71,186 @@ const day = snapshot.meta.basedOn;
     timeScale: { borderColor: v('--line') },
     crosshair: { mode: 0 },
   };
+  const line = (color: string, width = 1) => ({ color, lineWidth: width as 1, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
 
-  function sma(rows: number[][], n: number) {
-    const out = [];
-    for (let i = n - 1; i < rows.length; i++) {
-      let s = 0;
-      for (let j = i - n + 1; j <= i; j++) s += rows[j][4] as number;
-      out.push({ time: rows[i][0], value: +(s / n).toFixed(2) });
+  // ---------- 指標計算（bars: [time, open, high, low, close, volume]） ----------
+  type Bar = [string, number, number, number, number, number];
+  const sma = (vals: number[], n: number) => vals.map((_, i) => (i < n - 1 ? null : vals.slice(i - n + 1, i + 1).reduce((a, b) => a + b, 0) / n));
+  const ema = (vals: number[], n: number) => { const k = 2 / (n + 1); let e = vals[0]; return vals.map((x) => (e = x * k + e * (1 - k))); };
+  const series = (bars: Bar[], vals: (number | null)[], skip = 0) =>
+    bars.map((b, i) => (vals[i] == null || i < skip ? null : { time: b[0], value: +(vals[i] as number).toFixed(2) })).filter(Boolean) as any[];
+
+  function kd(bars: Bar[]) {
+    let k = 50, d = 50; const K: number[] = [], D: number[] = [];
+    bars.forEach((_, i) => {
+      const w = bars.slice(Math.max(0, i - 8), i + 1);
+      const hi = Math.max(...w.map((b) => b[2])), lo = Math.min(...w.map((b) => b[3]));
+      const rsv = hi === lo ? 50 : ((bars[i][4] - lo) / (hi - lo)) * 100;
+      k = (2 / 3) * k + rsv / 3; d = (2 / 3) * d + k / 3; K.push(k); D.push(d);
+    });
+    return { K, D };
+  }
+  function rsi(closes: number[], n = 14) {
+    let g = 0, l = 0; const out: (number | null)[] = [null];
+    for (let i = 1; i < closes.length; i++) {
+      const ch = closes[i] - closes[i - 1];
+      if (i <= n) { g += Math.max(ch, 0); l += Math.max(-ch, 0); out.push(i === n ? 100 - 100 / (1 + g / (l || 1e-9)) : null); if (i === n) { g /= n; l /= n; } continue; }
+      g = (g * (n - 1) + Math.max(ch, 0)) / n; l = (l * (n - 1) + Math.max(-ch, 0)) / n;
+      out.push(100 - 100 / (1 + g / (l || 1e-9)));
+    }
+    return out;
+  }
+  function weekly(bars: Bar[]): Bar[] {
+    const out: Bar[] = [];
+    let key = '';
+    for (const b of bars) {
+      const d = new Date(b[0] + 'T00:00:00Z');
+      const monday = new Date(d.getTime() - ((d.getUTCDay() + 6) % 7) * 864e5).toISOString().slice(0, 10);
+      if (monday !== key) { out.push([b[0], b[1], b[2], b[3], b[4], b[5]]); key = monday; continue; }
+      const w = out[out.length - 1];
+      w[2] = Math.max(w[2], b[2]); w[3] = Math.min(w[3], b[3]); w[4] = b[4]; w[5] += b[5];
     }
     return out;
   }
 
-  function drawDaily(el: HTMLElement, rows: any[]) {
-    const chart = createChart(el, { ...base, timeScale: { ...base.timeScale } });
-    const candle = chart.addSeries(CandlestickSeries, {
-      upColor: UP, downColor: DOWN, borderUpColor: UP, borderDownColor: DOWN, wickUpColor: UP, wickDownColor: DOWN,
-    });
-    candle.setData(rows.map((r) => ({ time: r[0], open: r[1], high: r[2], low: r[3], close: r[4] })));
-    for (const [n, color] of [[5, '#f5a524'], [20, '#4c9cff'], [60, '#c084fc']] as const) {
-      if (rows.length < n) continue;
-      const s = chart.addSeries(LineSeries, { color, lineWidth: 1, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
-      s.setData(sma(rows, n));
+  // ---------- K 線圖 ----------
+  function drawK(el: HTMLElement, info: HTMLElement, bars: Bar[], on: Set<string>, rangeKey: string, weeklyMode: boolean) {
+    const subs = ['vol', 'kd', 'rsi', 'macd'].filter((k) => on.has(k));
+    el.style.height = `${340 + subs.length * 100}px`;
+    const chart = createChart(el, base);
+    const closes = bars.map((b) => b[4]);
+    const candle = chart.addSeries(CandlestickSeries, { upColor: UP, downColor: DOWN, borderUpColor: UP, borderDownColor: DOWN, wickUpColor: UP, wickDownColor: DOWN });
+    candle.setData(bars.map((b) => ({ time: b[0], open: b[1], high: b[2], low: b[3], close: b[4] })));
+
+    for (const n of [5, 10, 20, 60, 120, 240]) {
+      if (!on.has(`ma${n}`) || bars.length < n) continue;
+      chart.addSeries(LineSeries, line(v(`--c-ma${n}`))).setData(series(bars, sma(closes, n)));
     }
-    const vol = chart.addSeries(HistogramSeries, { priceFormat: { type: 'volume' }, priceLineVisible: false, lastValueVisible: false }, 1);
-    vol.setData(rows.map((r, i) => ({ time: r[0], value: r[5] / 1000, color: (i && r[4] < rows[i - 1][4]) ? 'rgba(31,191,117,.55)' : 'rgba(240,69,75,.55)' })));
-    chart.panes()[1]?.setHeight(80);
-    chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, rows.length - 90), to: rows.length + 2 });
+    if (on.has('bb') && bars.length >= 20) {
+      const mid = sma(closes, 20);
+      const sd = closes.map((_, i) => (i < 19 ? null : Math.sqrt(closes.slice(i - 19, i + 1).reduce((a, x) => a + (x - (mid[i] as number)) ** 2, 0) / 20)));
+      const c = v('--c-bb');
+      chart.addSeries(LineSeries, { ...line(c), lineStyle: LineStyle.Dashed }).setData(series(bars, mid.map((m, i) => (m == null ? null : m + 2 * (sd[i] as number)))));
+      chart.addSeries(LineSeries, { ...line(c), lineStyle: LineStyle.Dashed }).setData(series(bars, mid.map((m, i) => (m == null ? null : m - 2 * (sd[i] as number)))));
+    }
+
+    subs.forEach((k, idx) => {
+      const pane = idx + 1;
+      if (k === 'vol') {
+        chart.addSeries(HistogramSeries, { priceFormat: { type: 'volume' }, priceLineVisible: false, lastValueVisible: false }, pane)
+          .setData(bars.map((b, i) => ({ time: b[0], value: b[5] / 1000, color: i && b[4] < bars[i - 1][4] ? DOWN_A : UP_A })));
+      } else if (k === 'kd') {
+        const { K, D } = kd(bars);
+        const s = chart.addSeries(LineSeries, line(v('--c-k')), pane); s.setData(series(bars, K, 8));
+        chart.addSeries(LineSeries, line(v('--c-d')), pane).setData(series(bars, D, 8));
+        s.createPriceLine({ price: 80, color: v('--dim'), lineStyle: LineStyle.Dotted, lineWidth: 1, axisLabelVisible: false, title: '' });
+        s.createPriceLine({ price: 20, color: v('--dim'), lineStyle: LineStyle.Dotted, lineWidth: 1, axisLabelVisible: false, title: '' });
+      } else if (k === 'rsi') {
+        const s = chart.addSeries(LineSeries, line(v('--c-rsi')), pane); s.setData(series(bars, rsi(closes)));
+        s.createPriceLine({ price: 70, color: v('--dim'), lineStyle: LineStyle.Dotted, lineWidth: 1, axisLabelVisible: false, title: '' });
+        s.createPriceLine({ price: 30, color: v('--dim'), lineStyle: LineStyle.Dotted, lineWidth: 1, axisLabelVisible: false, title: '' });
+      } else if (k === 'macd') {
+        const e26 = ema(closes, 26);
+        const dif = ema(closes, 12).map((x, i) => x - e26[i]);
+        const dea = ema(dif, 9);
+        chart.addSeries(HistogramSeries, { priceLineVisible: false, lastValueVisible: false }, pane)
+          .setData(bars.map((b, i) => (i < 33 ? null : { time: b[0], value: +(dif[i] - dea[i]).toFixed(2), color: dif[i] >= dea[i] ? UP_A : DOWN_A })).filter(Boolean) as any[]);
+        chart.addSeries(LineSeries, line(v('--c-k')), pane).setData(series(bars, dif, 33));
+        chart.addSeries(LineSeries, line(v('--c-d')), pane).setData(series(bars, dea, 33));
+      }
+    });
+    chart.panes().forEach((p, i) => { if (i > 0) p.setHeight(90); });
+
+    const n = RANGE[rangeKey][weeklyMode ? 1 : 0];
+    chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, bars.length - n), to: bars.length + 2 });
+
+    // 游標所在的 K 棒資訊
+    const byTime = new Map(bars.map((b, i) => [b[0], i]));
+    const show = (i: number) => {
+      const b = bars[i], prev = bars[i - 1];
+      const ch = prev ? ((b[4] - prev[4]) / prev[4]) * 100 : 0;
+      const cls = ch > 0 ? 'up' : ch < 0 ? 'down' : '';
+      info.innerHTML = `${b[0]}${weeklyMode ? ' 當週' : ''}　開 ${b[1]}　高 ${b[2]}　低 ${b[3]}　收 <b class="${cls}">${b[4]}（${ch > 0 ? '+' : ''}${ch.toFixed(2)}%）</b>　量 ${Math.round(b[5] / 1000).toLocaleString()} 張`;
+    };
+    show(bars.length - 1);
+    chart.subscribeCrosshairMove((p) => { const i = p.time ? byTime.get(p.time as string) : undefined; show(i ?? bars.length - 1); });
+    return chart;
   }
 
-  function drawIntraday(el: HTMLElement, rows: any[], prevClose: number) {
+  // ---------- 分時 ----------
+  function drawIntraday(el: HTMLElement, info: HTMLElement, rows: any[], prevClose: number) {
+    el.style.height = '380px';
     const chart = createChart(el, {
       ...base,
       timeScale: { ...base.timeScale, timeVisible: true, secondsVisible: false },
       localization: { timeFormatter: (t: number) => new Date(t * 1000).toISOString().slice(11, 16) },
     });
     const TZ = 8 * 3600; // 以台北時間顯示
-    const line = chart.addSeries(BaselineSeries, {
+    const s = chart.addSeries(BaselineSeries, {
       baseValue: { type: 'price', price: prevClose },
       topLineColor: UP, topFillColor1: 'rgba(240,69,75,.28)', topFillColor2: 'rgba(240,69,75,.02)',
       bottomLineColor: DOWN, bottomFillColor1: 'rgba(31,191,117,.02)', bottomFillColor2: 'rgba(31,191,117,.28)',
       lineWidth: 2,
     });
-    line.setData(rows.map((r) => ({ time: r[0] + TZ, value: r[1] })));
-    line.createPriceLine({ price: prevClose, color: v('--muted'), lineStyle: LineStyle.Dashed, lineWidth: 1, axisLabelVisible: true, title: '昨收' });
-    const vol = chart.addSeries(HistogramSeries, { priceFormat: { type: 'volume' }, priceLineVisible: false, lastValueVisible: false }, 1);
-    vol.setData(rows.map((r, i) => ({ time: r[0] + TZ, value: r[2] / 1000, color: (i && r[1] < rows[i - 1][1]) ? 'rgba(31,191,117,.55)' : 'rgba(240,69,75,.55)' })));
+    s.setData(rows.map((r) => ({ time: r[0] + TZ, value: r[1] })));
+    s.createPriceLine({ price: prevClose, color: v('--muted'), lineStyle: LineStyle.Dashed, lineWidth: 1, axisLabelVisible: true, title: '昨收' });
+    chart.addSeries(HistogramSeries, { priceFormat: { type: 'volume' }, priceLineVisible: false, lastValueVisible: false }, 1)
+      .setData(rows.map((r, i) => ({ time: r[0] + TZ, value: r[2] / 1000, color: i && r[1] < rows[i - 1][1] ? DOWN_A : UP_A })));
     chart.panes()[1]?.setHeight(70);
     chart.timeScale().fitContent();
+    const last = rows[rows.length - 1];
+    const ch = ((last[1] - prevClose) / prevClose) * 100;
+    info.innerHTML = `昨收 ${prevClose}　收 <b class="${ch > 0 ? 'up' : ch < 0 ? 'down' : ''}">${last[1]}（${ch > 0 ? '+' : ''}${ch.toFixed(2)}%）</b>　5 分鐘線`;
+    return chart;
   }
 
   document.querySelectorAll<HTMLElement>('.charts').forEach((root) => {
     const data = JSON.parse(root.querySelector('script[type="application/json"]')!.textContent!);
-    const drawn = new Set<string>();
-    const show = (tab: string) => {
-      root.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => (p.hidden = p.dataset.panel !== tab));
-      root.querySelectorAll<HTMLElement>('[data-legend]').forEach((p) => (p.hidden = p.dataset.legend !== tab));
-      root.querySelectorAll<HTMLElement>('[data-tab]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
-      if (drawn.has(tab)) return;
-      drawn.add(tab);
-      const el = root.querySelector<HTMLElement>(`[data-panel="${tab}"]`)!;
-      tab === 'daily' ? drawDaily(el, data.daily) : drawIntraday(el, data.intraday, data.prevClose);
+    const el = root.querySelector<HTMLElement>('[data-chart]')!;
+    const info = root.querySelector<HTMLElement>('[data-info]')!;
+    const saved = load();
+    const state = { tab: root.dataset.start!, range: saved?.range ?? '6m', on: new Set<string>(saved?.on ?? DEFAULT) };
+    const weeklyBars = weekly(data.daily);
+    let chart: any = null;
+
+    const render = () => {
+      chart?.remove();
+      root.querySelectorAll<HTMLElement>('[data-tab]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === state.tab)));
+      root.querySelectorAll<HTMLElement>('[data-range]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.range === state.range)));
+      root.querySelectorAll<HTMLInputElement>('[data-ind]').forEach((c) => (c.checked = state.on.has(c.dataset.ind!)));
+      root.classList.toggle('is-intraday', state.tab === 'intraday');
+      chart = state.tab === 'intraday'
+        ? drawIntraday(el, info, data.intraday, data.prevClose)
+        : drawK(el, info, state.tab === 'weekly' ? weeklyBars : data.daily, state.on, state.range, state.tab === 'weekly');
     };
-    root.querySelectorAll<HTMLElement>('[data-tab]').forEach((b) => b.addEventListener('click', () => show(b.dataset.tab!)));
-    show(root.dataset.start!);
+    const persist = () => save({ range: state.range, on: [...state.on] });
+
+    root.querySelectorAll<HTMLElement>('[data-tab]').forEach((b) => b.addEventListener('click', () => { state.tab = b.dataset.tab!; render(); }));
+    root.querySelectorAll<HTMLElement>('[data-range]').forEach((b) => b.addEventListener('click', () => { state.range = b.dataset.range!; persist(); render(); }));
+    root.querySelectorAll<HTMLInputElement>('[data-ind]').forEach((c) => c.addEventListener('change', () => {
+      c.checked ? state.on.add(c.dataset.ind!) : state.on.delete(c.dataset.ind!);
+      persist(); render();
+    }));
+    render();
   });
 </script>
 
 <style>
-  .tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 12px; }
-  .tabs button {
-    font: inherit; font-size: 13px; cursor: pointer; color: var(--muted);
-    background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px;
-  }
-  .tabs button[aria-selected='true'] { color: var(--bg); background: var(--accent); border-color: var(--accent); font-weight: 600; }
-  .legend { margin-left: auto; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .legend[hidden] { display: none; }
-  .legend i { display: inline-block; width: 14px; height: 2px; background: var(--c); margin-left: 6px; }
-  .chart { height: 380px; }
-  .chart[hidden] { display: none; }
-  @media (max-width: 640px) { .chart { height: 300px; } .legend { margin-left: 0; width: 100%; } }
+  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+  .seg { display: inline-flex; background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+  .seg button { font: inherit; font-size: 13px; cursor: pointer; color: var(--muted); background: transparent; border: 0; border-radius: 999px; padding: 4px 12px; }
+  .seg button[aria-selected='true'] { color: var(--bg); background: var(--accent); font-weight: 600; }
+  .toggles { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-bottom: 8px; color: var(--muted); }
+  .toggles .grp { color: var(--dim); font-weight: 600; }
+  .toggles .grp:not(:first-child) { margin-left: 8px; padding-left: 12px; border-left: 1px solid var(--line); }
+  .toggles label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; user-select: none; }
+  .toggles input { accent-color: var(--accent); margin: 0; }
+  .toggles i { display: inline-block; width: 12px; height: 3px; border-radius: 2px; background: var(--c); }
+  .info { color: var(--muted); min-height: 20px; margin-bottom: 4px; white-space: nowrap; overflow-x: auto; }
+  .info :global(b) { font-weight: 600; color: var(--text); }
+  .info :global(b.up) { color: var(--up); }
+  .info :global(b.down) { color: var(--down); }
+  .chart { height: 440px; }
+  .is-intraday .k-only { display: none; }
+  @media (max-width: 640px) { .toggles .grp:not(:first-child) { margin-left: 0; padding-left: 0; border-left: 0; width: 100%; } }
 </style>

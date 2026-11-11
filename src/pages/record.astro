@@ -11,6 +11,7 @@ const aiReports = reports.filter((r) => r.data.mode === 'ai');
 const ai = stats(aiReports);
 const aiProg = stats(aiReports, 'program'); // 同一批 AI 報告，若只用程式因子的命中率
 const voided = reports.filter((r) => r.void).length;
+const open = stats(reports, 'open');
 
 // 依結論與信心度分組（以程式版判定計算，因為所有報告都有、方法一致）
 const progOf = (r: any) => r.program;
@@ -42,11 +43,12 @@ const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
       <div class="small dim">與左邊比較，看新聞因子有沒有幫助</div>
     </div>
     <div class="panel kpi">
-      <div class="small muted">待驗證／作廢</div>
-      <div class="num big">{prog.pending}<span class="dim">／{voided}</span></div>
-      <div class="small dim">共 {reports.length} 份預測</div>
+      <div class="small muted">開盤預測命中率</div>
+      <div class="num big accent">{rateText(open)}</div>
+      <div class="small dim">{open.hits}/{open.verified} 筆｜開高／開低／平盤</div>
     </div>
   </section>
+  <p class="small dim">共 {reports.length} 份預測：待驗證 {prog.pending}、作廢 {voided}。開盤預測只用隔夜資訊（夜盤、ADR、美股、日韓、匯率），平盤範圍同樣依個股近 20 日開盤跳空幅度計算。</p>
 
   <section class="grid grid-2 section">
     <div class="panel">
@@ -70,13 +72,14 @@ const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
     <div class="panel-title">全部紀錄</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>預測日</th><th>股票</th><th>版本</th><th>報告結論</th><th>程式版</th><th>盤整範圍</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
+        <thead><tr><th>預測日</th><th>股票</th><th>版本</th><th>開盤預測</th><th>報告結論</th><th>程式版</th><th>盤整範圍</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
         <tbody>
           {reports.map((r) => (
             <tr>
               <td class="num">{md(r.data.target)}（{weekday(r.data.target)}）</td>
               <td><a href={url(`reports/${r.id}`)}>{r.data.code} {r.data.name}</a></td>
               <td class="small">{MODE_LABEL[r.data.mode]}</td>
+              <td class="small">{r.open.label} {r.open.confidence}%{r.result?.openActual && ` → ${r.result.openActual} ${r.result.openHit ? '✔' : '✘'}`}</td>
               <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
               <td class="small">{r.data.mode === 'ai' ? `${r.program.verdict} ${r.program.confidence}%` : '同左'}</td>
               <td class="num small">±{r.band}%</td>

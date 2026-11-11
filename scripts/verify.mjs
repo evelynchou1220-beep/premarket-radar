@@ -4,7 +4,7 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { parse } from 'yaml';
 import { getJSON, num, round, ymd } from './lib/http.mjs';
-import { judge, programScore, flatBand } from '../src/lib/scoring.mjs';
+import { judge, programScore, flatBand, openScore, OPEN_LABEL } from '../src/lib/scoring.mjs';
 
 const RESULTS = 'data/results.json';
 const results = JSON.parse(await readFile(RESULTS, 'utf8'));
@@ -54,6 +54,10 @@ for (const file of (await readdir('src/content/reports')).filter((f) => f.endsWi
   const snap = JSON.parse(await readFile(`data/snapshots/${fm.target}/${fm.code}.json`, 'utf8'));
   const band = flatBand(snap.daily);
   const { actual, hit } = judge(fm.verdict, changePct, band);
+  // 開盤預測：開盤價相對前一日收盤的跳空，與該股的開盤平盤範圍比較
+  const openBand = flatBand(snap.daily, 'open');
+  const op = openScore(fm.factors);
+  const openJudge = judge(op.verdict, openPct, openBand);
   const prog = programScore(snap.hints);
   const mode = fm.mode ?? 'ai';
   results[id] = {
@@ -61,10 +65,11 @@ for (const file of (await readdir('src/content/reports')).filter((f) => f.endsWi
     programVerdict: prog.verdict, programConfidence: prog.confidence,
     prevClose: prev.close, open: day.open, close: day.close, openPct, changePct, band, actual,
     hit, programHit: prog.verdict === actual,
+    openVerdict: op.label, openConfidence: op.confidence, openBand, openActual: OPEN_LABEL[openJudge.actual], openHit: openJudge.hit,
     verifiedAt: new Date().toISOString(),
   };
   updated++;
-  console.log(`${hit ? '✔ 命中' : '✘ 未中'} ${id}：${mode === 'ai' ? 'AI 完整版' : '程式版'}預測 ${fm.verdict}${mode === 'ai' ? `（程式版 ${prog.verdict}）` : ''}，實際 ${actual}（開盤 ${openPct}%、收盤 ${changePct}%，盤整範圍 ±${band}%）`);
+  console.log(`開盤 ${openJudge.hit ? '✔' : '✘'} 預測${op.label}、實際${OPEN_LABEL[openJudge.actual]}（${openPct}%，範圍 ±${openBand}%）｜收盤 ${hit ? '✔ 命中' : '✘ 未中'} ${id}：${mode === 'ai' ? 'AI 完整版' : '程式版'}預測 ${fm.verdict}${mode === 'ai' ? `（程式版 ${prog.verdict}）` : ''}，實際 ${actual}（開盤 ${openPct}%、收盤 ${changePct}%，盤整範圍 ±${band}%）`);
 }
 
 await writeFile(RESULTS, JSON.stringify(Object.fromEntries(Object.entries(results).sort()), null, 2) + '\n');
@@ -74,3 +79,4 @@ const ai = all.filter((r) => r.mode === 'ai');
 console.log(`\n本次新增 ${updated} 筆；累計有效預測 ${all.length} 筆`);
 console.log(`  程式版命中：${rate(all, 'programHit')}`);
 console.log(`  AI 完整版命中：${rate(ai, 'hit')}`);
+console.log(`  開盤預測命中：${rate(all, 'openHit')}`);

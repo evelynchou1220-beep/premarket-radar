@@ -149,6 +149,8 @@
     "bearThreshold": -0.12,
     "missingPenalty": 2,
     "confidenceCap": 85,
-    "flatBand": { "window": 20, "factor": 0.5, "min": 0.5 }
+    "flatBand": { "window": 20, "factor": 0.5, "min": 0.5 },
+    "openFactors": ["txf", "adr", "us_market", "asia", "fx"],
+    "openBand": { "window": 20, "factor": 0.5, "min": 0.2 }
   }
 }
