@@ -1,0 +1,75 @@
+# 雲端 AI 晨報的審核流程（CLAUDE.md §7.5）：
+# 1. 雲端 AI 把升級後的報告推到 claude/ai-report-<日期> 分支（不直接改 main）
+# 2. 這裡檢查「只改了報告與快照」、npm run check 通過後，開一個 Pull Request 給使用者審核
+# 3. 使用者按 Merge 才會進 main 並觸發部署（deploy.yml）
+# 4. 台北時間 09:05 仍未合併的 PR 自動關閉：開盤後才決定要不要發布，會讓戰績失真
+name: AI report PR
+
+on:
+  push:
+    branches: ['claude/ai-report-**']
+  schedule:
+    - cron: '5 1 * * 1-5' # 台北時間週一～五 09:05
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  open-pr:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: 只允許修改報告與快照
+        run: |
+          git fetch origin main
+          CHANGED=$(git diff --name-only origin/main...HEAD)
+          echo "$CHANGED"
+          BAD=$(echo "$CHANGED" | grep -vE '^(src/content/reports/|data/snapshots/)' || true)
+          if [ -n "$BAD" ]; then echo "❌ 修改了報告與快照以外的檔案：$BAD"; exit 1; fi
+      - run: npm ci
+      - name: 驗收所有報告
+        run: npm run check
+      - name: 建立 Pull Request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          if [ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]; then echo "PR 已存在"; exit 0; fi
+          DAY="${BRANCH#claude/ai-report-}"
+          BODY=$(node --input-type=module -e "
+            import { readFileSync } from 'node:fs';
+            import { execSync } from 'node:child_process';
+            import { parse } from 'yaml';
+            const files = execSync('git diff --name-only origin/main...HEAD -- src/content/reports').toString().trim().split('\n').filter(Boolean);
+            const rows = files.map((f) => {
+              const fm = parse(readFileSync(f, 'utf8').replace(/\r\n/g, '\n').split('---\n')[1]);
+              return '| ' + fm.code + ' ' + fm.name + ' | ' + fm.verdict + ' ' + fm.confidence + '% | ' + fm.summary + ' |';
+            });
+            console.log(['雲端 AI 晨報：把程式版升級為 AI 完整版。', '', '| 股票 | 收盤預測 | 摘要 |', '|---|---|---|', ...rows, '', '✅ 已通過 npm run check（只修改報告與快照）。', '', '**請在 09:00 開盤前按 Merge 發布**；09:05 仍未合併會自動關閉（開盤後才決定是否發布會讓戰績失真）。'].join('\n'));
+          ")
+          gh pr create --base main --head "$BRANCH" --title "report: ${DAY} AI 完整版（雲端排程，待審核）" --body "$BODY"
+
+  close-stale:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 刪除分支
+      pull-requests: write
+    steps:
+      - name: 關閉開盤後仍未合併的晨報 PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          for n in $(gh pr list --state open --json number,headRefName --jq '.[] | select(.headRefName | startswith("claude/ai-report-")) | .number'); do
+            gh pr close "$n" --delete-branch --comment "台北時間 09:00 已開盤，此晨報未在開盤前合併，依 CLAUDE.md §7.5 自動關閉、不發布。"
+          done
