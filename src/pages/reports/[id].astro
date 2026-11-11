@@ -6,7 +6,7 @@ import PriceCharts from '../../components/PriceCharts.astro';
 import InstitutionalBars from '../../components/InstitutionalBars.astro';
 import FactorCard from '../../components/FactorCard.astro';
 import NewsAlerts from '../../components/NewsAlerts.astro';
-import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, verdictTone, MODE_LABEL } from '../../lib/site.mjs';
+import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, verdictTone, MODE_LABEL, govBankOf } from '../../lib/site.mjs';
 import factorConfig from '../../data/factors.json';
 
 export async function getStaticPaths() {
@@ -58,6 +58,8 @@ const instRows = inst && inst.date === d.basedOn
     ]
   : null;
 const lotsText = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n)}`;
+// 八大官股（使用者提供，只顯示不計分）：undefined＝當天沒有資料、null＝未上榜
+const gov = govBankOf(d.basedOn, d.code);
 // 散戶：以融資（借錢買股）與融券（借股票賣）餘額的增減觀察，單位張
 const m = s.margin && s.margin.date === d.basedOn ? s.margin : null;
 const retailRows = m
@@ -137,6 +139,14 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
           {instRows.map((x) => <li class="two"><span class="muted">{x.label}</span><span class:list={['num', tone(x.v)]}>{lotsText(x.v)}</span></li>)}
         </ul>
       ) : <p class="small muted">法人：證交所尚未公布</p>}
+      {gov !== undefined && (
+        <ul class="levels">
+          <li class="two" title="八大官股券商買賣超（使用者提供，只顯示不計分）">
+            <span class="muted">八大官股</span>
+            {gov ? <span class:list={['num', gov.side === 'buy' ? 'up' : 'down']}>{gov.side === 'buy' ? '+' : '−'}{fmtNum(gov.value, gov.unit === '億' ? 2 : 0)}{gov.unit === '億' ? ' 億' : ''}</span> : <span class="dim small">未上榜</span>}
+          </li>
+        </ul>
+      )}
       <div class="sub-label">散戶</div>
       {retailRows ? (
         <ul class="levels">

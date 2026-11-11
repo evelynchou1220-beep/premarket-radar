@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import factorConfig from '../data/factors.json' with { type: 'json' };
 import results from '../../data/results.json' with { type: 'json' };
 import { computeScore, programScore, flatBand, openScore } from './scoring.mjs';
+import { validateGovBank } from './validate.mjs';
 
 export const SITE_NAME = '盤前雷達';
 export const SITE_TAGLINE = '台股開盤前的 AI 個股多空分析';
@@ -21,6 +22,26 @@ export const snapshots = Object.fromEntries(
 );
 
 export { results };
+
+const govModules = import.meta.glob('/data/govbanks/*.json', { eager: true, import: 'default' });
+/** 八大官股資料（使用者提供），新到舊。格式錯誤時 build 直接失敗 */
+export const govBanks = Object.entries(govModules)
+  .map(([path, g]) => {
+    const errors = validateGovBank(g, path.split('/').pop());
+    if (errors.length) throw new Error(`官股資料格式錯誤：${errors.join('；')}`);
+    return g;
+  })
+  .sort((a, b) => b.date.localeCompare(a.date));
+/** 某檔股票在某日官股名單中的買賣超；不在名單回傳 null */
+export function govBankOf(date, code) {
+  const g = govBanks.find((x) => x.date === date);
+  if (!g) return undefined; // 當天沒有資料
+  const b = g.buy.find((x) => x.code === code);
+  if (b) return { side: 'buy', value: b.value, unit: g.unit };
+  const s = g.sell.find((x) => x.code === code);
+  if (s) return { side: 'sell', value: s.value, unit: g.unit };
+  return null; // 有資料但未上榜
+}
 export const factorDefs = Object.fromEntries(factorConfig.factors.map((f) => [f.key, f]));
 export const categories = factorConfig.categories;
 export const scoringConfig = factorConfig.scoring;

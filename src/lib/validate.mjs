@@ -107,6 +107,30 @@ export function validateReport(fm, snapshot) {
   return errors;
 }
 
+/**
+ * 驗證八大官股資料（data/govbanks/<date>.json，使用者每天提供，CLAUDE.md §7.4）。
+ * 格式：{ date, source, url?, unit: '張'|'億', net?, buy: [{code,name,value}], sell: [...] }
+ */
+export function validateGovBank(g, file = '') {
+  const errors = [];
+  const tag = file ? `[${file}] ` : '';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(g.date ?? '')) errors.push(`${tag}date 必須是 YYYY-MM-DD`);
+  if (file && g.date && file !== `${g.date}.json`) errors.push(`${tag}檔名應為 ${g.date}.json`);
+  if (!g.source) errors.push(`${tag}缺少 source（資料出處，例如「使用者提供（某網站截圖）」）`);
+  if (!['張', '億'].includes(g.unit)) errors.push(`${tag}unit 只能是「張」或「億」`);
+  if (g.net != null && typeof g.net !== 'number') errors.push(`${tag}net（合計買賣超，億元）必須是數字或省略`);
+  for (const side of ['buy', 'sell']) {
+    if (!Array.isArray(g[side])) { errors.push(`${tag}${side} 必須是陣列`); continue; }
+    g[side].forEach((x, i) => {
+      if (!/^\d{4,6}$/.test(x.code ?? '')) errors.push(`${tag}${side}[${i}] 股票代號格式錯誤`);
+      if (!x.name) errors.push(`${tag}${side}[${i}] 缺少股票名稱`);
+      if (typeof x.value !== 'number' || x.value <= 0) errors.push(`${tag}${side}[${i}] value 必須是正數（買超、賣超都填正數，方向由 buy／sell 區分）`);
+    });
+  }
+  if (!g.buy?.length && !g.sell?.length) errors.push(`${tag}buy 與 sell 不可都是空的`);
+  return errors;
+}
+
 /** 檢查 Markdown 內文是否有規定的章節 */
 export const REQUIRED_SECTIONS = ['## 綜合判斷', '## 開盤觀察重點', '## 什麼情況下會看錯'];
 export function validateBody(body) {

@@ -3,7 +3,7 @@
 // 檢查所有（或指定）報告是否符合 CLAUDE.md §6 的驗收清單。全部通過才可以 build / push。
 import { readFile, readdir, access } from 'node:fs/promises';
 import { parse } from 'yaml';
-import { validateReport, validateBody } from '../src/lib/validate.mjs';
+import { validateReport, validateBody, validateGovBank } from '../src/lib/validate.mjs';
 import { computeScore } from '../src/lib/scoring.mjs';
 
 const DIR = 'src/content/reports';
@@ -46,4 +46,17 @@ for (const file of files) {
   }
 }
 console.log(`\n${files.length - failed}/${files.length} 份報告通過驗收`);
+
+// 八大官股資料（使用者提供）
+const GOV = 'data/govbanks';
+let govFiles = [];
+try { govFiles = (await readdir(GOV)).filter((f) => f.endsWith('.json')); } catch { /* 還沒有資料 */ }
+for (const f of govFiles) {
+  let errs;
+  try { errs = validateGovBank(JSON.parse(await readFile(`${GOV}/${f}`, 'utf8')), f); }
+  catch (e) { errs = [`[${f}] 不是合法的 JSON：${e.message}`]; }
+  if (errs.length) { failed++; console.log(`✘ ${GOV}/${f}`); errs.forEach((e) => console.log(`   - ${e}`)); }
+  else console.log(`✔ ${GOV}/${f}`);
+}
+if (govFiles.length) console.log(`官股資料 ${govFiles.length} 份`);
 process.exit(failed ? 1 : 0);
