@@ -1,0 +1,94 @@
+---
+// 正2／反1 多空雷達：元大台灣50正2（押大漲）與反1（押下跌），各路資金押哪一邊。
+// 傾向以「金額」比較（張數 × 收盤價），因為兩檔價格不同、張數不能直接相比。只顯示、不計分（CLAUDE.md §3.3）。
+import { pct, tone, fmtNum, md, govBanks, toYi } from '../lib/site.mjs';
+interface Props { lev: any }
+const { lev } = Astro.props;
+const bull = lev.items.find((x: any) => x.side === 'bull');
+const bear = lev.items.find((x: any) => x.side === 'bear');
+const gov = govBanks.find((g: any) => g.date === lev.date && (g.buy || g.sell));
+
+const yi = (lots: number | null, close: number) => (lots == null ? null : (lots * close * 1000) / 1e8);
+const govOf = (code: string) => {
+  if (!gov) return undefined; // 沒有官股個股資料
+  const b = gov.buy?.find((x: any) => x.code === code);
+  if (b) return { lots: b.lots ?? null, yi: toYi(b.value, gov.unit) };
+  const s = gov.sell?.find((x: any) => x.code === code);
+  if (s) return { lots: s.lots != null ? -s.lots : null, yi: -toYi(s.value, gov.unit) };
+  return null; // 未上榜
+};
+type Cell = { lots: number | null; yi: number | null } | null | undefined;
+const rows: { who: string; note?: string; bull: Cell; bear: Cell }[] = [
+  { who: '外資', bull: bull?.inst && { lots: bull.inst.foreign, yi: yi(bull.inst.foreign, bull.close) }, bear: bear?.inst && { lots: bear.inst.foreign, yi: yi(bear.inst.foreign, bear.close) } },
+  { who: '投信', bull: bull?.inst && { lots: bull.inst.trust, yi: yi(bull.inst.trust, bull.close) }, bear: bear?.inst && { lots: bear.inst.trust, yi: yi(bear.inst.trust, bear.close) } },
+  { who: '自營商', note: '只計自行買賣', bull: bull?.inst && { lots: bull.inst.dealerSelf, yi: yi(bull.inst.dealerSelf, bull.close) }, bear: bear?.inst && { lots: bear.inst.dealerSelf, yi: yi(bear.inst.dealerSelf, bear.close) } },
+  { who: '八大官股', note: '使用者提供', bull: govOf(bull?.code), bear: govOf(bear?.code) },
+  { who: '散戶融資', note: '融資餘額增減', bull: bull && bull.marginChange != null ? { lots: bull.marginChange, yi: yi(bull.marginChange, bull.close) } : undefined, bear: bear && bear.marginChange != null ? { lots: bear.marginChange, yi: yi(bear.marginChange, bear.close) } : undefined },
+].filter((r) => r.bull !== undefined || r.bear !== undefined);
+
+// 傾向：押漲金額 − 押跌金額（億）。未上榜視為 0；兩邊都沒資料則不判斷
+const lean = (r: (typeof rows)[number]) => {
+  if (r.bull === undefined && r.bear === undefined) return null;
+  const v = (r.bull?.yi ?? 0) - (r.bear?.yi ?? 0);
+  return Math.abs(v) < 0.05 ? { label: '中性', t: 'flat', v } : v > 0 ? { label: '偏多', t: 'up', v } : { label: '偏空', t: 'down', v };
+};
+const cell = (c: Cell) => (c === undefined ? '—' : c === null ? '未上榜' : `${c.lots != null && c.lots > 0 ? '+' : ''}${c.lots != null ? fmtNum(c.lots) : fmtNum(c.yi ?? 0, 2) + ' 億'}`);
+const cellTone = (c: Cell) => (c ? tone(c.lots ?? c.yi ?? 0) : 'dim');
+---
+<section class="panel lev">
+  <div class="lev-head">
+    <b>正2／反1 多空雷達 {md(lev.date)}</b>
+    <span class="small dim hide-sm">誰在押大漲、誰在押下跌（張）・只顯示不計分</span>
+  </div>
+  <div class="table-wrap">
+    <table class="small">
+      <thead>
+        <tr>
+          <th></th>
+          <th>
+            <div>正2 <span class="dim">押漲</span></div>
+            {bull && <div class="px num">{bull.close} <span class={tone(bull.changePct)}>{pct(bull.changePct)}</span></div>}
+          </th>
+          <th>
+            <div>反1 <span class="dim">押跌</span></div>
+            {bear && <div class="px num">{bear.close} <span class={tone(bear.changePct)}>{pct(bear.changePct)}</span></div>}
+          </th>
+          <th>傾向</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => {
+          const l = lean(r);
+          return (
+            <tr>
+              <td>{r.who}{r.note && <span class="dim note hide-sm">（{r.note}）</span>}</td>
+              <td class:list={['num', cellTone(r.bull)]}>{cell(r.bull)}</td>
+              <td class:list={['num', cellTone(r.bear)]}>{cell(r.bear)}</td>
+              <td>{l ? <span class:list={['tag', l.t]} title={`押漲 − 押跌 ≈ ${fmtNum(l.v, 2)} 億元`}>{l.label}</span> : '—'}</td>
+            </tr>
+          );
+        })}
+        <tr class="vol">
+          <td>成交量</td>
+          <td class="num">{bull ? `${fmtNum(bull.volume)}` : '—'}<span class="dim hide-sm">{bull?.volumeRatio != null && `（量比 ${bull.volumeRatio}）`}</span></td>
+          <td class="num">{bear ? `${fmtNum(bear.volume)}` : '—'}<span class="dim hide-sm">{bear?.volumeRatio != null && `（量比 ${bear.volumeRatio}）`}</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small dim foot hide-sm">傾向以金額比較（張數 × 收盤價），因為兩檔價格不同。正2 跟著台灣 50 指數約 2 倍漲跌、反1 約反向 1 倍；散戶融資大增常被市場視為情緒過熱或恐慌的訊號。</p>
+</section>
+
+<style>
+  .lev { padding: 12px 14px; }
+  .lev-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 6px; }
+  th { vertical-align: bottom; }
+  .px { font-weight: 400; color: var(--muted); font-size: 12px; }
+  td, th { padding: 6px 8px; }
+  td:first-child { white-space: nowrap; }
+  .note { font-size: 11px; }
+  .vol td { color: var(--muted); }
+  .dim { color: var(--dim); }
+  .foot { margin: 6px 0 0; }
+</style>

@@ -73,28 +73,31 @@ async function twseDaily(c, months) {
   return rows;
 }
 
+/** 證交所 T86（全市場三大法人）依日期快取：同一次執行中多檔股票共用，減少請求次數 */
+const t86 = (date) => once(`t86-${date}`, () => getJSON(`https://www.twse.com.tw/rwd/zh/fund/T86?date=${ymd(date)}&selectType=ALLBUT0999&response=json`, { delay: 1200 }));
+const instRow = (row) => ({
+  foreign: round((num(row[4]) + num(row[7])) / 1000, 0),
+  trust: round(num(row[10]) / 1000, 0),
+  dealer: round(num(row[11]) / 1000, 0),
+  // 自營商拆成自行買賣與避險；計分與畫面只用自行買賣（避險為權證被動避險，見 CLAUDE.md §11）
+  dealerSelf: round(num(row[14]) / 1000, 0),
+  dealerHedge: round(num(row[17]) / 1000, 0),
+});
+
 async function twseInstitutional(c, dates) {
   const out = [];
   for (const date of dates) {
-    const j = await getJSON(`https://www.twse.com.tw/rwd/zh/fund/T86?date=${ymd(date)}&selectType=ALLBUT0999&response=json`, { delay: 1200 });
+    const j = await t86(date);
     if (j.stat !== 'OK') continue; // 尚未公布
     const row = j.data.find((r) => r[0].trim() === c);
     if (!row) continue;
-    out.push({
-      date,
-      foreign: round((num(row[4]) + num(row[7])) / 1000, 0),
-      trust: round(num(row[10]) / 1000, 0),
-      dealer: round(num(row[11]) / 1000, 0),
-      // 自營商拆成自行買賣與避險；計分與畫面只用自行買賣（避險為權證被動避險，見 CLAUDE.md §11）
-      dealerSelf: round(num(row[14]) / 1000, 0),
-      dealerHedge: round(num(row[17]) / 1000, 0),
-    });
+    out.push({ date, ...instRow(row) });
   }
   return out;
 }
 
-async function twseMargin(c, date) {
-  const j = await getJSON(`https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=${ymd(date)}&selectType=STOCK&response=json`, { delay: 1200 });
+async function twseMargin(c, date, selectType = 'STOCK') {
+  const j = await getJSON(`https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=${ymd(date)}&selectType=${selectType}&response=json`, { delay: 1200 });
   if (j.stat !== 'OK') return null;
   const t = j.tables.find((t) => t.fields?.[0] === '代號');
   const r = t?.data.find((r) => r[0].trim() === c);
@@ -117,6 +120,49 @@ async function twseMarketInstitutional(date) {
     dealerHedge: yi(get('自營商(避險)')),
     total: yi(get('合計')),
   };
+}
+
+// ---------- 正2／反1 多空雷達（CLAUDE.md §3.3）----------
+/** 元大台灣50正2（押大漲）與反1（押下跌）：價量、三大法人、融資。只顯示不計分 */
+export const LEVERAGED = [
+  { code: '00631L', name: '元大台灣50正2', side: 'bull' },
+  { code: '00632R', name: '元大台灣50反1', side: 'bear' },
+];
+async function leveragedEtfs(date) {
+  const items = [];
+  for (const e of LEVERAGED) {
+    try {
+      // 本月與上月日成交，用來算量比
+      const rows = [];
+      for (const d of [new Date(Date.parse(date) - 28 * 864e5).toISOString().slice(0, 10), date]) {
+        const j = await getJSON(`https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=${ymd(d).slice(0, 6)}01&stockNo=${e.code}&response=json`, { delay: 1000 });
+        if (j.stat !== 'OK') continue;
+        for (const r of j.data) {
+          const [y, m, dd] = r[0].split('/');
+          const iso = `${Number(y) + 1911}-${m}-${dd}`;
+          if (iso <= date && !rows.some((x) => x.date === iso)) rows.push({ date: iso, close: num(r[6]), volume: num(r[1]) });
+        }
+      }
+      rows.sort((a, b) => a.date.localeCompare(b.date));
+      const last = rows.at(-1), prev = rows.at(-2);
+      if (!last || last.date !== date) continue;
+      const avg5 = rows.slice(-6, -1).reduce((a, x) => a + x.volume, 0) / Math.max(1, rows.slice(-6, -1).length);
+      const tj = await t86(date);
+      const trow = tj.stat === 'OK' ? tj.data.find((r) => r[0].trim() === e.code) : null;
+      const m = await twseMargin(e.code, date, 'ALL');
+      items.push({
+        ...e, date,
+        close: last.close,
+        changePct: prev ? round(((last.close - prev.close) / prev.close) * 100) : null,
+        volume: round(last.volume / 1000, 0), // 張
+        volumeRatio: avg5 ? round(last.volume / avg5) : null,
+        inst: trow ? instRow(trow) : null,
+        marginChange: m ? m.marginToday - m.marginPrev : null, // 張
+        marginBalance: m ? m.marginToday : null,
+      });
+    } catch (err) { /* 單一 ETF 失敗不影響主流程 */ }
+  }
+  return items.length ? { date, items } : null;
 }
 
 // ---------- 期交所 ----------
@@ -216,6 +262,7 @@ if (!margin) warnings.push(`證交所尚未公布 ${basedOn} 融資融券`);
 sources.push({ name: '證交所 MI_MARGN 融資融券彙總', url: 'https://www.twse.com.tw/zh/trading/margin/mi-margn.html' });
 
 const marketInst = await once(`bfi-${basedOn}`, () => twseMarketInstitutional(basedOn));
+const leveraged = await once(`lev-${basedOn}`, () => leveragedEtfs(basedOn));
 sources.push({ name: '證交所 BFI82U 三大法人買賣金額', url: 'https://www.twse.com.tw/zh/trading/foreign/bfi82u.html' });
 
 const { global, globalWarnings } = await once('global', async () => {
@@ -282,7 +329,7 @@ const snapshot = {
   intraday,
   institutional,
   margin,
-  market: { institutional: marketInst, txf, foreignFuturesOI },
+  market: { institutional: marketInst, txf, foreignFuturesOI, leveraged },
   global,
   adr,
 };
