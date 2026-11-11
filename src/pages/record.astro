@@ -22,6 +22,12 @@ const buckets = [[50, 60], [60, 70], [70, 86]].map(([lo, hi]) => ({
 }));
 const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
 const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
+// 全部紀錄依預測日分組（新到舊）
+const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
+  const list = reports.filter((r) => r.data.target === date);
+  const ok = list.filter((r) => r.result && !r.void);
+  return { date, list, verified: ok.length, hits: ok.filter((r) => r.result.hit).length, openHits: ok.filter((r) => r.result.openHit).length };
+});
 ---
 <Base title="預測戰績" active="record">
   <h1>預測戰績</h1>
@@ -71,62 +77,61 @@ const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v]
 
   <section class="panel section">
     <div class="panel-title">全部紀錄</div>
-    <!-- 手機：一筆一張卡片（CLAUDE.md §3.1：手機不用多欄表格） -->
-    <div class="cards show-sm">
-      {reports.map((r) => {
-        const res = r.result && !r.void ? r.result : null;
-        return (
-          <a class="card" href={url(`reports/${r.id}`)}>
-            <div class="c-top">
-              <b><span class="num">{md(r.data.target)}</span> {r.data.code} {r.data.name}</b>
-              <span class="small muted">{r.void ? '⊘ 作廢' : res ? '' : '待驗證'}</span>
-            </div>
-            <div class="c-calls">
-              <div>
-                <span class="k">開盤</span>
-                <span class:list={['v', verdictTone(r.open.verdict)]}>{icon(r.open.verdict)} {r.open.label}</span>
-                {res?.openActual && <span class="act">實際 <span class:list={['num', tone(res.openPct)]}>{pct(res.openPct)}</span> {hitTag(res.openHit)}</span>}
-              </div>
-              <div>
-                <span class="k">收盤</span>
-                <span class:list={['v', verdictTone(r.data.verdict)]}>{icon(r.data.verdict)} {r.data.verdict}</span>
-                {res && <span class="act">實際 <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span> {hitTag(res.hit)}</span>}
-              </div>
-            </div>
-            <div class="small dim">{MODE_LABEL[r.data.mode]}{r.data.mode === 'ai' && `・程式版 ${r.program.verdict}${res ? hitTag(res.programHit) : ''}`}・盤整 ±{r.band}%</div>
-          </a>
-        );
-      })}
-    </div>
-    <div class="table-wrap hide-sm">
-      <table>
-        <thead><tr><th>預測日</th><th>股票</th><th>版本</th><th>開盤預測</th><th>報告結論</th><th>程式版</th><th>盤整範圍</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
-        <tbody>
-          {reports.map((r) => (
-            <tr>
-              <td class="num">{md(r.data.target)}（{weekday(r.data.target)}）</td>
-              <td><a href={url(`reports/${r.id}`)}>{r.data.code} {r.data.name}</a></td>
-              <td class="small">{MODE_LABEL[r.data.mode]}</td>
-              <td class="small">{r.open.label} {r.open.confidence}%{r.result?.openActual && ` → ${r.result.openActual} ${r.result.openHit ? '✔' : '✘'}`}</td>
-              <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
-              <td class="small">{r.data.mode === 'ai' ? `${r.program.verdict} ${r.program.confidence}%` : '同左'}</td>
-              <td class="num small">±{r.band}%</td>
-              <td class:list={['num', r.result?.openPct != null && tone(r.result.openPct)]}>{r.result?.openPct != null ? pct(r.result.openPct) : '—'}</td>
-              <td class:list={['num', r.result?.changePct != null && tone(r.result.changePct)]}>{r.result?.changePct != null ? pct(r.result.changePct) : '—'}</td>
-              <td>{r.result?.actual ?? '—'}</td>
-              <td>{
-                r.void ? <span class="tag">⊘ 作廢</span>
-                : r.result ? (
-                  <span class:list={['tag', r.result.hit ? 'accent' : '']}>
-                    {hitTag(r.result.hit)} {r.data.mode === 'ai' ? `AI｜程式 ${hitTag(r.result.programHit)}` : r.result.hit ? '命中' : '未中'}
-                  </span>
-                ) : <span class="tag">⏳ 待驗證</span>
-              }</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <!-- 依預測日收合：最新一天預設展開；手機一檔一行，電腦版表格（CLAUDE.md §3.1） -->
+    {days.map((day, di) => (
+      <details class="day" open={di === 0}>
+        <summary>
+          <b class="num">{md(day.date)}（{weekday(day.date)}）</b>
+          <span class="small muted">{day.list.length} 檔</span>
+          <span class="small">{day.verified ? <>開盤 <b class="num">{day.openHits}/{day.verified}</b>・收盤 <b class="num">{day.hits}/{day.verified}</b></> : <span class="dim">⏳ 待驗證</span>}</span>
+        </summary>
+
+        <ul class="rows show-sm">
+          {day.list.map((r: any) => {
+            const res = r.result && !r.void ? r.result : null;
+            return (
+              <li>
+                <a href={url(`reports/${r.id}`)}>
+                  <span class="nm">{r.data.code} {r.data.name}</span>
+                  <span class:list={['v', verdictTone(r.open.verdict)]}>{icon(r.open.verdict)}{r.open.label}{res?.openActual && <i>{hitTag(res.openHit)}</i>}</span>
+                  <span class:list={['v', verdictTone(r.data.verdict)]}>{icon(r.data.verdict)}{r.data.verdict}{res && <i>{hitTag(res.hit)}</i>}</span>
+                  <span class="rs small">{r.void ? '作廢' : res ? <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span> : <span class="dim">待驗證</span>}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div class="table-wrap hide-sm">
+          <table>
+            <thead><tr><th>股票</th><th>版本</th><th>開盤預測</th><th>報告結論</th><th>程式版</th><th>盤整範圍</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
+            <tbody>
+              {day.list.map((r: any) => (
+                <tr>
+                  <td><a href={url(`reports/${r.id}`)}>{r.data.code} {r.data.name}</a></td>
+                  <td class="small">{MODE_LABEL[r.data.mode]}</td>
+                  <td class="small">{r.open.label} {r.open.confidence}%{r.result?.openActual && ` → ${r.result.openActual} ${r.result.openHit ? '✔' : '✘'}`}</td>
+                  <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
+                  <td class="small">{r.data.mode === 'ai' ? `${r.program.verdict} ${r.program.confidence}%` : '同左'}</td>
+                  <td class="num small">±{r.band}%</td>
+                  <td class:list={['num', r.result?.openPct != null && tone(r.result.openPct)]}>{r.result?.openPct != null ? pct(r.result.openPct) : '—'}</td>
+                  <td class:list={['num', r.result?.changePct != null && tone(r.result.changePct)]}>{r.result?.changePct != null ? pct(r.result.changePct) : '—'}</td>
+                  <td>{r.result?.actual ?? '—'}</td>
+                  <td>{
+                    r.void ? <span class="tag">⊘ 作廢</span>
+                    : r.result ? (
+                      <span class:list={['tag', r.result.hit ? 'accent' : '']}>
+                        {hitTag(r.result.hit)} {r.data.mode === 'ai' ? `AI｜程式 ${hitTag(r.result.programHit)}` : r.result.hit ? '命中' : '未中'}
+                      </span>
+                    ) : <span class="tag">⏳ 待驗證</span>
+                  }</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
+    ))}
   </section>
 </Base>
 
@@ -134,14 +139,20 @@ const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v]
   .kpi .big { font-size: 28px; font-weight: 600; }
   .accent { color: var(--accent); }
   .info { color: var(--info); }
-  .cards { flex-direction: column; gap: 8px; }
-  .card { display: block; color: var(--text); background: var(--panel-2); border-radius: var(--radius-sm); padding: 10px 12px; }
-  .card:hover { text-decoration: none; }
-  .c-top { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
-  .c-calls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; }
-  .c-calls > div { display: flex; flex-direction: column; }
-  .k { font-size: 11px; color: var(--muted); }
-  .v { font-weight: 800; font-size: 18px; }
-  .act { font-size: 12px; color: var(--muted); }
-  @media (max-width: 640px) { .cards.show-sm { display: flex; } }
+  .day { border-top: 1px solid var(--line); }
+  .day:first-of-type { border-top: 0; }
+  .day summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 10px 0; }
+  .day summary::-webkit-details-marker { display: none; }
+  .day summary::before { content: '▸'; color: var(--muted); }
+  .day[open] summary::before { content: '▾'; }
+  .day[open] { padding-bottom: 10px; }
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .rows li a { display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.9fr; gap: 6px; align-items: center; padding: 7px 4px; border-bottom: 1px solid var(--line); color: var(--text); font-size: 14px; }
+  .rows li:last-child a { border-bottom: 0; }
+  .rows li a:hover { text-decoration: none; background: var(--panel-2); }
+  .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .v { font-weight: 700; white-space: nowrap; }
+  .v i { font-style: normal; font-weight: 400; color: var(--muted); margin-left: 3px; }
+  .rs { text-align: right; white-space: nowrap; }
+  @media (max-width: 640px) { .rows.show-sm { display: block; } }
 </style>
