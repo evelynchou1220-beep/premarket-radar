@@ -6,7 +6,7 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T09:04:28.094Z",
+  "fetchedAt": "2026-11-11T09:24:38.202Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -64,7 +64,7 @@
   "d": 38.6,
   "prevK": 41.6,
   "prevD": 28.8,
-  "volumeRatio": 0.64,
+  "volumeRatio": 0.65,
   "candle": {
    "bodyPct": 3.92,
    "upperShadowPct": 0,
@@ -1120,7 +1120,7 @@
    "high": 3990,
    "low": 3780,
    "close": 3990,
-   "volume": 10615606
+   "volume": 10733606
   }
  ],
  "intraday": [
@@ -1131,7 +1131,7 @@
    "high": 3920,
    "low": 3825,
    "close": 3825,
-   "volume": 0
+   "volume": 1438000
   },
   {
    "time": "09:05",
@@ -1695,9 +1695,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44338,
+    "close": 44295,
     "ref": 44136,
-    "changePct": 0.46
+    "changePct": 0.36
    }
   },
   "foreignFuturesOI": {
@@ -1741,9 +1741,9 @@
   "vix": {
    "symbol": "^VIX",
    "date": "2026-11-11",
-   "close": 18.79,
+   "close": 18.7,
    "prevClose": 19.46,
-   "changePct": -3.44,
+   "changePct": -3.91,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -1765,9 +1765,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-11",
-   "close": 32.86,
+   "close": 32.85,
    "prevClose": 32.79,
-   "changePct": 0.21,
+   "changePct": 0.17,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -1796,7 +1796,7 @@
   "volume": {
    "signal": "中性",
    "strength": null,
-   "data": "成交量為前 5 日均量的 0.64 倍，當日漲跌 +4.18%",
+   "data": "成交量為前 5 日均量的 0.65 倍，當日漲跌 +4.18%",
    "source": "由日 K 計算"
   },
   "momentum": {
@@ -1814,7 +1814,7 @@
   "trust": {
    "signal": "偏多",
    "strength": "強",
-   "data": "2026-11-11 投信買超 591 張（占成交量 5.6%），連 3 日同向；近 5 日合計買超 3,745 張",
+   "data": "2026-11-11 投信買超 591 張（占成交量 5.5%），連 3 日同向；近 5 日合計買超 3,745 張",
    "source": "證交所 T86，2026-11-11"
   },
   "dealer": {
@@ -1832,7 +1832,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "弱",
-   "data": "臺指期116夜盤 44338（+0.46%，相對日盤收盤 44136）",
+   "data": "臺指期116夜盤 44295（+0.36%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -1856,7 +1856,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.86，新台幣貶值 0.21%",
+   "data": "美元兌新台幣 32.85，新台幣貶值 0.17%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }

@@ -6,7 +6,7 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T09:06:17.250Z",
+  "fetchedAt": "2026-11-11T09:26:06.566Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -65,7 +65,7 @@
   "d": 29.7,
   "prevK": 28.2,
   "prevD": 25.5,
-  "volumeRatio": 0.57,
+  "volumeRatio": 0.58,
   "candle": {
    "bodyPct": 1.98,
    "upperShadowPct": 0.5,
@@ -1121,7 +1121,7 @@
    "high": 620,
    "low": 596,
    "close": 617,
-   "volume": 19490892
+   "volume": 19774892
   }
  ],
  "intraday": [
@@ -1132,7 +1132,7 @@
    "high": 620,
    "low": 604,
    "close": 607,
-   "volume": 0
+   "volume": 2795000
   },
   {
    "time": "09:05",
@@ -1696,9 +1696,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44338,
+    "close": 44295,
     "ref": 44136,
-    "changePct": 0.46
+    "changePct": 0.36
    }
   },
   "foreignFuturesOI": {
@@ -1742,9 +1742,9 @@
   "vix": {
    "symbol": "^VIX",
    "date": "2026-11-11",
-   "close": 18.79,
+   "close": 18.7,
    "prevClose": 19.46,
-   "changePct": -3.44,
+   "changePct": -3.91,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -1766,9 +1766,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-11",
-   "close": 32.86,
+   "close": 32.85,
    "prevClose": 32.79,
-   "changePct": 0.21,
+   "changePct": 0.17,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -1788,7 +1788,7 @@
   "changePct": 3.26,
   "name": "日月光投控 ADR",
   "ratio": 2,
-  "impliedTwd": 582.9
+  "impliedTwd": 582.8
  },
  "hints": {
   "kline": {
@@ -1806,7 +1806,7 @@
   "volume": {
    "signal": "中性",
    "strength": null,
-   "data": "成交量為前 5 日均量的 0.57 倍，當日漲跌 +1.98%",
+   "data": "成交量為前 5 日均量的 0.58 倍，當日漲跌 +1.98%",
    "source": "由日 K 計算"
   },
   "momentum": {
@@ -1818,7 +1818,7 @@
   "foreign": {
    "signal": "偏空",
    "strength": "強",
-   "data": "2026-11-11 外資賣超 2,694 張（占成交量 13.8%），連 3 日同向；近 5 日合計賣超 34,590 張",
+   "data": "2026-11-11 外資賣超 2,694 張（占成交量 13.6%），連 3 日同向；近 5 日合計賣超 34,590 張",
    "source": "證交所 T86，2026-11-11"
   },
   "trust": {
@@ -1830,7 +1830,7 @@
   "dealer": {
    "signal": "偏多",
    "strength": "弱",
-   "data": "2026-11-11 自營商買超 480 張（占成交量 2.5%）；近 5 日合計買超 1,582 張",
+   "data": "2026-11-11 自營商買超 480 張（占成交量 2.4%）；近 5 日合計買超 1,582 張",
    "source": "證交所 T86，2026-11-11"
   },
   "margin": {
@@ -1842,7 +1842,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "弱",
-   "data": "臺指期116夜盤 44338（+0.46%，相對日盤收盤 44136）",
+   "data": "臺指期116夜盤 44295（+0.36%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -1872,7 +1872,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.86，新台幣貶值 0.21%",
+   "data": "美元兌新台幣 32.85，新台幣貶值 0.17%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }
