@@ -13,7 +13,7 @@
     {
       "key": "kline", "category": "technical", "label": "K 線型態", "required": true, "auto": true,
       "why": "最後一根 K 線反映收盤前多空誰占上風：長紅、長下影線代表買盤強；長黑、長上影線代表賣壓重。",
-      "source": "Yahoo Finance 日 K（snapshot.daily）",
+      "source": "證交所 STOCK_DAY 日成交資訊（Yahoo Finance 備援）",
       "rule": "實體漲跌幅 ≥ 3% 為強、1.5～3% 為中、0.5～1.5% 為弱；紅 K 偏多、黑 K 偏空。上／下影線長度 > 實體 2 倍時，方向改判為影線所指（長上影偏空、長下影偏多），強度為中。實體 < 0.5% 且無長影線為中性。"
     },
     {
@@ -61,8 +61,8 @@
     {
       "key": "txf", "category": "futures", "label": "台指期（含夜盤）", "required": true, "auto": true,
       "why": "夜盤在台股收盤後繼續交易到清晨 5 點，反映美股時段的資訊，是隔日開盤最直接的參考。",
-      "source": "期交所 OpenAPI DailyMarketReportFut（TX 近月）",
-      "rule": "以夜盤漲跌幅判斷（夜盤無資料時用日盤）：|漲跌| ≥ 1% 為強、0.5～1% 為中、0.2～0.5% 為弱、< 0.2% 中性。"
+      "source": "期交所即時行情（TX 近月夜盤）",
+      "rule": "只看夜盤漲跌幅（日盤已反映在現貨收盤價，不採用；夜盤無資料時為缺漏）：|漲跌| ≥ 1% 為強、0.5～1% 為中、0.2～0.5% 為弱、< 0.2% 中性。"
     },
     {
       "key": "futures_oi", "category": "futures", "label": "外資期貨未平倉", "required": true, "auto": true,
@@ -78,7 +78,7 @@
     },
     {
       "key": "adr", "category": "global", "label": "ADR", "required": false, "auto": true,
-      "why": "台積電、聯電、日月光等在美國掛牌的 ADR，夜間價格可換算隔日台股的合理開盤價。",
+      "why": "台積電、聯電、日月光等在美國掛牌的 ADR，在台股收盤後的美股時段交易，漲跌幅反映國際資金對該股的最新看法。ADR 長期有溢價，只看漲跌幅、不看溢價。",
       "source": "Yahoo Finance（TSM、UMC、ASX、CHT）",
       "rule": "|漲跌| ≥ 2% 為強、1～2% 為中、0.3～1% 為弱、< 0.3% 中性。只有在 scripts/lib/symbols.mjs 有對應 ADR 的股票才使用。"
     },
