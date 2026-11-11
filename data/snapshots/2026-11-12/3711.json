@@ -1,6 +1,6 @@
 {
  "news": {
-  "fetchedAt": "2026-11-11T11:56:17.485Z",
+  "fetchedAt": "2026-11-11T12:14:42.441Z",
   "since": "2026-11-11T13:30+08:00",
   "stock": [
    {
@@ -21,6 +21,14 @@
    }
   ],
   "market": [
+   {
+    "title": "台股明天穩了？台指期夜盤4萬4失而復得 一度漲逾450點",
+    "source": "自由財經",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5mQWtvUDVQOEJ3b3BDOFQwbEJtVzVjV25XTGxHM1lSZTJrRko0anE4cXhkTlozUnJHTDF4MGd5d3M2d0IxY25zS3lXZGRTZTE0VHJuME84bHY0TjVWaVVZ0gFkQVVfeXFMUHlGM3dINUhlMmQ3VzZJS3FSME56YXpMMjdpaDVRLVZUYmpZQWFOUmM0c2M0a0pCLVo2WXh5d2RkWkh5Q3g0MGpub01EVG5HSkxkNEoxU3AwVUxJRF82SkJXWUFCQw?oc=5",
+    "time": "2026-11-11T11:49:05.000Z",
+    "tags": [],
+    "trusted": true
+   },
    {
     "title": "台股跌逾萬點！國安基金第10度進場護盤 財長莊翠雲曝退場時間",
     "source": "Yahoo新聞",
@@ -54,18 +62,8 @@
    {
     "title": "國安基金進場 台股大反攻 法人：AI股V型反轉拐點浮現",
     "source": "理財周刊",
-    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5yM2JudVhCXzZ4VDVjTkM4QzVfN08wSGVwT3RldlRBOERGSFp4SVRmYXpHcTRvRkE3Rzl3M1Z2cUtXN3FBR1ljdFdMdnAxU0hnMUcwdENSVzlnVGpyU0VF?oc=5",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPdm41RjkyVUxNVUJSUlNuQXFDTlJLaVlEUnhwcWRsWDkwQzVZS21EWWhlS3RHaEhJOTFDNHBGVmNRdjBiRml2Z3k4MEtpQ2VBdVJpaG1GRnhwNlBnQ19ZTXoxLWtEMFZoSVp2VXN2dUFhR1JDaTdmdDhSRVNsbzZNYWZVV2NYdXAyV2lGaWJxRzY4VmVzVWc?oc=5",
     "time": "2026-11-11T07:36:27.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金護盤三天台股狂彈4550點 分析師：進場日未必是低點、慎防回測第二隻腳",
-    "source": "BigGo 財經",
-    "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBSamZrLV91VjBnTGJGMkdqS1FMV01ScXozSHJlYU8tbWdZelBvdWFXMzB5M0NkUldtNzR0V2ZiUUNJWXI5dGlyc1pGRVNYeEFUZ2NKM2FjcnQ3aE0wNWZXSHVpWDFRR1ByaVQzRGZVZ0dpUk5TWHRmcDJ3?oc=5",
-    "time": "2026-11-11T07:05:00.000Z",
     "tags": [
      "國安基金"
     ],
@@ -138,7 +136,7 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T11:56:17.485Z",
+  "fetchedAt": "2026-11-11T12:14:42.441Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -4763,9 +4761,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44558,
+    "close": 44489,
     "ref": 44136,
-    "changePct": 0.96
+    "changePct": 0.8
    }
   },
   "foreignFuturesOI": {
@@ -4871,9 +4869,9 @@
   "vix": {
    "symbol": "^VIX",
    "date": "2026-11-11",
-   "close": 18.6,
+   "close": 18.53,
    "prevClose": 19.46,
-   "changePct": -4.42,
+   "changePct": -4.78,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -4895,9 +4893,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-11",
-   "close": 32.84,
+   "close": 32.85,
    "prevClose": 32.79,
-   "changePct": 0.16,
+   "changePct": 0.18,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4917,7 +4915,7 @@
   "changePct": 3.26,
   "name": "日月光投控 ADR",
   "ratio": 2,
-  "impliedTwd": 582.6
+  "impliedTwd": 582.8
  },
  "hints": {
   "kline": {
@@ -4971,7 +4969,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "中",
-   "data": "臺指期116夜盤 44558（+0.96%，相對日盤收盤 44136）",
+   "data": "臺指期116夜盤 44489（+0.8%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -5007,7 +5005,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.84，新台幣貶值 0.16%",
+   "data": "美元兌新台幣 32.85，新台幣貶值 0.18%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }

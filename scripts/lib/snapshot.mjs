@@ -2,7 +2,7 @@
 // 產出 data/snapshots/<target>/<code>.json，內含走勢圖資料、指標、法人、期貨、國際行情與因子建議判定（hints）。
 // 這支程式只負責「數字」；新聞類因子由 AI 依 CLAUDE.md §4 搜尋後填寫。
 // 被 scripts/fetch.mjs（手動）與 scripts/daily.mjs（排程）共用。
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, readdir } from 'node:fs/promises';
 import { getJSON, num, tpeDate, tpeTime, ymd, round, sleep } from './http.mjs';
 import { ADR, GLOBAL } from './symbols.mjs';
 import { computeIndicators } from './indicators.mjs';
@@ -43,6 +43,16 @@ async function yahooQuote(symbol) {
 }
 
 // ---------- 證交所 ----------
+/** 股票名稱：先查 data/stocklist.json（官方清單，排程每日更新），沒有才問證交所 */
+async function stockName(c) {
+  try {
+    const { stocks, otc = [] } = JSON.parse(await readFile('data/stocklist.json', 'utf8'));
+    if (otc.includes(c)) throw new Error(`${c} 是上櫃股票（目前僅支援上市股票）`);
+    if (stocks[c]) return stocks[c];
+  } catch (e) { if (/上櫃/.test(e.message)) throw e; }
+  return twseName(c);
+}
+
 async function twseName(c) {
   const d = new Date();
   const j = await getJSON(`https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=${d.toISOString().slice(0, 8).replaceAll('-', '')}01&stockNo=${c}&response=json`);
@@ -51,7 +61,7 @@ async function twseName(c) {
 }
 
 /** 證交所官方日成交資料，往回抓 months 個月。民國日期 115/11/09 → 2026-11-09 */
-async function twseDaily(c, months) {
+async function twseDaily(c, months, minRows = 20) {
   const now = new Date();
   const rows = [];
   for (let i = months - 1; i >= 0; i--) {
@@ -69,7 +79,7 @@ async function twseDaily(c, months) {
       });
     }
   }
-  if (rows.length < 20) throw new Error('資料不足 20 日');
+  if (rows.length < minRows) throw new Error(`資料不足 ${minRows} 日`);
   return rows;
 }
 
@@ -266,6 +276,19 @@ async function taifexForeignOI() {
   return { date: `${r.Date.slice(0, 4)}-${r.Date.slice(4, 6)}-${r.Date.slice(6)}`, net: num(r['OpenInterest(Net)']) };
 }
 
+/** 最近一份快照中的日 K（找不到回傳 null） */
+async function cachedDaily(c) {
+  let dirs = [];
+  try { dirs = (await readdir('data/snapshots')).sort().reverse(); } catch { return null; }
+  for (const d of dirs) {
+    try {
+      const s = JSON.parse(await readFile(`data/snapshots/${d}/${c}.json`, 'utf8'));
+      if (s.daily?.length && s.meta?.sources?.some((x) => x.name.startsWith('證交所 STOCK_DAY 個股日成交'))) return s.daily;
+    } catch { /* 這一天沒有這檔 */ }
+  }
+  return null;
+}
+
 // ---------- 主流程 ----------
 /**
  * @param {string} code 股票代號
@@ -282,13 +305,23 @@ console.log(`\n▶ 抓取 ${code} 盤前資料`);
 const cal = await loadCalendar();
 if (cal.warning) warnings.push(cal.warning);
 
-const name = await twseName(code);
+const name = await stockName(code);
 log(`股票名稱：${name}`);
 sources.push({ name: '證交所 STOCK_DAY（股票名稱）', url: 'https://www.twse.com.tw/' });
 
 let daily;
 try {
-  daily = await twseDaily(code, 25); // 約 2 年，讓 MA240（年線）也能畫出 1 年以上
+  // 舊月份的日 K 不會再變：沿用最近一份快照，只向證交所抓最近 2 個月（每檔 25 次請求 → 2 次，避免被證交所限制連線）
+  const cached = await cachedDaily(code);
+  const now = new Date();
+  const recentStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, 1)).toISOString().slice(0, 10);
+  if (cached && cached.length >= 300 && cached.at(-1).date >= recentStart) {
+    const recent = await twseDaily(code, 2, 1);
+    daily = [...cached.filter((r) => r.date < recentStart), ...recent].slice(-560); // 保留約 2 年
+    log(`日 K：沿用快取 ${daily.length - recent.length} 根＋證交所最近 2 個月 ${recent.length} 根`);
+  } else {
+    daily = await twseDaily(code, 25); // 第一次或快取太舊：完整抓約 2 年，讓 MA240（年線）也能畫出 1 年以上
+  }
   sources.push({ name: '證交所 STOCK_DAY 個股日成交資訊（2 年）', url: 'https://www.twse.com.tw/zh/trading/historical/stock-day.html' });
 } catch (e) {
   warnings.push(`證交所日成交資料取得失敗，改用 Yahoo（成交量可能與官方不同）：${e.message}`);

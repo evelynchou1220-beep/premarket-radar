@@ -10,10 +10,11 @@ const tw = await getJSON('https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DA
 for (const x of tw) stocks[x.Code.trim()] = x.Name.trim();
 await sleep(1000);
 const tp = await getJSON('https://www.tpex.org.tw/openapi/v1/tpex_mainboard_quotes');
+const otc = [];
 for (const x of tp) {
   const code = x.SecuritiesCompanyCode.trim();
-  stocks[code] ??= x.CompanyName.trim();
+  if (!stocks[code]) { stocks[code] = x.CompanyName.trim(); otc.push(code); }
 }
 if (Object.keys(stocks).length < 1500) throw new Error(`對照表筆數異常（${Object.keys(stocks).length}），不覆寫`);
-await writeFile('data/stocklist.json', JSON.stringify({ updatedAt: new Date().toISOString(), stocks }) + '\n');
+await writeFile('data/stocklist.json', JSON.stringify({ updatedAt: new Date().toISOString(), stocks, otc }) + '\n');
 console.log(`✔ data/stocklist.json：${Object.keys(stocks).length} 檔（上市 ${tw.length}、上櫃 ${tp.length}）`);
