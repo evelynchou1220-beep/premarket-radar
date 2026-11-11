@@ -1,0 +1,125 @@
+---
+// 走勢圖：分時（最後交易日 5 分 K）＋日 K（6 個月，含 MA5/20/60 與成交量）。
+// 資料一律來自 data/snapshots 快照，不在瀏覽器端抓資料。
+import { md } from '../lib/site.mjs';
+interface Props { snapshot: any; initial?: 'intraday' | 'daily' }
+const { snapshot, initial = 'intraday' } = Astro.props;
+const hasIntraday = snapshot.intraday?.length > 0;
+const start = hasIntraday ? initial : 'daily';
+const payload = {
+  prevClose: snapshot.indicators.prevClose,
+  intraday: (snapshot.intraday ?? []).map((x: any) => [x.ts, x.close, x.volume]),
+  daily: snapshot.daily.map((x: any) => [x.date, x.open, x.high, x.low, x.close, x.volume]),
+};
+const day = snapshot.meta.basedOn;
+---
+<div class="charts" data-start={start}>
+  <div class="tabs" role="tablist">
+    {hasIntraday && <button role="tab" data-tab="intraday" aria-selected={start === 'intraday'}>{md(day)} 分時走勢</button>}
+    <button role="tab" data-tab="daily" aria-selected={start === 'daily'}>日 K（6 個月）</button>
+    <span class="legend small" data-legend="daily" hidden={start !== 'daily'}>
+      <i style="--c:#f5a524"></i>MA5 <i style="--c:#4c9cff"></i>MA20 <i style="--c:#c084fc"></i>MA60
+    </span>
+    <span class="legend small" data-legend="intraday" hidden={start !== 'intraday'}>
+      <i style="--c:#8d97aa"></i>前日收盤 {snapshot.indicators.prevClose}
+    </span>
+  </div>
+  <div class="chart" data-panel="intraday" hidden={start !== 'intraday'}></div>
+  <div class="chart" data-panel="daily" hidden={start !== 'daily'}></div>
+  <script type="application/json" set:html={JSON.stringify(payload)} />
+</div>
+
+<script>
+  import { createChart, CandlestickSeries, HistogramSeries, LineSeries, BaselineSeries, ColorType, LineStyle } from 'lightweight-charts';
+
+  const css = getComputedStyle(document.documentElement);
+  const v = (n: string) => css.getPropertyValue(n).trim();
+  const UP = v('--up'), DOWN = v('--down');
+  const base = {
+    autoSize: true,
+    layout: { background: { type: ColorType.Solid, color: 'transparent' }, textColor: v('--muted'), fontFamily: v('--mono'), panes: { separatorColor: v('--line') } },
+    grid: { vertLines: { color: 'rgba(35,43,57,.5)' }, horzLines: { color: 'rgba(35,43,57,.5)' } },
+    rightPriceScale: { borderColor: v('--line') },
+    timeScale: { borderColor: v('--line') },
+    crosshair: { mode: 0 },
+  };
+
+  function sma(rows: number[][], n: number) {
+    const out = [];
+    for (let i = n - 1; i < rows.length; i++) {
+      let s = 0;
+      for (let j = i - n + 1; j <= i; j++) s += rows[j][4] as number;
+      out.push({ time: rows[i][0], value: +(s / n).toFixed(2) });
+    }
+    return out;
+  }
+
+  function drawDaily(el: HTMLElement, rows: any[]) {
+    const chart = createChart(el, { ...base, timeScale: { ...base.timeScale } });
+    const candle = chart.addSeries(CandlestickSeries, {
+      upColor: UP, downColor: DOWN, borderUpColor: UP, borderDownColor: DOWN, wickUpColor: UP, wickDownColor: DOWN,
+    });
+    candle.setData(rows.map((r) => ({ time: r[0], open: r[1], high: r[2], low: r[3], close: r[4] })));
+    for (const [n, color] of [[5, '#f5a524'], [20, '#4c9cff'], [60, '#c084fc']] as const) {
+      if (rows.length < n) continue;
+      const s = chart.addSeries(LineSeries, { color, lineWidth: 1, priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false });
+      s.setData(sma(rows, n));
+    }
+    const vol = chart.addSeries(HistogramSeries, { priceFormat: { type: 'volume' }, priceLineVisible: false, lastValueVisible: false }, 1);
+    vol.setData(rows.map((r, i) => ({ time: r[0], value: r[5] / 1000, color: (i && r[4] < rows[i - 1][4]) ? 'rgba(31,191,117,.55)' : 'rgba(240,69,75,.55)' })));
+    chart.panes()[1]?.setHeight(80);
+    chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, rows.length - 90), to: rows.length + 2 });
+  }
+
+  function drawIntraday(el: HTMLElement, rows: any[], prevClose: number) {
+    const chart = createChart(el, {
+      ...base,
+      timeScale: { ...base.timeScale, timeVisible: true, secondsVisible: false },
+      localization: { timeFormatter: (t: number) => new Date(t * 1000).toISOString().slice(11, 16) },
+    });
+    const TZ = 8 * 3600; // 以台北時間顯示
+    const line = chart.addSeries(BaselineSeries, {
+      baseValue: { type: 'price', price: prevClose },
+      topLineColor: UP, topFillColor1: 'rgba(240,69,75,.28)', topFillColor2: 'rgba(240,69,75,.02)',
+      bottomLineColor: DOWN, bottomFillColor1: 'rgba(31,191,117,.02)', bottomFillColor2: 'rgba(31,191,117,.28)',
+      lineWidth: 2,
+    });
+    line.setData(rows.map((r) => ({ time: r[0] + TZ, value: r[1] })));
+    line.createPriceLine({ price: prevClose, color: v('--muted'), lineStyle: LineStyle.Dashed, lineWidth: 1, axisLabelVisible: true, title: '昨收' });
+    const vol = chart.addSeries(HistogramSeries, { priceFormat: { type: 'volume' }, priceLineVisible: false, lastValueVisible: false }, 1);
+    vol.setData(rows.map((r, i) => ({ time: r[0] + TZ, value: r[2] / 1000, color: (i && r[1] < rows[i - 1][1]) ? 'rgba(31,191,117,.55)' : 'rgba(240,69,75,.55)' })));
+    chart.panes()[1]?.setHeight(70);
+    chart.timeScale().fitContent();
+  }
+
+  document.querySelectorAll<HTMLElement>('.charts').forEach((root) => {
+    const data = JSON.parse(root.querySelector('script[type="application/json"]')!.textContent!);
+    const drawn = new Set<string>();
+    const show = (tab: string) => {
+      root.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => (p.hidden = p.dataset.panel !== tab));
+      root.querySelectorAll<HTMLElement>('[data-legend]').forEach((p) => (p.hidden = p.dataset.legend !== tab));
+      root.querySelectorAll<HTMLElement>('[data-tab]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+      if (drawn.has(tab)) return;
+      drawn.add(tab);
+      const el = root.querySelector<HTMLElement>(`[data-panel="${tab}"]`)!;
+      tab === 'daily' ? drawDaily(el, data.daily) : drawIntraday(el, data.intraday, data.prevClose);
+    };
+    root.querySelectorAll<HTMLElement>('[data-tab]').forEach((b) => b.addEventListener('click', () => show(b.dataset.tab!)));
+    show(root.dataset.start!);
+  });
+</script>
+
+<style>
+  .tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 12px; }
+  .tabs button {
+    font: inherit; font-size: 13px; cursor: pointer; color: var(--muted);
+    background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px;
+  }
+  .tabs button[aria-selected='true'] { color: var(--bg); background: var(--accent); border-color: var(--accent); font-weight: 600; }
+  .legend { margin-left: auto; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .legend[hidden] { display: none; }
+  .legend i { display: inline-block; width: 14px; height: 2px; background: var(--c); margin-left: 6px; }
+  .chart { height: 380px; }
+  .chart[hidden] { display: none; }
+  @media (max-width: 640px) { .chart { height: 300px; } .legend { margin-left: 0; width: 100%; } }
+</style>

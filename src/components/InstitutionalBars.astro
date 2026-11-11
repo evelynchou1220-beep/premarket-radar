@@ -1,0 +1,68 @@
+---
+// 三大法人近 10 日買賣超（單位：張）。伺服器端產生的 HTML 長條圖，不需要 JavaScript。
+import { md, lots } from '../lib/site.mjs';
+interface Props { rows: { date: string; foreign: number; trust: number; dealer: number }[] }
+const { rows } = Astro.props;
+const series = [
+  { key: 'foreign', label: '外資' },
+  { key: 'trust', label: '投信' },
+  { key: 'dealer', label: '自營商' },
+] as const;
+const max = Math.max(1, ...rows.flatMap((r) => series.map((s) => Math.abs(r[s.key]))));
+const sum = (k: string) => rows.slice(-5).reduce((a, r: any) => a + r[k], 0);
+---
+{rows.length === 0 ? (
+  <p class="muted">尚無三大法人資料。</p>
+) : (
+  <div class="inst">
+    <div class="sums">
+      {series.map((s) => {
+        const v = sum(s.key);
+        return (
+          <div class="sum">
+            <span class="muted small">{s.label}・近 5 日</span>
+            <span class:list={['num', v > 0 ? 'up' : v < 0 ? 'down' : 'flat']}>{lots(v)} 張</span>
+          </div>
+        );
+      })}
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>日期</th>{series.map((s) => <th>{s.label}</th>)}</tr></thead>
+        <tbody>
+          {rows.slice().reverse().map((r) => (
+            <tr>
+              <td class="num muted">{md(r.date)}</td>
+              {series.map((s) => {
+                const v = r[s.key];
+                const w = (Math.abs(v) / max) * 50;
+                return (
+                  <td class="cell">
+                    <div class="bar-track">
+                      <span class:list={['bar', v >= 0 ? 'pos' : 'neg']} style={`width:${w}%`}></span>
+                    </div>
+                    <span class:list={['num small', v > 0 ? 'up' : v < 0 ? 'down' : 'flat']}>{lots(v)}</span>
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="dim small">單位：張（1 張 = 1,000 股）。外資含外資自營商。來源：證交所 T86。</p>
+  </div>
+)}
+
+<style>
+  .sums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .sum { background: var(--panel-2); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; }
+  .sum .num { font-size: 17px; font-weight: 600; }
+  .cell { min-width: 120px; }
+  .bar-track { position: relative; height: 6px; background: var(--panel-2); border-radius: 3px; margin-bottom: 3px; }
+  .bar-track::before { content: ''; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--line-strong); }
+  .bar { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .bar.pos { left: 50%; background: var(--up); }
+  .bar.neg { right: 50%; background: var(--down); }
+  @media (max-width: 640px) { .sums { grid-template-columns: 1fr; } }
+</style>

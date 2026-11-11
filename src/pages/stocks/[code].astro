@@ -1,0 +1,52 @@
+---
+// 單一個股頁：最新走勢圖＋這檔股票的所有歷史預測與命中紀錄。
+import Base from '../../layouts/Base.astro';
+import PriceCharts from '../../components/PriceCharts.astro';
+import VerdictBadge from '../../components/VerdictBadge.astro';
+import { getReports, stats, url, md, weekday, pct, tone } from '../../lib/site.mjs';
+
+export async function getStaticPaths() {
+  const reports = await getReports();
+  const codes = [...new Set(reports.map((r) => r.data.code))];
+  return codes.map((code) => ({ params: { code }, props: { list: reports.filter((r) => r.data.code === code) } }));
+}
+const { list } = Astro.props;
+const latest = list[0];
+const st = stats(list);
+---
+<Base title={`${latest.data.code} ${latest.data.name}`} active="stocks">
+  <nav class="small muted" style="margin-bottom:12px"><a href={url('stocks')} style="color:var(--muted)">個股</a> / {latest.data.code}</nav>
+  <div class="head">
+    <h1><span class="num" style="color:var(--accent)">{latest.data.code}</span> {latest.data.name}</h1>
+    <div class="small muted">共 {st.total} 份預測｜命中率 {st.rate == null ? '尚無驗證' : `${st.rate}%（${st.hits}/${st.verified}）`}</div>
+  </div>
+
+  <section class="panel section">
+    <div class="panel-title">走勢圖（{md(latest.data.basedOn)} 為止）</div>
+    <PriceCharts snapshot={latest.snapshot} initial="daily" />
+  </section>
+
+  <section class="panel section">
+    <div class="panel-title">歷史預測</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>預測日</th><th>結論</th><th>一句話</th><th>實際收盤</th><th>結果</th></tr></thead>
+        <tbody>
+          {list.map((r) => (
+            <tr>
+              <td class="num"><a href={url(`reports/${r.id}`)}>{md(r.data.target)}（{weekday(r.data.target)}）</a></td>
+              <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
+              <td class="small">{r.data.summary}</td>
+              <td class:list={['num', r.result && tone(r.result.changePct)]}>{r.result ? pct(r.result.changePct) : '—'}</td>
+              <td>{r.result ? (r.result.hit ? <span class="tag accent">✔ 命中</span> : <span class="tag">✘ 未中</span>) : <span class="tag">⏳ 待驗證</span>}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+</style>

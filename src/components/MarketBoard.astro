@@ -1,0 +1,69 @@
+---
+// 盤前行情看板：國際指數、匯率、台指期夜盤、大盤法人。資料取自最新一份快照。
+import { pct, tone, fmtNum, md } from '../lib/site.mjs';
+interface Props { snapshot: any }
+const { snapshot: s } = Astro.props;
+const order = ['sox', 'nasdaq', 'sp500', 'dow', 'vix', 'nikkei', 'kospi', 'usdtwd', 'taiex'];
+const quotes = order.map((k) => s.global[k] && { key: k, ...s.global[k] }).filter(Boolean);
+const txf = s.market.txf;
+const inst = s.market.institutional;
+const oi = s.market.foreignFuturesOI;
+const yi = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n, 1)} 億`;
+---
+<div class="board">
+  {quotes.map((q: any) => {
+    // 美元兌新台幣上漲 = 新台幣貶值，顏色反過來看比較直覺（貶值對台股偏空）
+    const t = q.key === 'usdtwd' || q.key === 'vix' ? tone(-q.changePct) : tone(q.changePct);
+    return (
+      <div class="q">
+        <div class="label small muted">{q.label}</div>
+        <div class="price num">{fmtNum(q.close, q.close < 100 ? 2 : 0)}</div>
+        <div class:list={['chg num small', t]}>{pct(q.changePct)}</div>
+        <div class="date dim">{md(q.date)}</div>
+      </div>
+    );
+  })}
+  {txf && (
+    <div class="q hl">
+      <div class="label small muted">台指期夜盤</div>
+      {txf.night ? (
+        <>
+          <div class="price num">{fmtNum(txf.night.close)}</div>
+          <div class:list={['chg num small', tone(txf.night.changePct)]}>{pct(txf.night.changePct)}</div>
+          <div class="date dim">{md(txf.night.session)} 夜盤</div>
+        </>
+      ) : (
+        <>
+          <div class="price num dim">—</div>
+          <div class="chg small muted">夜盤未開始</div>
+          <div class="date dim">日盤 {pct(txf.day.changePct)}</div>
+        </>
+      )}
+    </div>
+  )}
+  {inst && (
+    <div class="q">
+      <div class="label small muted">外資（大盤）</div>
+      <div class:list={['price num', tone(inst.foreign)]}>{yi(inst.foreign)}</div>
+      <div class="chg small muted">投信 <span class:list={['num', tone(inst.trust)]}>{yi(inst.trust)}</span></div>
+      <div class="date dim">{md(inst.date)}</div>
+    </div>
+  )}
+  {oi && (
+    <div class="q">
+      <div class="label small muted">外資台指期未平倉</div>
+      <div class:list={['price num', tone(oi.net)]}>{oi.net > 0 ? '+' : ''}{fmtNum(oi.net)}</div>
+      <div class="chg small muted">口（{oi.net >= 0 ? '淨多' : '淨空'}）</div>
+      <div class="date dim">{md(oi.date)}</div>
+    </div>
+  )}
+</div>
+
+<style>
+  .board { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
+  .q { background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .q.hl { border-color: rgba(245, 165, 36, 0.45); }
+  .price { font-size: 18px; font-weight: 600; line-height: 1.3; }
+  .chg { font-weight: 600; }
+  .date { font-size: 11px; }
+</style>

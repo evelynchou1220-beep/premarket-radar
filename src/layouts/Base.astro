@@ -1,0 +1,114 @@
+---
+// 全站共用版型：每個頁面都必須包在 <Base> 裡（CLAUDE.md §3）。
+import '../styles/global.css';
+import { SITE_NAME, SITE_TAGLINE, url } from '../lib/site.mjs';
+
+interface Props { title?: string; description?: string; active?: string }
+const { title, description = SITE_TAGLINE, active = '' } = Astro.props;
+const fullTitle = title ? `${title}｜${SITE_NAME}` : `${SITE_NAME}｜${SITE_TAGLINE}`;
+const nav = [
+  { href: url(), label: '盤前總覽', key: 'home' },
+  { href: url('stocks'), label: '個股', key: 'stocks' },
+  { href: url('record'), label: '預測戰績', key: 'record' },
+  { href: url('factors'), label: '因子說明', key: 'factors' },
+  { href: url('guide'), label: '使用方式', key: 'guide' },
+];
+---
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a0d13" />
+    <link rel="icon" href={url('favicon.svg').replace(/\/$/, '')} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="brand" href={url()}>
+          <span class="radar" aria-hidden="true"></span>
+          <span>{SITE_NAME}</span>
+        </a>
+        <nav aria-label="主選單">
+          {nav.map((n) => <a href={n.href} class:list={[{ active: n.key === active }]}>{n.label}</a>)}
+        </nav>
+        <div class="clock num" id="market-clock" title="台灣時間">--:--</div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p><strong>免責聲明：</strong>本站內容由 AI 依照公開資料與固定規則（CLAUDE.md）自動產生，僅供學習與研究，<strong>不構成任何投資建議</strong>。股市有風險，投資前請自行判斷。</p>
+        <p class="dim small">資料來源：臺灣證券交易所、臺灣期貨交易所、Yahoo Finance 與公開新聞。紅色代表上漲／偏多，綠色代表下跌／偏空。</p>
+      </div>
+    </footer>
+
+    <script>
+      // 台灣時間與開盤倒數（09:00 開盤、13:30 收盤，週一至週五）
+      const el = document.getElementById('market-clock');
+      const tick = () => {
+        if (!el) return;
+        const now = new Date(Date.now() + 8 * 3600e3);
+        const h = now.getUTCHours(), m = now.getUTCMinutes(), dow = now.getUTCDay();
+        const mins = h * 60 + m;
+        const hhmm = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+        let state = '休市';
+        if (dow >= 1 && dow <= 5) {
+          if (mins < 540) { const left = 540 - mins; state = `距開盤 ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`; }
+          else if (mins < 810) state = '盤中';
+          else state = '已收盤';
+        }
+        el.textContent = `台北 ${hhmm}｜${state}`;
+        el.dataset.state = state.startsWith('距開盤') ? 'pre' : state;
+      };
+      tick();
+      setInterval(tick, 15000);
+    </script>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10, 13, 19, 0.88); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; gap: 24px; height: 58px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; }
+  .brand:hover { text-decoration: none; }
+  .radar {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid var(--accent); position: relative; overflow: hidden;
+  }
+  .radar::after {
+    content: ''; position: absolute; inset: 0;
+    background: conic-gradient(from 0deg, rgba(245, 165, 36, 0.7), transparent 30%);
+    animation: sweep 3s linear infinite;
+  }
+  @keyframes sweep { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .radar::after { animation: none; } }
+  nav { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+  nav a {
+    color: var(--muted); padding: 6px 12px; border-radius: var(--radius-sm); font-size: 14px; white-space: nowrap;
+  }
+  nav a:hover { color: var(--text); background: var(--panel-2); text-decoration: none; }
+  nav a.active { color: var(--text); background: var(--panel-2); box-shadow: inset 0 -2px 0 var(--accent); }
+  .clock { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; }
+  .clock[data-state='pre'] { color: var(--accent); border-color: rgba(245, 165, 36, 0.4); }
+  main { padding-top: 24px; padding-bottom: 48px; min-height: 70vh; }
+  .site-footer { border-top: 1px solid var(--line); padding: 24px 0 32px; color: var(--muted); font-size: 13px; }
+  @media (max-width: 760px) {
+    .bar { flex-wrap: wrap; height: auto; padding-top: 10px; padding-bottom: 6px; gap: 6px 12px; }
+    nav { order: 3; width: 100%; }
+    .clock { margin-left: auto; }
+  }
+</style>

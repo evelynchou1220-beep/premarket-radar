@@ -1,0 +1,30 @@
+---
+// 單一因子的理由卡片：判定、強度、數據、影響機制、來源。
+import { factorDefs, categories, signalTone, signalIcon } from '../lib/site.mjs';
+interface Props { factor: { key: string; signal: string; strength?: string | null; data: string; source: string; reason: string } }
+const { factor: f } = Astro.props;
+const def = factorDefs[f.key];
+const cat = categories.find((c) => c.id === def.category);
+const override = f.reason.startsWith('【改判】');
+---
+<article class:list={['fc', signalTone(f.signal)]}>
+  <header>
+    <span class="name">{cat?.icon} {def.label}</span>
+    <span class:list={['tag', signalTone(f.signal)]}>{signalIcon(f.signal)} {f.signal}{f.strength && `・${f.strength}`}</span>
+    {override && <span class="tag accent" title="AI 推翻了程式的建議判定，原因寫在下方">改判</span>}
+  </header>
+  <p class="data num">{f.data}</p>
+  <p class="reason">{f.reason}</p>
+  <p class="src dim small">來源：{f.source}</p>
+</article>
+
+<style>
+  .fc { background: var(--panel-2); border: 1px solid var(--line); border-left: 3px solid var(--flat); border-radius: var(--radius-sm); padding: 12px 14px; }
+  .fc.up { border-left-color: var(--up); }
+  .fc.down { border-left-color: var(--down); }
+  header { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .name { font-weight: 700; }
+  .data { font-size: 13px; color: var(--text); background: rgba(0, 0, 0, 0.25); padding: 6px 8px; border-radius: 4px; margin-bottom: 8px; word-break: break-word; }
+  .reason { margin-bottom: 4px; }
+  .src { margin: 0; }
+</style>

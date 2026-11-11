@@ -1,0 +1,77 @@
+---
+// 首頁：盤前總覽。顯示最新快照的國際行情、最新一批預測、戰績摘要。
+import Base from '../layouts/Base.astro';
+import MarketBoard from '../components/MarketBoard.astro';
+import ReportCard from '../components/ReportCard.astro';
+import { getReports, stats, url, md, weekday, SITE_TAGLINE } from '../lib/site.mjs';
+
+const reports = await getReports();
+const latestTarget = reports[0]?.data.target;
+const latest = reports.filter((r) => r.data.target === latestTarget);
+const earlier = reports.filter((r) => r.data.target !== latestTarget).slice(0, 6);
+const snap = latest.map((r) => r.snapshot).sort((a, b) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
+const st = stats(reports);
+const bull = latest.filter((r) => r.data.verdict === '偏多').length;
+const bear = latest.filter((r) => r.data.verdict === '偏空').length;
+---
+<Base active="home">
+  <section class="intro">
+    <div>
+      <div class="eyebrow small">PRE-MARKET RADAR</div>
+      <h1>{SITE_TAGLINE}</h1>
+      <p class="muted">每天 08:00 前，AI 依照固定規則抓取外資、投信、台指期夜盤、美股、匯率與新聞，替個股算出「偏多／偏空／盤整」與信心度，收盤後再自動對答案。</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span class="num">{st.total}</span><span class="small muted">份報告</span></div>
+      <div class="kpi"><span class="num">{st.rate == null ? '—' : st.rate + '%'}</span><span class="small muted">命中率（{st.verified} 筆已驗證）</span></div>
+      <div class="kpi"><span class="num">{st.pending}</span><span class="small muted">待驗證</span></div>
+    </div>
+  </section>
+
+  {!reports.length ? (
+    <div class="panel section">
+      <h2>還沒有任何報告</h2>
+      <p class="muted">請對 AI 說「分析今天的 2330」，AI 會依照 CLAUDE.md 的流程產生第一份報告。</p>
+      <a href={url('guide')}>查看使用方式 →</a>
+    </div>
+  ) : (
+    <>
+      <section class="panel section">
+        <div class="panel-title">
+          <span>隔夜行情｜{md(snap.meta.basedOn)} 台股收盤後</span>
+          <span class="small dim">快照 {new Date(snap.meta.fetchedAt).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false })}</span>
+        </div>
+        <MarketBoard snapshot={snap} />
+        {!snap.meta.timingOk && <p class="small" style="color:var(--accent);margin:12px 0 0">⏰ 此快照在美股收盤前抓取，部分國際資料尚未更新。</p>}
+      </section>
+
+      <section class="section">
+        <div class="head">
+          <h2>{md(latestTarget)}（{weekday(latestTarget)}）盤前預測</h2>
+          <span class="small muted">{latest.length} 檔｜<span class="up">偏多 {bull}</span>・<span class="down">偏空 {bear}</span>・盤整 {latest.length - bull - bear}</span>
+        </div>
+        <div class="grid grid-3">{latest.map((r) => <ReportCard report={r} />)}</div>
+      </section>
+
+      {earlier.length > 0 && (
+        <section class="section">
+          <div class="head"><h2>先前的預測</h2><a class="small" href={url('record')}>完整戰績 →</a></div>
+          <div class="grid grid-3">{earlier.map((r) => <ReportCard report={r} />)}</div>
+        </section>
+      )}
+    </>
+  )}
+</Base>
+
+<style>
+  .intro { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin: 8px 0 24px; }
+  .eyebrow { color: var(--accent); letter-spacing: 0.18em; font-weight: 600; margin-bottom: 6px; }
+  h1 { font-size: 28px; }
+  .intro p { max-width: 640px; margin: 0; }
+  .kpis { display: flex; gap: 10px; }
+  .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; min-width: 120px; display: flex; flex-direction: column; }
+  .kpi .num { font-size: 24px; font-weight: 600; color: var(--accent); }
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+  .head h2 { margin: 0; }
+  @media (max-width: 760px) { .intro { grid-template-columns: 1fr; } .kpis { flex-wrap: wrap; } .kpi { flex: 1; min-width: 100px; } }
+</style>

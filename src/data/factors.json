@@ -1,0 +1,153 @@
+{
+  "$comment": "影響因子的唯一定義來源（single source of truth）。網站「因子說明」頁、scripts/check.mjs、CLAUDE.md 都以此檔為準。新增因子時只改這裡。",
+  "categories": [
+    { "id": "technical", "label": "技術面", "icon": "📈" },
+    { "id": "chips", "label": "籌碼面", "icon": "🏦" },
+    { "id": "futures", "label": "期貨", "icon": "📊" },
+    { "id": "global", "label": "國際股市", "icon": "🌏" },
+    { "id": "fx", "label": "匯率", "icon": "💱" },
+    { "id": "policy", "label": "政策與國際", "icon": "🏛️" },
+    { "id": "company", "label": "公司事件", "icon": "🏢" }
+  ],
+  "factors": [
+    {
+      "key": "kline", "category": "technical", "label": "K 線型態", "required": true, "auto": true,
+      "why": "最後一根 K 線反映收盤前多空誰占上風：長紅、長下影線代表買盤強；長黑、長上影線代表賣壓重。",
+      "source": "Yahoo Finance 日 K（snapshot.daily）",
+      "rule": "實體漲跌幅 ≥ 3% 為強、1.5～3% 為中、0.5～1.5% 為弱；紅 K 偏多、黑 K 偏空。上／下影線長度 > 實體 2 倍時，方向改判為影線所指（長上影偏空、長下影偏多），強度為中。實體 < 0.5% 且無長影線為中性。"
+    },
+    {
+      "key": "ma", "category": "technical", "label": "均線排列", "required": true, "auto": true,
+      "why": "收盤價與 5／20／60 日均線的相對位置，代表短、中、長期持有者的平均成本與趨勢方向。",
+      "source": "由 snapshot.daily 計算（snapshot.indicators）",
+      "rule": "收盤 > MA5 > MA20 > MA60（多頭排列）為強偏多；完全相反（空頭排列）為強偏空。收盤在 MA20 之上且 MA5 > MA20 為中偏多，反之中偏空。其餘為弱，方向依收盤相對 MA20。"
+    },
+    {
+      "key": "volume", "category": "technical", "label": "量能", "required": true, "auto": true,
+      "why": "價漲量增代表追價意願強；價跌量增代表恐慌賣壓；量縮代表觀望。",
+      "source": "由 snapshot.daily 計算（成交量 ÷ 前 5 日均量）",
+      "rule": "量比 ≥ 1.5 為強、1.2～1.5 為中、其餘中性；方向依當日漲跌（漲＋放量偏多、跌＋放量偏空）。"
+    },
+    {
+      "key": "momentum", "category": "technical", "label": "RSI／KD 指標", "required": false, "auto": true,
+      "why": "動能指標判斷是否過熱或超賣，過熱容易拉回、超賣容易反彈。",
+      "source": "由 snapshot.daily 計算 RSI(14)、KD(9,3,3)",
+      "rule": "RSI ≥ 80 或 K ≥ 85 為中偏空（過熱）；RSI ≤ 20 或 K ≤ 15 為中偏多（超賣）；KD 黃金交叉為弱偏多、死亡交叉為弱偏空；其餘中性。"
+    },
+    {
+      "key": "foreign", "category": "chips", "label": "外資", "required": true, "auto": true,
+      "why": "外資持有台股約四成市值，連續買超通常代表資金持續流入。",
+      "source": "證交所 T86 三大法人買賣超日報",
+      "rule": "最新一日買賣超占當日成交量 ≥ 10% 為強、5～10% 為中、1～5% 為弱、< 1% 中性。若近 3 日同方向，強度升一級（最多為強）。"
+    },
+    {
+      "key": "trust", "category": "chips", "label": "投信", "required": true, "auto": true,
+      "why": "投信（基金）常有作帳與連續布局行為，連買常延續數日。",
+      "source": "證交所 T86 三大法人買賣超日報",
+      "rule": "同外資規則，但門檻減半（≥ 5% 強、2.5～5% 中、0.5～2.5% 弱）。"
+    },
+    {
+      "key": "dealer", "category": "chips", "label": "自營商", "required": true, "auto": true,
+      "why": "自營商多為短線與避險操作，參考價值較低，只看大幅度變化。",
+      "source": "證交所 T86 三大法人買賣超日報",
+      "rule": "買賣超占成交量 ≥ 5% 為中、2～5% 為弱、< 2% 中性（不給強）。"
+    },
+    {
+      "key": "margin", "category": "chips", "label": "融資融券", "required": true, "auto": true,
+      "why": "融資是散戶借錢買股。股價跌但融資增加，代表籌碼凌亂；融券增加則可能有軋空力道。",
+      "source": "證交所 MI_MARGN 融資融券彙總",
+      "rule": "融資餘額單日變化 ≥ +3% 且股價下跌為中偏空（散戶接刀）；融資減少 ≥ 3% 且股價上漲為弱偏多（籌碼沉澱）；其餘中性。"
+    },
+    {
+      "key": "txf", "category": "futures", "label": "台指期（含夜盤）", "required": true, "auto": true,
+      "why": "夜盤在台股收盤後繼續交易到清晨 5 點，反映美股時段的資訊，是隔日開盤最直接的參考。",
+      "source": "期交所 OpenAPI DailyMarketReportFut（TX 近月）",
+      "rule": "以夜盤漲跌幅判斷（夜盤無資料時用日盤）：|漲跌| ≥ 1% 為強、0.5～1% 為中、0.2～0.5% 為弱、< 0.2% 中性。"
+    },
+    {
+      "key": "futures_oi", "category": "futures", "label": "外資期貨未平倉", "required": true, "auto": true,
+      "why": "外資在台指期的淨多單／淨空單口數，代表外資對大盤的避險方向。",
+      "source": "期交所 OpenAPI 三大法人期貨部位（臺股期貨、外資）",
+      "rule": "淨多單 ≥ 1 萬口為中偏多、淨空單 ≥ 3 萬口為中偏空、淨空 1～3 萬口為弱偏空，其餘中性。"
+    },
+    {
+      "key": "us_market", "category": "global", "label": "美股（費半／那指）", "required": true, "auto": true,
+      "why": "台股科技權值與美國科技股高度連動，前一晚費城半導體指數幾乎決定隔日電子股開盤方向。",
+      "source": "Yahoo Finance ^SOX、^IXIC、^GSPC",
+      "rule": "以費半漲跌幅為主：|漲跌| ≥ 2% 為強、1～2% 為中、0.3～1% 為弱、< 0.3% 中性。非電子股改以標普 500 判斷且門檻減半。"
+    },
+    {
+      "key": "adr", "category": "global", "label": "ADR", "required": false, "auto": true,
+      "why": "台積電、聯電、日月光等在美國掛牌的 ADR，夜間價格可換算隔日台股的合理開盤價。",
+      "source": "Yahoo Finance（TSM、UMC、ASX、CHT）",
+      "rule": "|漲跌| ≥ 2% 為強、1～2% 為中、0.3～1% 為弱、< 0.3% 中性。只有在 scripts/lib/symbols.mjs 有對應 ADR 的股票才使用。"
+    },
+    {
+      "key": "asia", "category": "global", "label": "日股／韓股", "required": true, "auto": true,
+      "why": "日經與韓國 KOSPI 與台股同屬亞洲出口型市場，三星、SK 海力士與台廠供應鏈相關性高。",
+      "source": "Yahoo Finance ^N225、^KS11",
+      "rule": "取兩者漲跌幅平均：|平均| ≥ 1.5% 為中、0.5～1.5% 為弱、< 0.5% 中性（不給強，因為收盤時間早於美股）。"
+    },
+    {
+      "key": "fx", "category": "fx", "label": "新台幣匯率", "required": true, "auto": true,
+      "why": "新台幣升值代表熱錢流入（利多大盤），但會壓低出口商的匯兌收益；貶值則相反。",
+      "source": "Yahoo Finance TWD=X（美元兌新台幣）",
+      "rule": "新台幣單日升值 ≥ 0.3% 為弱偏多（資金流入）、貶值 ≥ 0.3% 為弱偏空；≥ 0.8% 升為中。出口比重高的公司，報告中須在 reason 說明匯損影響。"
+    },
+    {
+      "key": "tariff", "category": "policy", "label": "美國關稅／貿易政策", "required": true, "auto": false,
+      "why": "美國對半導體、電子產品的關稅或出口管制，直接影響台廠的訂單與毛利。",
+      "source": "新聞搜尋（WebSearch）：近 3 日「美國 關稅 半導體」「出口管制」",
+      "rule": "已實施或確定公告的新關稅／管制為強；官員表態、草案為中；傳聞為弱；近 3 日無相關新聞填中性。"
+    },
+    {
+      "key": "fed", "category": "policy", "label": "聯準會利率", "required": true, "auto": false,
+      "why": "降息讓資金成本下降、科技股評價上升；升息或鷹派發言則相反。",
+      "source": "新聞搜尋：FOMC 會議、聯準會官員談話、美國 CPI／非農",
+      "rule": "利率決議當週為強；重要數據（CPI、非農）公布為中；官員談話為弱；無事件填中性。"
+    },
+    {
+      "key": "geopolitics", "category": "policy", "label": "兩岸與國防情勢", "required": true, "auto": false,
+      "why": "軍演、制裁等地緣風險會讓外資降低台股部位。",
+      "source": "新聞搜尋：近 3 日「解放軍 軍演」「兩岸」「國防」",
+      "rule": "實際軍演或制裁為強偏空；官方強硬表態為中偏空；緊張緩和的實質進展為弱偏多；無事件填中性。"
+    },
+    {
+      "key": "national_fund", "category": "policy", "label": "國安基金", "required": true, "auto": false,
+      "why": "國安基金只在市場重挫時宣布進場護盤，進場期間有托底效果。它不公布每日買賣，只能從官方公告判斷狀態。",
+      "source": "新聞搜尋：「國安基金 進場」「國安基金 退場」",
+      "rule": "近期宣布進場為中偏多；護盤中（尚未宣布退場）為弱偏多；宣布退場為弱偏空；未啟動填中性並寫明「目前未進場」。"
+    },
+    {
+      "key": "politics", "category": "policy", "label": "選舉與政局", "required": false, "auto": false,
+      "why": "美國或台灣選舉結果、重大法案會改變產業政策預期。",
+      "source": "新聞搜尋",
+      "rule": "選舉結果揭曉或重大法案通過為中；選前民調變化為弱。只在有事件時加入。"
+    },
+    {
+      "key": "revenue", "category": "company", "label": "月營收", "required": true, "auto": false,
+      "why": "台灣上市公司每月 10 日前公布上月營收，年增率是基本面最即時的指標。",
+      "source": "公開資訊觀測站或新聞搜尋「<股票名> 月營收」",
+      "rule": "年增率 ≥ 30% 為中偏多、10～30% 為弱偏多、衰退 ≥ 10% 為中偏空；公布後超過 10 個交易日則強度降一級。"
+    },
+    {
+      "key": "earnings_call", "category": "company", "label": "法說會", "required": false, "auto": false,
+      "why": "法說會會公布財測與資本支出，常造成隔日大幅波動。",
+      "source": "公開資訊觀測站法說會公告、新聞搜尋",
+      "rule": "法說會在 5 個交易日內：財測上修為強偏多、下修為強偏空；尚未舉行則為中性並註明日期。只在 5 個交易日內有法說會時加入。"
+    },
+    {
+      "key": "dividend", "category": "company", "label": "配息／除權息", "required": false, "auto": false,
+      "why": "除息日股價會扣除股利，高殖利率股在除息前常有買盤。",
+      "source": "公開資訊觀測站、證交所除權息預告表",
+      "rule": "預測日為除息日：在 reason 註明參考價會扣除股利，方向中性；除息前 5 日內且殖利率 ≥ 4% 為弱偏多。只在 10 個交易日內有除權息時加入。"
+    }
+  ],
+  "scoring": {
+    "strengthPoints": { "強": 3, "中": 2, "弱": 1 },
+    "bullThreshold": 0.12,
+    "bearThreshold": -0.12,
+    "missingPenalty": 2,
+    "confidenceCap": 85
+  }
+}

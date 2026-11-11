@@ -1,0 +1,213 @@
+---
+// 個股盤前分析報告頁。版面順序固定（CLAUDE.md §3.3），新增區塊時要同步更新 CLAUDE.md。
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import VerdictBadge from '../../components/VerdictBadge.astro';
+import PriceCharts from '../../components/PriceCharts.astro';
+import InstitutionalBars from '../../components/InstitutionalBars.astro';
+import FactorCard from '../../components/FactorCard.astro';
+import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, scoringConfig } from '../../lib/site.mjs';
+
+export async function getStaticPaths() {
+  const reports = await getReports();
+  return reports.map((r) => {
+    const same = reports.filter((x) => x.data.code === r.data.code); // 新到舊
+    const i = same.indexOf(r);
+    return { params: { id: r.id }, props: { report: r, newer: same[i - 1] ?? null, older: same[i + 1] ?? null } };
+  });
+}
+
+const { report, newer, older } = Astro.props;
+const d = report.data;
+const s = report.snapshot;
+const res = report.result;
+const sc = report.score;
+const { Content } = await render(report);
+const ind = s.indicators;
+
+const rank = { 強: 3, 中: 2, 弱: 1 } as Record<string, number>;
+const byStrength = (a: any, b: any) => (rank[b.strength] ?? 0) - (rank[a.strength] ?? 0);
+const bulls = d.factors.filter((f) => f.signal === '偏多').sort(byStrength);
+const bears = d.factors.filter((f) => f.signal === '偏空').sort(byStrength);
+const others = d.factors.filter((f) => f.signal === '中性' || f.signal === '缺漏');
+
+// 信心度儀表（半圓）
+const gaugePct = (d.confidence - 50) / (scoringConfig.confidenceCap - 50);
+const angle = Math.PI * (1 - gaugePct);
+const nx = 60 + 46 * Math.cos(angle), ny = 62 - 46 * Math.sin(angle);
+const gaugeColor = d.verdict === '偏多' ? 'var(--up)' : d.verdict === '偏空' ? 'var(--down)' : 'var(--flat)';
+const arcLen = Math.PI * 46;
+
+const keyStats = [
+  { label: `${md(d.basedOn)} 收盤`, value: fmtNum(ind.close, ind.close < 100 ? 2 : 0), sub: pct(ind.changePct), t: tone(ind.changePct) },
+  { label: 'MA20／MA60', value: `${fmtNum(ind.ma20, 0)}／${fmtNum(ind.ma60, 0)}`, sub: ind.close >= ind.ma20 ? '站上月線' : '跌破月線', t: ind.close >= ind.ma20 ? 'up' : 'down' },
+  { label: 'RSI(14)', value: ind.rsi14, sub: ind.rsi14 >= 70 ? '偏熱' : ind.rsi14 <= 30 ? '偏冷' : '中性區', t: 'flat' },
+  { label: 'KD', value: `${ind.k}／${ind.d}`, sub: ind.k > ind.d ? 'K > D' : 'K < D', t: ind.k > ind.d ? 'up' : 'down' },
+  { label: '量比（5 日）', value: `${ind.volumeRatio}×`, sub: ind.volumeRatio >= 1.2 ? '放量' : ind.volumeRatio <= 0.8 ? '量縮' : '持平', t: 'flat' },
+  { label: '60 日區間', value: `${fmtNum(ind.low60, 0)}–${fmtNum(ind.high60, 0)}`, sub: `位於 ${Math.round(((ind.close - ind.low60) / (ind.high60 - ind.low60 || 1)) * 100)}% 位置`, t: 'flat' },
+];
+---
+<Base title={`${d.code} ${d.name} ${md(d.target)} 盤前預測`} description={d.summary} active="stocks">
+  <nav class="crumb small muted">
+    <a href={url('stocks')}>個股</a> / <a href={url(`stocks/${d.code}`)}>{d.code} {d.name}</a> / {md(d.target)} 盤前預測
+  </nav>
+
+  {d.timingNote && (
+    <div class="notice section">
+      <span>⏰</span>
+      <div><strong>時序提醒：</strong>{d.timingNote}</div>
+    </div>
+  )}
+
+  <!-- 1. 結論 -->
+  <section class="hero panel">
+    <div class="hero-main">
+      <div class="muted small">{md(d.target)}（{weekday(d.target)}）開盤前預測｜依據 {md(d.basedOn)} 收盤與隔夜國際資料</div>
+      <h1><span class="num code">{d.code}</span> {d.name}</h1>
+      <div class="verdict-row">
+        <VerdictBadge verdict={d.verdict} confidence={d.confidence} size="lg" />
+        {res ? (
+          <span class:list={['tag', res.hit ? 'accent' : '']} style="font-size:14px">
+            {res.hit ? '✔ 命中' : '✘ 未中'}｜實際收盤 <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span>（{res.actual}）
+          </span>
+        ) : <span class="tag">⏳ 收盤後驗證</span>}
+      </div>
+      <p class="summary">{d.summary}</p>
+    </div>
+    <div class="gauge">
+      <svg viewBox="0 0 120 72" role="img" aria-label={`信心度 ${d.confidence}%`}>
+        <path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="var(--line-strong)" stroke-width="9" stroke-linecap="round" />
+        <path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke={gaugeColor} stroke-width="9" stroke-linecap="round"
+          stroke-dasharray={`${arcLen * gaugePct} ${arcLen}`} />
+        <circle cx={nx} cy={ny} r="5" fill={gaugeColor} stroke="var(--panel)" stroke-width="2" />
+        <text x="60" y="58" text-anchor="middle" class="g-num">{d.confidence}%</text>
+      </svg>
+      <div class="small muted center">信心度（50–{scoringConfig.confidenceCap}%）</div>
+      <div class="score small center">
+        得分 <span class="num">{sc.score > 0 ? '+' : ''}{sc.score}</span> / {sc.max}
+        <span class="dim">（<span class="up">多 {sc.bull}</span>・<span class="down">空 {sc.bear}</span>・中性 {sc.neutral}{sc.missing ? `・缺漏 ${sc.missing}` : ''}）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 關鍵數據 -->
+  <section class="section stats">
+    {keyStats.map((k) => (
+      <div class="stat">
+        <div class="small muted">{k.label}</div>
+        <div class="num v">{k.value}</div>
+        <div class:list={['small', k.t]}>{k.sub}</div>
+      </div>
+    ))}
+  </section>
+
+  <!-- 3. 走勢圖 -->
+  <section class="panel section">
+    <div class="panel-title">走勢圖</div>
+    <PriceCharts snapshot={s} />
+  </section>
+
+  <!-- 4. 多空理由 -->
+  <section class="section grid grid-2">
+    <div class="stack">
+      <h2 class="up">▲ 多方理由（{bulls.length}）</h2>
+      {bulls.length ? bulls.map((f) => <FactorCard factor={f} />) : <p class="muted">沒有偏多因子。</p>}
+    </div>
+    <div class="stack">
+      <h2 class="down">▼ 空方風險（{bears.length}）</h2>
+      {bears.length ? bears.map((f) => <FactorCard factor={f} />) : <p class="muted">沒有偏空因子。</p>}
+    </div>
+  </section>
+
+  <!-- 5. AI 綜合分析（Markdown 內文） -->
+  <section class="panel section prose">
+    <div class="panel-title">AI 綜合分析</div>
+    <Content />
+  </section>
+
+  <!-- 6. 三大法人 -->
+  <section class="panel section">
+    <div class="panel-title">三大法人買賣超（近 10 日）</div>
+    <InstitutionalBars rows={s.institutional} />
+  </section>
+
+  <!-- 7. 因子總表 -->
+  <section class="panel section">
+    <div class="panel-title">
+      <span>全部因子判定（{d.factors.length}）</span>
+      <a class="small" href={url('factors')}>判定規則 →</a>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>類別</th><th>因子</th><th>判定</th><th>數據</th></tr></thead>
+        <tbody>
+          {categories.map((c) => d.factors.filter((f) => factorDefs[f.key].category === c.id).map((f, i, arr) => (
+            <tr>
+              {i === 0 && <td rowspan={arr.length} class="muted">{c.icon} {c.label}</td>}
+              <td>{factorDefs[f.key].label}</td>
+              <td><span class:list={['tag', signalTone(f.signal)]}>{signalIcon(f.signal)} {f.signal}{f.strength && `・${f.strength}`}</span></td>
+              <td class="small">{f.data}</td>
+            </tr>
+          )))}
+        </tbody>
+      </table>
+    </div>
+    {others.length > 0 && <p class="dim small" style="margin-top:10px">中性與缺漏的因子不影響得分，但「缺漏」每項會扣信心度 {scoringConfig.missingPenalty} 分。</p>}
+  </section>
+
+  <!-- 8. 新聞 -->
+  <section class="panel section">
+    <div class="panel-title">參考新聞（{d.news.length}）</div>
+    <ul class="news">
+      {d.news.map((n) => (
+        <li>
+          <a href={n.url} target="_blank" rel="noopener">{n.title}</a>
+          <span class="dim small"> — {n.source}・{md(n.date)}{n.factor && factorDefs[n.factor] && `・${factorDefs[n.factor].label}`}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- 9. 資料來源 -->
+  <section class="section small muted">
+    <details>
+      <summary>資料來源與抓取紀錄</summary>
+      <p>快照：<code>data/snapshots/{d.target}/{d.code}.json</code>，抓取時間 {new Date(s.meta.fetchedAt).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false })}。報告產生：{d.createdAt}</p>
+      <ul>{s.meta.sources.map((x: any) => <li><a href={x.url} target="_blank" rel="noopener">{x.name}</a></li>)}</ul>
+      {s.meta.warnings.length > 0 && <ul>{s.meta.warnings.map((w: string) => <li class="dim">⚠ {w}</li>)}</ul>}
+    </details>
+  </section>
+
+  <nav class="pager">
+    {older ? <a href={url(`reports/${older.id}`)}>← {md(older.data.target)} 的預測</a> : <span></span>}
+    {newer ? <a href={url(`reports/${newer.id}`)}>{md(newer.data.target)} 的預測 →</a> : <span></span>}
+  </nav>
+</Base>
+
+<style>
+  .crumb { margin-bottom: 14px; }
+  .crumb a { color: var(--muted); }
+  .hero { display: grid; grid-template-columns: 1fr 240px; gap: 24px; align-items: center; }
+  h1 { font-size: 30px; margin: 6px 0 14px; }
+  .code { color: var(--accent); }
+  .verdict-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .summary { font-size: 17px; margin: 0; }
+  .gauge svg { width: 100%; max-width: 220px; display: block; margin: 0 auto; }
+  .g-num { fill: var(--text); font: 700 18px var(--mono); }
+  .center { text-align: center; }
+  .score { margin-top: 6px; }
+  .stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .stat .v { font-size: 17px; font-weight: 600; }
+  h2 { margin-bottom: 4px; }
+  .news { padding-left: 18px; margin: 0; }
+  .news li { margin-bottom: 8px; }
+  details summary { cursor: pointer; }
+  .pager { display: flex; justify-content: space-between; margin-top: 24px; }
+  @media (max-width: 900px) { .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 640px) {
+    .hero { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    h1 { font-size: 24px; }
+  }
+</style>

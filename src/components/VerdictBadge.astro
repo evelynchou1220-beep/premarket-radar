@@ -1,0 +1,23 @@
+---
+// 結論徽章：偏多（紅）／偏空（綠）／盤整（灰）＋信心度。
+import { verdictTone } from '../lib/site.mjs';
+interface Props { verdict: string; confidence: number; size?: 'sm' | 'lg' }
+const { verdict, confidence, size = 'sm' } = Astro.props;
+const icon = { 偏多: '▲', 偏空: '▼', 盤整: '◆' }[verdict];
+---
+<span class:list={['badge', verdictTone(verdict), size]}>
+  <span class="v">{icon} {verdict}</span>
+  <span class="c num">{confidence}%</span>
+</span>
+
+<style>
+  .badge { display: inline-flex; align-items: stretch; border-radius: var(--radius-sm); overflow: hidden; font-weight: 700; white-space: nowrap; border: 1px solid currentColor; }
+  .badge .v { padding: 2px 9px; }
+  .badge .c { padding: 2px 8px; background: rgba(255, 255, 255, 0.06); font-weight: 600; }
+  .up { color: var(--up); } .up .v { background: var(--up-bg); }
+  .down { color: var(--down); } .down .v { background: var(--down-bg); }
+  .flat { color: var(--flat); } .flat .v { background: var(--flat-bg); }
+  .sm { font-size: 13px; }
+  .lg { font-size: 22px; border-width: 2px; border-radius: var(--radius); }
+  .lg .v, .lg .c { padding: 6px 16px; }
+</style>

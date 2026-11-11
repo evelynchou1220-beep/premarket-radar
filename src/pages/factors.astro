@@ -1,0 +1,51 @@
+---
+// 因子說明：完全由 src/data/factors.json 產生。改規則只改 JSON，這頁會自動更新。
+import Base from '../layouts/Base.astro';
+import { categories, factorDefs, scoringConfig as S } from '../lib/site.mjs';
+import { HIT_THRESHOLD } from '../lib/scoring.mjs';
+const all = Object.values(factorDefs) as any[];
+---
+<Base title="因子說明" active="factors">
+  <h1>因子說明</h1>
+  <p class="muted">每份報告都用同一套 {all.length} 個因子判斷。標示「必查」的因子每次都要出現；「選用」的因子只在有相關事件時加入。「程式判定」的因子由 <code>npm run fetch</code> 依下方規則自動算出，AI 不能憑感覺改判；「AI 搜尋」的因子由 AI 搜尋新聞後依規則判定。</p>
+
+  <section class="panel section">
+    <div class="panel-title">評分公式</div>
+    <ol class="formula">
+      <li>每個因子給分：偏多 = +強度、偏空 = −強度，強度「強 {S.strengthPoints['強']}／中 {S.strengthPoints['中']}／弱 {S.strengthPoints['弱']}」；中性 = 0；缺漏不計分。</li>
+      <li>得分比例 = 總分 ÷（有資料的因子數 × 3），範圍 −1 到 +1。</li>
+      <li>比例 ≥ {S.bullThreshold} → <span class="up">偏多</span>；≤ {S.bearThreshold} → <span class="down">偏空</span>；介於兩者之間 → 盤整。</li>
+      <li>信心度：偏多／偏空 = 50 + 80 × |比例|；盤整 = 50 + 15 × (1 − |比例| ÷ {S.bullThreshold})。上限 {S.confidenceCap}%，每個缺漏因子扣 {S.missingPenalty} 分，最低 50%。</li>
+      <li>驗證：預測日收盤漲跌 ≥ +{HIT_THRESHOLD}% 算偏多、≤ −{HIT_THRESHOLD}% 算偏空，其餘算盤整。</li>
+    </ol>
+    <p class="dim small" style="margin:0">信心度上限設為 {S.confidenceCap}%，因為沒有任何方法能百分之百預測股價。</p>
+  </section>
+
+  {categories.map((c) => (
+    <section class="section">
+      <h2>{c.icon} {c.label}</h2>
+      <div class="grid grid-2">
+        {all.filter((f) => f.category === c.id).map((f) => (
+          <article class="panel f">
+            <header>
+              <strong>{f.label}</strong>
+              <code>{f.key}</code>
+              <span class:list={['tag', f.required && 'accent']}>{f.required ? '必查' : '選用'}</span>
+              <span class="tag">{f.auto ? '程式判定' : 'AI 搜尋'}</span>
+            </header>
+            <p>{f.why}</p>
+            <p class="rule small"><span class="muted">判定規則：</span>{f.rule}</p>
+            <p class="dim small" style="margin:0">資料來源：{f.source}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .formula { padding-left: 20px; margin: 0 0 10px; }
+  .formula li { margin-bottom: 6px; }
+  .f header { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; font-size: 16px; }
+  .rule { background: var(--panel-2); border-radius: var(--radius-sm); padding: 8px 10px; }
+</style>

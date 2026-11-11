@@ -1,0 +1,23 @@
+{
+  "name": "premarket-radar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "盤前雷達：台股開盤前的 AI 個股多空分析站",
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fetch": "node scripts/fetch.mjs",
+    "check": "node scripts/check.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.4.10",
+    "lightweight-charts": "^5.3.0",
+    "yaml": "^2.9.1"
+  }
+}

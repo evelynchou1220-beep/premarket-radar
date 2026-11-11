@@ -1,0 +1,37 @@
+---
+// 個股列表：所有分析過的股票會自動出現，不需要手動維護清單。
+import Base from '../../layouts/Base.astro';
+import VerdictBadge from '../../components/VerdictBadge.astro';
+import { getReports, stats, url, md } from '../../lib/site.mjs';
+
+const reports = await getReports();
+const codes = [...new Set(reports.map((r) => r.data.code))].sort();
+const rows = codes.map((code) => {
+  const list = reports.filter((r) => r.data.code === code);
+  return { code, name: list[0].data.name, latest: list[0], st: stats(list) };
+});
+---
+<Base title="個股" active="stocks">
+  <h1>個股</h1>
+  <p class="muted">只要對 AI 說「分析 <code>代號</code>」，該股票就會自動加入這裡。</p>
+  {rows.length === 0 && <p class="muted">尚無資料。</p>}
+  <div class="grid grid-3 section">
+    {rows.map((x) => (
+      <a class="card" href={url(`stocks/${x.code}`)}>
+        <div class="row">
+          <div><span class="num code">{x.code}</span> <strong>{x.name}</strong></div>
+          <VerdictBadge verdict={x.latest.data.verdict} confidence={x.latest.data.confidence} />
+        </div>
+        <div class="small muted">最新：{md(x.latest.data.target)}｜共 {x.st.total} 份報告</div>
+        <div class="small muted">命中率：{x.st.rate == null ? '尚無驗證' : `${x.st.rate}%（${x.st.hits}/${x.st.verified}）`}</div>
+      </a>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .card { display: block; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+  .card:hover { border-color: var(--line-strong); text-decoration: none; }
+  .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 17px; }
+  .code { color: var(--accent); }
+</style>

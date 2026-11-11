@@ -1,0 +1,79 @@
+---
+// 使用方式：把 CLAUDE.md 的工作流程用網頁呈現，讓使用者知道該對 AI 說什麼。
+import Base from '../layouts/Base.astro';
+const repo = 'https://github.com/' + (import.meta.env.PUBLIC_REPO ?? '');
+const flows = [
+  {
+    say: '分析今天的 2330',
+    title: '產生盤前報告',
+    when: '台股開盤前（建議 05:00–08:45）',
+    steps: [
+      '執行 npm run fetch -- 2330，抓取 K 線、三大法人、融資融券、台指期夜盤、美股、日韓股、匯率',
+      '確認「時序檢查」通過：美股與夜盤資料必須晚於台股最後收盤',
+      '搜尋新聞，判定關稅、聯準會、兩岸情勢、國安基金、月營收等 AI 因子',
+      '依 templates/report.md 寫出報告，結論與信心度用公式計算',
+      '執行 npm run check 驗收，全部通過才 build 與 push',
+    ],
+  },
+  {
+    say: '驗證昨天的預測',
+    title: '收盤後對答案',
+    when: '預測日 14:30 之後',
+    steps: [
+      '執行 npm run verify，抓證交所官方收盤價',
+      '自動判定命中與否，寫入 data/results.json',
+      '預測戰績頁與命中率自動更新',
+    ],
+  },
+  {
+    say: '分析 2330、2454、2317',
+    title: '一次分析多檔',
+    when: '開盤前',
+    steps: ['對每一檔重複「產生盤前報告」流程', '首頁會把同一天的預測排在一起，並統計偏多／偏空檔數'],
+  },
+  {
+    say: '新增一個因子：美國 10 年期公債殖利率',
+    title: '擴充規則',
+    when: '任何時候',
+    steps: [
+      '在 src/data/factors.json 加入因子定義（類別、規則、來源）',
+      '如果是程式判定的因子，在 scripts/lib/hints.mjs 實作規則',
+      '因子說明頁與驗收規則會自動套用新因子',
+      '在 CLAUDE.md 的變更紀錄寫下原因',
+    ],
+  },
+];
+---
+<Base title="使用方式" active="guide">
+  <h1>使用方式</h1>
+  <p class="muted">這個網站沒有後台，也沒有「新增」按鈕。所有內容都是你用一句話交辦給 AI，AI 再依照專案根目錄的 <code>CLAUDE.md</code>（員工手冊）完成。同一份規則可以每天重複使用，換一個 AI 工具（讀 <code>AGENTS.md</code>）也能接手。</p>
+
+  <section class="section grid grid-2">
+    {flows.map((f) => (
+      <article class="panel flow">
+        <div class="say"><span class="dim">你：</span>「{f.say}」</div>
+        <h2>{f.title}</h2>
+        <div class="small muted">使用時機：{f.when}</div>
+        <ol>{f.steps.map((s) => <li>{s}</li>)}</ol>
+      </article>
+    ))}
+  </section>
+
+  <section class="panel section">
+    <div class="panel-title">交辦的三件事（對應課程「換你當老闆」）</div>
+    <div class="grid grid-3">
+      <div><h3>📦 要什麼成品</h3><p class="small muted">一份 <code>src/content/reports/日期-代號.md</code> 報告與一份資料快照；網頁上自動出現走勢圖、多空理由、法人籌碼與新聞。</p></div>
+      <div><h3>🚧 有什麼限制</h3><p class="small muted">不准捏造數據；每個理由都要有數字、來源、影響機制與強度；結論與信心度只能用公式計算；時序不對的資料要標示警示。</p></div>
+      <div><h3>✅ 怎麼算做完</h3><p class="small muted"><code>npm run check</code> 與 <code>npm run build</code> 全部通過，並回報結論、最強的 3 個理由與資料缺漏。</p></div>
+    </div>
+  </section>
+
+  {import.meta.env.PUBLIC_REPO && <p class="small"><a href={repo} target="_blank" rel="noopener">在 GitHub 查看原始碼與 CLAUDE.md →</a></p>}
+</Base>
+
+<style>
+  .say { font-family: var(--mono); color: var(--accent); background: var(--accent-bg); border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 12px; }
+  .flow h2 { margin-bottom: 2px; }
+  ol { padding-left: 20px; margin: 10px 0 0; }
+  li { margin-bottom: 4px; font-size: 14px; }
+</style>
