@@ -6,7 +6,7 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T10:16:37.341Z",
+  "fetchedAt": "2026-11-11T10:33:47.607Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -4496,61 +4496,81 @@
    "date": "2026-10-29",
    "foreign": 3342,
    "trust": 512,
-   "dealer": -116
+   "dealer": -116,
+   "dealerSelf": -103,
+   "dealerHedge": -13
   },
   {
    "date": "2026-10-30",
    "foreign": -3392,
    "trust": 1374,
-   "dealer": 124
+   "dealer": 124,
+   "dealerSelf": -181,
+   "dealerHedge": 305
   },
   {
    "date": "2026-11-02",
    "foreign": 24201,
    "trust": 946,
-   "dealer": 1859
+   "dealer": 1859,
+   "dealerSelf": 341,
+   "dealerHedge": 1518
   },
   {
    "date": "2026-11-03",
    "foreign": 2394,
    "trust": 427,
-   "dealer": 806
+   "dealer": 806,
+   "dealerSelf": -467,
+   "dealerHedge": 1273
   },
   {
    "date": "2026-11-04",
    "foreign": -16577,
    "trust": 333,
-   "dealer": 2113
+   "dealer": 2113,
+   "dealerSelf": 240,
+   "dealerHedge": 1873
   },
   {
    "date": "2026-11-05",
    "foreign": -11173,
    "trust": 2350,
-   "dealer": 3123
+   "dealer": 3123,
+   "dealerSelf": -88,
+   "dealerHedge": 3211
   },
   {
    "date": "2026-11-06",
    "foreign": -14082,
    "trust": 2102,
-   "dealer": 4267
+   "dealer": 4267,
+   "dealerSelf": -151,
+   "dealerHedge": 4418
   },
   {
    "date": "2026-11-09",
    "foreign": 3669,
    "trust": 4885,
-   "dealer": 574
+   "dealer": 574,
+   "dealerSelf": -413,
+   "dealerHedge": 987
   },
   {
    "date": "2026-11-10",
    "foreign": 2303,
    "trust": 322,
-   "dealer": -460
+   "dealer": -460,
+   "dealerSelf": -163,
+   "dealerHedge": -297
   },
   {
    "date": "2026-11-11",
    "foreign": -1762,
    "trust": 600,
-   "dealer": 73
+   "dealer": 73,
+   "dealerSelf": 305,
+   "dealerHedge": -232
   }
  ],
  "margin": null,
@@ -4560,6 +4580,8 @@
    "foreign": -7.7,
    "trust": 147.7,
    "dealer": 62.6,
+   "dealerSelf": 28,
+   "dealerHedge": 34.6,
    "total": 202.6
   },
   "txf": {
@@ -4575,9 +4597,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44355,
+    "close": 44453,
     "ref": 44136,
-    "changePct": 0.5
+    "changePct": 0.72
    }
   },
   "foreignFuturesOI": {
@@ -4621,9 +4643,9 @@
   "vix": {
    "symbol": "^VIX",
    "date": "2026-11-11",
-   "close": 18.63,
+   "close": 18.67,
    "prevClose": 19.46,
-   "changePct": -4.27,
+   "changePct": -4.06,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -4645,9 +4667,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-11",
-   "close": 32.85,
+   "close": 32.84,
    "prevClose": 32.79,
-   "changePct": 0.19,
+   "changePct": 0.16,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4712,7 +4734,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "中",
-   "data": "臺指期116夜盤 44355（+0.5%，相對日盤收盤 44136）",
+   "data": "臺指期116夜盤 44453（+0.72%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -4736,7 +4758,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.85，新台幣貶值 0.19%",
+   "data": "美元兌新台幣 32.84，新台幣貶值 0.16%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }

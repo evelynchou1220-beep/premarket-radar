@@ -22,32 +22,31 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
   {!reports.length ? (
     <div class="panel section">
       <h1>還沒有任何預測</h1>
-      <p class="muted">下一個開盤日 06:40 排程會自動產生第一批預測；也可以對 AI 說「分析今天的 2330」。</p>
-      <a href={url('guide')}>查看使用方式 →</a>
+      <p class="muted">下一個開盤日 06:40 會自動產生第一批預測。</p>
     </div>
   ) : (
     <>
       <section class="top">
         <div>
           <h1>{md(latestTarget)}（{weekday(latestTarget)}）盤前預測</h1>
-          <p class="small muted">0050 前五大權值股，每個開盤日 06:40 自動更新，收盤後自動對答案</p>
+          <p class="small muted">0050 前五大權值股<span class="hide-sm">，每個開盤日 06:40 自動更新，收盤後自動對答案</span></p>
         </div>
         <a class="rates small" href={url('record')}>
-          <span>收盤命中 <b class="num">{rateText(st)}</b></span>
           <span>開盤命中 <b class="num">{rateText(openSt)}</b></span>
-          <span>AI 完整版 <b class="num info">{rateText(aiSt)}</b></span>
-          <span class="dim">戰績 →</span>
+          <span>收盤命中 <b class="num">{rateText(st)}</b></span>
+          <span class="hide-sm">AI 完整版 <b class="num info">{rateText(aiSt)}</b></span>
+          <span class="dim">→</span>
         </a>
       </section>
 
       <section class="section">
-        <div class="small muted label">隔夜行情（{md(snap.meta.basedOn)} 台股收盤後）{!snap.meta.timingOk && <span class="warn">・部分資料尚未更新</span>}</div>
+        <div class="small muted label">隔夜行情<span class="hide-sm">（{md(snap.meta.basedOn)} 台股收盤後）</span>{!snap.meta.timingOk && <span class="warn">・部分未更新</span>}</div>
         <MarketBoard snapshot={snap} />
       </section>
 
       <section class="section list">
         <div class="row head small muted">
-          <span>股票</span><span>開盤</span><span>收盤</span><span>最關鍵的理由</span><span>結果</span>
+          <span>股票</span><span>開盤預測</span><span>收盤預測</span><span>最關鍵的理由</span><span>結果</span>
         </div>
         {latest.map((r) => {
           const f = topFactor(r);
@@ -65,7 +64,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
                 {icon(r.data.verdict)} {r.data.verdict}<em class="num">{r.data.confidence}%</em>
               </span>
               <span class="why small">
-                {f ? <><span class={signalTone(f.signal)}>{signalIcon(f.signal)}</span> {factorDefs[f.key].label}：<span class="muted">{f.data}</span></> : <span class="muted">多空資訊不足</span>}
+                {f ? <><span class={signalTone(f.signal)}>{signalIcon(f.signal)}</span> {factorDefs[f.key].label}<span class="muted hide-sm">：{f.data}</span></> : <span class="muted">多空資訊不足</span>}
               </span>
               <span class="res small">
                 {r.void ? '⊘ 作廢' : res ? <>開 {mark(res.openHit)}　收 {mark(res.hit)}</> : <span class="dim">待驗證</span>}
@@ -97,7 +96,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
         </section>
       )}
 
-      <p class="small dim foot">每日追蹤：{watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('・')}。週末與國定假日不預測。點任一列看完整理由與走勢圖。</p>
+      <p class="small dim foot hide-sm">每日追蹤：{watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('・')}。週末與國定假日不預測。點任一列看完整理由與走勢圖。</p>
     </>
   )}
 </Base>
@@ -130,9 +129,13 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
 
   @media (max-width: 760px) {
     .head { display: none; }
-    .row { grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+    .row { grid-template-columns: 1fr 1fr; gap: 4px 12px; padding: 10px 12px; }
     .stock { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: 8px; }
-    .call::before { content: attr(data-k) ' '; font-size: 12px; font-weight: 600; color: var(--muted); }
-    .why, .res { grid-column: 1 / -1; }
+    .call { font-size: 20px; }
+    .call::before { content: attr(data-k); display: block; font-size: 11px; font-weight: 600; color: var(--muted); }
+    .why { grid-column: 1; }
+    .res { grid-column: 2; text-align: right; }
+    .top { margin-bottom: 12px; }
+    .rates { width: 100%; justify-content: space-between; }
   }
 </style>

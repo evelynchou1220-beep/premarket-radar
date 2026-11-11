@@ -47,11 +47,24 @@ const levels = [
   { label: '60 日低點', v: ind.low60 },
 ].filter((x) => x.v != null).map((x) => ({ ...x, role: x.v >= ind.close ? '壓力' : '支撐' }));
 
+// 四大法人當日買賣超（張）：外資、投信、自營商（自行買賣）、自營商（避險）。舊快照沒有拆分時只顯示自營商合計
+const inst = s.institutional.at(-1);
+const instRows = inst && inst.date === d.basedOn
+  ? [
+      { label: '外資', v: inst.foreign },
+      { label: '投信', v: inst.trust },
+      ...(inst.dealerSelf != null
+        ? [{ label: '自營（自行）', v: inst.dealerSelf }, { label: '自營（避險）', v: inst.dealerHedge }]
+        : [{ label: '自營商', v: inst.dealer }]),
+    ]
+  : null;
+const lotsText = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n)}`;
+
 const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
 const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
 ---
 <Base title={`${d.code} ${d.name} ${md(d.target)} 盤前預測`} description={d.summary} active="stocks">
-  <nav class="crumb small muted">
+  <nav class="crumb small muted hide-sm">
     <a href={url('stocks')}>個股</a> / <a href={url(`stocks/${d.code}`)}>{d.code} {d.name}</a> / {md(d.target)}
   </nav>
 
@@ -60,7 +73,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
     <div>
       <h1><span class="num code">{d.code}</span> {d.name}</h1>
       <div class="small muted">
-        {md(d.target)}（{weekday(d.target)}）盤前預測・依據 {md(d.basedOn)} 收盤
+        {md(d.target)}（{weekday(d.target)}）盤前預測<span class="hide-sm">・依據 {md(d.basedOn)} 收盤</span>
         <span class:list={['mode', d.mode]}>{MODE_LABEL[d.mode]}</span>
       </div>
     </div>
@@ -71,7 +84,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
     </div>
   </header>
 
-  {d.timingNote && <p class="timing small">⏰ {d.timingNote}</p>}
+  {d.timingNote && <details class="timing small"><summary>⏰ 部分資料不是最新</summary>{d.timingNote}</details>}
   {report.void && <p class="timing small">⊘ {report.result.note}</p>}
 
   <!-- 1. 三張重點卡：開盤、收盤、關鍵價位 -->
@@ -83,7 +96,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
       <div class="chips">
         {openFactors.map((f) => <span class:list={['chip', signalTone(f.signal)]} title={f.data}>{openShort[f.key]} {signalIcon(f.signal)}</span>)}
       </div>
-      <div class="small dim">平盤範圍：開盤漲跌 ±{report.openBand}% 以內</div>
+      <div class="small dim">平盤 ±{report.openBand}%</div>
       {res && res.openActual && (
         <div class:list={['result', res.openHit ? 'hit' : 'miss']}>
           {res.openHit ? '✔ 命中' : '✘ 未中'}｜實際{res.openActual} <span class:list={['num', tone(res.openPct)]}>{pct(res.openPct)}</span>
@@ -95,8 +108,8 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
       <div class="pick-label">收盤預測</div>
       <div class="pick-main"><span class="big">{icon(d.verdict)} {d.verdict}</span><span class="num conf">{d.confidence}%</span></div>
       <div class="meter"><i style={`width:${confBar(d.confidence)}`}></i></div>
-      <div class="small muted">多 {sc.bull}・空 {sc.bear}・中性 {sc.neutral}{sc.missing ? `・缺漏 ${sc.missing}` : ''}</div>
-      <div class="small dim">盤整範圍：收盤漲跌 ±{report.band}% 以內</div>
+      <div class="small muted hide-sm">多 {sc.bull}・空 {sc.bear}・中性 {sc.neutral}{sc.missing ? `・缺漏 ${sc.missing}` : ''}</div>
+      <div class="small dim">盤整 ±{report.band}%</div>
       {res && (
         <div class:list={['result', res.hit ? 'hit' : 'miss']}>
           {res.hit ? '✔ 命中' : '✘ 未中'}｜實際{res.actual} <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span>
@@ -105,10 +118,19 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
     </article>
 
     <article class="pick">
+      <div class="pick-label">法人 {md(d.basedOn)}<span class="dim">（張）</span></div>
+      {instRows ? (
+        <ul class="levels">
+          {instRows.map((x) => <li class="two"><span class="muted">{x.label}</span><span class:list={['num', tone(x.v)]}>{lotsText(x.v)}</span></li>)}
+        </ul>
+      ) : <p class="small muted">證交所尚未公布</p>}
+    </article>
+
+    <article class="pick">
       <div class="pick-label">關鍵價位</div>
       <ul class="levels">
         {levels.map((l) => (
-          <li><span class="muted">{l.label}</span><span class="num">{fmtNum(l.v, l.v < 100 ? 2 : 0)}</span><span class:list={['role', l.role === '支撐' ? 'up' : 'down']}>{l.role}</span></li>
+          <li><span class="muted">{l.label.replace(' 月線', '').replace(' 季線', '')}</span><span class="num">{fmtNum(l.v, l.v < 100 ? 2 : 0)}</span><span class:list={['role', l.role === '支撐' ? 'up' : 'down']}>{l.role}</span></li>
         ))}
       </ul>
     </article>
@@ -116,33 +138,33 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
 
   <p class="summary">{d.summary}</p>
 
-  <!-- 2. 最關鍵的 3 個理由 -->
+  <!-- 2. 走勢圖 -->
   <section class="panel section">
-    <div class="panel-title"><span>最關鍵的理由</span><a class="small" href="#detail-factors">全部 {d.factors.length} 個因子 ↓</a></div>
+    <PriceCharts snapshot={s} />
+  </section>
+
+  <!-- 3. 最關鍵的 3 個理由 -->
+  <section class="panel section">
+    <div class="panel-title"><span>關鍵理由</span><a class="small" href="#detail-factors">全部 {d.factors.length} 個 ↓</a></div>
     {top.length ? (
       <ol class="top">
         {top.map((f) => (
           <li>
             <span class:list={['tag', signalTone(f.signal)]}>{signalIcon(f.signal)} {f.signal}・{f.strength}</span>
             <strong>{factorDefs[f.key].label}</strong>
-            <span class="muted">{f.data}</span>
+            <span class="muted hide-sm">{f.data}</span>
           </li>
         ))}
       </ol>
     ) : <p class="muted">沒有偏多或偏空的因子，多空資訊不足。</p>}
-    {!isAuto && <p class="small dim note">對照：只用程式因子的判定為 {prog.verdict} {prog.confidence}%{prog.verdict === d.verdict ? '，與 AI 完整版相同。' : '，加入新聞因子後結論改變。'}{res && (res.programHit ? '程式版命中。' : '程式版未中。')}</p>}
-    {isAuto && <p class="small dim note">程式版：排程自動產生，未納入新聞。開盤前對 AI 說「分析今天的 {d.code}」可升級為 AI 完整版。</p>}
-  </section>
-
-  <!-- 3. 走勢圖 -->
-  <section class="panel section">
-    <PriceCharts snapshot={s} />
+    {!isAuto && <p class="small dim note hide-sm">對照：只用程式因子的判定為 {prog.verdict} {prog.confidence}%{prog.verdict === d.verdict ? '，與 AI 完整版相同。' : '，加入新聞因子後結論改變。'}{res && (res.programHit ? '程式版命中。' : '程式版未中。')}</p>}
+    {isAuto && <p class="small dim note hide-sm">程式版：排程自動產生，未納入新聞。開盤前對 AI 說「分析今天的 {d.code}」可升級為 AI 完整版。</p>}
   </section>
 
   <!-- 4. 細節（預設收合） -->
   <section class="section details">
     <details>
-      <summary>{isAuto ? '程式' : 'AI'} 分析：綜合判斷、開盤觀察重點、什麼情況下會看錯</summary>
+      <summary>{isAuto ? '程式' : 'AI'} 分析<span class="hide-sm">：綜合判斷、開盤觀察重點、什麼情況下會看錯</span></summary>
       <div class="prose"><Content /></div>
     </details>
     <details>
@@ -153,7 +175,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
       </div>
     </details>
     <details>
-      <summary>三大法人近 10 日</summary>
+      <summary>法人近 10 日</summary>
       <InstitutionalBars rows={s.institutional} />
     </details>
     <details id="detail-factors">
@@ -173,7 +195,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
           </tbody>
         </table>
       </div>
-      <p class="small dim">結論與信心度的算法見 <a href={url('factors')}>因子說明</a>。</p>
+      <p class="small dim">結論與信心度的算法見 <a href={url('factors')}>判斷規則</a>。</p>
     </details>
     <details>
       <summary>參考新聞（{d.news.length}）</summary>
@@ -189,7 +211,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
       ) : <p class="muted small">程式版不搜尋新聞；升級為 AI 完整版時，AI 會搜尋 {md(d.basedOn)} 收盤後的新聞。</p>}
     </details>
     <details>
-      <summary>資料來源與抓取紀錄</summary>
+      <summary>資料來源</summary>
       <p class="small muted">快照：<code>data/snapshots/{d.target}/{d.code}.json</code>，抓取時間 {new Date(s.meta.fetchedAt).toLocaleString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false })}。報告產生：{d.createdAt}</p>
       <ul class="small">{s.meta.sources.map((x: any) => <li><a href={x.url} target="_blank" rel="noopener">{x.name}</a></li>)}</ul>
       {s.meta.warnings.length > 0 && <ul class="small">{s.meta.warnings.map((w: string) => <li class="dim">⚠ {w}</li>)}</ul>}
@@ -213,8 +235,9 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
   .mode { margin-left: 6px; padding: 1px 7px; border-radius: 999px; font-size: 11px; border: 1px solid var(--line-strong); color: var(--muted); }
   .mode.ai { border-color: var(--info); color: var(--info); }
   .timing { color: var(--accent); background: var(--accent-bg); border-radius: var(--radius-sm); padding: 6px 10px; margin-bottom: 12px; }
+  .timing summary { cursor: pointer; font-weight: 600; }
 
-  .picks { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .picks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .pick { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--line-strong); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
   .pick.up { border-top-color: var(--up); }
   .pick.down { border-top-color: var(--down); }
@@ -242,6 +265,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
   .levels li { display: grid; grid-template-columns: 1fr auto 36px; gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .levels li:last-child { border-bottom: 0; }
   .role { font-size: 12px; text-align: right; }
+  .levels li.two { grid-template-columns: 1fr auto; }
 
   .summary { font-size: 17px; margin: 14px 0 0; }
   .top { margin: 0; padding-left: 20px; }
@@ -258,11 +282,19 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
   .news { padding-left: 18px; margin: 0; }
   .news li { margin-bottom: 8px; }
   .pager { display: flex; justify-content: space-between; margin-top: 24px; }
-  @media (max-width: 900px) { .picks { grid-template-columns: 1fr 1fr; } .picks .pick:last-child { grid-column: 1 / -1; } }
-  @media (max-width: 560px) {
-    .picks { grid-template-columns: 1fr; }
-    .head { flex-direction: column; align-items: flex-start; }
-    .last { text-align: left; }
-    h1 { font-size: 24px; }
+  @media (max-width: 900px) { .picks { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) {
+    .picks { gap: 8px; }
+    .pick { padding: 10px 12px; gap: 4px; }
+    .big { font-size: 22px; }
+    .conf { font-size: 15px; }
+    .chips { gap: 3px; }
+    .chip { font-size: 11px; padding: 0 5px; }
+    .levels li { font-size: 13px; padding: 3px 0; grid-template-columns: 1fr auto 28px; }
+    .head { align-items: flex-start; }
+    .last .price { font-size: 20px; }
+    h1 { font-size: 22px; }
+    .summary { font-size: 15px; margin-top: 10px; }
+    .top li { margin-bottom: 4px; }
   }
 </style>

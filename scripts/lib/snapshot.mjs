@@ -84,6 +84,9 @@ async function twseInstitutional(c, dates) {
       foreign: round((num(row[4]) + num(row[7])) / 1000, 0),
       trust: round(num(row[10]) / 1000, 0),
       dealer: round(num(row[11]) / 1000, 0),
+      // 四大法人：外資、投信、自營商（自行買賣）、自營商（避險）
+      dealerSelf: round(num(row[14]) / 1000, 0),
+      dealerHedge: round(num(row[17]) / 1000, 0),
     });
   }
   return out;
@@ -109,6 +112,8 @@ async function twseMarketInstitutional(date) {
     foreign: yi(get('外資及陸資')),
     trust: yi(get('投信')),
     dealer: round(dealer / 1e8, 1),
+    dealerSelf: yi(get('自營商(自行買賣)')),
+    dealerHedge: yi(get('自營商(避險)')),
     total: yi(get('合計')),
   };
 }

@@ -1,5 +1,5 @@
 ---
-// 走勢圖：分時（最後交易日 5 分 K）＋日 K／週 K（約 2 年）。
+// 走勢圖：分時走勢、當日 5 分 K（最後交易日）＋日 K／週 K（約 2 年）。
 // 技術指標可由使用者勾選：均線 MA5／10／20／60／120／240、布林通道；副圖：成交量、KD、RSI、MACD。
 // 勾選結果存在瀏覽器（localStorage），下次開啟保留。資料一律來自 data/snapshots 快照，不在瀏覽器端抓資料。
 import { md } from '../lib/site.mjs';
@@ -9,7 +9,7 @@ const hasIntraday = snapshot.intraday?.length > 0;
 const start = hasIntraday ? initial : 'daily';
 const payload = {
   prevClose: snapshot.indicators.prevClose,
-  intraday: (snapshot.intraday ?? []).map((x: any) => [x.ts, x.close, x.volume]),
+  intraday: (snapshot.intraday ?? []).map((x: any) => [x.ts, x.open, x.high, x.low, x.close, x.volume]),
   daily: snapshot.daily.map((x: any) => [x.date, x.open, x.high, x.low, x.close, x.volume]),
 };
 const day = snapshot.meta.basedOn;
@@ -21,19 +21,22 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
 <div class="charts" data-start={start}>
   <div class="bar">
     <div class="seg" role="tablist">
-      {hasIntraday && <button data-tab="intraday" aria-selected={start === 'intraday'}>{md(day)} 分時</button>}
+      {hasIntraday && <button data-tab="intraday" aria-selected={start === 'intraday'}>分時</button>}
+      {hasIntraday && <button data-tab="m5" aria-selected="false" title={`${md(day)} 5 分鐘 K 線`}>當日 K</button>}
       <button data-tab="daily" aria-selected={start === 'daily'}>日 K</button>
       <button data-tab="weekly" aria-selected="false">週 K</button>
     </div>
     <div class="seg k-only" data-ranges>
-      <button data-range="3m">3 月</button>
-      <button data-range="6m" aria-selected="true">6 月</button>
-      <button data-range="1y">1 年</button>
+      <button data-range="3m">3M</button>
+      <button data-range="6m" aria-selected="true">6M</button>
+      <button data-range="1y">1Y</button>
       <button data-range="all">全部</button>
     </div>
   </div>
 
-  <div class="toggles k-only small">
+  <details class="toggles k-only small">
+    <summary>指標 <span class="dim" data-count></span></summary>
+    <div class="opts">
     <span class="grp">主圖</span>
     {overlays.map(([k, label]) => (
       <label><input type="checkbox" data-ind={k} /><i style={`--c: var(--c-${k})`}></i>{label}</label>
@@ -42,7 +45,8 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
     {panes.map(([k, label]) => (
       <label><input type="checkbox" data-ind={k} />{label}</label>
     ))}
-  </div>
+    </div>
+  </details>
 
   <div class="info num small" data-info></div>
   <div class="chart" data-chart></div>
@@ -57,6 +61,10 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
   const UP = v('--up'), DOWN = v('--down');
   const UP_A = 'rgba(240,69,75,.5)', DOWN_A = 'rgba(31,191,117,.5)';
   const DEFAULT = ['ma5', 'ma20', 'ma60', 'vol'];
+  // 主圖高度：桌機 420px；手機約佔螢幕高度 55%，讓 K 線看得清楚
+  const mobile = () => window.matchMedia('(max-width: 640px)').matches;
+  const mainH = () => (mobile() ? Math.max(320, Math.round(window.innerHeight * 0.55)) : 420);
+  const subH = () => (mobile() ? 80 : 90);
   const STORE = 'pmr-chart-v1';
   const RANGE: Record<string, [number, number]> = { '3m': [63, 13], '6m': [126, 26], '1y': [250, 52], all: [1e9, 1e9] }; // [日 K 根數, 週 K 根數]
 
@@ -116,10 +124,14 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
   // ---------- K 線圖 ----------
   function drawK(el: HTMLElement, info: HTMLElement, bars: Bar[], on: Set<string>, rangeKey: string, weeklyMode: boolean) {
     const subs = ['vol', 'kd', 'rsi', 'macd'].filter((k) => on.has(k));
-    el.style.height = `${340 + subs.length * 100}px`;
+    el.style.height = `${mainH() + subs.length * (subH() + 4)}px`;
     const chart = createChart(el, base);
     const closes = bars.map((b) => b[4]);
-    const candle = chart.addSeries(CandlestickSeries, { upColor: UP, downColor: DOWN, borderUpColor: UP, borderDownColor: DOWN, wickUpColor: UP, wickDownColor: DOWN });
+    // 價格軸小數位：千元以上不顯示小數，讓圖表在手機上寬一點
+    const last = bars[bars.length - 1][4];
+    const precision = last >= 1000 ? 0 : last >= 50 ? 1 : 2;
+    const priceFormat = { type: 'price' as const, precision, minMove: 1 / 10 ** precision };
+    const candle = chart.addSeries(CandlestickSeries, { upColor: UP, downColor: DOWN, borderUpColor: UP, borderDownColor: DOWN, wickUpColor: UP, wickDownColor: DOWN, priceFormat });
     candle.setData(bars.map((b) => ({ time: b[0], open: b[1], high: b[2], low: b[3], close: b[4] })));
 
     for (const n of [5, 10, 20, 60, 120, 240]) {
@@ -159,7 +171,7 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
         chart.addSeries(LineSeries, line(v('--c-d')), pane).setData(series(bars, dea, 33));
       }
     });
-    chart.panes().forEach((p, i) => { if (i > 0) p.setHeight(90); });
+    chart.panes().forEach((p, i) => { if (i > 0) p.setHeight(subH()); });
 
     const n = RANGE[rangeKey][weeklyMode ? 1 : 0];
     chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, bars.length - n), to: bars.length + 2 });
@@ -170,7 +182,7 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
       const b = bars[i], prev = bars[i - 1];
       const ch = prev ? ((b[4] - prev[4]) / prev[4]) * 100 : 0;
       const cls = ch > 0 ? 'up' : ch < 0 ? 'down' : '';
-      info.innerHTML = `${b[0]}${weeklyMode ? ' 當週' : ''}　開 ${b[1]}　高 ${b[2]}　低 ${b[3]}　收 <b class="${cls}">${b[4]}（${ch > 0 ? '+' : ''}${ch.toFixed(2)}%）</b>　量 ${Math.round(b[5] / 1000).toLocaleString()} 張`;
+      info.innerHTML = `${b[0].slice(5).replace('-', '/')}${weeklyMode ? '週' : ''} 開${b[1]} 高${b[2]} 低${b[3]} 收<b class="${cls}">${b[4]} ${ch > 0 ? '+' : ''}${ch.toFixed(2)}%</b><span class="vol"> 量 ${Math.round(b[5] / 1000).toLocaleString()} 張</span>`;
     };
     show(bars.length - 1);
     chart.subscribeCrosshairMove((p) => { const i = p.time ? byTime.get(p.time as string) : undefined; show(i ?? bars.length - 1); });
@@ -179,7 +191,7 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
 
   // ---------- 分時 ----------
   function drawIntraday(el: HTMLElement, info: HTMLElement, rows: any[], prevClose: number) {
-    el.style.height = '380px';
+    el.style.height = `${mainH() + subH()}px`;
     const chart = createChart(el, {
       ...base,
       timeScale: { ...base.timeScale, timeVisible: true, secondsVisible: false },
@@ -192,15 +204,43 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
       bottomLineColor: DOWN, bottomFillColor1: 'rgba(31,191,117,.02)', bottomFillColor2: 'rgba(31,191,117,.28)',
       lineWidth: 2,
     });
-    s.setData(rows.map((r) => ({ time: r[0] + TZ, value: r[1] })));
+    s.setData(rows.map((r) => ({ time: r[0] + TZ, value: r[4] })));
     s.createPriceLine({ price: prevClose, color: v('--muted'), lineStyle: LineStyle.Dashed, lineWidth: 1, axisLabelVisible: true, title: '昨收' });
     chart.addSeries(HistogramSeries, { priceFormat: { type: 'volume' }, priceLineVisible: false, lastValueVisible: false }, 1)
-      .setData(rows.map((r, i) => ({ time: r[0] + TZ, value: r[2] / 1000, color: i && r[1] < rows[i - 1][1] ? DOWN_A : UP_A })));
-    chart.panes()[1]?.setHeight(70);
+      .setData(rows.map((r, i) => ({ time: r[0] + TZ, value: r[5] / 1000, color: i && r[4] < rows[i - 1][4] ? DOWN_A : UP_A })));
+    chart.panes()[1]?.setHeight(subH());
     chart.timeScale().fitContent();
     const last = rows[rows.length - 1];
-    const ch = ((last[1] - prevClose) / prevClose) * 100;
-    info.innerHTML = `昨收 ${prevClose}　收 <b class="${ch > 0 ? 'up' : ch < 0 ? 'down' : ''}">${last[1]}（${ch > 0 ? '+' : ''}${ch.toFixed(2)}%）</b>　5 分鐘線`;
+    const ch = ((last[4] - prevClose) / prevClose) * 100;
+    info.innerHTML = `昨收 ${prevClose} 收<b class="${ch > 0 ? 'up' : ch < 0 ? 'down' : ''}">${last[4]} ${ch > 0 ? '+' : ''}${ch.toFixed(2)}%</b>`;
+    return chart;
+  }
+
+  // ---------- 當日 5 分 K ----------
+  function drawM5(el: HTMLElement, info: HTMLElement, rows: any[], prevClose: number) {
+    el.style.height = `${mainH() + subH()}px`;
+    const TZ = 8 * 3600;
+    const chart = createChart(el, {
+      ...base,
+      timeScale: { ...base.timeScale, timeVisible: true, secondsVisible: false },
+      localization: { timeFormatter: (t: number) => new Date(t * 1000).toISOString().slice(11, 16) },
+    });
+    const precision = prevClose >= 1000 ? 0 : prevClose >= 50 ? 1 : 2;
+    const c = chart.addSeries(CandlestickSeries, { upColor: UP, downColor: DOWN, borderUpColor: UP, borderDownColor: DOWN, wickUpColor: UP, wickDownColor: DOWN, priceFormat: { type: 'price', precision, minMove: 1 / 10 ** precision } });
+    c.setData(rows.map((r) => ({ time: r[0] + TZ, open: r[1], high: r[2], low: r[3], close: r[4] })));
+    c.createPriceLine({ price: prevClose, color: v('--muted'), lineStyle: LineStyle.Dashed, lineWidth: 1, axisLabelVisible: true, title: '昨收' });
+    chart.addSeries(HistogramSeries, { priceFormat: { type: 'volume' }, priceLineVisible: false, lastValueVisible: false }, 1)
+      .setData(rows.map((r) => ({ time: r[0] + TZ, value: r[5] / 1000, color: r[4] < r[1] ? DOWN_A : UP_A })));
+    chart.panes()[1]?.setHeight(subH());
+    chart.timeScale().fitContent();
+    const byTime = new Map(rows.map((r, i) => [r[0] + TZ, i]));
+    const show = (i: number) => {
+      const r = rows[i];
+      const ch = ((r[4] - prevClose) / prevClose) * 100;
+      info.innerHTML = `${new Date((r[0] + TZ) * 1000).toISOString().slice(11, 16)} 開${r[1]} 高${r[2]} 低${r[3]} 收<b class="${ch > 0 ? 'up' : ch < 0 ? 'down' : ''}">${r[4]} ${ch > 0 ? '+' : ''}${ch.toFixed(2)}%</b>`;
+    };
+    show(rows.length - 1);
+    chart.subscribeCrosshairMove((p) => { const i = p.time ? byTime.get(p.time as number) : undefined; show(i ?? rows.length - 1); });
     return chart;
   }
 
@@ -209,7 +249,7 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
     const el = root.querySelector<HTMLElement>('[data-chart]')!;
     const info = root.querySelector<HTMLElement>('[data-info]')!;
     const saved = load();
-    const state = { tab: root.dataset.start!, range: saved?.range ?? '6m', on: new Set<string>(saved?.on ?? DEFAULT) };
+    const state = { tab: root.dataset.start!, range: saved?.range ?? (mobile() ? '3m' : '6m'), on: new Set<string>(saved?.on ?? DEFAULT) };
     const weeklyBars = weekly(data.daily);
     let chart: any = null;
 
@@ -218,9 +258,13 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
       root.querySelectorAll<HTMLElement>('[data-tab]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === state.tab)));
       root.querySelectorAll<HTMLElement>('[data-range]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.range === state.range)));
       root.querySelectorAll<HTMLInputElement>('[data-ind]').forEach((c) => (c.checked = state.on.has(c.dataset.ind!)));
-      root.classList.toggle('is-intraday', state.tab === 'intraday');
+      root.classList.toggle('is-intraday', state.tab === 'intraday' || state.tab === 'm5');
+      const cnt = root.querySelector('[data-count]');
+      if (cnt) cnt.textContent = `（${state.on.size}）`;
       chart = state.tab === 'intraday'
         ? drawIntraday(el, info, data.intraday, data.prevClose)
+        : state.tab === 'm5'
+        ? drawM5(el, info, data.intraday, data.prevClose)
         : drawK(el, info, state.tab === 'weekly' ? weeklyBars : data.daily, state.on, state.range, state.tab === 'weekly');
     };
     const persist = () => save({ range: state.range, on: [...state.on] });
@@ -240,17 +284,28 @@ const panes = [['vol', '成交量'], ['kd', 'KD'], ['rsi', 'RSI'], ['macd', 'MAC
   .seg { display: inline-flex; background: var(--panel-2); border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
   .seg button { font: inherit; font-size: 13px; cursor: pointer; color: var(--muted); background: transparent; border: 0; border-radius: 999px; padding: 4px 12px; }
   .seg button[aria-selected='true'] { color: var(--bg); background: var(--accent); font-weight: 600; }
-  .toggles { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-bottom: 8px; color: var(--muted); }
+  .toggles { margin-bottom: 8px; color: var(--muted); }
+  .toggles summary { display: inline-block; cursor: pointer; list-style: none; padding: 3px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--text); font-size: 13px; }
+  .toggles summary::-webkit-details-marker { display: none; }
+  .toggles summary::before { content: '⚙ '; color: var(--muted); }
+  .toggles[open] summary { border-color: var(--accent); }
+  .opts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 8px; padding: 10px 12px; background: var(--panel-2); border-radius: var(--radius-sm); }
   .toggles .grp { color: var(--dim); font-weight: 600; }
   .toggles .grp:not(:first-child) { margin-left: 8px; padding-left: 12px; border-left: 1px solid var(--line); }
   .toggles label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; user-select: none; }
   .toggles input { accent-color: var(--accent); margin: 0; }
   .toggles i { display: inline-block; width: 12px; height: 3px; border-radius: 2px; background: var(--c); }
-  .info { color: var(--muted); min-height: 20px; margin-bottom: 4px; white-space: nowrap; overflow-x: auto; }
+  .info { color: var(--muted); min-height: 20px; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .info :global(b) { font-weight: 600; color: var(--text); }
   .info :global(b.up) { color: var(--up); }
   .info :global(b.down) { color: var(--down); }
   .chart { height: 440px; }
   .is-intraday .k-only { display: none; }
-  @media (max-width: 640px) { .toggles .grp:not(:first-child) { margin-left: 0; padding-left: 0; border-left: 0; width: 100%; } }
+  @media (max-width: 640px) {
+    .toggles .grp:not(:first-child) { margin-left: 0; padding-left: 0; border-left: 0; width: 100%; }
+    .toggles label { min-height: 32px; }
+    .seg button { padding: 5px 10px; }
+    .bar { gap: 6px; }
+    .info :global(.vol) { display: none; }
+  }
 </style>

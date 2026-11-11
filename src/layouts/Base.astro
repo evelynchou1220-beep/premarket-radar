@@ -7,11 +7,10 @@ interface Props { title?: string; description?: string; active?: string }
 const { title, description = SITE_TAGLINE, active = '' } = Astro.props;
 const fullTitle = title ? `${title}｜${SITE_NAME}` : `${SITE_NAME}｜${SITE_TAGLINE}`;
 const nav = [
-  { href: url(), label: '盤前總覽', key: 'home' },
+  { href: url(), label: '今日預測', key: 'home' },
   { href: url('stocks'), label: '個股', key: 'stocks' },
-  { href: url('record'), label: '預測戰績', key: 'record' },
-  { href: url('factors'), label: '因子說明', key: 'factors' },
-  { href: url('guide'), label: '使用方式', key: 'guide' },
+  { href: url('record'), label: '戰績', key: 'record' },
+  { href: url('factors'), label: '判斷規則', key: 'factors' },
 ];
 ---
 <!doctype html>
@@ -47,8 +46,8 @@ const nav = [
 
     <footer class="site-footer">
       <div class="wrap">
-        <p><strong>免責聲明：</strong>本站內容由 AI 依照公開資料與固定規則（CLAUDE.md）自動產生，僅供學習與研究，<strong>不構成任何投資建議</strong>。股市有風險，投資前請自行判斷。</p>
-        <p class="dim small">資料來源：臺灣證券交易所、臺灣期貨交易所、Yahoo Finance 與公開新聞。紅色代表上漲／偏多，綠色代表下跌／偏空。</p>
+        <p>僅供學習研究，<strong>不構成投資建議</strong>。<span class="hide-sm">本站內容由 AI 依照公開資料與固定規則（CLAUDE.md）自動產生，股市有風險，投資前請自行判斷。</span></p>
+        <p class="dim small">紅漲綠跌・<span class="hide-sm">資料來源：</span>證交所、期交所、Yahoo Finance、公開新聞</p>
       </div>
     </footer>
 
@@ -67,7 +66,7 @@ const nav = [
           else if (mins < 810) state = '盤中';
           else state = '已收盤';
         }
-        el.textContent = `台北 ${hhmm}｜${state}`;
+        el.textContent = `${hhmm}｜${state}`;
         el.dataset.state = state.startsWith('距開盤') ? 'pre' : state;
       };
       tick();
@@ -110,5 +109,7 @@ const nav = [
     .bar { flex-wrap: wrap; height: auto; padding-top: 10px; padding-bottom: 6px; gap: 6px 12px; }
     nav { order: 3; width: 100%; }
     .clock { margin-left: auto; }
+    nav a { padding: 6px 10px; font-size: 15px; }
+    main { padding-top: 14px; }
   }
 </style>

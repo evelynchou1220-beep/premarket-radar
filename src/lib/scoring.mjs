@@ -1,5 +1,5 @@
 // 評分公式：網站與 scripts/check.mjs 共用，確保「信心度」是算出來的，不是憑感覺給的。
-// 規則說明見 CLAUDE.md §5。修改公式時必須同步更新 CLAUDE.md 與「因子說明」頁。
+// 規則說明見 CLAUDE.md §5。修改公式時必須同步更新 CLAUDE.md 與「判斷規則」頁。
 import config from '../data/factors.json' with { type: 'json' };
 
 const S = config.scoring;

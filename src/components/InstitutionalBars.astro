@@ -1,14 +1,14 @@
 ---
 // 三大法人近 10 日買賣超（單位：張）。伺服器端產生的 HTML 長條圖，不需要 JavaScript。
 import { md, lots } from '../lib/site.mjs';
-interface Props { rows: { date: string; foreign: number; trust: number; dealer: number }[] }
+interface Props { rows: { date: string; foreign: number; trust: number; dealer: number; dealerSelf?: number; dealerHedge?: number }[] }
 const { rows } = Astro.props;
-const series = [
-  { key: 'foreign', label: '外資' },
-  { key: 'trust', label: '投信' },
-  { key: 'dealer', label: '自營商' },
-] as const;
-const max = Math.max(1, ...rows.flatMap((r) => series.map((s) => Math.abs(r[s.key]))));
+// 四大法人：外資、投信、自營商（自行買賣）、自營商（避險）。舊快照沒有拆分時顯示自營商合計
+const split = rows.length > 0 && rows.every((r) => r.dealerSelf != null);
+const series = (split
+  ? [{ key: 'foreign', label: '外資' }, { key: 'trust', label: '投信' }, { key: 'dealerSelf', label: '自營（自行）' }, { key: 'dealerHedge', label: '自營（避險）' }]
+  : [{ key: 'foreign', label: '外資' }, { key: 'trust', label: '投信' }, { key: 'dealer', label: '自營商' }]) as { key: 'foreign' | 'trust' | 'dealer' | 'dealerSelf' | 'dealerHedge'; label: string }[];
+const max = Math.max(1, ...rows.flatMap((r) => series.map((s) => Math.abs(r[s.key] ?? 0))));
 const sum = (k: string) => rows.slice(-5).reduce((a, r: any) => a + r[k], 0);
 ---
 {rows.length === 0 ? (
@@ -34,7 +34,7 @@ const sum = (k: string) => rows.slice(-5).reduce((a, r: any) => a + r[k], 0);
             <tr>
               <td class="num muted">{md(r.date)}</td>
               {series.map((s) => {
-                const v = r[s.key];
+                const v = r[s.key] ?? 0;
                 const w = (Math.abs(v) / max) * 50;
                 return (
                   <td class="cell">
@@ -50,19 +50,19 @@ const sum = (k: string) => rows.slice(-5).reduce((a, r: any) => a + r[k], 0);
         </tbody>
       </table>
     </div>
-    <p class="dim small">單位：張（1 張 = 1,000 股）。外資含外資自營商。來源：證交所 T86。</p>
+    <p class="dim small">單位：張（1 張 = 1,000 股）。外資含外資自營商；自營商分為自行買賣與避險。來源：證交所 T86。</p>
   </div>
 )}
 
 <style>
-  .sums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .sums { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 12px; }
   .sum { background: var(--panel-2); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; }
   .sum .num { font-size: 17px; font-weight: 600; }
-  .cell { min-width: 120px; }
+  .cell { min-width: 96px; }
   .bar-track { position: relative; height: 6px; background: var(--panel-2); border-radius: 3px; margin-bottom: 3px; }
   .bar-track::before { content: ''; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--line-strong); }
   .bar { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
   .bar.pos { left: 50%; background: var(--up); }
   .bar.neg { right: 50%; background: var(--down); }
-  @media (max-width: 640px) { .sums { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .sums { grid-template-columns: 1fr 1fr; } }
 </style>
