@@ -155,9 +155,9 @@
   },
   "foreignFlow": {
     "description": "外資資金流向（首頁，只顯示不計分）：近 N 個交易日外資累計買賣超（證交所 BFI82U，外資及陸資，億元）與美元兌新台幣（Yahoo TWD=X）變化同時成立才判斷。",
-    "days": 5,
-    "netYi": 300,
-    "twdPct": 0.3,
+    "days": 1,
+    "netYi": 100,
+    "twdPct": 0.2,
     "chartDays": 20
   },
   "newsPolicy": {

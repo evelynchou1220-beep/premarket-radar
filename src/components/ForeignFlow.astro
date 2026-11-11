@@ -41,7 +41,7 @@ const labelIdx = [0, Math.floor((n - 1) / 2), n - 1];
   <div class="head">
     <b>外資資金流向</b>
     <span class:list={['tag', verdict.t]}>{verdict.label}</span>
-    <span class="small muted">近 {C.days} 日：外資 <b class:list={['num', sum > 0 ? 'up' : sum < 0 ? 'down' : '']}>{sum > 0 ? '+' : ''}{fmtNum(sum, 1)} 億</b>・新台幣{twdPct == null ? ' —' : <b class:list={['num', twdPct > 0 ? 'down' : twdPct < 0 ? 'up' : '']}>{twdPct > 0 ? `貶值 ${twdPct}%` : twdPct < 0 ? `升值 ${-twdPct}%` : '持平'}</b>}</span>
+    <span class="small muted">{C.days === 1 ? md(days.at(-1)?.date ?? '') : `近 ${C.days} 日`}：外資 <b class:list={['num', sum > 0 ? 'up' : sum < 0 ? 'down' : '']}>{sum > 0 ? '+' : ''}{fmtNum(sum, 1)} 億</b>・新台幣{twdPct == null ? ' —' : <b class:list={['num', twdPct > 0 ? 'down' : twdPct < 0 ? 'up' : '']}>{twdPct > 0 ? `貶值 ${twdPct}%` : twdPct < 0 ? `升值 ${-twdPct}%` : '持平'}</b>}</span>
   </div>
   <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="近 20 日外資買賣超與美元兌台幣走勢">
     <line x1={L} x2={W - Rp} y1={T + ih / 2} y2={T + ih / 2} class="zero" />
@@ -62,7 +62,7 @@ const labelIdx = [0, Math.floor((n - 1) / 2), n - 1];
     <span><i class="sw pos"></i><i class="sw neg"></i>外資買賣超（億元，左軸）</span>
     <span><i class="sw line"></i>美元兌台幣（右軸，往上＝新台幣貶值）</span>
   </div>
-  <p class="small dim foot hide-sm">外資賣股後換美金匯出，會同時出現「外資賣超」與「新台幣貶值」。近 {C.days} 日外資累計賣超 {C.netYi} 億以上且新台幣貶值 {C.twdPct}% 以上判為匯出；反之為匯入。只有一邊成立時，匯率可能是受美元本身強弱影響。</p>
+  <p class="small dim foot hide-sm">外資賣股後換美金匯出，會同時出現「外資賣超」與「新台幣貶值」。{C.days === 1 ? '當日' : `近 ${C.days} 日`}外資賣超 {C.netYi} 億以上且新台幣貶值 {C.twdPct}% 以上判為匯出；反之為匯入。只有一邊成立時，匯率可能是受美元本身強弱影響。連續多日的趨勢請看圖。</p>
 </section>
 
 <style>
