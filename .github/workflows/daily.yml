@@ -1,0 +1,80 @@
+# 每日排程（CLAUDE.md §7）：開盤日早上產生程式版預測、收盤後對答案，有變動就 commit 並重新部署。
+# GitHub 的 cron 使用 UTC 時間，且尖峰時段可能延遲 10～30 分鐘，所以提早排在整點前。
+name: Daily predict & verify
+
+on:
+  schedule:
+    - cron: '40 22 * * 0-4' # 台北時間週一～五 06:40：盤前預測（美股已收盤、夜盤已結束）
+    - cron: '40 6 * * 1-5'  # 台北時間週一～五 14:40：收盤後對答案
+  workflow_dispatch:
+    inputs:
+      task:
+        description: '要執行的工作'
+        type: choice
+        options: [predict, verify]
+        default: predict
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - id: task
+        name: 判斷工作
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "task=${{ inputs.task }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "40 22 * * 0-4" ]; then
+            echo "task=predict" >> "$GITHUB_OUTPUT"
+          else
+            echo "task=verify" >> "$GITHUB_OUTPUT"
+          fi
+      - name: 執行 ${{ steps.task.outputs.task }}
+        run: npm run daily -- ${{ steps.task.outputs.task }}
+      - name: 驗收所有報告
+        run: npm run check
+      - id: commit
+        name: 提交結果
+        env:
+          TASK: ${{ steps.task.outputs.task }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data src/content
+          if git diff --cached --quiet; then
+            echo "沒有變動（休市或尚無新資料）"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          DAY=$(TZ=Asia/Taipei date +%F)
+          if [ "$TASK" = "predict" ]; then MSG="report: $DAY 程式版（排程）"; else MSG="verify: $DAY（排程）"; fi
+          git commit -m "$MSG"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: run
+    if: needs.run.outputs.changed == 'true'
+    # 用 GITHUB_TOKEN push 不會觸發 deploy.yml 的 push 事件，所以直接呼叫部署流程
+    uses: ./.github/workflows/deploy.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

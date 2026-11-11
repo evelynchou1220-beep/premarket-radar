@@ -3,14 +3,15 @@
 import Base from '../layouts/Base.astro';
 import MarketBoard from '../components/MarketBoard.astro';
 import ReportCard from '../components/ReportCard.astro';
-import { getReports, stats, url, md, weekday, SITE_TAGLINE } from '../lib/site.mjs';
+import { getReports, stats, rateText, watchlist, url, md, weekday, SITE_TAGLINE } from '../lib/site.mjs';
 
 const reports = await getReports();
 const latestTarget = reports[0]?.data.target;
 const latest = reports.filter((r) => r.data.target === latestTarget);
 const earlier = reports.filter((r) => r.data.target !== latestTarget).slice(0, 6);
 const snap = latest.map((r) => r.snapshot).sort((a, b) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
-const st = stats(reports);
+const st = stats(reports, 'program');
+const aiSt = stats(reports.filter((r) => r.data.mode === 'ai'));
 const bull = latest.filter((r) => r.data.verdict === '偏多').length;
 const bear = latest.filter((r) => r.data.verdict === '偏空').length;
 ---
@@ -19,11 +20,12 @@ const bear = latest.filter((r) => r.data.verdict === '偏空').length;
     <div>
       <div class="eyebrow small">PRE-MARKET RADAR</div>
       <h1>{SITE_TAGLINE}</h1>
-      <p class="muted">每天 08:00 前，AI 依照固定規則抓取外資、投信、台指期夜盤、美股、匯率與新聞，替個股算出「偏多／偏空／盤整」與信心度，收盤後再自動對答案。</p>
+      <p class="muted">每個開盤日 07:00 前，排程自動抓取外資、投信、台指期夜盤、美股與匯率，替 0050 前五大權值股算出「偏多／偏空／盤整」與信心度；想看新聞面時，再請 AI 升級成完整版。收盤後自動對答案。</p>
+      <p class="small dim watch">每日自動追蹤：{watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('・')}｜週末與國定假日不預測</p>
     </div>
     <div class="kpis">
-      <div class="kpi"><span class="num">{st.total}</span><span class="small muted">份報告</span></div>
-      <div class="kpi"><span class="num">{st.rate == null ? '—' : st.rate + '%'}</span><span class="small muted">命中率（{st.verified} 筆已驗證）</span></div>
+      <div class="kpi"><span class="num">{rateText(st)}</span><span class="small muted">程式版命中率（{st.verified} 筆）</span></div>
+      <div class="kpi"><span class="num info">{rateText(aiSt)}</span><span class="small muted">AI 完整版（{aiSt.verified} 筆）</span></div>
       <div class="kpi"><span class="num">{st.pending}</span><span class="small muted">待驗證</span></div>
     </div>
   </section>
@@ -31,7 +33,7 @@ const bear = latest.filter((r) => r.data.verdict === '偏空').length;
   {!reports.length ? (
     <div class="panel section">
       <h2>還沒有任何報告</h2>
-      <p class="muted">請對 AI 說「分析今天的 2330」，AI 會依照 CLAUDE.md 的流程產生第一份報告。</p>
+      <p class="muted">下一個開盤日早上，排程會自動產生第一批程式版預測；也可以對 AI 說「分析今天的 2330」。</p>
       <a href={url('guide')}>查看使用方式 →</a>
     </div>
   ) : (
@@ -68,6 +70,8 @@ const bear = latest.filter((r) => r.data.verdict === '偏空').length;
   .eyebrow { color: var(--accent); letter-spacing: 0.18em; font-weight: 600; margin-bottom: 6px; }
   h1 { font-size: 28px; }
   .intro p { max-width: 640px; margin: 0; }
+  .intro .watch { margin-top: 8px; }
+  .kpi .num.info { color: var(--info); }
   .kpis { display: flex; gap: 10px; }
   .kpi { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; min-width: 120px; display: flex; flex-direction: column; }
   .kpi .num { font-size: 24px; font-weight: 600; color: var(--accent); }

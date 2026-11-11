@@ -13,7 +13,8 @@
     "preview": "astro preview",
     "fetch": "node scripts/fetch.mjs",
     "check": "node scripts/check.mjs",
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/verify.mjs",
+    "daily": "node scripts/daily.mjs"
   },
   "dependencies": {
     "astro": "^7.4.10",

@@ -6,6 +6,8 @@ import { computeScore } from './scoring.mjs';
 export const FACTOR_KEYS = config.factors.map((f) => f.key);
 export const REQUIRED_KEYS = config.factors.filter((f) => f.required).map((f) => f.key);
 export const AUTO_KEYS = config.factors.filter((f) => f.auto).map((f) => f.key);
+export const REQUIRED_AUTO_KEYS = config.factors.filter((f) => f.required && f.auto).map((f) => f.key);
+export const MODES = ['auto', 'ai'];
 export const factorDef = Object.fromEntries(config.factors.map((f) => [f.key, f]));
 
 const VAGUE = ['市場氣氛', '投資人信心', '可望受惠', '值得關注', '樂觀看待', '情緒佳', '有望'];
@@ -19,9 +21,14 @@ export function validateReport(fm, snapshot) {
   const errors = [];
   const factors = fm.factors ?? [];
   const keys = factors.map((f) => f.key);
+  const auto = fm.mode === 'auto';
 
-  // 1. 必查因子都要出現、不得重複
-  for (const k of REQUIRED_KEYS) if (!keys.includes(k)) errors.push(`缺少必查因子：${k}（${factorDef[k].label}）`);
+  // 0. 報告模式：auto＝程式版（排程自動產生，只含程式判定因子）；ai＝AI 完整版（含新聞因子）
+  if (fm.mode !== undefined && !MODES.includes(fm.mode)) errors.push(`mode 只能是 ${MODES.join('／')}`);
+
+  // 1. 必查因子都要出現、不得重複（程式版只檢查程式判定的必查因子，且不可含新聞因子）
+  for (const k of auto ? REQUIRED_AUTO_KEYS : REQUIRED_KEYS) if (!keys.includes(k)) errors.push(`缺少必查因子：${k}（${factorDef[k].label}）`);
+  if (auto) for (const k of keys) if (factorDef[k] && !factorDef[k].auto) errors.push(`[${k}] 是新聞因子，程式版（mode: auto）不可包含；要加入新聞請改為 mode: ai`);
   const dup = keys.filter((k, i) => keys.indexOf(k) !== i);
   if (dup.length) errors.push(`因子重複：${[...new Set(dup)].join(', ')}`);
 
@@ -46,13 +53,13 @@ export function validateReport(fm, snapshot) {
   if (fm.verdict !== s.verdict) errors.push(`verdict 應為「${s.verdict}」（公式計算），報告寫「${fm.verdict}」`);
   if (fm.confidence !== s.confidence) errors.push(`confidence 應為 ${s.confidence}（公式計算），報告寫 ${fm.confidence}`);
 
-  // 4. 有力的理由：至少 2 個「強」或「中」的方向性因子
+  // 4. 有力的理由：至少 2 個「強」或「中」的方向性因子（AI 完整版才要求；程式版如實呈現程式結果）
   const solid = factors.filter((f) => (f.signal === '偏多' || f.signal === '偏空') && (f.strength === '強' || f.strength === '中'));
-  if (solid.length < 2) errors.push(`至少需要 2 個強度為「強」或「中」的方向性因子，目前 ${solid.length} 個`);
+  if (!auto && solid.length < 2) errors.push(`至少需要 2 個強度為「強」或「中」的方向性因子，目前 ${solid.length} 個`);
 
-  // 5. 新聞：至少 3 則，且每則都有網址
+  // 5. 新聞：AI 完整版至少 3 則，且每則都有網址
   const news = fm.news ?? [];
-  if (news.length < 3) errors.push(`news 至少 3 則，目前 ${news.length} 則`);
+  if (!auto && news.length < 3) errors.push(`news 至少 3 則，目前 ${news.length} 則`);
   news.forEach((n, i) => { if (!/^https?:\/\//.test(n.url ?? '')) errors.push(`news[${i}] 缺少有效網址`); });
 
   // 6. 與快照比對（僅 check.mjs）

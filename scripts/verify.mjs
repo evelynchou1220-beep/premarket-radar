@@ -4,7 +4,7 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { parse } from 'yaml';
 import { getJSON, num, round, ymd } from './lib/http.mjs';
-import { judge } from '../src/lib/scoring.mjs';
+import { judge, programScore } from '../src/lib/scoring.mjs';
 
 const RESULTS = 'data/results.json';
 const results = JSON.parse(await readFile(RESULTS, 'utf8'));
@@ -34,9 +34,14 @@ for (const file of (await readdir('src/content/reports')).filter((f) => f.endsWi
   const day = rows.find((r) => r.date === fm.target);
   if (!day) {
     const later = rows.some((r) => r.date > fm.target);
-    console.log(later
-      ? `⚠ ${id}：${fm.target} 不是交易日（休市），請人工確認後將報告 target 改為實際交易日`
-      : `… ${id}：證交所尚未公布 ${fm.target} 收盤（通常 14:30 後）`);
+    if (later) {
+      // 預測日沒有開盤（例如颱風臨時停市）：作廢，不列入戰績，報告本身不修改
+      results[id] = { code: fm.code, target: fm.target, mode: fm.mode ?? 'ai', void: true, note: `${fm.target} 未開盤（臨時休市），此預測作廢、不列入戰績`, verifiedAt: new Date().toISOString() };
+      updated++;
+      console.log(`⊘ ${id}：${fm.target} 未開盤，預測作廢`);
+    } else {
+      console.log(`… ${id}：證交所尚未公布 ${fm.target} 收盤（通常 14:30 後）`);
+    }
     continue;
   }
   const prevRows = fm.basedOn.slice(0, 7) === fm.target.slice(0, 7) ? rows : await monthRows(fm.code, fm.basedOn);
@@ -46,16 +51,25 @@ for (const file of (await readdir('src/content/reports')).filter((f) => f.endsWi
   const changePct = round(((day.close - prev.close) / prev.close) * 100);
   const openPct = round(((day.open - prev.close) / prev.close) * 100);
   const { actual, hit } = judge(fm.verdict, changePct);
+  // 程式版判定由快照重算（AI 完整版報告也記錄，用來比較兩種方法的命中率）
+  const snap = JSON.parse(await readFile(`data/snapshots/${fm.target}/${fm.code}.json`, 'utf8'));
+  const prog = programScore(snap.hints);
+  const mode = fm.mode ?? 'ai';
   results[id] = {
-    code: fm.code, target: fm.target, verdict: fm.verdict, confidence: fm.confidence,
-    prevClose: prev.close, open: day.open, close: day.close, openPct, changePct, actual, hit,
+    code: fm.code, target: fm.target, mode, verdict: fm.verdict, confidence: fm.confidence,
+    programVerdict: prog.verdict, programConfidence: prog.confidence,
+    prevClose: prev.close, open: day.open, close: day.close, openPct, changePct, actual,
+    hit, programHit: prog.verdict === actual,
     verifiedAt: new Date().toISOString(),
   };
   updated++;
-  console.log(`${hit ? '✔ 命中' : '✘ 未中'} ${id}：預測 ${fm.verdict}，實際 ${actual}（開盤 ${openPct}%、收盤 ${changePct}%）`);
+  console.log(`${hit ? '✔ 命中' : '✘ 未中'} ${id}：${mode === 'ai' ? 'AI 完整版' : '程式版'}預測 ${fm.verdict}${mode === 'ai' ? `（程式版 ${prog.verdict}）` : ''}，實際 ${actual}（開盤 ${openPct}%、收盤 ${changePct}%）`);
 }
 
 await writeFile(RESULTS, JSON.stringify(Object.fromEntries(Object.entries(results).sort()), null, 2) + '\n');
-const all = Object.values(results);
-const hits = all.filter((r) => r.hit).length;
-console.log(`\n本次新增 ${updated} 筆驗證；累計 ${all.length} 筆，命中 ${hits} 筆（${all.length ? round((hits / all.length) * 100, 1) : 0}%）`);
+const all = Object.values(results).filter((r) => !r.void);
+const rate = (list, key) => `${list.filter((r) => r[key]).length}/${list.length}（${list.length ? round((list.filter((r) => r[key]).length / list.length) * 100, 1) : 0}%）`;
+const ai = all.filter((r) => r.mode === 'ai');
+console.log(`\n本次新增 ${updated} 筆；累計有效預測 ${all.length} 筆`);
+console.log(`  程式版命中：${rate(all, 'programHit')}`);
+console.log(`  AI 完整版命中：${rate(ai, 'hit')}`);

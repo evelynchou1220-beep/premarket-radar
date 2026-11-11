@@ -8,6 +8,7 @@ name: 台積電                  # 與快照 meta.name 相同
 target: 2026-11-12           # 預測的交易日 = 快照 meta.target
 basedOn: 2026-11-11          # 最後收盤日 = 快照 meta.basedOn
 createdAt: 2026-11-12T07:40+08:00
+mode: ai                     # AI 寫的一律是 ai（AI 完整版）；auto 是排程產生的程式版，不要手寫
 verdict: 偏多                 # 偏多｜偏空｜盤整 —— 必須等於 npm run check 算出的結果
 confidence: 68               # 50～85 —— 必須等於 npm run check 算出的結果
 summary: 一句話結論，30～60 字，要包含最關鍵的 1～2 個理由與數字
@@ -24,7 +25,7 @@ factors:
   # ── AI 搜尋因子：先搜尋新聞，再依 factors.json 的 rule 判定 ──
   - key: tariff
     signal: 中性
-    data: 近 3 日無新的半導體關稅公告
+    data: 11/11 收盤後無新的半導體關稅公告
     source: WebSearch，2026-11-12 07:30
     reason: 本期無新消息，不影響判斷。
   # …其餘必查因子：kline ma volume trust dealer margin txf futures_oi us_market asia fx fed geopolitics national_fund revenue

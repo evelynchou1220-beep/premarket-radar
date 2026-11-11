@@ -20,6 +20,8 @@ const reports = defineCollection({
       target: date,
       basedOn: date,
       createdAt: z.string(),
+      // auto＝程式版（每個開盤日排程自動產生）；ai＝AI 完整版（含新聞因子）。舊報告未填時視為 ai。
+      mode: z.enum(['auto', 'ai']).default('ai'),
       verdict: z.enum(['偏多', '偏空', '盤整']),
       confidence: z.number().int().min(50).max(85),
       summary: z.string().min(10).max(80),

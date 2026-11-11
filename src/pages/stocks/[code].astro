@@ -38,7 +38,7 @@ const st = stats(list);
               <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
               <td class="small">{r.data.summary}</td>
               <td class:list={['num', r.result && tone(r.result.changePct)]}>{r.result ? pct(r.result.changePct) : '—'}</td>
-              <td>{r.result ? (r.result.hit ? <span class="tag accent">✔ 命中</span> : <span class="tag">✘ 未中</span>) : <span class="tag">⏳ 待驗證</span>}</td>
+              <td>{r.void ? <span class="tag">⊘ 作廢</span> : r.result ? (r.result.hit ? <span class="tag accent">✔ 命中</span> : <span class="tag">✘ 未中</span>) : <span class="tag">⏳ 待驗證</span>}</td>
             </tr>
           ))}
         </tbody>

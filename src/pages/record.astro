@@ -1,44 +1,69 @@
 ---
 // 預測戰績：所有預測與實際結果對照。資料來自 data/results.json（由 npm run verify 產生）。
+// 兩種命中率：程式版（每份報告都能由快照重算，樣本最多）與 AI 完整版（有讀新聞的報告）。
 import Base from '../layouts/Base.astro';
 import VerdictBadge from '../components/VerdictBadge.astro';
-import { getReports, stats, url, md, weekday, pct, tone } from '../lib/site.mjs';
+import { getReports, stats, rateText, url, md, weekday, pct, tone, MODE_LABEL } from '../lib/site.mjs';
 import { HIT_THRESHOLD } from '../lib/scoring.mjs';
 
 const reports = await getReports();
-const st = stats(reports);
-const byVerdict = ['偏多', '偏空', '盤整'].map((v) => ({ v, ...stats(reports.filter((r) => r.data.verdict === v)) }));
+const prog = stats(reports, 'program');
+const aiReports = reports.filter((r) => r.data.mode === 'ai');
+const ai = stats(aiReports);
+const aiProg = stats(aiReports, 'program'); // 同一批 AI 報告，若只用程式因子的命中率
+const voided = reports.filter((r) => r.void).length;
+
+// 依結論與信心度分組（以程式版判定計算，因為所有報告都有、方法一致）
+const progOf = (r: any) => r.program;
+const byVerdict = ['偏多', '偏空', '盤整'].map((v) => ({ v, ...stats(reports.filter((r) => progOf(r).verdict === v), 'program') }));
 const buckets = [[50, 60], [60, 70], [70, 86]].map(([lo, hi]) => ({
   label: `${lo}–${hi === 86 ? 85 : hi - 1}%`,
-  ...stats(reports.filter((r) => r.data.confidence >= lo && r.data.confidence < hi)),
+  ...stats(reports.filter((r) => progOf(r).confidence >= lo && progOf(r).confidence < hi), 'program'),
 }));
+const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
 ---
 <Base title="預測戰績" active="record">
   <h1>預測戰績</h1>
-  <p class="muted">每份預測在預測日收盤後，以證交所官方收盤價對答案。判定方式：收盤漲幅 ≥ +{HIT_THRESHOLD}% 為「偏多」、≤ −{HIT_THRESHOLD}% 為「偏空」，介於兩者之間為「盤整」；和預測相同就算命中。</p>
+  <p class="muted">每份預測在預測日收盤後，以證交所官方收盤價對答案。判定方式：收盤漲幅 ≥ +{HIT_THRESHOLD}% 為「偏多」、≤ −{HIT_THRESHOLD}% 為「偏空」，介於兩者之間為「盤整」；和預測相同就算命中。預測日若臨時休市（例如颱風），該預測作廢、不列入統計。</p>
 
   <section class="grid grid-4 section">
-    <div class="panel kpi"><div class="small muted">總預測</div><div class="num big">{st.total}</div></div>
-    <div class="panel kpi"><div class="small muted">已驗證</div><div class="num big">{st.verified}</div></div>
-    <div class="panel kpi"><div class="small muted">命中</div><div class="num big">{st.hits}</div></div>
-    <div class="panel kpi"><div class="small muted">命中率</div><div class="num big accent">{st.rate == null ? '—' : st.rate + '%'}</div></div>
+    <div class="panel kpi">
+      <div class="small muted">程式版命中率</div>
+      <div class="num big accent">{rateText(prog)}</div>
+      <div class="small dim">{prog.hits}/{prog.verified} 筆｜每個開盤日自動產生</div>
+    </div>
+    <div class="panel kpi">
+      <div class="small muted">AI 完整版命中率</div>
+      <div class="num big info">{rateText(ai)}</div>
+      <div class="small dim">{ai.hits}/{ai.verified} 筆｜加入新聞因子</div>
+    </div>
+    <div class="panel kpi">
+      <div class="small muted">同一批 AI 報告只用程式因子</div>
+      <div class="num big">{rateText(aiProg)}</div>
+      <div class="small dim">與左邊比較，看新聞因子有沒有幫助</div>
+    </div>
+    <div class="panel kpi">
+      <div class="small muted">待驗證／作廢</div>
+      <div class="num big">{prog.pending}<span class="dim">／{voided}</span></div>
+      <div class="small dim">共 {reports.length} 份預測</div>
+    </div>
   </section>
 
   <section class="grid grid-2 section">
     <div class="panel">
-      <div class="panel-title">依結論</div>
+      <div class="panel-title">程式版：依結論</div>
       <table>
         <thead><tr><th>結論</th><th>次數</th><th>已驗證</th><th>命中率</th></tr></thead>
-        <tbody>{byVerdict.map((b) => <tr><td>{b.v}</td><td class="num">{b.total}</td><td class="num">{b.verified}</td><td class="num">{b.rate == null ? '—' : b.rate + '%'}</td></tr>)}</tbody>
+        <tbody>{byVerdict.map((b) => <tr><td>{b.v}</td><td class="num">{b.total}</td><td class="num">{b.verified}</td><td class="num">{rateText(b)}</td></tr>)}</tbody>
       </table>
     </div>
     <div class="panel">
-      <div class="panel-title">依信心度（檢查信心度是否可信）</div>
+      <div class="panel-title">程式版：依信心度（檢查信心度是否可信）</div>
       <table>
         <thead><tr><th>信心度</th><th>次數</th><th>已驗證</th><th>命中率</th></tr></thead>
-        <tbody>{buckets.map((b) => <tr><td>{b.label}</td><td class="num">{b.total}</td><td class="num">{b.verified}</td><td class="num">{b.rate == null ? '—' : b.rate + '%'}</td></tr>)}</tbody>
+        <tbody>{buckets.map((b) => <tr><td>{b.label}</td><td class="num">{b.total}</td><td class="num">{b.verified}</td><td class="num">{rateText(b)}</td></tr>)}</tbody>
       </table>
-      <p class="dim small" style="margin:10px 0 0">理想情況下，信心度越高的組別命中率應該越高。若沒有，代表評分公式需要調整（見 CLAUDE.md §9）。</p>
+      <p class="dim small" style="margin:10px 0 0">理想情況下，信心度越高的組別命中率應該越高。若沒有，代表評分公式需要調整（見 CLAUDE.md §8.6）。</p>
     </div>
   </section>
 
@@ -46,17 +71,26 @@ const buckets = [[50, 60], [60, 70], [70, 86]].map(([lo, hi]) => ({
     <div class="panel-title">全部紀錄</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>預測日</th><th>股票</th><th>預測</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
+        <thead><tr><th>預測日</th><th>股票</th><th>版本</th><th>報告結論</th><th>程式版</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
         <tbody>
           {reports.map((r) => (
             <tr>
               <td class="num">{md(r.data.target)}（{weekday(r.data.target)}）</td>
               <td><a href={url(`reports/${r.id}`)}>{r.data.code} {r.data.name}</a></td>
+              <td class="small">{MODE_LABEL[r.data.mode]}</td>
               <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
-              <td class:list={['num', r.result && tone(r.result.openPct)]}>{r.result ? pct(r.result.openPct) : '—'}</td>
-              <td class:list={['num', r.result && tone(r.result.changePct)]}>{r.result ? pct(r.result.changePct) : '—'}</td>
+              <td class="small">{r.data.mode === 'ai' ? `${r.program.verdict} ${r.program.confidence}%` : '同左'}</td>
+              <td class:list={['num', r.result?.openPct != null && tone(r.result.openPct)]}>{r.result?.openPct != null ? pct(r.result.openPct) : '—'}</td>
+              <td class:list={['num', r.result?.changePct != null && tone(r.result.changePct)]}>{r.result?.changePct != null ? pct(r.result.changePct) : '—'}</td>
               <td>{r.result?.actual ?? '—'}</td>
-              <td>{r.result ? (r.result.hit ? <span class="tag accent">✔ 命中</span> : <span class="tag">✘ 未中</span>) : <span class="tag">⏳ 待驗證</span>}</td>
+              <td>{
+                r.void ? <span class="tag">⊘ 作廢</span>
+                : r.result ? (
+                  <span class:list={['tag', r.result.hit ? 'accent' : '']}>
+                    {hitTag(r.result.hit)} {r.data.mode === 'ai' ? `AI｜程式 ${hitTag(r.result.programHit)}` : r.result.hit ? '命中' : '未中'}
+                  </span>
+                ) : <span class="tag">⏳ 待驗證</span>
+              }</td>
             </tr>
           ))}
         </tbody>
@@ -68,4 +102,5 @@ const buckets = [[50, 60], [60, 70], [70, 86]].map(([lo, hi]) => ({
 <style>
   .kpi .big { font-size: 28px; font-weight: 600; }
   .accent { color: var(--accent); }
+  .info { color: var(--info); }
 </style>

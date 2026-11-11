@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_call: # 由 daily.yml 在排程產生新報告後呼叫
 
 permissions:
   contents: read
@@ -19,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main # 被 daily.yml 呼叫時，要拿到排程剛 push 的最新 commit
       - uses: actions/setup-node@v4
         with:
           node-version: 24

@@ -6,7 +6,7 @@ import VerdictBadge from '../../components/VerdictBadge.astro';
 import PriceCharts from '../../components/PriceCharts.astro';
 import InstitutionalBars from '../../components/InstitutionalBars.astro';
 import FactorCard from '../../components/FactorCard.astro';
-import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, scoringConfig } from '../../lib/site.mjs';
+import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, scoringConfig, MODE_LABEL } from '../../lib/site.mjs';
 
 export async function getStaticPaths() {
   const reports = await getReports();
@@ -22,6 +22,8 @@ const d = report.data;
 const s = report.snapshot;
 const res = report.result;
 const sc = report.score;
+const prog = report.program;
+const isAuto = d.mode === 'auto';
 const { Content } = await render(report);
 const ind = s.indicators;
 
@@ -62,17 +64,22 @@ const keyStats = [
   <!-- 1. 結論 -->
   <section class="hero panel">
     <div class="hero-main">
-      <div class="muted small">{md(d.target)}（{weekday(d.target)}）開盤前預測｜依據 {md(d.basedOn)} 收盤與隔夜國際資料</div>
+      <div class="muted small">{md(d.target)}（{weekday(d.target)}）開盤前預測｜依據 {md(d.basedOn)} 收盤與隔夜國際資料<span class:list={['mode', d.mode]}>{MODE_LABEL[d.mode]}</span></div>
       <h1><span class="num code">{d.code}</span> {d.name}</h1>
       <div class="verdict-row">
         <VerdictBadge verdict={d.verdict} confidence={d.confidence} size="lg" />
-        {res ? (
+        {report.void ? <span class="tag">⊘ {res.note}</span> : res ? (
           <span class:list={['tag', res.hit ? 'accent' : '']} style="font-size:14px">
             {res.hit ? '✔ 命中' : '✘ 未中'}｜實際收盤 <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span>（{res.actual}）
           </span>
         ) : <span class="tag">⏳ 收盤後驗證</span>}
       </div>
       <p class="summary">{d.summary}</p>
+      {isAuto ? (
+        <p class="small muted mode-note">程式版：排程在開盤日早上自動產生，只用 {d.factors.length} 個程式判定因子，不讀新聞。開盤前對 AI 說「分析今天的 {d.code}」即可升級為 AI 完整版。</p>
+      ) : (
+        <p class="small muted mode-note">對照：只用程式因子的判定為 <strong>{prog.verdict}（{prog.confidence}%）</strong>{prog.verdict === d.verdict ? '，與 AI 完整版相同。' : '，加入新聞因子後結論改變。'}{res && !res.void && (res.programHit ? '程式版命中。' : '程式版未中。')}</p>
+      )}
     </div>
     <div class="gauge">
       <svg viewBox="0 0 120 72" role="img" aria-label={`信心度 ${d.confidence}%`}>
@@ -121,7 +128,7 @@ const keyStats = [
 
   <!-- 5. AI 綜合分析（Markdown 內文） -->
   <section class="panel section prose">
-    <div class="panel-title">AI 綜合分析</div>
+    <div class="panel-title">{isAuto ? '程式綜合分析' : 'AI 綜合分析'}</div>
     <Content />
   </section>
 
@@ -158,6 +165,7 @@ const keyStats = [
   <!-- 8. 新聞 -->
   <section class="panel section">
     <div class="panel-title">參考新聞（{d.news.length}）</div>
+    {isAuto && <p class="muted small">程式版不搜尋新聞；升級為 AI 完整版時，AI 會搜尋 {md(d.basedOn)} 收盤後的關稅、聯準會、兩岸、國安基金與公司新聞。</p>}
     <ul class="news">
       {d.news.map((n) => (
         <li>
@@ -192,6 +200,9 @@ const keyStats = [
   .code { color: var(--accent); }
   .verdict-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
   .summary { font-size: 17px; margin: 0; }
+  .mode-note { margin: 10px 0 0; }
+  .mode { margin-left: 8px; padding: 1px 7px; border-radius: 999px; font-size: 11px; border: 1px solid var(--line-strong); color: var(--muted); }
+  .mode.ai { border-color: var(--info); color: var(--info); }
   .gauge svg { width: 100%; max-width: 220px; display: block; margin: 0 auto; }
   .g-num { fill: var(--text); font: 700 18px var(--mono); }
   .center { text-align: center; }

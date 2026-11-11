@@ -40,6 +40,15 @@ export function computeScore(factors) {
 }
 
 /**
+ * 程式版判定：只用快照 hints（程式依規則算出的因子）計分。
+ * 每份報告（不論 auto 或 ai）都能由快照重算，用來比較「AI 讀新聞」是否讓預測更準。
+ * @param {Record<string,{signal:string,strength?:string|null}>} hints snapshot.hints
+ */
+export function programScore(hints) {
+  return computeScore(Object.values(hints ?? {}));
+}
+
+/**
  * 判斷預測是否命中
  * @param {'偏多'|'偏空'|'盤整'} verdict
  * @param {number} changePct 隔日收盤相對前一交易日收盤的漲跌幅（%）
