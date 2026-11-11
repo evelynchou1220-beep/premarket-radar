@@ -1,0 +1,122 @@
+---
+// 資料登錄：使用者把玩股網的八大官股表格「複製文字」貼上，瀏覽器直接解析（不需要 AI、不需要 API 金鑰），
+// 再開啟 GitHub 的新增檔案頁，由使用者登入 GitHub 後按 Commit。push 後 GitHub Actions 會驗收並重新部署（CLAUDE.md §7.4）。
+// 不放在導覽列（導覽列最多 4 項），從頁尾連結進入。
+import Base from '../layouts/Base.astro';
+import { govBanks, REPO } from '../lib/site.mjs';
+import stocklist from '../../data/stocklist.json';
+import { invertStockList } from '../lib/govparse.mjs';
+
+const payload = {
+  repo: REPO,
+  existing: govBanks.map((g) => g.date),
+  nameToCode: invertStockList(stocklist.stocks),
+};
+---
+<Base title="資料登錄" active="">
+  <h1>資料登錄：八大官股</h1>
+  <p class="muted small">在玩股網選取表格、按 Ctrl+C 複製，貼到下面。網頁會自動檢查，再幫你開啟 GitHub 的存檔頁面。</p>
+
+  <div class="input" data-gov>
+    <section class="panel step">
+      <div class="step-title"><span class="n">1</span> 各行庫合計 <span class="dim small">玩股網「八大公股銀行買賣動向」，選「買賣超金額」</span></div>
+      <textarea data-banks rows="6" placeholder="日期  合庫  土銀  台銀 …  合計(萬)&#10;2026/11/12  -103,721  -43,764 …"></textarea>
+    </section>
+
+    <section class="panel step">
+      <div class="step-title"><span class="n">2</span> 個股排行 <span class="dim small">「八大公股銀行買賣超排行」，上市櫃、近 1 日、<b>金額</b>排序（可不填）</span></div>
+      <label class="small muted">交易日期 <input type="date" data-date /></label>
+      <textarea data-rank rows="6" placeholder="股票  買超  收盤價 …&#10;台達電  402  504,626,740 …"></textarea>
+    </section>
+
+    <button class="go" data-check>檢查資料</button>
+
+    <section class="panel step" data-result hidden>
+      <div class="step-title"><span class="n">3</span> 存到 GitHub</div>
+      <div data-files></div>
+      <ol class="small muted howto">
+        <li>按「複製並開啟 GitHub」：內容會複製到剪貼簿，並開啟 GitHub 的新增檔案頁（檔名已填好）。</li>
+        <li>在 GitHub 的編輯區按 <b>Ctrl+V</b> 貼上（如果內容已經自動填好就不用貼）。</li>
+        <li>按右上角綠色的 <b>Commit changes</b>。約 1～2 分鐘後網站更新。</li>
+      </ol>
+    </section>
+  </div>
+  <script type="application/json" data-payload set:html={JSON.stringify(payload)} />
+</Base>
+
+<script>
+  import { parseBankTable, parseRanking } from '../lib/govparse.mjs';
+  import { validateGovBank } from '../lib/validate.mjs';
+
+  const root = document.querySelector<HTMLElement>('[data-gov]')!;
+  const P = JSON.parse(document.querySelector('[data-payload]')!.textContent!);
+  const $ = <T extends HTMLElement>(s: string) => root.querySelector<T>(s)!;
+  const SOURCE = '使用者提供（玩股網「八大公股銀行」複製文字，網站資料登錄頁）';
+  const esc = (s: string) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]!);
+
+  $<HTMLButtonElement>('[data-check]').addEventListener('click', () => {
+    const banks = $<HTMLTextAreaElement>('[data-banks]').value.trim();
+    const rankText = $<HTMLTextAreaElement>('[data-rank]').value.trim();
+    const out = new Map<string, any>();
+    const notes: string[] = [];
+
+    if (banks) {
+      const b = parseBankTable(banks);
+      b.errors.forEach((e) => notes.push(`⚠ ${e}`));
+      for (const d of b.days) out.set(d.date, { date: d.date, source: SOURCE, url: 'https://www.wantgoo.com/stock/public-bank/trend', amountUnit: d.amountUnit, banks: d.banks, net: d.net });
+    }
+    if (rankText) {
+      const r = parseRanking(rankText, P.nameToCode);
+      const date = $<HTMLInputElement>('[data-date]').value || [...out.keys()].sort().at(-1);
+      if (!date) notes.push('⚠ 有個股排行，但沒有交易日期：請在步驟 2 選日期');
+      else {
+        const g = out.get(date) ?? { date, source: SOURCE };
+        Object.assign(g, { unit: r.unit, buy: r.buy, sell: r.sell });
+        out.set(date, g);
+        notes.push(`個股排行 ${date}：買超 ${r.buy.length} 檔、賣超 ${r.sell.length} 檔`);
+      }
+      if (r.unknown.length) notes.push(`⚠ 官方清單查不到代號，已略過：${r.unknown.join('、')}`);
+    }
+
+    const files = [...out.values()].sort((a, b) => b.date.localeCompare(a.date)).map((g) => {
+      const errors = validateGovBank(g, `${g.date}.json`);
+      const exists = P.existing.includes(g.date);
+      return { g, errors, exists, json: JSON.stringify(g, null, 2) + '\n' };
+    });
+    const html = [
+      notes.length ? `<ul class="notes small">${notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>` : '',
+      ...files.map((f, i) => {
+        const sum = [f.g.net != null && `合計 ${f.g.net.toLocaleString()} ${f.g.amountUnit}`, f.g.buy && `排行 ${f.g.buy.length}＋${f.g.sell.length} 檔`].filter(Boolean).join('・');
+        if (f.exists) return `<div class="file dim"><b>${f.g.date}</b> 已登錄過，略過<span class="small">（要更新請在對話中請 AI 處理）</span></div>`;
+        if (f.errors.length) return `<div class="file err"><b>${f.g.date}</b> ✘ ${f.errors.map(esc).join('；')}</div>`;
+        return `<div class="file ok"><b>${f.g.date}</b> ✔ ${esc(sum)} <button data-save="${i}">複製並開啟 GitHub</button></div>`;
+      }),
+    ].join('') || '<p class="small muted">沒有讀到任何資料，請確認貼上的是表格文字。</p>';
+    $('[data-files]').innerHTML = html;
+    $('[data-result]').hidden = false;
+
+    $('[data-files]').querySelectorAll<HTMLButtonElement>('[data-save]').forEach((btn) => btn.addEventListener('click', async () => {
+      const f = files[Number(btn.dataset.save)];
+      try { await navigator.clipboard.writeText(f.json); btn.textContent = '已複製，請到 GitHub 貼上'; } catch { btn.textContent = '請手動複製下方內容'; }
+      const base = `https://github.com/${P.repo}/new/main/data/govbanks?filename=${encodeURIComponent(`${f.g.date}.json`)}`;
+      const value = encodeURIComponent(f.json);
+      window.open(value.length < 6000 ? `${base}&value=${value}` : base, '_blank', 'noopener');
+      if (!btn.nextElementSibling) btn.insertAdjacentHTML('afterend', `<textarea class="raw" rows="4" readonly>${esc(f.json)}</textarea>`);
+    }));
+  });
+</script>
+
+<style>
+  .input { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+  .step-title { font-weight: 700; margin-bottom: 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+  .n { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--bg); font-size: 13px; }
+  textarea, input[type='date'] { width: 100%; background: var(--panel-2); color: var(--text); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 8px 10px; font: 13px var(--mono); }
+  input[type='date'] { width: auto; margin: 0 0 8px 6px; }
+  .go { align-self: flex-start; font: inherit; font-weight: 700; padding: 10px 24px; border-radius: var(--radius-sm); border: 0; background: var(--accent); color: var(--bg); cursor: pointer; }
+  [data-files] :global(.file) { padding: 8px 0; border-bottom: 1px solid var(--line); }
+  [data-files] :global(.file.err) { color: var(--down); }
+  [data-files] :global(button) { margin-left: 8px; font: inherit; font-size: 13px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; }
+  [data-files] :global(.raw) { margin-top: 6px; }
+  [data-files] :global(.notes) { margin: 0 0 6px; padding-left: 18px; color: var(--muted); }
+  .howto { margin: 10px 0 0; padding-left: 18px; }
+</style>

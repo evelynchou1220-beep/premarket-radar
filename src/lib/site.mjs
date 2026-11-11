@@ -7,6 +7,8 @@ import { validateGovBank } from './validate.mjs';
 
 export const SITE_NAME = '盤前雷達';
 export const SITE_TAGLINE = '台股開盤前的 AI 個股多空分析';
+/** GitHub repo（資料登錄頁用來開啟新增檔案頁） */
+export const REPO = import.meta.env.PUBLIC_REPO || 'evelynchou1220-beep/premarket-radar';
 
 /** 產生站內連結（自動加上 GitHub Pages 的 base 路徑） */
 export function url(path = '') {

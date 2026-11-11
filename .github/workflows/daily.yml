@@ -45,6 +45,9 @@ jobs:
           else
             echo "task=verify" >> "$GITHUB_OUTPUT"
           fi
+      - name: 更新股票代號對照表
+        if: steps.task.outputs.task == 'predict'
+        run: npm run stocklist || echo "對照表更新失敗，沿用舊檔"
       - name: 執行 ${{ steps.task.outputs.task }}
         run: npm run daily -- ${{ steps.task.outputs.task }}
       - name: 驗收所有報告
