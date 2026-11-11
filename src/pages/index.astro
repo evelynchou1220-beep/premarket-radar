@@ -90,12 +90,12 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
             <div class="gov-cols">
               {[['買超', 'buy', 'up'], ['賣超', 'sell', 'down']].map(([label, side, cls]) => (
                 <div>
-                  <div class:list={['small', cls]}>{label}（{gov.unit}）</div>
+                  <div class:list={['small', cls]}>{label}（{gov.unit === '張' ? '張' : '億元'}）</div>
                   <ol class="gov-list">
                     {((gov as any)[side] ?? []).slice(0, 5).map((x: any) => (
                       <li class:list={[watchCodes.has(x.code) && 'watch']}>
                         <span>{x.name}<span class="dim small hide-sm"> {x.code}</span></span>
-                        <span class:list={['num', cls]}>{fmtNum(x.value)}</span>
+                        <span class:list={['num', cls]}>{gov.unit === '張' ? fmtNum(x.value) : fmtNum(toYi(x.value, gov.unit), 2)}</span>
                       </li>
                     ))}
                   </ol>

@@ -141,12 +141,13 @@ export function validateGovBank(g, file = '') {
     }
   }
   if (hasLists) {
-    if (!['張', '萬', '億'].includes(g.unit)) errors.push(`${tag}unit（個股排行的單位）只能是「張」「萬」或「億」`);
+    if (!['張', '元', '萬', '億'].includes(g.unit)) errors.push(`${tag}unit（個股排行 value 的單位）只能是「張」「元」「萬」或「億」`);
     for (const side of ['buy', 'sell']) {
       if (g[side] == null) continue;
       if (!Array.isArray(g[side])) { errors.push(`${tag}${side} 必須是陣列`); continue; }
       g[side].forEach((x, i) => {
-        if (!/^\d{4,6}$/.test(x.code ?? '')) errors.push(`${tag}${side}[${i}] 股票代號格式錯誤`);
+        if (!/^\d{4,6}[A-Z]?$/.test(x.code ?? '')) errors.push(`${tag}${side}[${i}] 股票代號格式錯誤`);
+        if (x.lots != null && (typeof x.lots !== 'number' || x.lots <= 0)) errors.push(`${tag}${side}[${i}] lots（張數）必須是正數`);
         if (!x.name) errors.push(`${tag}${side}[${i}] 缺少股票名稱`);
         if (typeof x.value !== 'number' || x.value <= 0) errors.push(`${tag}${side}[${i}] value 必須是正數（買超、賣超都填正數，方向由 buy／sell 區分）`);
       });

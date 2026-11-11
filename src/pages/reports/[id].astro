@@ -6,7 +6,7 @@ import PriceCharts from '../../components/PriceCharts.astro';
 import InstitutionalBars from '../../components/InstitutionalBars.astro';
 import FactorCard from '../../components/FactorCard.astro';
 import NewsAlerts from '../../components/NewsAlerts.astro';
-import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, verdictTone, MODE_LABEL, govBankOf } from '../../lib/site.mjs';
+import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, verdictTone, MODE_LABEL, govBankOf, toYi } from '../../lib/site.mjs';
 import factorConfig from '../../data/factors.json';
 
 export async function getStaticPaths() {
@@ -143,7 +143,11 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
         <ul class="levels">
           <li class="two" title="八大官股券商買賣超（使用者提供，只顯示不計分）">
             <span class="muted">八大官股</span>
-            {gov ? <span class:list={['num', gov.side === 'buy' ? 'up' : 'down']}>{gov.side === 'buy' ? '+' : '−'}{fmtNum(gov.value, gov.unit === '億' ? 2 : 0)}{gov.unit === '億' ? ' 億' : ''}</span> : <span class="dim small">未上榜</span>}
+            {gov
+              ? <span class:list={['num', gov.side === 'buy' ? 'up' : 'down']} title={`${gov.side === 'buy' ? '買超' : '賣超'}第 ${gov.rank} 名${gov.lots ? `・${fmtNum(gov.lots)} 張` : ''}`}>
+                  {gov.side === 'buy' ? '+' : '−'}{gov.unit === '張' ? fmtNum(gov.value) : `${fmtNum(toYi(gov.value, gov.unit), 2)} 億`}
+                </span>
+              : <span class="dim small">未上榜</span>}
           </li>
         </ul>
       )}

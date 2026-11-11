@@ -33,16 +33,16 @@ export const govBanks = Object.entries(govModules)
   })
   .sort((a, b) => b.date.localeCompare(a.date));
 /** 金額換算成億元（只用於顯示） */
-export const toYi = (v, unit) => (unit === '萬' ? v / 10000 : v);
+export const toYi = (v, unit) => (unit === '元' ? v / 1e8 : unit === '萬' ? v / 10000 : v);
 /** 某檔股票在某日官股名單中的買賣超；不在名單回傳 null */
 export function govBankOf(date, code) {
   const g = govBanks.find((x) => x.date === date);
   if (!g || (!g.buy && !g.sell)) return undefined; // 當天沒有個股排行資料
   g.buy ??= []; g.sell ??= [];
   const b = g.buy.find((x) => x.code === code);
-  if (b) return { side: 'buy', value: b.value, unit: g.unit };
+  if (b) return { side: 'buy', value: b.value, unit: g.unit, lots: b.lots, rank: g.buy.indexOf(b) + 1 };
   const s = g.sell.find((x) => x.code === code);
-  if (s) return { side: 'sell', value: s.value, unit: g.unit };
+  if (s) return { side: 'sell', value: s.value, unit: g.unit, lots: s.lots, rank: g.sell.indexOf(s) + 1 };
   return null; // 有資料但未上榜
 }
 export const factorDefs = Object.fromEntries(factorConfig.factors.map((f) => [f.key, f]));
