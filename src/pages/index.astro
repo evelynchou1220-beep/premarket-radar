@@ -58,7 +58,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
       </section>
 
       <section class="section">
-        <div class="small muted label">隔夜行情<span class="hide-sm">（{md(snap.meta.basedOn)} 台股收盤後）</span>{!snap.meta.timingOk && <span class="warn">・部分未更新</span>}</div>
+        <div class="small muted label">隔夜行情<span class="hide-sm">（{md(snap.meta.basedOn)} 台股收盤後）</span>{!snap.meta.timingOk && <span class="warn">・部分未更新</span>}<span class="dim">・<span class="frame">黃框</span>＝交易中</span></div>
         <MarketBoard snapshot={snap} />
       </section>
 
@@ -184,6 +184,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
   .rates b.info { color: var(--info); }
   .label { margin-bottom: 6px; }
   .warn { color: var(--accent); }
+  .frame { display: inline-block; padding: 0 4px; border: 1px solid var(--accent); border-radius: 3px; line-height: 1.3; }
 
   .list { display: flex; flex-direction: column; gap: 6px; }
   .row { display: grid; grid-template-columns: 1.3fr 0.9fr 0.9fr 2.4fr 0.8fr; gap: 12px; align-items: center; padding: 10px 14px; }

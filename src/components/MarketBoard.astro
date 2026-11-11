@@ -36,8 +36,8 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
     cols: 1,
     items: [
       ...(txf ? [txf.night
-        ? { label: '台指期夜盤', value: fmtNum(txf.night.close), change: pct(txf.night.changePct), t: tone(txf.night.changePct), date: md(txf.night.session), hl: true, market: 'txf', asOf: `${fetchedText} 的價格` }
-        : { label: '台指期夜盤', value: '—', change: '未開盤', t: 'flat', hl: true, market: 'txf', asOf: '' }] : []),
+        ? { label: '台指期夜盤', value: fmtNum(txf.night.close), change: pct(txf.night.changePct), t: tone(txf.night.changePct), date: md(txf.night.session), market: 'txf', asOf: `${fetchedText} 的價格` }
+        : { label: '台指期夜盤', value: '—', change: '未開盤', t: 'flat', market: 'txf', asOf: '' }] : []),
       ...(oi ? [{ label: `外資淨${oi.net >= 0 ? '多' : '空'}單（口）`, value: fmtNum(Math.abs(oi.net)), t: tone(oi.net), date: md(oi.date) }] : []),
     ],
   },
@@ -61,7 +61,6 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
   },
 ].filter((x) => x.items.length);
 ---
-<p class="small dim stamp">資料更新於 {fetchedText}<span class="hide-sm">（網站只在排程執行時更新；標示「交易中」的市場，數字是更新當時或前一個收盤，不是即時報價）</span></p>
 <div class="board">
   {groups.map((grp) => (
     <section class="grp" style={`--cols:${grp.cols}`}>
@@ -70,7 +69,6 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
         {grp.items.map((i) => (
           <div class:list={['it', i.hl && 'hl']} title={i.date ? `資料日期 ${i.date}` : undefined} data-market={i.market} data-asof={i.asOf}>
             <span class="label">{i.label}</span>
-            <span class="live" hidden></span>
             <span class:list={['num value', !i.change && i.t]}>{i.value}</span>
             {i.change && <span class:list={['num chg', i.t]}>{i.change}</span>}
           </div>
@@ -95,21 +93,19 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
     // 台指期夜盤 15:00～隔日 05:00（週一～週五開盤，所以週六 05:00 前也算）
     txf: () => { const x = local('Asia/Taipei'); return (weekday(x.wd) && x.m >= 900) || (['Tue', 'Wed', 'Thu', 'Fri', 'Sat'].includes(x.wd) && x.m < 300); },
   };
+  // 交易中的市場加黃框；滑鼠移上去顯示數字是哪個時間點的資料
   const update = () => document.querySelectorAll<HTMLElement>('[data-market]').forEach((el) => {
     const f = open[el.dataset.market!];
-    const tag = el.querySelector<HTMLElement>('.live')!;
     const on = f ? f() : false;
-    tag.hidden = !on;
-    if (on) tag.textContent = el.dataset.asof ? `交易中・此為 ${el.dataset.asof}` : '交易中';
+    el.classList.toggle('trading', on);
+    el.title = on ? `交易中・此為 ${el.dataset.asof || '更新當時'}的資料` : (el.dataset.asof ? `資料：${el.dataset.asof}` : '');
   });
   update();
   setInterval(update, 60000);
 </script>
 
 <style>
-  .stamp { margin: 0 0 6px; }
-  .live { font-size: 11px; color: var(--accent); line-height: 1.3; }
-  .live[hidden] { display: none; }
+  .it.trading { border-color: var(--accent); }
   /* 電腦版三組並排（比例依項目欄數），不捲動；平板以下改為上下排列 */
   .board { display: grid; grid-template-columns: 3fr 1fr 2fr; gap: 12px; }
   .grp { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px 12px; min-width: 0; }
