@@ -1,8 +1,9 @@
 ---
-// 三大法人近 10 日買賣超（單位：張）。伺服器端產生的 HTML 長條圖，不需要 JavaScript。
+// 三大法人近 5 日買賣超（單位：張）。快照有 10 日資料，畫面只列最近 5 日。伺服器端產生的 HTML 長條圖，不需要 JavaScript。
 import { md, lots } from '../lib/site.mjs';
 interface Props { rows: { date: string; foreign: number; trust: number; dealer: number; dealerSelf?: number; dealerHedge?: number }[] }
-const { rows } = Astro.props;
+const { rows: all } = Astro.props;
+const rows = all.slice(-5);
 // 三大法人。自營商只看自行買賣（避險部位只有淨額、無法判讀）；舊快照沒有拆分時顯示自營商合計
 const split = rows.length > 0 && rows.every((r) => r.dealerSelf != null);
 const series = [
