@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import factorConfig from '../data/factors.json' with { type: 'json' };
 import results from '../../data/results.json' with { type: 'json' };
-import { computeScore, programScore } from './scoring.mjs';
+import { computeScore, programScore, flatBand } from './scoring.mjs';
 
 export const SITE_NAME = '盤前雷達';
 export const SITE_TAGLINE = '台股開盤前的 AI 個股多空分析';
@@ -42,6 +42,7 @@ export async function getReports() {
         result,
         score: computeScore(r.data.factors),
         program: programScore(snapshot?.hints), // 只用程式因子重算的判定，AI 完整版用來對照
+        band: result?.band ?? flatBand(snapshot?.daily), // 盤整範圍（%）
         void: Boolean(result?.void), // 預測日臨時休市，作廢
       };
     })

@@ -4,7 +4,7 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { parse } from 'yaml';
 import { getJSON, num, round, ymd } from './lib/http.mjs';
-import { judge, programScore } from '../src/lib/scoring.mjs';
+import { judge, programScore, flatBand } from '../src/lib/scoring.mjs';
 
 const RESULTS = 'data/results.json';
 const results = JSON.parse(await readFile(RESULTS, 'utf8'));
@@ -50,20 +50,21 @@ for (const file of (await readdir('src/content/reports')).filter((f) => f.endsWi
 
   const changePct = round(((day.close - prev.close) / prev.close) * 100);
   const openPct = round(((day.open - prev.close) / prev.close) * 100);
-  const { actual, hit } = judge(fm.verdict, changePct);
-  // 程式版判定由快照重算（AI 完整版報告也記錄，用來比較兩種方法的命中率）
+  // 盤整範圍依個股近 20 日波動計算；程式版判定由快照重算（AI 完整版報告也記錄，用來比較兩種方法的命中率）
   const snap = JSON.parse(await readFile(`data/snapshots/${fm.target}/${fm.code}.json`, 'utf8'));
+  const band = flatBand(snap.daily);
+  const { actual, hit } = judge(fm.verdict, changePct, band);
   const prog = programScore(snap.hints);
   const mode = fm.mode ?? 'ai';
   results[id] = {
     code: fm.code, target: fm.target, mode, verdict: fm.verdict, confidence: fm.confidence,
     programVerdict: prog.verdict, programConfidence: prog.confidence,
-    prevClose: prev.close, open: day.open, close: day.close, openPct, changePct, actual,
+    prevClose: prev.close, open: day.open, close: day.close, openPct, changePct, band, actual,
     hit, programHit: prog.verdict === actual,
     verifiedAt: new Date().toISOString(),
   };
   updated++;
-  console.log(`${hit ? '✔ 命中' : '✘ 未中'} ${id}：${mode === 'ai' ? 'AI 完整版' : '程式版'}預測 ${fm.verdict}${mode === 'ai' ? `（程式版 ${prog.verdict}）` : ''}，實際 ${actual}（開盤 ${openPct}%、收盤 ${changePct}%）`);
+  console.log(`${hit ? '✔ 命中' : '✘ 未中'} ${id}：${mode === 'ai' ? 'AI 完整版' : '程式版'}預測 ${fm.verdict}${mode === 'ai' ? `（程式版 ${prog.verdict}）` : ''}，實際 ${actual}（開盤 ${openPct}%、收盤 ${changePct}%，盤整範圍 ±${band}%）`);
 }
 
 await writeFile(RESULTS, JSON.stringify(Object.fromEntries(Object.entries(results).sort()), null, 2) + '\n');

@@ -148,6 +148,7 @@
     "bullThreshold": 0.12,
     "bearThreshold": -0.12,
     "missingPenalty": 2,
-    "confidenceCap": 85
+    "confidenceCap": 85,
+    "flatBand": { "window": 20, "factor": 0.5, "min": 0.5 }
   }
 }

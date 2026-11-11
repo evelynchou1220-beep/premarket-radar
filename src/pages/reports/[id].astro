@@ -73,6 +73,7 @@ const keyStats = [
             {res.hit ? '✔ 命中' : '✘ 未中'}｜實際收盤 <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span>（{res.actual}）
           </span>
         ) : <span class="tag">⏳ 收盤後驗證</span>}
+        <span class="small muted">盤整範圍：收盤漲跌 ±{report.band}% 以內</span>
       </div>
       <p class="summary">{d.summary}</p>
       {isAuto ? (

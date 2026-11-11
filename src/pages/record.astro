@@ -4,7 +4,6 @@
 import Base from '../layouts/Base.astro';
 import VerdictBadge from '../components/VerdictBadge.astro';
 import { getReports, stats, rateText, url, md, weekday, pct, tone, MODE_LABEL } from '../lib/site.mjs';
-import { HIT_THRESHOLD } from '../lib/scoring.mjs';
 
 const reports = await getReports();
 const prog = stats(reports, 'program');
@@ -24,7 +23,7 @@ const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
 ---
 <Base title="預測戰績" active="record">
   <h1>預測戰績</h1>
-  <p class="muted">每份預測在預測日收盤後，以證交所官方收盤價對答案。判定方式：收盤漲幅 ≥ +{HIT_THRESHOLD}% 為「偏多」、≤ −{HIT_THRESHOLD}% 為「偏空」，介於兩者之間為「盤整」；和預測相同就算命中。預測日若臨時休市（例如颱風），該預測作廢、不列入統計。</p>
+  <p class="muted">每份預測在預測日收盤後，以證交所官方收盤價對答案。判定方式：每檔股票依近 20 日波動算出「盤整範圍」（近 20 日每日漲跌幅中位數的一半，最低 ±0.5%），收盤漲跌超過範圍為「偏多」或「偏空」，在範圍內為「盤整」；和預測相同就算命中。預測日若臨時休市（例如颱風），該預測作廢、不列入統計。</p>
 
   <section class="grid grid-4 section">
     <div class="panel kpi">
@@ -71,7 +70,7 @@ const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
     <div class="panel-title">全部紀錄</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>預測日</th><th>股票</th><th>版本</th><th>報告結論</th><th>程式版</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
+        <thead><tr><th>預測日</th><th>股票</th><th>版本</th><th>報告結論</th><th>程式版</th><th>盤整範圍</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
         <tbody>
           {reports.map((r) => (
             <tr>
@@ -80,6 +79,7 @@ const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
               <td class="small">{MODE_LABEL[r.data.mode]}</td>
               <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
               <td class="small">{r.data.mode === 'ai' ? `${r.program.verdict} ${r.program.confidence}%` : '同左'}</td>
+              <td class="num small">±{r.band}%</td>
               <td class:list={['num', r.result?.openPct != null && tone(r.result.openPct)]}>{r.result?.openPct != null ? pct(r.result.openPct) : '—'}</td>
               <td class:list={['num', r.result?.changePct != null && tone(r.result.changePct)]}>{r.result?.changePct != null ? pct(r.result.changePct) : '—'}</td>
               <td>{r.result?.actual ?? '—'}</td>

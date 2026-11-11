@@ -4,8 +4,21 @@ import config from '../data/factors.json' with { type: 'json' };
 
 const S = config.scoring;
 
-/** 結論判定門檻：隔日收盤漲跌幅 */
-export const HIT_THRESHOLD = 0.5; // %
+/**
+ * 「盤整」範圍（%）：依個股近期波動計算，波動大的股票範圍較寬。
+ * = 最後收盤日之前 N 日「每日漲跌幅絕對值」的中位數 × factor，最低 min。參數在 factors.json 的 scoring.flatBand。
+ * 只用快照中 basedOn（含）以前的日 K，預測當下就已確定，不會看到答案。
+ * @param {{close:number}[]} daily snapshot.daily
+ * @returns {number} 例如 0.75 代表收盤漲跌在 ±0.75% 以內算盤整
+ */
+export function flatBand(daily) {
+  const { window, factor, min } = S.flatBand;
+  const closes = (daily ?? []).slice(-(window + 1)).map((d) => d.close);
+  const moves = closes.slice(1).map((c, i) => Math.abs(((c - closes[i]) / closes[i]) * 100)).sort((a, b) => a - b);
+  if (!moves.length) return min;
+  const median = moves[Math.floor(moves.length / 2)];
+  return Math.max(min, Math.round(median * factor * 100) / 100);
+}
 
 /**
  * @param {{signal:string,strength?:string}[]} factors
@@ -52,8 +65,9 @@ export function programScore(hints) {
  * 判斷預測是否命中
  * @param {'偏多'|'偏空'|'盤整'} verdict
  * @param {number} changePct 隔日收盤相對前一交易日收盤的漲跌幅（%）
+ * @param {number} band 盤整範圍（%），由 flatBand(snapshot.daily) 計算
  */
-export function judge(verdict, changePct) {
-  const actual = changePct >= HIT_THRESHOLD ? '偏多' : changePct <= -HIT_THRESHOLD ? '偏空' : '盤整';
+export function judge(verdict, changePct, band) {
+  const actual = changePct >= band ? '偏多' : changePct <= -band ? '偏空' : '盤整';
   return { actual, hit: actual === verdict };
 }
