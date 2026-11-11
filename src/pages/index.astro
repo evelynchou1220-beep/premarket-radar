@@ -3,7 +3,7 @@
 import Base from '../layouts/Base.astro';
 import MarketBoard from '../components/MarketBoard.astro';
 import NewsAlerts from '../components/NewsAlerts.astro';
-import { getReports, stats, rateText, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL, govBanks, fmtNum } from '../lib/site.mjs';
+import { getReports, stats, rateText, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL, govBanks, toYi, fmtNum } from '../lib/site.mjs';
 
 const reports = await getReports();
 const latestTarget = reports[0]?.data.target;
@@ -22,8 +22,13 @@ const marketAlerts = marketNews.filter((x: any) => x.tags.length);
 const tagCount = Object.entries(marketAlerts.flatMap((x: any) => x.tags).reduce((a: any, t: string) => ((a[t] = (a[t] ?? 0) + 1), a), {}));
 const stockAlerts = (r: any) => (r.snapshot?.news?.stock ?? []).filter((x: any) => x.tags.length).length;
 
-// 八大官股：只顯示最後收盤日的資料（使用者提供）
-const gov = govBanks.find((g) => g.date === snap?.meta.basedOn) ?? null;
+// 八大官股（使用者提供）：顯示最後收盤日以前最新的一天，加上近 10 個交易日合計走勢
+const gov = govBanks.find((g) => g.date <= (snap?.meta.basedOn ?? '9999')) ?? null;
+const govTrend = govBanks.filter((g) => g.net != null && g.date <= (gov?.date ?? '')).slice(0, 10).reverse()
+  .map((g) => ({ date: g.date, yi: toYi(g.net, g.amountUnit) }));
+const govMax = Math.max(1, ...govTrend.map((x) => Math.abs(x.yi)));
+const govBanksYi = gov?.banks ? Object.entries(gov.banks).map(([n, v]) => [n, toYi(v as number, gov.amountUnit)] as [string, number]) : [];
+const yiText = (v: number) => `${v > 0 ? '+' : ''}${fmtNum(v, 2)}`;
 const watchCodes = new Set(watchlist.stocks.map((s) => s.code));
 const govVal = (v: number) => (gov?.unit === '億' ? `${fmtNum(v, 2)} 億` : `${fmtNum(v)} 張`);
 
@@ -60,24 +65,44 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
         <section class="section panel gov">
           <div class="gov-head">
             <b>八大官股 {md(gov.date)}</b>
-            {gov.net != null && <span class:list={['num', gov.net > 0 ? 'up' : gov.net < 0 ? 'down' : '']}>合計 {gov.net > 0 ? '+' : ''}{fmtNum(gov.net, 2)} 億</span>}
-            <span class="small dim hide-sm">資料：{gov.source}・只顯示不計分</span>
+            {gov.net != null && (() => { const v = toYi(gov.net, gov.amountUnit); return <span class:list={['num big-net', v > 0 ? 'up' : v < 0 ? 'down' : '']}>{v > 0 ? '買超' : '賣超'} {fmtNum(Math.abs(v), 2)} 億</span>; })()}
+            <span class="small dim hide-sm">使用者提供・只顯示不計分</span>
           </div>
-          <div class="gov-cols">
-            {[['買超', 'buy', 'up'], ['賣超', 'sell', 'down']].map(([label, side, cls]) => (
-              <div>
-                <div class:list={['small', cls]}>{label}</div>
-                <ol class="gov-list">
-                  {(gov as any)[side].slice(0, 5).map((x: any) => (
-                    <li class:list={[watchCodes.has(x.code) && 'watch']}>
-                      <span>{x.name}<span class="dim small hide-sm"> {x.code}</span></span>
-                      <span class:list={['num', cls]}>{govVal(x.value)}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            ))}
-          </div>
+          {govTrend.length > 1 && (
+            <div class="trend" title="近 10 個交易日合計買賣超（億元）">
+              {govTrend.map((x) => (
+                <div class="tcol" title={`${md(x.date)} ${yiText(x.yi)} 億`}>
+                  <div class="tbar-wrap">
+                    <span class:list={['tbar', x.yi >= 0 ? 'pos' : 'neg']} style={`height:${(Math.abs(x.yi) / govMax) * 50}%`}></span>
+                  </div>
+                  <span class="tdate">{md(x.date)}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          {govBanksYi.length > 0 && (
+            <div class="banks small">
+              {govBanksYi.map(([n, v]) => <span class="bank"><span class="muted">{n}</span> <span class:list={['num', v > 0 ? 'up' : v < 0 ? 'down' : '']}>{yiText(v)}</span></span>)}
+              <span class="dim">（億元）</span>
+            </div>
+          )}
+          {(gov.buy || gov.sell) && (
+            <div class="gov-cols">
+              {[['買超', 'buy', 'up'], ['賣超', 'sell', 'down']].map(([label, side, cls]) => (
+                <div>
+                  <div class:list={['small', cls]}>{label}（{gov.unit}）</div>
+                  <ol class="gov-list">
+                    {((gov as any)[side] ?? []).slice(0, 5).map((x: any) => (
+                      <li class:list={[watchCodes.has(x.code) && 'watch']}>
+                        <span>{x.name}<span class="dim small hide-sm"> {x.code}</span></span>
+                        <span class:list={['num', cls]}>{fmtNum(x.value)}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
       )}
 
@@ -171,7 +196,18 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
   .why { line-height: 1.5; }
   .gov { padding: 12px 14px; }
   .gov-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 8px; }
-  .gov-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .big-net { font-size: 18px; font-weight: 700; }
+  .trend { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; height: 90px; margin: 4px 0 8px; }
+  .tcol { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+  .tbar-wrap { position: relative; flex: 1; width: 100%; }
+  .tbar-wrap::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--line-strong); }
+  .tbar { position: absolute; left: 20%; right: 20%; border-radius: 2px; }
+  .tbar.pos { bottom: 50%; background: var(--up); }
+  .tbar.neg { top: 50%; background: var(--down); }
+  .tdate { font-size: 10px; color: var(--dim); font-family: var(--mono); }
+  .banks { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .bank { white-space: nowrap; }
+  .gov-cols { margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .gov-list { margin: 4px 0 0; padding-left: 18px; font-size: 14px; }
   .gov-list li { padding: 2px 0; }
   .gov-list li > span:first-child { display: inline-block; min-width: 6em; }

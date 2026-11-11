@@ -32,10 +32,13 @@ export const govBanks = Object.entries(govModules)
     return g;
   })
   .sort((a, b) => b.date.localeCompare(a.date));
+/** 金額換算成億元（只用於顯示） */
+export const toYi = (v, unit) => (unit === '萬' ? v / 10000 : v);
 /** 某檔股票在某日官股名單中的買賣超；不在名單回傳 null */
 export function govBankOf(date, code) {
   const g = govBanks.find((x) => x.date === date);
-  if (!g) return undefined; // 當天沒有資料
+  if (!g || (!g.buy && !g.sell)) return undefined; // 當天沒有個股排行資料
+  g.buy ??= []; g.sell ??= [];
   const b = g.buy.find((x) => x.code === code);
   if (b) return { side: 'buy', value: b.value, unit: g.unit };
   const s = g.sell.find((x) => x.code === code);

@@ -109,25 +109,49 @@ export function validateReport(fm, snapshot) {
 
 /**
  * 驗證八大官股資料（data/govbanks/<date>.json，使用者每天提供，CLAUDE.md §7.4）。
- * 格式：{ date, source, url?, unit: '張'|'億', net?, buy: [{code,name,value}], sell: [...] }
+ * 兩種內容可以只有其中一種，也可以都有：
+ * 1. 各行庫合計：{ amountUnit: '萬'|'億', banks: { 合庫: -103721, ... }, net: -464920 }
+ * 2. 個股排行：{ unit: '張'|'萬'|'億', buy: [{code,name,value}], sell: [...] }
  */
+export const GOV_BANKS = ['合庫', '土銀', '台銀', '台企銀', '彰銀', '第一金', '兆豐銀', '華南永昌'];
 export function validateGovBank(g, file = '') {
   const errors = [];
   const tag = file ? `[${file}] ` : '';
   if (!/^\d{4}-\d{2}-\d{2}$/.test(g.date ?? '')) errors.push(`${tag}date 必須是 YYYY-MM-DD`);
   if (file && g.date && file !== `${g.date}.json`) errors.push(`${tag}檔名應為 ${g.date}.json`);
   if (!g.source) errors.push(`${tag}缺少 source（資料出處，例如「使用者提供（某網站截圖）」）`);
-  if (!['張', '億'].includes(g.unit)) errors.push(`${tag}unit 只能是「張」或「億」`);
-  if (g.net != null && typeof g.net !== 'number') errors.push(`${tag}net（合計買賣超，億元）必須是數字或省略`);
-  for (const side of ['buy', 'sell']) {
-    if (!Array.isArray(g[side])) { errors.push(`${tag}${side} 必須是陣列`); continue; }
-    g[side].forEach((x, i) => {
-      if (!/^\d{4,6}$/.test(x.code ?? '')) errors.push(`${tag}${side}[${i}] 股票代號格式錯誤`);
-      if (!x.name) errors.push(`${tag}${side}[${i}] 缺少股票名稱`);
-      if (typeof x.value !== 'number' || x.value <= 0) errors.push(`${tag}${side}[${i}] value 必須是正數（買超、賣超都填正數，方向由 buy／sell 區分）`);
-    });
+  const hasBanks = g.banks != null || g.net != null;
+  const hasLists = g.buy != null || g.sell != null;
+  if (!hasBanks && !hasLists) errors.push(`${tag}至少要有「各行庫合計」（banks／net）或「個股排行」（buy／sell）其中一種`);
+
+  if (hasBanks) {
+    if (!['萬', '億'].includes(g.amountUnit)) errors.push(`${tag}amountUnit（金額單位）只能是「萬」或「億」，照資料原樣填寫`);
+    if (typeof g.net !== 'number') errors.push(`${tag}net（合計買賣超金額）必須是數字`);
+    if (g.banks != null) {
+      const names = Object.keys(g.banks);
+      const unknown = names.filter((n) => !GOV_BANKS.includes(n));
+      if (unknown.length) errors.push(`${tag}不認得的行庫名稱：${unknown.join('、')}（應為 ${GOV_BANKS.join('、')}）`);
+      if (Object.values(g.banks).some((v) => typeof v !== 'number')) errors.push(`${tag}banks 的金額必須都是數字`);
+      // 抄寫檢查：八家加總必須等於合計（各家四捨五入，容許些微誤差）
+      if (names.length === GOV_BANKS.length && typeof g.net === 'number') {
+        const sum = Object.values(g.banks).reduce((a, v) => a + v, 0);
+        const tol = g.amountUnit === '億' ? 0.05 : 10;
+        if (Math.abs(sum - g.net) > tol) errors.push(`${tag}八家加總 ${sum} 與合計 ${g.net} 不符，請檢查是否抄錯`);
+      }
+    }
   }
-  if (!g.buy?.length && !g.sell?.length) errors.push(`${tag}buy 與 sell 不可都是空的`);
+  if (hasLists) {
+    if (!['張', '萬', '億'].includes(g.unit)) errors.push(`${tag}unit（個股排行的單位）只能是「張」「萬」或「億」`);
+    for (const side of ['buy', 'sell']) {
+      if (g[side] == null) continue;
+      if (!Array.isArray(g[side])) { errors.push(`${tag}${side} 必須是陣列`); continue; }
+      g[side].forEach((x, i) => {
+        if (!/^\d{4,6}$/.test(x.code ?? '')) errors.push(`${tag}${side}[${i}] 股票代號格式錯誤`);
+        if (!x.name) errors.push(`${tag}${side}[${i}] 缺少股票名稱`);
+        if (typeof x.value !== 'number' || x.value <= 0) errors.push(`${tag}${side}[${i}] value 必須是正數（買超、賣超都填正數，方向由 buy／sell 區分）`);
+      });
+    }
+  }
   return errors;
 }
 
