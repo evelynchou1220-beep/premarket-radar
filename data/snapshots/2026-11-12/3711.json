@@ -1,4 +1,126 @@
 {
+ "news": {
+  "fetchedAt": "2026-11-11T11:19:44.955Z",
+  "since": "2026-11-11T13:30+08:00",
+  "stock": [
+   {
+    "title": "日月光投控成長加速中旗下矽品CoWoS、CPO背後共同貴人：輝達！研發大將還原10年布局新賽道| 科技",
+    "source": "Newtalk新聞",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5jbFQ2SG9oT21vM1hpRHh4Q05ITEtHcjJiQlhQdlNOQ3ptRWNLZDVKb2FvVExNbU4zWm05UmxLeW9lRXQzZ0lPM2ZVVlRvNmxKeFlyOV91X0lPaU0?oc=5",
+    "time": "2026-11-11T10:00:39.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "日月光投控成長加速中，旗下矽品CoWoS、CPO背後共同貴人：輝達！研發大將還原10年布局新賽道點滴| 專欄",
+    "source": "非凡新聞台",
+    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1nbVB3b1g4MDh0VU1qWk5lNFpCYjJDR2FNM1ZaYk1mLVJsNlFPWW9OVGs3R3FDc0dNamdPVkExVUFucC1iTHNFYVNtODc3MkRxT0VhUl9rVnJCSk1CeDY4cA?oc=5",
+    "time": "2026-11-11T07:18:45.000Z",
+    "tags": [],
+    "trusted": false
+   }
+  ],
+  "market": [
+   {
+    "title": "台股跌逾萬點！國安基金第10度進場護盤 財長莊翠雲曝退場時間",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMikANBVV95cUxQQjNuaTZUX2MxcE02QUhKa19Ua1BmTVBwcGlYNEhEWEVQUWw1ZWg3ZjdYOU1FNHdzbjVpRVBMSERreUJsbTY2STE0MnlrY2dNbTRsRWliVV9fOXlOaEkwWjdKNXk2QkZBcVU2MFJpV1dxeDJHZkd2dVg1RlloZktJZl9mOUNOY1N4dWdyNmJTeTl5ZU1iRGZrdncyMlZGUmZYQUt1ZlJYWGlPYjdYUVBTa3o1ZVhOY0h5RVFXOWZRRG4yQ2RYTHlvMlhqNUJyRUtaVm4wd0FNdWMwcDRQSHdubEdRaFFUaEcwU1JpcHZaMFM3RlZoYUpTMTctVEZqMUl5cEVxUUp1eWx4TFA4NVdrb2FKa2pvNDlKaXpnY1RLZXBKa1BpU3FWenY2QWNwQ0NzRmU2cEhNb0FCbnl6N0JCakFBa1R3aXhtY1ZycF9lTm5LZnRzWU00Z3p2dDhtaDZTZk5JNnJ5YTJ0MkJBSVlLN2RmeXlHcWRFeE1rYUh1aDA0STBDQU5hd0J0anVsYTdM?oc=5",
+    "time": "2026-11-11T09:57:35.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "台股市值膨脹 17 倍 國安基金額度 26 年沒變！財長莊翠雲首度表態支持擴至1兆元",
+    "source": "Business Insider Taiwan",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE53bm9rQUNSNENLMTlYVGhob2gtMlZmY01hbGx5RUZCSG1vOWFJOTVXX2trOFZDc2NNelZhRnV5Q2JRVDlLOGxaLXJDdkJEblE2THNzNjlR?oc=5",
+    "time": "2026-11-11T09:53:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金進場就底部？跟單穩賺？股海老牛破解10迷思：這點最厲害",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMikgNBVV95cUxPUV9YT05VT2xKTUxvN2VEMGpIZEg3YWNGOEFMX1p5emNNX2FpSXh0ZUItakhLelREWWNHV0Rvd01rZVQ2aEozYkoteGtNUTkwaS1SekJHTGJhWk5UUGNnRDc2LUVCODVmUkZjOEFDVXU4U2lxd2x2STNmVENiWkJDam1NMWJHbUdOa3UzcXprOHdQcnlmZFUwYy1sSE9lQzN6R2VtS3pXek0zb0kxOC10MmZxOUhCeXoyak45UTF1NUdBc3RqT0xvMWMtSVBRMW1mRjhDVEtTbEpKWEt5Y3djZ093VUJaall0THV1eXlZWGVQTkt4ZGF2Y3F5WFh0SUwwVEVhNFluYjB2d255OVpDTmFsQjRYUHlRckF1b081TWJCRWtBbXkyTnhnTm1GYnlNNzM1cDlOcFotRk1KT3Qtc0pWaGpoQlJPcHcxUXl1MUYzejRTMzd4MkxBTVhyVExqbmdjQmpXTzRneGRkdDZQUEJzTVZCSTNXM0RuTGRzYUoyYXQ0RGw3MlNJNGpwMFFqOGc?oc=5",
+    "time": "2026-11-11T08:03:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金進場 台股大反攻 法人：AI股V型反轉拐點浮現",
+    "source": "理財周刊",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPdm41RjkyVUxNVUJSUlNuQXFDTlJLaVlEUnhwcWRsWDkwQzVZS21EWWhlS3RHaEhJOTFDNHBGVmNRdjBiRml2Z3k4MEtpQ2VBdVJpaG1GRnhwNlBnQ19ZTXoxLWtEMFZoSVp2VXN2dUFhR1JDaTdmdDhSRVNsbzZNYWZVV2NYdXAyV2lGaWJxRzY4VmVzVWc?oc=5",
+    "time": "2026-11-11T07:36:27.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金護盤三天台股狂彈4550點 分析師：進場日未必是低點、慎防回測第二隻腳",
+    "source": "BigGo 財經",
+    "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBSamZrLV91VjBnTGJGMkdqS1FMV01ScXozSHJlYU8tbWdZelBvdWFXMzB5M0NkUldtNzR0V2ZiUUNJWXI5dGlyc1pGRVNYeEFUZ2NKM2FjcnQ3aE0wNWZXSHVpWDFRR1ByaVQzRGZVZ0dpUk5TWHRmcDJ3?oc=5",
+    "time": "2026-11-11T07:05:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "進場就是底部？跟單就好？國安基金10大迷思一次看達人：最後一個最厲害- 上市櫃",
+    "source": "旺得富理財網",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5uVkd3b0xyUXJ3RFpCS3VSOEMzZS1hTXc2TWQ1cjE2Q2NheDlYWWM0R2ktRmRhRVRhbVZ6YjhwM3hVVW93VG9PeGNZcVlMaS1tMDNnUGNvZjZ3SU9CU0dvNXotOGdGY3VjZEE?oc=5",
+    "time": "2026-11-11T06:49:17.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金好威！ 台股大V轉反彈6420.1點",
+    "source": "自由財經",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1HeWEtT1FDSzZTeS11YWhxOWhBUmo2bzZrUm5HZmRQNmRsa1VvMUJiVEZKTmpXd3RlWV9YMDlFNEhYdXQyLXNLU0RTSlRLQ0lvYmV5YllrQjV6QXR2aThB0gFkQVVfeXFMTWZjbmdwNVRkdVM1Z0tuMkwxTnprNlctR1ZyanlRMkEtbDhjZUs1UXM2Q2dEejNoYmRNZ0ZGMDNRQ1lYR3hsTFpzOWMzbU1LNmoxNVdZYjBPRTZmRldNQUluX3BHYQ?oc=5",
+    "time": "2026-11-11T06:26:18.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "國安基金擴至1兆抗外資？財政部長回應了",
+    "source": "三立新聞網SETN.com",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE8xbzU5RGVIaF9SZVFKNXRmRkxlNDJOaTk3ZjlCdHMzb3ctSzhySHNsMUZEbzB4eUJhS2U1ZlVqTWppVnY0ZzFWckhzQQ?oc=5",
+    "time": "2026-11-11T06:17:11.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金進場3日強彈4550點！分析師揭護盤真相、示警「第二隻腳」",
+    "source": "民報",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5ybk9Ia2NRdnJ3ckhuUTZ2TzdhajJmUTdCa1o3OE94T2FzX1h0U1BaRGg2akFDZjdtNVFUVWROWkNrTW5HVlNzbUZ5RzIzX1NSeE15aktXQXJnT3NfTVY2bUVHa0VPMnFEa2xsZTFMZ3FmQjA?oc=5",
+    "time": "2026-11-11T05:49:03.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "跌後布局 台股急殺後 五萬點還有戲？ 七名家教戰 「理性貪婪」買好股",
+    "source": "今周刊",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOVV9qOEFUSE8xdkhHMUhSaFVQNUxUZlltNUEwZ1pNVXJhb0RaZjY0XzRvUGpQeWQ5RVc4WkZwZDI1VEJXWnRjcFEwS1E0RE5pV1BVdzlQMXpEOXVSVFdNTGowenE0MHZITkxBWk0xaFY0OGo5ZG8zS3FiX0hfWFpZag?oc=5",
+    "time": "2026-11-11T05:40:00.000Z",
+    "tags": [],
+    "trusted": false
+   }
+  ]
+ },
  "meta": {
   "code": "3711",
   "name": "日月光投控",
@@ -6,7 +128,7 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T11:06:08.115Z",
+  "fetchedAt": "2026-11-11T11:19:44.956Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -49,6 +171,10 @@
    {
     "name": "期交所 OpenAPI 三大法人期貨部位",
     "url": "https://openapi.taifex.com.tw/"
+   },
+   {
+    "name": "Google News 新聞標題（盤前新聞警示）",
+    "url": "https://news.google.com/"
    }
   ]
  },
@@ -4606,9 +4732,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44483,
+    "close": 44582,
     "ref": 44136,
-    "changePct": 0.79
+    "changePct": 1.01
    }
   },
   "foreignFuturesOI": {
@@ -4652,9 +4778,9 @@
   "vix": {
    "symbol": "^VIX",
    "date": "2026-11-11",
-   "close": 18.6,
+   "close": 18.66,
    "prevClose": 19.46,
-   "changePct": -4.42,
+   "changePct": -4.11,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -4676,7 +4802,7 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-11",
-   "close": 32.85,
+   "close": 32.84,
    "prevClose": 32.79,
    "changePct": 0.17,
    "label": "美元／新台幣"
@@ -4698,7 +4824,7 @@
   "changePct": 3.26,
   "name": "日月光投控 ADR",
   "ratio": 2,
-  "impliedTwd": 582.8
+  "impliedTwd": 582.6
  },
  "hints": {
   "kline": {
@@ -4751,8 +4877,8 @@
   },
   "txf": {
    "signal": "偏多",
-   "strength": "中",
-   "data": "臺指期116夜盤 44483（+0.79%，相對日盤收盤 44136）",
+   "strength": "強",
+   "data": "臺指期116夜盤 44582（+1.01%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -4782,7 +4908,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.85，新台幣貶值 0.17%",
+   "data": "美元兌新台幣 32.84，新台幣貶值 0.17%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }

@@ -5,6 +5,7 @@ import Base from '../../layouts/Base.astro';
 import PriceCharts from '../../components/PriceCharts.astro';
 import InstitutionalBars from '../../components/InstitutionalBars.astro';
 import FactorCard from '../../components/FactorCard.astro';
+import NewsAlerts from '../../components/NewsAlerts.astro';
 import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, verdictTone, MODE_LABEL } from '../../lib/site.mjs';
 import factorConfig from '../../data/factors.json';
 
@@ -65,6 +66,12 @@ const retailRows = m
       { label: '融券增減', v: m.shortToday - m.shortPrev, note: `餘額 ${fmtNum(m.shortToday)}` },
     ]
   : null;
+
+// 盤前新聞警示（程式抓的標題，只提醒、不計分）
+const headlines = s.news ? [...s.news.stock, ...s.news.market] : [];
+const alertCount = headlines.filter((x: any) => x.tags.length).length;
+const stockAlertCount = (s.news?.stock ?? []).filter((x: any) => x.tags.length).length;
+const marketAlertCount = alertCount - stockAlertCount;
 
 const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
 const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
@@ -149,6 +156,11 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
   </section>
 
   <p class="summary">{d.summary}</p>
+  {alertCount > 0 && (
+    <a class="alert-bar small" href="#detail-news">
+      ⚠ 盤前新聞：個股 {stockAlertCount} 則、大盤 {marketAlertCount} 則需注意<span class="hide-sm">{isAuto ? '，程式版未納入判斷，建議請 AI 升級為完整版' : '，已由 AI 判讀'}</span> ↓
+    </a>
+  )}
 
   <!-- 2. 走勢圖 -->
   <section class="panel section">
@@ -175,6 +187,16 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
 
   <!-- 4. 細節（預設收合） -->
   <section class="section details">
+    {s.news && (
+      <details id="detail-news" open={alertCount > 0}>
+        <summary>盤前新聞（{alertCount > 0 ? `⚠ ${alertCount} 則需注意` : `${headlines.length} 則`}）</summary>
+        <p class="small dim">{md(d.basedOn)} 13:30 收盤後的新聞標題，由程式自動抓取，只提醒、不計分。✓ 為主流媒體。</p>
+        <div class="small muted sub">個股</div>
+        <NewsAlerts items={s.news.stock} limit={6} />
+        <div class="small muted sub">大盤</div>
+        <NewsAlerts items={s.news.market} limit={6} />
+      </details>
+    )}
     <details>
       <summary>{isAuto ? '程式' : 'AI'} 分析<span class="hide-sm">：綜合判斷、開盤觀察重點、什麼情況下會看錯</span></summary>
       <div class="prose"><Content /></div>
@@ -281,6 +303,9 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
   .sub-label { font-size: 12px; color: var(--muted); font-weight: 600; margin-top: 4px; padding-top: 6px; border-top: 1px dashed var(--line-strong); }
 
   .summary { font-size: 17px; margin: 14px 0 0; }
+  .alert-bar { display: block; margin-top: 10px; padding: 8px 12px; border-radius: var(--radius-sm); background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+  .alert-bar:hover { text-decoration: none; filter: brightness(1.15); }
+  .sub { margin: 10px 0 2px; font-weight: 600; }
   .top { margin: 0; padding-left: 20px; }
   .top li { margin-bottom: 8px; }
   .top li > * { margin-right: 6px; }

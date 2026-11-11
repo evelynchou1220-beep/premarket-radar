@@ -98,7 +98,7 @@
       "key": "tariff", "category": "policy", "label": "美國關稅／貿易政策", "required": true, "auto": false,
       "why": "美國對半導體、電子產品的關稅或出口管制，直接影響台廠的訂單與毛利。",
       "source": "新聞搜尋（WebSearch）：最後收盤日 13:30 之後的「美國 關稅 半導體」「出口管制」",
-      "rule": "已實施或確定公告的新關稅／管制為強；官員表態、草案為中；傳聞為弱；最後收盤後無相關新聞填中性。"
+      "rule": "收盤影響：已實施或確定公告的新關稅／管制為強；官員表態、草案為中；傳聞為弱；最後收盤後無相關新聞填中性。開盤影響（openStrength）：官員表態與傳聞容易引發開盤恐慌或追價，可給強。"
     },
     {
       "key": "fed", "category": "policy", "label": "聯準會利率", "required": true, "auto": false,
@@ -110,7 +110,7 @@
       "key": "geopolitics", "category": "policy", "label": "兩岸與國防情勢", "required": true, "auto": false,
       "why": "軍演、制裁等地緣風險會讓外資降低台股部位。",
       "source": "新聞搜尋：最後收盤日 13:30 之後的「解放軍 軍演」「兩岸」「國防」",
-      "rule": "實際軍演或制裁為強偏空；官方強硬表態為中偏空；緊張緩和的實質進展為弱偏多；無事件填中性。"
+      "rule": "收盤影響：實際軍演或制裁為強偏空；官方強硬表態為中偏空；緊張緩和的實質進展為弱偏多；無事件填中性。開盤影響（openStrength）：突發軍事消息即使事後澄清，開盤通常已反應，可給強。"
     },
     {
       "key": "national_fund", "category": "policy", "label": "國安基金", "required": true, "auto": false,
@@ -152,5 +152,23 @@
     "flatBand": { "window": 20, "factor": 0.5, "min": 0.5 },
     "openFactors": ["txf", "adr", "us_market", "asia", "fx"],
     "openBand": { "window": 20, "factor": 0.5, "min": 0.2 }
+  },
+  "newsPolicy": {
+    "description": "AI 完整版採用新聞的規則（CLAUDE.md §4 步驟 3）。check 會檢查封鎖網域、喊盤用語與「強」需兩個來源。",
+    "trustedSources": ["中央社", "CNA", "經濟日報", "UDN", "工商時報", "鉅亨網", "聯合新聞網", "自由財經", "中時新聞網", "MoneyDJ", "科技新報", "數位時代", "商業周刊", "天下雜誌", "財訊", "路透", "Reuters", "彭博", "Bloomberg", "日經", "公開資訊觀測站", "證交所", "金管會", "中央銀行", "行政院", "總統府", "國防部", "白宮", "美國商務部", "聯準會"],
+    "blockedDomains": ["ptt.cc", "dcard.tw", "mobile01.com", "youtube.com", "youtu.be", "facebook.com", "instagram.com", "threads.net", "x.com", "twitter.com", "tiktok.com", "line.me", "pixnet.net", "blogspot.com", "medium.com", "vocus.cc"],
+    "hypeWords": ["飆股", "必買", "明牌", "目標價上看", "強力推薦", "噴出", "主力進貨", "閉眼買", "穩賺"],
+    "opinionNote": "分析師看法、投顧觀點、目標價屬於「觀點」，只能寫在 reason 當背景，不能單獨作為判定方向的依據。"
+  },
+  "newsAlert": {
+    "description": "程式每天抓取最後收盤日 13:30 之後的新聞標題（Google News RSS），標題含下列關鍵字就在首頁與報告頁顯示 ⚠。只提醒、不計分。",
+    "tags": {
+      "關稅貿易": ["關稅", "出口管制", "制裁", "禁令", "232", "實體清單", "貿易戰"],
+      "利率": ["聯準會", "FOMC", "升息", "降息", "鮑爾", "CPI"],
+      "兩岸國防": ["軍演", "解放軍", "台海", "飛彈", "封鎖"],
+      "國安基金": ["國安基金"],
+      "公司事件": ["法說", "財測", "營收", "財報", "EPS", "除息", "股利", "併購", "增資", "減資", "下修", "上修"],
+      "風險事件": ["調查", "起訴", "訴訟", "罰款", "爆炸", "火災", "地震", "停工", "停電", "跌停", "醜聞", "裁員", "斷鏈"]
+    }
   }
 }

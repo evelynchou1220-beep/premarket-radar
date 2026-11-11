@@ -28,10 +28,18 @@ factors:
     data: 11/11 收盤後無新的半導體關稅公告
     source: WebSearch，2026-11-12 07:30
     reason: 本期無新消息，不影響判斷。
+  # 有方向的新聞因子範例：官員表態對收盤是「中」，但開盤容易恐慌，openStrength 給「強」
+  # - key: geopolitics
+  #   signal: 偏空
+  #   strength: 中
+  #   openStrength: 強        # 選填：對「開盤」的影響強度；不填則與 strength 相同
+  #   data: 11/11 晚間國防部通報共機 45 架次越過海峽中線，為今年單日最多
+  #   source: 中央社、聯合新聞網，2026-11-11
+  #   reason: 突發軍事消息會引發開盤避險賣壓；但未升級為軍演，收盤前可能收斂，所以收盤影響只給中。
   # …其餘必查因子：kline ma volume trust dealer margin txf futures_oi us_market asia fx fed geopolitics national_fund revenue
   # …選用因子（有事件才加）：momentum adr politics earnings_call dividend
 
-news:                        # 至少 3 則，必須是真實存在、可點開的網址
+news:                        # 至少 3 則真實網址；偏多／偏空的新聞因子至少 1 則佐證（factor: <key>），「強」需 2 個不同來源
   - title: 新聞標題
     source: 媒體名稱
     date: 2026-11-11

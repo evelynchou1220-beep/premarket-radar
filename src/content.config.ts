@@ -31,6 +31,8 @@ const reports = defineCollection({
           key: z.enum(FACTOR_KEYS as [string, ...string[]]),
           signal: z.enum(['偏多', '偏空', '中性', '缺漏']),
           strength: z.enum(['強', '中', '弱']).nullable().optional(),
+          // 新聞因子對「開盤」的影響強度，不填則與 strength 相同（CLAUDE.md §5.6）
+          openStrength: z.enum(['強', '中', '弱']).optional(),
           data: z.string().min(4),
           source: z.string().min(2),
           reason: z.string().min(4),

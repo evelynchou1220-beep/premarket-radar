@@ -3,6 +3,7 @@
 import config from '../data/factors.json' with { type: 'json' };
 
 const S = config.scoring;
+const AUTO = new Set(config.factors.filter((f) => f.auto).map((f) => f.key));
 
 /**
  * 「盤整」範圍（%）：依個股近期波動計算，波動大的股票範圍較寬。
@@ -57,12 +58,19 @@ export function computeScore(factors) {
 export const OPEN_LABEL = { 偏多: '開高', 偏空: '開低', 盤整: '平盤' };
 
 /**
- * 開盤預測：只用「台股收盤後才產生的隔夜資訊」（夜盤、ADR、美股、日韓、匯率，見 factors.json scoring.openFactors），
- * 套用同一個評分公式。籌碼與技術面反映的是過去，對開盤跳空的解釋力較低，所以不納入。
+ * 開盤預測：用「台股收盤後才產生的隔夜資訊」（夜盤、ADR、美股、日韓、匯率，見 factors.json scoring.openFactors），
+ * 加上 AI 完整版中有方向的新聞因子（強度用 openStrength），套用同一個評分公式。
+ * 籌碼與技術面反映的是過去，對開盤跳空的解釋力較低，所以不納入。
  * @param {{key:string,signal:string,strength?:string|null}[]} factors 報告的因子（AI 改判也會反映）
  */
 export function openScore(factors) {
-  const s = computeScore((factors ?? []).filter((f) => S.openFactors.includes(f.key)));
+  const list = (factors ?? []).flatMap((f) => {
+    if (S.openFactors.includes(f.key)) return [f];
+    // AI 完整版的新聞因子：只有偏多／偏空才納入（「沒有新消息」不該稀釋隔夜價格資訊），強度用 openStrength
+    if (!AUTO.has(f.key) && (f.signal === '偏多' || f.signal === '偏空')) return [{ ...f, strength: f.openStrength ?? f.strength }];
+    return [];
+  });
+  const s = computeScore(list);
   return { ...s, label: OPEN_LABEL[s.verdict] };
 }
 

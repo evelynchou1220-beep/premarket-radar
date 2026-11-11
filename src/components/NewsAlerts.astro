@@ -1,0 +1,33 @@
+---
+// 盤前新聞標題清單（程式抓取，只提醒、不計分）。有關鍵字標籤的新聞排前面並標 ⚠。
+interface Props { items: any[]; limit?: number }
+const { items = [], limit = 8 } = Astro.props;
+const list = [...items].sort((a, b) => Number(b.tags.length > 0) - Number(a.tags.length > 0) || b.time.localeCompare(a.time)).slice(0, limit);
+const tpe = (iso: string) => {
+  const d = new Date(Date.parse(iso) + 8 * 3600e3);
+  return `${d.getUTCMonth() + 1}/${d.getUTCDate()} ${String(d.getUTCHours()).padStart(2, '0')}:${String(d.getUTCMinutes()).padStart(2, '0')}`;
+};
+---
+{list.length === 0 ? <p class="small muted">最後收盤後沒有相關新聞。</p> : (
+  <ul class="news-alerts">
+    {list.map((n) => (
+      <li>
+        <div class="meta small">
+          {n.tags.length > 0 && <span class="warn">⚠ {n.tags.join('・')}</span>}
+          <span class="dim">{n.source}{n.trusted && ' ✓'}・{tpe(n.time)}</span>
+        </div>
+        <a href={n.url} target="_blank" rel="noopener">{n.title}</a>
+      </li>
+    ))}
+  </ul>
+)}
+
+<style>
+  .news-alerts { list-style: none; margin: 0; padding: 0; }
+  .news-alerts li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .news-alerts li:last-child { border-bottom: 0; }
+  .meta { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 2px; }
+  .warn { color: var(--accent); font-weight: 600; }
+  a { color: var(--text); }
+  a:hover { color: var(--info); }
+</style>

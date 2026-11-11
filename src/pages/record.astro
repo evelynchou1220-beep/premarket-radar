@@ -3,7 +3,7 @@
 // 兩種命中率：程式版（每份報告都能由快照重算，樣本最多）與 AI 完整版（有讀新聞的報告）。
 import Base from '../layouts/Base.astro';
 import VerdictBadge from '../components/VerdictBadge.astro';
-import { getReports, stats, rateText, url, md, weekday, pct, tone, MODE_LABEL } from '../lib/site.mjs';
+import { getReports, stats, rateText, url, md, weekday, pct, tone, verdictTone, MODE_LABEL } from '../lib/site.mjs';
 
 const reports = await getReports();
 const prog = stats(reports, 'program');
@@ -21,6 +21,7 @@ const buckets = [[50, 60], [60, 70], [70, 86]].map(([lo, hi]) => ({
   ...stats(reports.filter((r) => progOf(r).confidence >= lo && progOf(r).confidence < hi), 'program'),
 }));
 const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
+const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
 ---
 <Base title="預測戰績" active="record">
   <h1>預測戰績</h1>
@@ -70,7 +71,34 @@ const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
 
   <section class="panel section">
     <div class="panel-title">全部紀錄</div>
-    <div class="table-wrap">
+    <!-- 手機：一筆一張卡片（CLAUDE.md §3.1：手機不用多欄表格） -->
+    <div class="cards show-sm">
+      {reports.map((r) => {
+        const res = r.result && !r.void ? r.result : null;
+        return (
+          <a class="card" href={url(`reports/${r.id}`)}>
+            <div class="c-top">
+              <b><span class="num">{md(r.data.target)}</span> {r.data.code} {r.data.name}</b>
+              <span class="small muted">{r.void ? '⊘ 作廢' : res ? '' : '待驗證'}</span>
+            </div>
+            <div class="c-calls">
+              <div>
+                <span class="k">開盤</span>
+                <span class:list={['v', verdictTone(r.open.verdict)]}>{icon(r.open.verdict)} {r.open.label}</span>
+                {res?.openActual && <span class="act">實際 <span class:list={['num', tone(res.openPct)]}>{pct(res.openPct)}</span> {hitTag(res.openHit)}</span>}
+              </div>
+              <div>
+                <span class="k">收盤</span>
+                <span class:list={['v', verdictTone(r.data.verdict)]}>{icon(r.data.verdict)} {r.data.verdict}</span>
+                {res && <span class="act">實際 <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span> {hitTag(res.hit)}</span>}
+              </div>
+            </div>
+            <div class="small dim">{MODE_LABEL[r.data.mode]}{r.data.mode === 'ai' && `・程式版 ${r.program.verdict}${res ? hitTag(res.programHit) : ''}`}・盤整 ±{r.band}%</div>
+          </a>
+        );
+      })}
+    </div>
+    <div class="table-wrap hide-sm">
       <table>
         <thead><tr><th>預測日</th><th>股票</th><th>版本</th><th>開盤預測</th><th>報告結論</th><th>程式版</th><th>盤整範圍</th><th>開盤</th><th>收盤</th><th>實際</th><th>結果</th></tr></thead>
         <tbody>
@@ -106,4 +134,14 @@ const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
   .kpi .big { font-size: 28px; font-weight: 600; }
   .accent { color: var(--accent); }
   .info { color: var(--info); }
+  .cards { flex-direction: column; gap: 8px; }
+  .card { display: block; color: var(--text); background: var(--panel-2); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .card:hover { text-decoration: none; }
+  .c-top { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  .c-calls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; }
+  .c-calls > div { display: flex; flex-direction: column; }
+  .k { font-size: 11px; color: var(--muted); }
+  .v { font-weight: 800; font-size: 18px; }
+  .act { font-size: 12px; color: var(--muted); }
+  @media (max-width: 640px) { .cards.show-sm { display: flex; } }
 </style>

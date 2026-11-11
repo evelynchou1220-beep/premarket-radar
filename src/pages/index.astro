@@ -2,6 +2,7 @@
 // 首頁：一眼看完今天的盤前預測。只放重點：隔夜行情條＋每檔一列（開盤預測、收盤預測、最關鍵理由）。
 import Base from '../layouts/Base.astro';
 import MarketBoard from '../components/MarketBoard.astro';
+import NewsAlerts from '../components/NewsAlerts.astro';
 import { getReports, stats, rateText, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL } from '../lib/site.mjs';
 
 const reports = await getReports();
@@ -15,6 +16,12 @@ const openSt = stats(reports, 'open');
 
 const rank = { 強: 3, 中: 2, 弱: 1 } as Record<string, number>;
 const topFactor = (r: any) => r.data.factors.filter((f: any) => f.signal === '偏多' || f.signal === '偏空').sort((a: any, b: any) => (rank[b.strength] ?? 0) - (rank[a.strength] ?? 0))[0];
+// 盤前新聞警示：大盤新聞取最新快照；個股新聞看各自快照
+const marketNews = snap?.news?.market ?? [];
+const marketAlerts = marketNews.filter((x: any) => x.tags.length);
+const tagCount = Object.entries(marketAlerts.flatMap((x: any) => x.tags).reduce((a: any, t: string) => ((a[t] = (a[t] ?? 0) + 1), a), {}));
+const stockAlerts = (r: any) => (r.snapshot?.news?.stock ?? []).filter((x: any) => x.tags.length).length;
+
 const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
 const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
 ---
@@ -44,6 +51,14 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
         <MarketBoard snapshot={snap} />
       </section>
 
+      {marketAlerts.length > 0 && (
+        <details class="section alerts">
+          <summary>⚠ 盤前大盤新聞：{tagCount.map(([t, n]) => `${t} ${n}`).join('、')}<span class="hide-sm dim">（點開看標題）</span></summary>
+          <NewsAlerts items={marketNews} limit={6} />
+          <p class="small dim">只提醒、不計分。要把新聞納入判斷，開盤前請 AI 升級為完整版。</p>
+        </details>
+      )}
+
       <section class="section list">
         <div class="row head small muted">
           <span>股票</span><span>開盤預測</span><span>收盤預測</span><span>最關鍵的理由</span><span>結果</span>
@@ -55,7 +70,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
             <a class="row item" href={url(`reports/${r.id}`)}>
               <span class="stock">
                 <b><span class="num code">{r.data.code}</span> {r.data.name}</b>
-                <span class:list={['mode', r.data.mode]}>{MODE_LABEL[r.data.mode]}</span>
+                <span class:list={['mode', r.data.mode]}>{MODE_LABEL[r.data.mode]}{stockAlerts(r) > 0 && <span class="news-flag" title="盤前有需注意的個股新聞">⚠ 新聞 {stockAlerts(r)}</span>}</span>
               </span>
               <span class:list={['call', verdictTone(r.open.verdict)]} data-k="開盤">
                 {icon(r.open.verdict)} {r.open.label}<em class="num">{r.open.confidence}%</em>
@@ -124,6 +139,10 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
   .call { font-size: 18px; font-weight: 800; white-space: nowrap; }
   .call em { font-style: normal; font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 6px; }
   .why { line-height: 1.5; }
+  .news-flag { color: var(--accent); margin-left: 6px; font-weight: 600; }
+  .alerts { background: var(--accent-bg); border: 1px solid rgba(245, 165, 36, 0.3); border-radius: var(--radius); padding: 0 14px; }
+  .alerts summary { cursor: pointer; padding: 10px 0; color: var(--accent); font-weight: 600; font-size: 14px; }
+  .alerts[open] { padding-bottom: 12px; }
   .res { white-space: nowrap; }
   .foot { margin-top: 18px; }
 

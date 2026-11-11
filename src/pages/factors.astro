@@ -4,6 +4,8 @@ import Base from '../layouts/Base.astro';
 import { categories, factorDefs, scoringConfig as S } from '../lib/site.mjs';
 import factorConfig from '../data/factors.json';
 const fb = factorConfig.scoring.flatBand;
+const NP = factorConfig.newsPolicy;
+const NA = factorConfig.newsAlert;
 const all = Object.values(factorDefs) as any[];
 ---
 <Base title="判斷規則" active="factors">
@@ -17,10 +19,22 @@ const all = Object.values(factorDefs) as any[];
       <li>得分比例 = 總分 ÷（有資料的因子數 × 3），範圍 −1 到 +1。</li>
       <li>比例 ≥ {S.bullThreshold} → <span class="up">偏多</span>；≤ {S.bearThreshold} → <span class="down">偏空</span>；介於兩者之間 → 盤整。</li>
       <li>信心度：偏多／偏空 = 50 + 80 × |比例|；盤整 = 50 + 15 × (1 − |比例| ÷ {S.bullThreshold})。上限 {S.confidenceCap}%，每個缺漏因子扣 {S.missingPenalty} 分，最低 50%。</li>
-      <li>開盤預測：只用隔夜因子（台指期夜盤、ADR、美股、日韓、匯率）套用同一個公式，偏多＝開高、偏空＝開低、盤整＝平盤；驗證時以開盤跳空和「近 20 日跳空中位數 × 0.5（最低 0.2%）」比較。</li>
+      <li>開盤預測：用隔夜因子（台指期夜盤、ADR、美股、日韓、匯率）加上 AI 完整版中有方向的新聞因子（強度用「開盤影響」），套用同一個公式，偏多＝開高、偏空＝開低、盤整＝平盤；驗證時以開盤跳空和「近 20 日跳空中位數 × 0.5（最低 0.2%）」比較。</li>
       <li>驗證：先算該股的「盤整範圍」＝最後收盤日之前 {fb.window} 日每日漲跌幅（絕對值）的中位數 × {fb.factor}，最低 {fb.min}%。預測日收盤漲跌超過 +範圍算偏多、低於 −範圍算偏空，其餘算盤整。波動大的股票範圍較寬（例如台積電約 ±0.75%、台達電約 ±2%）。</li>
     </ol>
     <p class="dim small" style="margin:0">信心度上限設為 {S.confidenceCap}%，因為沒有任何方法能百分之百預測股價。</p>
+  </section>
+
+  <section class="panel section">
+    <div class="panel-title">新聞採用規則（AI 完整版）</div>
+    <ul class="formula">
+      <li><b>主流來源才能定方向：</b>{NP.trustedSources.slice(0, 12).join('、')} 等。</li>
+      <li><b>不採用：</b>論壇、社群、影音、部落格（{NP.blockedDomains.slice(0, 6).join('、')}…），以及標題含「{NP.hypeWords.slice(0, 5).join('、')}」等喊盤用語的文章。</li>
+      <li><b>事實與觀點分開：</b>{NP.opinionNote}</li>
+      <li><b>「強」要兩個來源：</b>判定為強的新聞因子，需要兩家不同媒體的報導。</li>
+      <li><b>開盤與收盤分開：</b>官員表態、傳聞容易造成開盤恐慌或追價（開盤影響可給強），但事後可能澄清，對收盤只給中或弱。</li>
+      <li><b>盤前新聞警示：</b>程式每天抓最後收盤後的新聞標題，含「{Object.keys(NA.tags).join('、')}」相關字眼就標 ⚠。只提醒、不計分。</li>
+    </ul>
   </section>
 
   {categories.map((c) => (

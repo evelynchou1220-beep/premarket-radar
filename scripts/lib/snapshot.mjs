@@ -8,6 +8,7 @@ import { ADR, GLOBAL } from './symbols.mjs';
 import { computeIndicators } from './indicators.mjs';
 import { buildHints } from './hints.mjs';
 import { loadCalendar, nextTradingDay, closedDaysBetween } from './calendar.mjs';
+import { fetchHeadlines, MARKET_QUERY } from './news.mjs';
 
 const log = (...m) => console.log('  ·', ...m);
 
@@ -256,11 +257,24 @@ if (adr && adr.date < basedOn) stale.push(`ADR（${adr.date}）早於台股最�
 if (!txf?.night) stale.push(`尚無 ${basedOn} 晚間的台指期夜盤`);
 if (stale.length) warnings.push(`⏰ 時序檢查未通過：${stale.join('；')}。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。`);
 
+// 盤前新聞警示：只抓標題（最後收盤 13:30 之後），貼關鍵字標籤；不計分，只提醒（CLAUDE.md §7）
+const newsSince = `${basedOn}T13:30+08:00`;
+let news = null;
+try {
+  const market = await once(`news-market-${basedOn}`, () => fetchHeadlines(MARKET_QUERY, newsSince));
+  const stock = await fetchHeadlines(`"${name}"`, newsSince);
+  news = { fetchedAt: new Date().toISOString(), since: newsSince, stock, market };
+  const alerts = [...stock, ...market].filter((x) => x.tags.length).length;
+  log(`盤前新聞：個股 ${stock.length} 則、大盤 ${market.length} 則（需注意 ${alerts} 則）`);
+  sources.push({ name: 'Google News 新聞標題（盤前新聞警示）', url: 'https://news.google.com/' });
+} catch (e) { warnings.push(`新聞標題取得失敗：${e.message}`); }
+
 const snapshot = {
+  news,
   meta: {
     code, name, target, basedOn, closedDays, isTech, fetchedAt: new Date().toISOString(),
     // 新聞搜尋範圍：最後收盤（13:30）之後到現在，週一會涵蓋整個週末
-    newsSince: `${basedOn}T13:30+08:00`,
+    newsSince,
     timingOk: stale.length === 0, stale, warnings, sources,
   },
   indicators: computeIndicators(daily),

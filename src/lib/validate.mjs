@@ -10,6 +10,9 @@ export const REQUIRED_AUTO_KEYS = config.factors.filter((f) => f.required && f.a
 export const MODES = ['auto', 'ai'];
 export const factorDef = Object.fromEntries(config.factors.map((f) => [f.key, f]));
 
+const NEWS = config.newsPolicy;
+const domainOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return ''; } };
+
 const VAGUE = ['市場氣氛', '投資人信心', '可望受惠', '值得關注', '樂觀看待', '情緒佳', '有望'];
 
 /**
@@ -46,6 +49,12 @@ export function validateReport(fm, snapshot) {
       if (hit) errors.push(`${tag} reason 使用了空泛用語「${hit}」，請改寫成具體的因果關係`);
     }
     if (!f.source) errors.push(`${tag} 缺少 source（資料來源與日期）`);
+    // 開盤影響強度（只有新聞因子可填；方向與 signal 相同，只是強度可以不同）
+    if (f.openStrength != null) {
+      if (factorDef[f.key].auto) errors.push(`${tag} openStrength 只能用在新聞因子；程式因子的開盤影響由程式判定`);
+      else if (!directional) errors.push(`${tag} ${f.signal} 不可填 openStrength`);
+      else if (!['強', '中', '弱'].includes(f.openStrength)) errors.push(`${tag} openStrength 只能是 強／中／弱`);
+    }
   }
 
   // 3. 結論與信心度必須等於公式計算結果
@@ -60,9 +69,25 @@ export function validateReport(fm, snapshot) {
   // 5. 新聞：AI 完整版至少 3 則，且每則都有網址
   const news = fm.news ?? [];
   if (!auto && news.length < 3) errors.push(`news 至少 3 則，目前 ${news.length} 則`);
-  news.forEach((n, i) => { if (!/^https?:\/\//.test(n.url ?? '')) errors.push(`news[${i}] 缺少有效網址`); });
+  news.forEach((n, i) => {
+    if (!/^https?:\/\//.test(n.url ?? '')) errors.push(`news[${i}] 缺少有效網址`);
+    const host = domainOf(n.url ?? '');
+    if (NEWS.blockedDomains.some((d) => host === d || host.endsWith('.' + d))) errors.push(`news[${i}] 來自論壇或社群（${host}），不可作為判定依據`);
+    const hype = NEWS.hypeWords.find((w) => (n.title ?? '').includes(w));
+    if (hype) errors.push(`news[${i}] 標題含喊盤用語「${hype}」，不可採用`);
+  });
 
-  // 6. 與快照比對（僅 check.mjs）
+  // 6. 新聞因子的方向判定必須有新聞佐證；「強」需要兩個不同來源，且至少一個是主流來源（CLAUDE.md §4 步驟 3）
+  if (!auto) for (const f of factors) {
+    if (factorDef[f.key]?.auto || (f.signal !== '偏多' && f.signal !== '偏空')) continue;
+    const support = news.filter((n) => n.factor === f.key);
+    const sources = new Set(support.map((n) => n.source));
+    if (!support.length) errors.push(`[${f.key}] 判定為${f.signal}，但 news 中沒有任何一則標註 factor: ${f.key} 的新聞`);
+    if ((f.strength === '強' || f.openStrength === '強') && sources.size < 2) errors.push(`[${f.key}] 判定為「強」需要兩個不同來源的新聞，目前 ${sources.size} 個`);
+    if (support.length && !support.some((n) => NEWS.trustedSources.some((s) => (n.source ?? '').includes(s)))) errors.push(`[${f.key}] 佐證新聞沒有任何一則來自主流來源（見 factors.json newsPolicy.trustedSources）`);
+  }
+
+  // 7. 與快照比對（僅 check.mjs）
   if (snapshot) {
     if (snapshot.meta.code !== fm.code || snapshot.meta.target !== fm.target) errors.push('報告與快照的代號或日期不一致');
     if (snapshot.meta.basedOn !== fm.basedOn) errors.push(`basedOn 應為快照的 ${snapshot.meta.basedOn}`);
