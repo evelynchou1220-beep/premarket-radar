@@ -127,7 +127,7 @@ HW9/
 | 個股頁 | `src/pages/stocks/[code].astro` | 日 K 走勢圖＋該股所有歷史預測 |
 | 報告頁 | `src/pages/reports/[id].astro` | 單份報告：開盤／收盤預測、關鍵價位、走勢圖（見 3.3） |
 | 戰績 | `src/pages/record.astro` | 收盤（程式版／AI 完整版）與開盤的命中率、依結論與信心度分組、全部紀錄 |
-| 判斷規則 | `src/pages/factors.astro` | 由 `factors.json` 自動產生 |
+| 判斷規則（不在導覽列，頁尾連結） | `src/pages/factors.astro` | 由 `factors.json` 自動產生 |
 | 資料登錄（不在導覽列，頁尾連結） | `src/pages/input.astro` | 使用者貼上八大官股表格文字，解析後存到 GitHub（§7.4） |
 
 ### 3.3 版面原則：一眼抓到重點
@@ -458,7 +458,7 @@ npm run fetch -- 2330
 1. 在 `src/pages/` 建立 `.astro` 檔，用 `<Base title="..." active="...">` 包住。
 2. 資料一律透過 `src/lib/site.mjs` 的 `getReports()`、`snapshots`、`results` 取得。
 3. 只使用 `global.css` 的變數與既有的 class（`.panel`、`.grid-*`、`.tag`、`.num`、`.up`、`.down`）。
-4. 需要出現在導覽列時，修改 `src/layouts/Base.astro` 的 `nav` 陣列。**導覽列最多 4 個項目**（今日預測、個股、戰績、判斷規則），新頁面優先放在既有頁面內或用連結進入，保持一般使用者不需要學習就能上手。
+4. 需要出現在導覽列時，修改 `src/layouts/Base.astro` 的 `nav` 陣列。**導覽列只放一般使用者每天會用的頁面**（目前 3 項：今日預測、個股、戰績，最多 4 項）；說明與管理用的頁面（判斷規則、資料登錄）放在頁尾連結。新頁面優先放在既有頁面內或用連結進入，保持一般使用者不需要學習就能上手。
 5. 在 §3.2 頁面清單加上一列。
 
 ### 8.4 支援上櫃股票（未來擴充）
@@ -533,3 +533,4 @@ npm run fetch -- 2330
 | 2026-11-11 | GitHub Actions 升級為 Node 24 版本（checkout@v7、setup-node@v7、configure-pages@v6、upload-pages-artifact@v5、deploy-pages@v5） | GitHub 警告 Node.js 20 版本的 Actions 已過時，之後可能無法執行 |
 | 2026-11-11 | 雲端晨報改為「推到 claude/ai-report-<日期> 分支 → 自動檢查後開 Pull Request → 使用者 09:00 前按 Merge 才發布」，09:05 未合併自動關閉 | AI 產生的內容由使用者審核後才發布；不可以開盤後看了行情才決定是否發布 |
 | 2026-11-11 | 追蹤清單擴充為 0050 前六大：新增南亞（1303）（MoneyDJ 持股明細，資料日期 2026-11-11：南亞 1.55%，第 7～9 名富邦金、中信金、台光電約 1.31～1.33%） | 使用者要求追蹤前六大；第 6～9 名權重接近，只在每季檢查時調整 |
+| 2026-11-11 | 「判斷規則」從導覽列移到頁尾連結，導覽列精簡為今日預測、個股、戰績 | 使用者希望導覽列只留每天會用的頁面；說明類頁面與資料登錄一樣放頁尾 |
