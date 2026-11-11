@@ -84,7 +84,7 @@ async function twseInstitutional(c, dates) {
       foreign: round((num(row[4]) + num(row[7])) / 1000, 0),
       trust: round(num(row[10]) / 1000, 0),
       dealer: round(num(row[11]) / 1000, 0),
-      // 四大法人：外資、投信、自營商（自行買賣）、自營商（避險）
+      // 自營商拆成自行買賣與避險；計分與畫面只用自行買賣（避險為權證被動避險，見 CLAUDE.md §11）
       dealerSelf: round(num(row[14]) / 1000, 0),
       dealerHedge: round(num(row[17]) / 1000, 0),
     });

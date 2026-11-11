@@ -6,7 +6,7 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T10:33:47.607Z",
+  "fetchedAt": "2026-11-11T11:04:44.256Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -4597,9 +4597,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44453,
+    "close": 44483,
     "ref": 44136,
-    "changePct": 0.72
+    "changePct": 0.79
    }
   },
   "foreignFuturesOI": {
@@ -4643,9 +4643,9 @@
   "vix": {
    "symbol": "^VIX",
    "date": "2026-11-11",
-   "close": 18.67,
+   "close": 18.6,
    "prevClose": 19.46,
-   "changePct": -4.06,
+   "changePct": -4.42,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -4667,9 +4667,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-11",
-   "close": 32.84,
+   "close": 32.85,
    "prevClose": 32.79,
-   "changePct": 0.16,
+   "changePct": 0.17,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4722,7 +4722,7 @@
   "dealer": {
    "signal": "中性",
    "strength": null,
-   "data": "2026-11-11 自營商買超 73 張（占成交量 0.3%）；近 5 日合計買超 7,577 張",
+   "data": "2026-11-11 自營商（自行買賣）買超 305 張（占成交量 1.2%）；近 5 日合計賣超 510 張",
    "source": "證交所 T86，2026-11-11"
   },
   "margin": {
@@ -4734,7 +4734,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "中",
-   "data": "臺指期116夜盤 44453（+0.72%，相對日盤收盤 44136）",
+   "data": "臺指期116夜盤 44483（+0.79%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -4758,7 +4758,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.84，新台幣貶值 0.16%",
+   "data": "美元兌新台幣 32.85，新台幣貶值 0.17%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }

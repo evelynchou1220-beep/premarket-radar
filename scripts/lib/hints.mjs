@@ -88,7 +88,9 @@ export function buildHints(s) {
     };
     h.foreign = chip('foreign', '外資', [10, 5, 1]);
     h.trust = chip('trust', '投信', [5, 2.5, 0.5]);
-    h.dealer = chip('dealer', '自營商', [Infinity, 5, 2], false);
+    // 自營商只看自行買賣；避險部位是權證被動避險，不代表券商看法（CLAUDE.md §11）。舊快照沒有拆分時退回合計
+    const dealerKey = inst.every((x) => x.dealerSelf != null) ? 'dealerSelf' : 'dealer';
+    h.dealer = chip(dealerKey, dealerKey === 'dealerSelf' ? '自營商（自行買賣）' : '自營商', [Infinity, 5, 2], false);
   }
 
   // 融資融券

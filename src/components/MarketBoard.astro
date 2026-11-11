@@ -1,5 +1,5 @@
 ---
-// 隔夜行情：分成「大盤」「期貨」「四大法人」三組，不需要左右捲動。資料取自最新一份快照。
+// 隔夜行情：分成「大盤」「期貨」「三大法人」三組，不需要左右捲動。資料取自最新一份快照。
 import { pct, tone, fmtNum, md } from '../lib/site.mjs';
 interface Props { snapshot: any }
 const { snapshot: s } = Astro.props;
@@ -39,17 +39,21 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
     ],
   },
   {
-    title: '四大法人',
+    title: '三大法人',
     unit: inst ? `${md(inst.date)}・億元` : undefined,
     cols: 2,
     items: inst
-      ? [
-          { label: '外資', value: yi(inst.foreign), t: tone(inst.foreign) },
-          { label: '投信', value: yi(inst.trust), t: tone(inst.trust) },
-          ...(inst.dealerSelf != null
-            ? [{ label: '自營（自行）', value: yi(inst.dealerSelf), t: tone(inst.dealerSelf) }, { label: '自營（避險）', value: yi(inst.dealerHedge), t: tone(inst.dealerHedge) }]
-            : [{ label: '自營商', value: yi(inst.dealer), t: tone(inst.dealer) }]),
-        ]
+      ? (() => {
+          // 自營商只計自行買賣（避險部位無法判讀，不列入）
+          const dealer = inst.dealerSelf ?? inst.dealer;
+          const sum = Math.round((inst.foreign + inst.trust + dealer) * 10) / 10;
+          return [
+            { label: '外資', value: yi(inst.foreign), t: tone(inst.foreign) },
+            { label: '投信', value: yi(inst.trust), t: tone(inst.trust) },
+            { label: '自營商', value: yi(dealer), t: tone(dealer) },
+            { label: '合計', value: yi(sum), t: tone(sum) },
+          ];
+        })()
       : [],
   },
 ].filter((x) => x.items.length);

@@ -3,11 +3,13 @@
 import { md, lots } from '../lib/site.mjs';
 interface Props { rows: { date: string; foreign: number; trust: number; dealer: number; dealerSelf?: number; dealerHedge?: number }[] }
 const { rows } = Astro.props;
-// 四大法人：外資、投信、自營商（自行買賣）、自營商（避險）。舊快照沒有拆分時顯示自營商合計
+// 三大法人。自營商只看自行買賣（避險部位只有淨額、無法判讀）；舊快照沒有拆分時顯示自營商合計
 const split = rows.length > 0 && rows.every((r) => r.dealerSelf != null);
-const series = (split
-  ? [{ key: 'foreign', label: '外資' }, { key: 'trust', label: '投信' }, { key: 'dealerSelf', label: '自營（自行）' }, { key: 'dealerHedge', label: '自營（避險）' }]
-  : [{ key: 'foreign', label: '外資' }, { key: 'trust', label: '投信' }, { key: 'dealer', label: '自營商' }]) as { key: 'foreign' | 'trust' | 'dealer' | 'dealerSelf' | 'dealerHedge'; label: string }[];
+const series = [
+  { key: 'foreign', label: '外資' },
+  { key: 'trust', label: '投信' },
+  { key: split ? 'dealerSelf' : 'dealer', label: '自營商' },
+] as { key: 'foreign' | 'trust' | 'dealer' | 'dealerSelf'; label: string }[];
 const max = Math.max(1, ...rows.flatMap((r) => series.map((s) => Math.abs(r[s.key] ?? 0))));
 const sum = (k: string) => rows.slice(-5).reduce((a, r: any) => a + r[k], 0);
 ---
@@ -50,7 +52,7 @@ const sum = (k: string) => rows.slice(-5).reduce((a, r: any) => a + r[k], 0);
         </tbody>
       </table>
     </div>
-    <p class="dim small">單位：張（1 張 = 1,000 股）。外資含外資自營商；自營商分為自行買賣與避險。來源：證交所 T86。</p>
+    <p class="dim small">單位：張（1 張 = 1,000 股）。外資含外資自營商；自營商只計自行買賣，不含權證避險。來源：證交所 T86。</p>
   </div>
 )}
 

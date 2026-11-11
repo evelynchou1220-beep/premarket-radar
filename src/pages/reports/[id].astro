@@ -47,15 +47,13 @@ const levels = [
   { label: '60 日低點', v: ind.low60 },
 ].filter((x) => x.v != null).map((x) => ({ ...x, role: x.v >= ind.close ? '壓力' : '支撐' }));
 
-// 四大法人當日買賣超（張）：外資、投信、自營商（自行買賣）、自營商（避險）。舊快照沒有拆分時只顯示自營商合計
+// 三大法人當日買賣超（張）。自營商只顯示自行買賣；避險部位只有淨額、無法判讀，不顯示（CLAUDE.md §11）
 const inst = s.institutional.at(-1);
 const instRows = inst && inst.date === d.basedOn
   ? [
       { label: '外資', v: inst.foreign },
       { label: '投信', v: inst.trust },
-      ...(inst.dealerSelf != null
-        ? [{ label: '自營（自行）', v: inst.dealerSelf }, { label: '自營（避險）', v: inst.dealerHedge }]
-        : [{ label: '自營商', v: inst.dealer }]),
+      { label: '自營商', v: inst.dealerSelf ?? inst.dealer },
     ]
   : null;
 const lotsText = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n)}`;
