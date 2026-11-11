@@ -8,11 +8,14 @@ const txf = s.market.txf;
 const oi = s.market.foreignFuturesOI;
 const inst = s.market.institutional;
 
-type Item = { label: string; value: string; change?: string; t: string; date?: string; hl?: boolean };
-const quote = (key: string, label: string, invert = false): Item | null => {
+// market：瀏覽器依「現在時間」判斷該市場是否交易中（見下方 script），asOf：數字是哪個時間點的資料
+type Item = { label: string; value: string; change?: string; t: string; date?: string; hl?: boolean; market?: string; asOf?: string };
+const quote = (key: string, label: string, market: string, invert = false): Item | null => {
   const x = g[key];
-  return x ? { label, value: fmtNum(x.close, x.close < 100 ? 2 : 0), change: pct(x.changePct), t: tone(invert ? -x.changePct : x.changePct), date: md(x.date) } : null;
+  return x ? { label, value: fmtNum(x.close, x.close < 100 ? 2 : 0), change: pct(x.changePct), t: tone(invert ? -x.changePct : x.changePct), date: md(x.date), market, asOf: `${md(x.date)} 收盤` } : null;
 };
+const fetchedTpe = new Date(Date.parse(s.meta.fetchedAt) + 8 * 3600e3).toISOString();
+const fetchedText = `${md(fetchedTpe.slice(0, 10))} ${fetchedTpe.slice(11, 16)}`;
 const yi = (n: number) => `${n > 0 ? '+' : ''}${fmtNum(n, 1)}`;
 
 const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = [
@@ -20,12 +23,12 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
     title: '大盤',
     cols: 3,
     items: [
-      quote('taiex', '台股加權'),
-      quote('sox', '費城半導體'),
-      quote('nasdaq', '那斯達克'),
-      quote('nikkei', '日經'),
-      quote('kospi', '韓國'),
-      quote('usdtwd', '美元／台幣', true), // 美元兌新台幣上漲＝新台幣貶值，對台股偏空，顏色反過來
+      quote('taiex', '台股加權', 'tw'),
+      quote('sox', '費城半導體', 'us'),
+      quote('nasdaq', '那斯達克', 'us'),
+      quote('nikkei', '日經', 'jp'),
+      quote('kospi', '韓國', 'kr'),
+      quote('usdtwd', '美元／台幣', 'fx', true), // 美元兌新台幣上漲＝新台幣貶值，對台股偏空，顏色反過來
     ].filter(Boolean) as Item[],
   },
   {
@@ -33,8 +36,8 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
     cols: 1,
     items: [
       ...(txf ? [txf.night
-        ? { label: '台指期夜盤', value: fmtNum(txf.night.close), change: pct(txf.night.changePct), t: tone(txf.night.changePct), date: md(txf.night.session), hl: true }
-        : { label: '台指期夜盤', value: '—', change: '未開盤', t: 'flat', hl: true }] : []),
+        ? { label: '台指期夜盤', value: fmtNum(txf.night.close), change: pct(txf.night.changePct), t: tone(txf.night.changePct), date: md(txf.night.session), hl: true, market: 'txf', asOf: `${fetchedText} 的價格` }
+        : { label: '台指期夜盤', value: '—', change: '未開盤', t: 'flat', hl: true, market: 'txf', asOf: '' }] : []),
       ...(oi ? [{ label: `外資淨${oi.net >= 0 ? '多' : '空'}單（口）`, value: fmtNum(Math.abs(oi.net)), t: tone(oi.net), date: md(oi.date) }] : []),
     ],
   },
@@ -58,14 +61,16 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
   },
 ].filter((x) => x.items.length);
 ---
+<p class="small dim stamp">資料更新於 {fetchedText}<span class="hide-sm">（網站只在排程執行時更新；標示「交易中」的市場，數字是更新當時或前一個收盤，不是即時報價）</span></p>
 <div class="board">
   {groups.map((grp) => (
     <section class="grp" style={`--cols:${grp.cols}`}>
       <div class="grp-title">{grp.title}{grp.unit && <span class="unit">{grp.unit}</span>}</div>
       <div class="items">
         {grp.items.map((i) => (
-          <div class:list={['it', i.hl && 'hl']} title={i.date ? `資料日期 ${i.date}` : undefined}>
+          <div class:list={['it', i.hl && 'hl']} title={i.date ? `資料日期 ${i.date}` : undefined} data-market={i.market} data-asof={i.asOf}>
             <span class="label">{i.label}</span>
+            <span class="live" hidden></span>
             <span class:list={['num value', !i.change && i.t]}>{i.value}</span>
             {i.change && <span class:list={['num chg', i.t]}>{i.change}</span>}
           </div>
@@ -75,7 +80,36 @@ const groups: { title: string; unit?: string; cols: number; items: Item[] }[] = 
   ))}
 </div>
 
+<script>
+  // 依「現在時間」判斷各市場是否交易中（各市場當地時間，自動處理美國夏令時間）。不需要抓資料，任何時候打開都正確。
+  const local = (tz: string) => {
+    const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date()).map((x) => [x.type, x.value]));
+    return { wd: parts.weekday, m: (Number(parts.hour) % 24) * 60 + Number(parts.minute) };
+  };
+  const weekday = (wd: string) => !['Sat', 'Sun'].includes(wd);
+  const open: Record<string, () => boolean> = {
+    us: () => { const x = local('America/New_York'); return weekday(x.wd) && x.m >= 570 && x.m < 960; }, // 09:30～16:00
+    jp: () => { const x = local('Asia/Tokyo'); return weekday(x.wd) && x.m >= 540 && x.m < 930; }, // 09:00～15:30
+    kr: () => { const x = local('Asia/Seoul'); return weekday(x.wd) && x.m >= 540 && x.m < 930; },
+    tw: () => { const x = local('Asia/Taipei'); return weekday(x.wd) && x.m >= 540 && x.m < 810; }, // 09:00～13:30
+    // 台指期夜盤 15:00～隔日 05:00（週一～週五開盤，所以週六 05:00 前也算）
+    txf: () => { const x = local('Asia/Taipei'); return (weekday(x.wd) && x.m >= 900) || (['Tue', 'Wed', 'Thu', 'Fri', 'Sat'].includes(x.wd) && x.m < 300); },
+  };
+  const update = () => document.querySelectorAll<HTMLElement>('[data-market]').forEach((el) => {
+    const f = open[el.dataset.market!];
+    const tag = el.querySelector<HTMLElement>('.live')!;
+    const on = f ? f() : false;
+    tag.hidden = !on;
+    if (on) tag.textContent = el.dataset.asof ? `交易中・此為 ${el.dataset.asof}` : '交易中';
+  });
+  update();
+  setInterval(update, 60000);
+</script>
+
 <style>
+  .stamp { margin: 0 0 6px; }
+  .live { font-size: 11px; color: var(--accent); line-height: 1.3; }
+  .live[hidden] { display: none; }
   /* 電腦版三組並排（比例依項目欄數），不捲動；平板以下改為上下排列 */
   .board { display: grid; grid-template-columns: 3fr 1fr 2fr; gap: 12px; }
   .grp { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px 12px; min-width: 0; }
