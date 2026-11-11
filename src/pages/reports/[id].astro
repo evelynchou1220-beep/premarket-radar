@@ -68,6 +68,8 @@ const retailRows = m
       { label: '融券增減', v: m.shortToday - m.shortPrev, note: `餘額 ${fmtNum(m.shortToday)}` },
     ]
   : null;
+// 借券賣出（外資放空的主要工具）：餘額增加＝放空增加，顏色反過來（增加顯示綠色）
+const lend = s.lending && s.lending.date === d.basedOn ? s.lending : null;
 
 // 盤前新聞警示（程式抓的標題，只提醒、不計分）
 const headlines = s.news ? [...s.news.stock, ...s.news.market] : [];
@@ -139,6 +141,12 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
           {instRows.map((x) => <li class="two"><span class="muted">{x.label}</span><span class:list={['num', tone(x.v)]}>{lotsText(x.v)}</span></li>)}
         </ul>
       ) : <p class="small muted">法人：證交所尚未公布</p>}
+      <ul class="levels">
+        <li class="two" title={lend ? `借券賣出餘額 ${fmtNum(lend.today)} 張；當日賣出 ${fmtNum(lend.sold)}、還券 ${fmtNum(lend.returned)}` : '證交所晚間公布'}>
+          <span class="muted">借券放空</span>
+          {lend ? <span class:list={['num', tone(-lend.change)]}>{lotsText(lend.change)}</span> : <span class="dim small">尚未公布</span>}
+        </li>
+      </ul>
       {gov !== undefined && (
         <ul class="levels">
           <li class="two" title="八大官股券商買賣超（使用者提供，只顯示不計分）">

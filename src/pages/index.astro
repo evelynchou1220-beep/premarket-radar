@@ -62,7 +62,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
         <MarketBoard snapshot={snap} />
       </section>
 
-      {snap.market.leveraged && <div class="section"><LeveragedRadar lev={snap.market.leveraged} /></div>}
+      {(snap.market.leveraged || snap.market.options) && <div class="section"><LeveragedRadar market={snap.market} /></div>}
 
       {gov && (
         <section class="section panel gov">

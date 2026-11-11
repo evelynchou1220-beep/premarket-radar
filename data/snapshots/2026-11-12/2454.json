@@ -1,6 +1,6 @@
 {
  "news": {
-  "fetchedAt": "2026-11-11T11:45:04.490Z",
+  "fetchedAt": "2026-11-11T11:54:22.421Z",
   "since": "2026-11-11T13:30+08:00",
   "stock": [
    {
@@ -61,9 +61,9 @@
    },
    {
     "title": "國安基金進場就底部？跟單穩賺？股海老牛破解10迷思：這點最厲害",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMikgNBVV95cUxPUV9YT05VT2xKTUxvN2VEMGpIZEg3YWNGOEFMX1p5emNNX2FpSXh0ZUItakhLelREWWNHV0Rvd01rZVQ2aEozYkoteGtNUTkwaS1SekJHTGJhWk5UUGNnRDc2LUVCODVmUkZjOEFDVXU4U2lxd2x2STNmVENiWkJDam1NMWJHbUdOa3UzcXprOHdQcnlmZFUwYy1sSE9lQzN6R2VtS3pXek0zb0kxOC10MmZxOUhCeXoyak45UTF1NUdBc3RqT0xvMWMtSVBRMW1mRjhDVEtTbEpKWEt5Y3djZ093VUJaall0THV1eXlZWGVQTkt4ZGF2Y3F5WFh0SUwwVEVhNFluYjB2d255OVpDTmFsQjRYUHlRckF1b081TWJCRWtBbXkyTnhnTm1GYnlNNzM1cDlOcFotRk1KT3Qtc0pWaGpoQlJPcHcxUXl1MUYzejRTMzd4MkxBTVhyVExqbmdjQmpXTzRneGRkdDZQUEJzTVZCSTNXM0RuTGRzYUoyYXQ0RGw3MlNJNGpwMFFqOGc?oc=5",
-    "time": "2026-11-11T08:03:00.000Z",
+    "source": "三立新聞網SETN.com",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE43WTliaGVFaGVLcFBoS2VzbU1TMjBwTmJoR1RaeFdMcElNbC1fWnA4WEwtbWFtTjc1RU43ZkYzYlB5Y0xmUEhXYjc2SQ?oc=5",
+    "time": "2026-11-11T08:01:31.000Z",
     "tags": [
      "國安基金"
     ],
@@ -84,6 +84,16 @@
     "source": "BigGo 財經",
     "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBSamZrLV91VjBnTGJGMkdqS1FMV01ScXozSHJlYU8tbWdZelBvdWFXMzB5M0NkUldtNzR0V2ZiUUNJWXI5dGlyc1pGRVNYeEFUZ2NKM2FjcnQ3aE0wNWZXSHVpWDFRR1ByaVQzRGZVZ0dpUk5TWHRmcDJ3?oc=5",
     "time": "2026-11-11T07:05:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金何時進場、何時退場？從歷次護盤看它賺了多少",
+    "source": "口袋證券",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9JRnpGM08zLURGQXZ4MHlPZlZDQTV1blRzcnBSVWNpbjVlSXd3MDdfa0J2bDZKLUMwRm0xbGYxcl84bkxnbTBwRnBTVU9KclNQZEQzWldfenl4RFczWTRCb0FJalI3QQ?oc=5",
+    "time": "2026-11-11T06:56:56.000Z",
     "tags": [
      "國安基金"
     ],
@@ -146,13 +156,14 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-11T11:45:04.490Z",
+  "fetchedAt": "2026-11-11T11:54:22.422Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
    "美股（2026-11-10）早於台股最後收盤日 2026-11-11"
   ],
   "warnings": [
+   "證交所尚未公布 2026-11-11 借券賣出餘額",
    "證交所尚未公布 2026-11-11 融資融券",
    "⏰ 時序檢查未通過：美股（2026-11-10）早於台股最後收盤日 2026-11-11。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
   ],
@@ -168,6 +179,14 @@
    {
     "name": "證交所 T86 三大法人買賣超日報",
     "url": "https://www.twse.com.tw/zh/trading/foreign/t86.html"
+   },
+   {
+    "name": "證交所 TWT93U 信用額度總量管制餘額表（借券賣出）",
+    "url": "https://www.twse.com.tw/zh/trading/margin/twt93u.html"
+   },
+   {
+    "name": "公開資訊觀測站 每月營業收入彙總表",
+    "url": "https://mopsov.twse.com.tw/mops/web/t21sc04_ifrs"
    },
    {
     "name": "證交所 MI_MARGN 融資融券彙總",
@@ -4719,22 +4738,34 @@
   {
    "date": "2026-11-11",
    "foreign": -426,
-   "trust": 591,
+   "trust": 590,
    "dealer": 160,
    "dealerSelf": 112,
    "dealerHedge": 48
   }
  ],
  "margin": null,
+ "lending": null,
+ "revenue": {
+  "month": "2026-10",
+  "revenue": 55025656,
+  "lastMonth": 55399497,
+  "lastYear": 52026251,
+  "momPct": -0.67,
+  "yoyPct": 5.76,
+  "ytdYoyPct": 5.34,
+  "note": "海外子公司之營收係以當月平均匯率換算之",
+  "deadline": "2026-11-10"
+ },
  "market": {
   "institutional": {
    "date": "2026-11-11",
    "foreign": -7.7,
-   "trust": 147.7,
+   "trust": 185.9,
    "dealer": 62.6,
    "dealerSelf": 28,
    "dealerHedge": 34.6,
-   "total": 202.6
+   "total": 240.8
   },
   "txf": {
    "date": "2026-11-11",
@@ -4749,9 +4780,9 @@
    "night": {
     "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44469,
+    "close": 44558,
     "ref": 44136,
-    "changePct": 0.75
+    "changePct": 0.96
    }
   },
   "foreignFuturesOI": {
@@ -4778,7 +4809,8 @@
       "dealerHedge": 73850
      },
      "marginChange": null,
-     "marginBalance": null
+     "marginBalance": null,
+     "lendingChange": null
     },
     {
      "code": "00632R",
@@ -4797,9 +4829,27 @@
       "dealerHedge": -93764
      },
      "marginChange": null,
-     "marginBalance": null
+     "marginBalance": null,
+     "lendingChange": null
     }
    ]
+  },
+  "options": {
+   "date": "2026-11-10",
+   "foreign": {
+    "callOI": 2525,
+    "callValue": 200956,
+    "putOI": 3569,
+    "putValue": 193149
+   },
+   "dealer": {
+    "callOI": 23533,
+    "callValue": 3207127,
+    "putOI": -15125,
+    "putValue": 263342
+   },
+   "putCallOIRatio": 66.54,
+   "putCallVolumeRatio": 118.36
   }
  },
  "global": {
@@ -4838,9 +4888,9 @@
   "vix": {
    "symbol": "^VIX",
    "date": "2026-11-11",
-   "close": 18.56,
+   "close": 18.6,
    "prevClose": 19.46,
-   "changePct": -4.62,
+   "changePct": -4.42,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -4864,7 +4914,7 @@
    "date": "2026-11-11",
    "close": 32.84,
    "prevClose": 32.79,
-   "changePct": 0.17,
+   "changePct": 0.16,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4911,7 +4961,7 @@
   "trust": {
    "signal": "偏多",
    "strength": "強",
-   "data": "2026-11-11 投信買超 591 張（占成交量 5.5%），連 3 日同向；近 5 日合計買超 3,745 張",
+   "data": "2026-11-11 投信買超 590 張（占成交量 5.5%），連 3 日同向；近 5 日合計買超 3,744 張",
    "source": "證交所 T86，2026-11-11"
   },
   "dealer": {
@@ -4929,7 +4979,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "中",
-   "data": "臺指期116夜盤 44469（+0.75%，相對日盤收盤 44136）",
+   "data": "臺指期116夜盤 44558（+0.96%，相對日盤收盤 44136）",
    "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
@@ -4950,10 +5000,16 @@
    "data": "日經 +1.31%、KOSPI +2.6%（平均 +1.96%，2026-11-11）",
    "source": "Yahoo Finance"
   },
+  "revenue": {
+   "signal": "中性",
+   "strength": null,
+   "data": "10 月營收 550.3 億元，年增 +5.76%、月增 -0.67%",
+   "source": "公開資訊觀測站 月營收，2026-10"
+  },
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.84，新台幣貶值 0.17%",
+   "data": "美元兌新台幣 32.84，新台幣貶值 0.16%",
    "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }

@@ -125,10 +125,10 @@
       "rule": "選舉結果揭曉或重大法案通過為中；選前民調變化為弱。只在有事件時加入。"
     },
     {
-      "key": "revenue", "category": "company", "label": "月營收", "required": true, "auto": false,
+      "key": "revenue", "category": "company", "label": "月營收", "required": true, "auto": true,
       "why": "台灣上市公司每月 10 日前公布上月營收，年增率是基本面最即時的指標。",
-      "source": "公開資訊觀測站或新聞搜尋「<股票名> 月營收」",
-      "rule": "年增率 ≥ 30% 為中偏多、10～30% 為弱偏多、衰退 ≥ 10% 為中偏空；公布後超過 10 個交易日則強度降一級。"
+      "source": "公開資訊觀測站 每月營業收入彙總表（mopsov.twse.com.tw t21sc03，單位千元）",
+      "rule": "取最後收盤日之前最新一個已公布的月營收：年增率 ≥ 30% 為中偏多、10～30% 為弱偏多、衰退 ≥ 10% 為中偏空，其餘中性。超過法定公布期限（次月 10 日）兩週以上，強度降一級（中→弱、弱→中性）。"
     },
     {
       "key": "earnings_call", "category": "company", "label": "法說會", "required": false, "auto": false,

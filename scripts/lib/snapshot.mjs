@@ -150,6 +150,7 @@ async function leveragedEtfs(date) {
       const tj = await t86(date);
       const trow = tj.stat === 'OK' ? tj.data.find((r) => r[0].trim() === e.code) : null;
       const m = await twseMargin(e.code, date, 'ALL');
+      const lend = await twseLending(e.code, date);
       items.push({
         ...e, date,
         close: last.close,
@@ -159,10 +160,75 @@ async function leveragedEtfs(date) {
         inst: trow ? instRow(trow) : null,
         marginChange: m ? m.marginToday - m.marginPrev : null, // 張
         marginBalance: m ? m.marginToday : null,
+        lendingChange: lend ? lend.change : null, // 借券賣出餘額增減（張），增加＝放空增加
       });
     } catch (err) { /* 單一 ETF 失敗不影響主流程 */ }
   }
   return items.length ? { date, items } : null;
+}
+
+// ---------- A. 借券賣出餘額（證交所 TWT93U，單位股 → 張）----------
+const twt93u = (date) => once(`twt93u-${date}`, () => getJSON(`https://www.twse.com.tw/rwd/zh/marginTrading/TWT93U?date=${ymd(date)}&response=json`, { delay: 1200 }));
+/** 借券賣出：外資放空的主要工具。餘額增加＝放空部位增加 */
+async function twseLending(c, date) {
+  const j = await twt93u(date);
+  if (j.stat !== 'OK' || !j.data?.length) return null;
+  const r = j.data.find((x) => x[0].trim() === c);
+  if (!r) return null;
+  const prev = num(r[8]), today = num(r[12]);
+  return { date, prev: round(prev / 1000, 0), today: round(today / 1000, 0), change: round((today - prev) / 1000, 0), sold: round(num(r[9]) / 1000, 0), returned: round(num(r[10]) / 1000, 0) };
+}
+
+// ---------- C. 月營收（公開資訊觀測站彙總表，單位千元）----------
+const mopsMonth = (rocYear, month) => once(`mops-${rocYear}-${month}`, async () => {
+  const res = await fetch(`https://mopsov.twse.com.tw/nas/t21/sii/t21sc03_${rocYear}_${month}_0.html`, { headers: { 'User-Agent': 'Mozilla/5.0' }, signal: AbortSignal.timeout(30000) });
+  if (!res.ok) return null;
+  return new TextDecoder('big5').decode(Buffer.from(await res.arrayBuffer()));
+});
+/** 取 basedOn 之前最新一個已公布的月營收（先試上個月，還沒公布就用上上個月） */
+async function monthlyRevenue(c, basedOn) {
+  const d = new Date(basedOn + 'T00:00:00Z');
+  for (const back of [1, 2]) {
+    const x = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() - back, 1));
+    const y = x.getUTCFullYear(), m = x.getUTCMonth() + 1;
+    const html = await mopsMonth(y - 1911, m);
+    const hit = html?.match(new RegExp(`>${c}</td>([\\s\\S]*?)</tr>`, 'i'));
+    if (!hit) continue;
+    const cells = [...hit[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((z) => z[1].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim());
+    // cells: 名稱, 當月營收, 上月營收, 去年當月營收, 上月比較增減%, 去年同月增減%, 當月累計, 去年累計, 累計增減%, 備註
+    return {
+      month: `${y}-${String(m).padStart(2, '0')}`,
+      revenue: num(cells[1]), lastMonth: num(cells[2]), lastYear: num(cells[3]),
+      momPct: round(num(cells[4])), yoyPct: round(num(cells[5])), ytdYoyPct: round(num(cells[8])),
+      note: cells[9] || '',
+      // 法定公布期限：次月 10 日（實際公布日以此近似）
+      deadline: new Date(Date.UTC(y, m, 10)).toISOString().slice(0, 10),
+    };
+  }
+  return null;
+}
+
+// ---------- B. 選擇權多空（期交所 OpenAPI，只有最新一日）----------
+async function taifexOptions() {
+  const inst = await getJSON('https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfCallsAndPutsBytheDate');
+  const pc = await getJSON('https://openapi.taifex.com.tw/v1/PutCallRatio');
+  const rows = inst.filter((x) => x.ContractCode === '臺指選擇權');
+  if (!rows.length) return null;
+  const pick = (item, cp) => rows.find((x) => x.Item.startsWith(item) && x.CallPut === cp);
+  const side = (item) => {
+    const c = pick(item, 'CALL'), p = pick(item, 'PUT');
+    if (!c || !p) return null;
+    // 未平倉淨額：買權淨多＝押漲、賣權淨多＝押跌；金額單位千元
+    return { callOI: num(c['OpenInterest(Net)']), callValue: num(c['ContractValueofOpenInterest(Net)(Thousands)']), putOI: num(p['OpenInterest(Net)']), putValue: num(p['ContractValueofOpenInterest(Net)(Thousands)']) };
+  };
+  const d = rows[0].Date;
+  const latestPc = pc.sort((a, b) => b.Date.localeCompare(a.Date))[0];
+  return {
+    date: `${d.slice(0, 4)}-${d.slice(4, 6)}-${d.slice(6)}`,
+    foreign: side('外資'), dealer: side('自營商'),
+    putCallOIRatio: latestPc ? num(latestPc['PutCallOIRatio%']) : null,
+    putCallVolumeRatio: latestPc ? num(latestPc['PutCallVolumeRatio%']) : null,
+  };
 }
 
 // ---------- 期交所 ----------
@@ -258,6 +324,13 @@ if (institutional.at(-1)?.date !== basedOn) warnings.push(`證交所尚未公布
 sources.push({ name: '證交所 T86 三大法人買賣超日報', url: 'https://www.twse.com.tw/zh/trading/foreign/t86.html' });
 
 const margin = await twseMargin(code, basedOn);
+let lending = null, revenue = null;
+try { lending = await twseLending(code, basedOn); } catch (e) { warnings.push(`借券賣出取得失敗：${e.message}`); }
+if (!lending) warnings.push(`證交所尚未公布 ${basedOn} 借券賣出餘額`);
+sources.push({ name: '證交所 TWT93U 信用額度總量管制餘額表（借券賣出）', url: 'https://www.twse.com.tw/zh/trading/margin/twt93u.html' });
+try { revenue = await monthlyRevenue(code, basedOn); } catch (e) { warnings.push(`月營收取得失敗：${e.message}`); }
+if (revenue) log(`月營收：${revenue.month} 年增 ${revenue.yoyPct}%`);
+sources.push({ name: '公開資訊觀測站 每月營業收入彙總表', url: 'https://mopsov.twse.com.tw/mops/web/t21sc04_ifrs' });
 if (!margin) warnings.push(`證交所尚未公布 ${basedOn} 融資融券`);
 sources.push({ name: '證交所 MI_MARGN 融資融券彙總', url: 'https://www.twse.com.tw/zh/trading/margin/mi-margn.html' });
 
@@ -294,6 +367,8 @@ try {
   if (txf && !txf.night) warnings.push('台指期夜盤尚無最新資料（夜盤 15:00 開盤、隔日 05:00 收盤）');
 } catch (e) { warnings.push(`台指期取得失敗：${e.message}`); }
 try { foreignFuturesOI = await once('oi', taifexForeignOI); } catch (e) { warnings.push(`外資期貨未平倉取得失敗：${e.message}`); }
+let options = null;
+try { options = await once('options', taifexOptions); } catch (e) { warnings.push(`選擇權資料取得失敗：${e.message}`); }
 sources.push({ name: '期交所即時行情（台指期日盤／夜盤）', url: 'https://mis.taifex.com.tw/futures/' });
 sources.push({ name: '期交所 OpenAPI 三大法人期貨部位', url: 'https://openapi.taifex.com.tw/' });
 
@@ -329,7 +404,9 @@ const snapshot = {
   intraday,
   institutional,
   margin,
-  market: { institutional: marketInst, txf, foreignFuturesOI, leveraged },
+  lending,
+  revenue,
+  market: { institutional: marketInst, txf, foreignFuturesOI, leveraged, options },
   global,
   adr,
 };

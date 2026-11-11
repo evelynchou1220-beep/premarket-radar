@@ -165,6 +165,24 @@ export function buildHints(s) {
       `日經 ${fmt(s.global.nikkei.changePct)}、KOSPI ${fmt(s.global.kospi.changePct)}（平均 ${fmt(avg)}，${s.global.nikkei.date}）`, 'Yahoo Finance');
   }
 
+  // 月營收（公開資訊觀測站；單位千元 → 億元 ÷ 1e5）
+  {
+    const r = s.revenue;
+    if (!r) h.revenue = missing('尚無已公布的月營收資料', '公開資訊觀測站 月營收');
+    else {
+      const y = r.yoyPct;
+      let signal = '中性', strength = null;
+      if (y >= 30) { signal = '偏多'; strength = '中'; }
+      else if (y >= 10) { signal = '偏多'; strength = '弱'; }
+      else if (y <= -10) { signal = '偏空'; strength = '中'; }
+      const stale = (Date.parse(day) - Date.parse(r.deadline)) / 864e5 > 14;
+      if (stale && strength) strength = strength === '中' ? '弱' : null;
+      h.revenue = hint(strength ? signal : '中性', strength,
+        `${Number(r.month.slice(5))} 月營收 ${round(r.revenue / 1e5, 1)} 億元，年增 ${fmt(r.yoyPct)}、月增 ${fmt(r.momPct)}${stale ? '（公布已超過兩週，強度降一級）' : ''}`,
+        `公開資訊觀測站 月營收，${r.month}`);
+    }
+  }
+
   // 匯率（TWD=X 上漲代表新台幣貶值）
   {
     const twdPct = -s.global.usdtwd.changePct;

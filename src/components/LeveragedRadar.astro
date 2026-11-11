@@ -1,94 +1,125 @@
 ---
-// 正2／反1 多空雷達：元大台灣50正2（押大漲）與反1（押下跌），各路資金押哪一邊。
-// 傾向以「金額」比較（張數 × 收盤價），因為兩檔價格不同、張數不能直接相比。只顯示、不計分（CLAUDE.md §3.3）。
+// 法人多空雷達：各路資金在「押漲工具」與「押跌工具」上的部位，判斷他們認為大盤會漲還是跌。只顯示、不計分（CLAUDE.md §3.3）。
+// 1. ETF：元大台灣50正2（00631L，押大漲）vs 反1（00632R，押下跌）；張數 × 收盤價換成金額比較
+// 2. 期貨：外資台指期淨部位
+// 3. 選擇權：外資、自營商的台指選擇權買權（押漲）vs 賣權（押跌）未平倉淨額
 import { pct, tone, fmtNum, md, govBanks, toYi } from '../lib/site.mjs';
-interface Props { lev: any }
-const { lev } = Astro.props;
-const bull = lev.items.find((x: any) => x.side === 'bull');
-const bear = lev.items.find((x: any) => x.side === 'bear');
-const gov = govBanks.find((g: any) => g.date === lev.date && (g.buy || g.sell));
+interface Props { market: any }
+const { market } = Astro.props;
+const lev = market.leveraged;
+const opt = market.options;
+const oi = market.foreignFuturesOI;
+const bull = lev?.items.find((x: any) => x.side === 'bull');
+const bear = lev?.items.find((x: any) => x.side === 'bear');
+const gov = lev && govBanks.find((g: any) => g.date === lev.date && (g.buy || g.sell));
 
-const yi = (lots: number | null, close: number) => (lots == null ? null : (lots * close * 1000) / 1e8);
-const govOf = (code: string) => {
-  if (!gov) return undefined; // 沒有官股個股資料
+type Cell = { text: string; t: string; yi: number } | null | undefined; // undefined＝沒有資料、null＝未上榜
+const lotsCell = (lots: number | null | undefined, close: number, invert = false): Cell =>
+  lots == null ? undefined : { text: `${lots > 0 ? '+' : ''}${fmtNum(lots)}`, t: tone(invert ? -lots : lots), yi: ((invert ? -lots : lots) * close * 1000) / 1e8 };
+const govCell = (code: string): Cell => {
+  if (!gov) return undefined;
   const b = gov.buy?.find((x: any) => x.code === code);
-  if (b) return { lots: b.lots ?? null, yi: toYi(b.value, gov.unit) };
   const s = gov.sell?.find((x: any) => x.code === code);
-  if (s) return { lots: s.lots != null ? -s.lots : null, yi: -toYi(s.value, gov.unit) };
-  return null; // 未上榜
+  const x = b ?? s;
+  if (!x) return null;
+  const sign = b ? 1 : -1;
+  return { text: x.lots != null ? `${sign > 0 ? '+' : '−'}${fmtNum(x.lots)}` : `${sign > 0 ? '+' : '−'}${fmtNum(toYi(x.value, gov.unit), 2)} 億`, t: sign > 0 ? 'up' : 'down', yi: sign * toYi(x.value, gov.unit) };
 };
-type Cell = { lots: number | null; yi: number | null } | null | undefined;
-const rows: { who: string; note?: string; bull: Cell; bear: Cell }[] = [
-  { who: '外資', bull: bull?.inst && { lots: bull.inst.foreign, yi: yi(bull.inst.foreign, bull.close) }, bear: bear?.inst && { lots: bear.inst.foreign, yi: yi(bear.inst.foreign, bear.close) } },
-  { who: '投信', bull: bull?.inst && { lots: bull.inst.trust, yi: yi(bull.inst.trust, bull.close) }, bear: bear?.inst && { lots: bear.inst.trust, yi: yi(bear.inst.trust, bear.close) } },
-  { who: '自營商', note: '只計自行買賣', bull: bull?.inst && { lots: bull.inst.dealerSelf, yi: yi(bull.inst.dealerSelf, bull.close) }, bear: bear?.inst && { lots: bear.inst.dealerSelf, yi: yi(bear.inst.dealerSelf, bear.close) } },
-  { who: '八大官股', note: '使用者提供', bull: govOf(bull?.code), bear: govOf(bear?.code) },
-  { who: '散戶融資', note: '融資餘額增減', bull: bull && bull.marginChange != null ? { lots: bull.marginChange, yi: yi(bull.marginChange, bull.close) } : undefined, bear: bear && bear.marginChange != null ? { lots: bear.marginChange, yi: yi(bear.marginChange, bear.close) } : undefined },
-].filter((r) => r.bull !== undefined || r.bear !== undefined);
+const optCell = (v: number | undefined, oiLots: number | undefined): Cell =>
+  v == null ? undefined : { text: `${v > 0 ? '+' : ''}${fmtNum(v / 1e5, 2)} 億`, t: tone(v), yi: v / 1e5 };
 
-// 傾向：押漲金額 − 押跌金額（億）。未上榜視為 0；兩邊都沒資料則不判斷
-const lean = (r: (typeof rows)[number]) => {
-  if (r.bull === undefined && r.bear === undefined) return null;
-  const v = (r.bull?.yi ?? 0) - (r.bear?.yi ?? 0);
-  return Math.abs(v) < 0.05 ? { label: '中性', t: 'flat', v } : v > 0 ? { label: '偏多', t: 'up', v } : { label: '偏空', t: 'down', v };
+type Row = { who: string; note?: string; bull: Cell; bear: Cell; lean?: number | null };
+const sections: { title: string; bullLabel: string; bearLabel: string; unit: string; rows: Row[] }[] = [];
+
+if (lev) {
+  const i = (x: any, k: string) => x?.inst?.[k];
+  sections.push({
+    title: 'ETF', bullLabel: '正2', bearLabel: '反1', unit: '張',
+    rows: [
+      { who: '外資', bull: lotsCell(i(bull, 'foreign'), bull?.close), bear: lotsCell(i(bear, 'foreign'), bear?.close) },
+      { who: '投信', bull: lotsCell(i(bull, 'trust'), bull?.close), bear: lotsCell(i(bear, 'trust'), bear?.close) },
+      { who: '自營商', note: '自行買賣', bull: lotsCell(i(bull, 'dealerSelf'), bull?.close), bear: lotsCell(i(bear, 'dealerSelf'), bear?.close) },
+      { who: '八大官股', note: '使用者提供', bull: govCell(bull?.code), bear: govCell(bear?.code) },
+      { who: '散戶融資', note: '融資增減', bull: lotsCell(bull?.marginChange, bull?.close), bear: lotsCell(bear?.marginChange, bear?.close) },
+      // 借券賣出＝放空：放空正2 是押跌、放空反1 是押漲，所以顏色與傾向方向相反
+      { who: '借券放空', note: '放空方向相反', bull: lotsCell(bull?.lendingChange, bull?.close, true), bear: lotsCell(bear?.lendingChange, bear?.close, true) },
+    ],
+  });
+}
+if (oi) {
+  sections.push({
+    title: `期貨 ${md(oi.date)}`, bullLabel: '淨多單', bearLabel: '淨空單', unit: '口',
+    rows: [{ who: '外資', note: '台指期未平倉', bull: oi.net > 0 ? { text: fmtNum(oi.net), t: 'up', yi: 0 } : undefined, bear: oi.net < 0 ? { text: fmtNum(-oi.net), t: 'down', yi: 0 } : undefined, lean: oi.net }],
+  });
+}
+if (opt) {
+  sections.push({
+    title: `選擇權 ${md(opt.date)}`, bullLabel: '買權', bearLabel: '賣權', unit: '億元',
+    rows: [
+      { who: '外資', note: '未平倉淨額', bull: optCell(opt.foreign?.callValue, opt.foreign?.callOI), bear: optCell(opt.foreign?.putValue, opt.foreign?.putOI) },
+      { who: '自營商', note: '未平倉淨額', bull: optCell(opt.dealer?.callValue, opt.dealer?.callOI), bear: optCell(opt.dealer?.putValue, opt.dealer?.putOI) },
+    ],
+  });
+}
+
+// 傾向：押漲金額 − 押跌金額；ETF 未上榜視為 0、兩邊都沒資料不判斷；期貨直接看淨部位方向
+const lean = (r: Row) => {
+  let v: number;
+  if (r.lean !== undefined) v = r.lean ?? 0;
+  else {
+    if (r.bull === undefined && r.bear === undefined) return null;
+    v = (r.bull?.yi ?? 0) - (r.bear?.yi ?? 0);
+  }
+  return Math.abs(v) < 0.05 ? { label: '中性', t: 'flat' } : v > 0 ? { label: '偏多', t: 'up' } : { label: '偏空', t: 'down' };
 };
-const cell = (c: Cell) => (c === undefined ? '—' : c === null ? '未上榜' : `${c.lots != null && c.lots > 0 ? '+' : ''}${c.lots != null ? fmtNum(c.lots) : fmtNum(c.yi ?? 0, 2) + ' 億'}`);
-const cellTone = (c: Cell) => (c ? tone(c.lots ?? c.yi ?? 0) : 'dim');
+const show = (c: Cell) => (c === undefined ? '—' : c === null ? '未上榜' : c.text);
 ---
-<section class="panel lev">
-  <div class="lev-head">
-    <b>正2／反1 多空雷達 {md(lev.date)}</b>
-    <span class="small dim hide-sm">誰在押大漲、誰在押下跌（張）・只顯示不計分</span>
+<section class="panel radar">
+  <div class="head">
+    <b>法人多空雷達</b>
+    <span class="small dim hide-sm">各路資金在押漲與押跌工具上的部位・只顯示不計分</span>
   </div>
   <div class="table-wrap">
     <table class="small">
-      <thead>
-        <tr>
-          <th></th>
-          <th>
-            <div>正2 <span class="dim">押漲</span></div>
-            {bull && <div class="px num">{bull.close} <span class={tone(bull.changePct)}>{pct(bull.changePct)}</span></div>}
-          </th>
-          <th>
-            <div>反1 <span class="dim">押跌</span></div>
-            {bear && <div class="px num">{bear.close} <span class={tone(bear.changePct)}>{pct(bear.changePct)}</span></div>}
-          </th>
-          <th>傾向</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((r) => {
-          const l = lean(r);
-          return (
-            <tr>
-              <td>{r.who}{r.note && <span class="dim note hide-sm">（{r.note}）</span>}</td>
-              <td class:list={['num', cellTone(r.bull)]}>{cell(r.bull)}</td>
-              <td class:list={['num', cellTone(r.bear)]}>{cell(r.bear)}</td>
-              <td>{l ? <span class:list={['tag', l.t]} title={`押漲 − 押跌 ≈ ${fmtNum(l.v, 2)} 億元`}>{l.label}</span> : '—'}</td>
-            </tr>
-          );
-        })}
-        <tr class="vol">
-          <td>成交量</td>
-          <td class="num">{bull ? `${fmtNum(bull.volume)}` : '—'}<span class="dim hide-sm">{bull?.volumeRatio != null && `（量比 ${bull.volumeRatio}）`}</span></td>
-          <td class="num">{bear ? `${fmtNum(bear.volume)}` : '—'}<span class="dim hide-sm">{bear?.volumeRatio != null && `（量比 ${bear.volumeRatio}）`}</span></td>
-          <td></td>
-        </tr>
-      </tbody>
+      {sections.map((sec) => (
+        <tbody>
+          <tr class="sec">
+            <th>{sec.title}<span class="dim unit">（{sec.unit}）</span></th>
+            <th>{sec.bullLabel} <span class="dim">押漲</span>{sec.title === 'ETF' && bull && <div class="px num">{bull.close} <span class={tone(bull.changePct)}>{pct(bull.changePct)}</span></div>}</th>
+            <th>{sec.bearLabel} <span class="dim">押跌</span>{sec.title === 'ETF' && bear && <div class="px num">{bear.close} <span class={tone(bear.changePct)}>{pct(bear.changePct)}</span></div>}</th>
+            <th>傾向</th>
+          </tr>
+          {sec.rows.filter((r) => r.bull !== undefined || r.bear !== undefined || r.lean != null).map((r) => {
+            const l = lean(r);
+            return (
+              <tr>
+                <td>{r.who}{r.note && <span class="dim note hide-sm">（{r.note}）</span>}</td>
+                <td class:list={['num', r.bull ? r.bull.t : 'dim']}>{show(r.bull)}</td>
+                <td class:list={['num', r.bear ? r.bear.t : 'dim']}>{show(r.bear)}</td>
+                <td>{l ? <span class:list={['tag', l.t]}>{l.label}</span> : '—'}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      ))}
     </table>
   </div>
-  <p class="small dim foot hide-sm">傾向以金額比較（張數 × 收盤價），因為兩檔價格不同。正2 跟著台灣 50 指數約 2 倍漲跌、反1 約反向 1 倍；散戶融資大增常被市場視為情緒過熱或恐慌的訊號。</p>
+  <p class="small dim foot">
+    {opt?.putCallOIRatio != null && <span>選擇權 Put/Call 未平倉比 <b class="num">{opt.putCallOIRatio}%</b>（低於 100% 代表買權部位多於賣權）。</span>}
+    <span class="hide-sm">ETF 的傾向以金額比較（張數 × 收盤價）；正2 約為台灣 50 的 2 倍漲跌、反1 約反向 1 倍。借券放空正2 等於押跌，所以顏色相反。</span>
+  </p>
 </section>
 
 <style>
-  .lev { padding: 12px 14px; }
-  .lev-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 6px; }
-  th { vertical-align: bottom; }
-  .px { font-weight: 400; color: var(--muted); font-size: 12px; }
+  .radar { padding: 12px 14px; }
+  .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 6px; }
   td, th { padding: 6px 8px; }
-  td:first-child { white-space: nowrap; }
+  td:first-child, th:first-child { white-space: nowrap; }
+  tr.sec th { padding-top: 12px; color: var(--text); vertical-align: bottom; border-bottom: 1px solid var(--line-strong); }
+  tbody:first-of-type tr.sec th { padding-top: 4px; }
+  .unit { font-weight: 400; font-size: 11px; }
+  .px { font-weight: 400; color: var(--muted); font-size: 12px; }
   .note { font-size: 11px; }
-  .vol td { color: var(--muted); }
   .dim { color: var(--dim); }
   .foot { margin: 6px 0 0; }
 </style>
