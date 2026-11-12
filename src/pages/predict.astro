@@ -1,0 +1,108 @@
+---
+// 戰況預測：只放預測。分兩區（CLAUDE.md §3.3）：
+// 1. 每日追蹤：0050 前六大，排程每天自動產生（收盤後出初版，開盤日 05:40 更新）
+// 2. AI 個股分析：使用者在對話中交辦的其他股票；收盤對完答案後只留在戰績，不再出現在這裡
+import Base from '../layouts/Base.astro';
+import { getReports, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL } from '../lib/site.mjs';
+
+const reports = await getReports();
+const watchCodes = new Set(watchlist.stocks.map((s) => s.code));
+const fixedAll = reports.filter((r) => watchCodes.has(r.data.code));
+const target = fixedAll[0]?.data.target;
+const fixed = fixedAll.filter((r) => r.data.target === target);
+// 交辦的股票：還沒對答案（沒有結果、沒有作廢）的才顯示
+const asked = reports.filter((r) => !watchCodes.has(r.data.code) && !r.result && !r.void)
+  .sort((a, b) => a.data.target.localeCompare(b.data.target));
+
+const rank = { 強: 3, 中: 2, 弱: 1 } as Record<string, number>;
+const topFactor = (r: any) => r.data.factors.filter((f: any) => f.signal === '偏多' || f.signal === '偏空').sort((a: any, b: any) => (rank[b.strength] ?? 0) - (rank[a.strength] ?? 0))[0];
+const stockAlerts = (r: any) => (r.snapshot?.news?.stock ?? []).filter((x: any) => x.tags.length).length;
+const isDraft = (r: any) => r.data.timingNote?.startsWith('初版');
+const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
+const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
+---
+<Base title="戰況預測" active="predict">
+  <h1>{target ? `${md(target)}（${weekday(target)}）戰況預測` : '戰況預測'}</h1>
+  <p class="small muted sub">
+    {fixed.some(isDraft)
+      ? <span class="warn">初版：尚未納入今晚美股與夜盤，開盤日 05:40 自動更新</span>
+      : <>開盤前最後一版<span class="hide-sm">，收盤後自動對答案</span></>}
+  </p>
+
+  {[
+    { title: '每日追蹤・0050 前六大', list: fixed, empty: '下一個開盤日收盤後會自動產生。' },
+    { title: 'AI 個股分析', list: asked, empty: '盤前在對話中說「分析 XXXX」，AI 產生的報告會出現在這裡；收盤對完答案後移到戰績。', showDate: true },
+  ].map((sec) => (
+    <section class="section">
+      <div class="small muted label">{sec.title}</div>
+      {sec.list.length === 0 ? <p class="panel small muted empty">{sec.empty}</p> : (
+        <div class="list">
+          <div class="row head small muted">
+            <span>股票</span><span>開盤預測</span><span>收盤預測</span><span>最關鍵的理由</span><span>結果</span>
+          </div>
+          {sec.list.map((r) => {
+            const f = topFactor(r);
+            const res = r.result && !r.void ? r.result : null;
+            return (
+              <a class="row item" href={url(`reports/${r.id}`)}>
+                <span class="stock">
+                  <b><span class="num code">{r.data.code}</span> {r.data.name}</b>
+                  <span class:list={['mode', r.data.mode]}>
+                    {sec.showDate && <span class="num">{md(r.data.target)}・</span>}{MODE_LABEL[r.data.mode]}{isDraft(r) && '・初版'}
+                    {stockAlerts(r) > 0 && <span class="news-flag" title="盤前有需注意的個股新聞">⚠ 新聞 {stockAlerts(r)}</span>}
+                  </span>
+                </span>
+                <span class:list={['call', verdictTone(r.open.verdict)]} data-k="開盤">
+                  {icon(r.open.verdict)} {r.open.label}<em class="num">{r.open.confidence}%</em>
+                </span>
+                <span class:list={['call', verdictTone(r.data.verdict)]} data-k="收盤">
+                  {icon(r.data.verdict)} {r.data.verdict}<em class="num">{r.data.confidence}%</em>
+                </span>
+                <span class="why small">
+                  {f ? <><span class={signalTone(f.signal)}>{signalIcon(f.signal)}</span> {factorDefs[f.key].label}<span class="muted hide-sm">：{f.data}</span></> : <span class="muted">多空資訊不足</span>}
+                </span>
+                <span class="res small">
+                  {r.void ? '⊘ 作廢' : res ? <>開 {mark(res.openHit)}　收 {mark(res.hit)}</> : <span class="dim">待驗證</span>}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  ))}
+
+  <p class="small dim foot hide-sm">點任一列看完整理由與走勢圖。週末與國定假日不預測。過去的預測與命中率請看「戰績」。</p>
+</Base>
+
+<style>
+  h1 { font-size: 26px; margin: 4px 0 2px; }
+  .sub { margin: 0 0 14px; }
+  .warn { color: var(--accent); }
+  .label { margin-bottom: 6px; }
+  .empty { padding: 12px 14px; margin: 0; }
+  .list { display: flex; flex-direction: column; gap: 6px; }
+  .row { display: grid; grid-template-columns: 1.3fr 0.9fr 0.9fr 2.4fr 0.8fr; gap: 12px; align-items: center; padding: 10px 14px; }
+  .head { padding-top: 0; padding-bottom: 0; }
+  .item { color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color 0.15s; }
+  .item:hover { border-color: var(--line-strong); text-decoration: none; }
+  .stock { display: flex; flex-direction: column; }
+  .code { color: var(--accent); }
+  .mode { font-size: 11px; color: var(--muted); }
+  .mode.ai { color: var(--info); }
+  .call { font-size: 18px; font-weight: 800; white-space: nowrap; }
+  .call em { font-style: normal; font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 6px; }
+  .why { line-height: 1.5; }
+  .news-flag { color: var(--accent); margin-left: 6px; font-weight: 600; }
+  .res { white-space: nowrap; }
+  .foot { margin-top: 18px; }
+  @media (max-width: 760px) {
+    .head { display: none; }
+    .row { grid-template-columns: 1fr 1fr; gap: 4px 12px; padding: 10px 12px; }
+    .stock { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: 8px; }
+    .call { font-size: 20px; }
+    .call::before { content: attr(data-k); display: block; font-size: 11px; font-weight: 600; color: var(--muted); }
+    .why { grid-column: 1; }
+    .res { grid-column: 2; text-align: right; }
+  }
+</style>

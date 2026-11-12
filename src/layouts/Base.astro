@@ -7,8 +7,9 @@ interface Props { title?: string; description?: string; active?: string }
 const { title, description = SITE_TAGLINE, active = '' } = Astro.props;
 const fullTitle = title ? `${title}｜${SITE_NAME}` : `${SITE_NAME}｜${SITE_TAGLINE}`;
 const nav = [
-  { href: url(), label: '今日預測', key: 'home' },
-  { href: url('stocks'), label: '個股', key: 'stocks' },
+  { href: url(), label: '盤後戰情', key: 'home' },
+  { href: url('govbanks'), label: '八大官股', key: 'govbanks' },
+  { href: url('predict'), label: '戰況預測', key: 'predict' },
   { href: url('record'), label: '戰績', key: 'record' },
 ];
 ---
@@ -46,7 +47,7 @@ const nav = [
     <footer class="site-footer">
       <div class="wrap">
         <p>僅供學習研究，<strong>不構成投資建議</strong>。<span class="hide-sm">本站內容由 AI 依照公開資料與固定規則（CLAUDE.md）自動產生，股市有風險，投資前請自行判斷。</span></p>
-        <p class="dim small">紅漲綠跌・<span class="hide-sm">資料來源：</span>證交所、期交所、Yahoo Finance、公開新聞・<a href={url('factors')}>判斷規則</a>・<a href={url('input')}>資料登錄</a></p>
+        <p class="dim small">紅漲綠跌・<span class="hide-sm">資料來源：</span>證交所、期交所、Yahoo Finance、公開新聞・<a href={url('stocks')}>個股</a>・<a href={url('factors')}>判斷規則</a>・<a href={url('input')}>資料登錄</a></p>
       </div>
     </footer>
 

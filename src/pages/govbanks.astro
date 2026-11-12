@@ -1,0 +1,122 @@
+---
+// 八大官股（使用者提供，CLAUDE.md §7.4）：每個交易日收盤後「上鎖」，直到使用者上傳當天的資料才解鎖。
+// 上鎖判斷在瀏覽器端依現在時間計算：最近一個已收盤的交易日（13:30 後）沒有資料 → 上鎖。
+import Base from '../layouts/Base.astro';
+import { getReports, watchlist, url, md, weekday, govBanks, toYi, fmtNum } from '../lib/site.mjs';
+
+const reports = await getReports();
+const watchCodes = new Set(watchlist.stocks.map((s) => s.code));
+const latest = reports.find((r) => watchCodes.has(r.data.code));
+// 最新預測日 T 與它的最後收盤日 B：現在過了 T 的 13:30 就該有 T 的資料，否則該有 B 的資料
+const T = latest?.data.target ?? '';
+const B = latest?.snapshot?.meta.basedOn ?? latest?.data.basedOn ?? '';
+
+const gov = govBanks[0] ?? null;
+const govTrend = govBanks.filter((g) => g.net != null).slice(0, 10).reverse().map((g) => ({ date: g.date, yi: toYi(g.net, g.amountUnit) }));
+const govMax = Math.max(1, ...govTrend.map((x) => Math.abs(x.yi)));
+const govBanksYi = gov?.banks ? Object.entries(gov.banks).map(([n, v]) => [n, toYi(v as number, gov.amountUnit)] as [string, number]) : [];
+const yiText = (v: number) => `${v > 0 ? '+' : ''}${fmtNum(v, 2)}`;
+---
+<Base title="八大官股" active="govbanks">
+  <h1>八大官股</h1>
+  <p class="small muted sub">使用者提供・只顯示不計分<span class="hide-sm">・每個交易日收盤後上鎖，上傳當天資料後解鎖</span></p>
+
+  <div id="gov-lock" class="panel lock" hidden data-t={T} data-b={B} data-gov={gov?.date ?? ''}>
+    <div class="lock-icon" aria-hidden="true">🔒</div>
+    <b id="lock-title">等待上傳官股資料</b>
+    <p class="small muted">收盤後要上傳當天的八大官股資料才會解鎖。</p>
+    <a class="btn" href={url('input')}>去上傳</a>
+  </div>
+
+  {!gov ? <p class="panel small muted empty">還沒有任何官股資料。<a href={url('input')}>去上傳</a></p> : (
+    <section id="gov-body" class="panel gov">
+      <div class="gov-head">
+        <b>{md(gov.date)}（{weekday(gov.date)}）</b>
+        {gov.net != null && (() => { const v = toYi(gov.net, gov.amountUnit); return <span class:list={['num big-net', v > 0 ? 'up' : v < 0 ? 'down' : '']}>{v > 0 ? '買超' : '賣超'} {fmtNum(Math.abs(v), 2)} 億</span>; })()}
+      </div>
+      {govTrend.length > 1 && (
+        <div class="trend" title="近 10 個交易日合計買賣超（億元）">
+          {govTrend.map((x) => (
+            <div class="tcol" title={`${md(x.date)} ${yiText(x.yi)} 億`}>
+              <div class="tbar-wrap"><span class:list={['tbar', x.yi >= 0 ? 'pos' : 'neg']} style={`height:${(Math.abs(x.yi) / govMax) * 50}%`}></span></div>
+              <span class="tdate">{md(x.date)}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      {govBanksYi.length > 0 && (
+        <div class="banks small">
+          {govBanksYi.map(([n, v]) => <span class="bank"><span class="muted">{n}</span> <span class:list={['num', v > 0 ? 'up' : v < 0 ? 'down' : '']}>{yiText(v)}</span></span>)}
+          <span class="dim">（億元）</span>
+        </div>
+      )}
+      {(gov.buy || gov.sell) && (
+        <div class="gov-cols">
+          {[['買超', 'buy', 'up'], ['賣超', 'sell', 'down']].map(([label, side, cls]) => (
+            <div>
+              <div class:list={['small', cls]}>{label}（{gov.unit === '張' ? '張' : '億元'}）</div>
+              <ol class="gov-list">
+                {((gov as any)[side] ?? []).slice(0, 10).map((x: any) => (
+                  <li class:list={[watchCodes.has(x.code) && 'watch']}>
+                    <span>{x.name}<span class="dim small hide-sm"> {x.code}</span></span>
+                    <span class:list={['num', cls]}>{gov.unit === '張' ? fmtNum(x.value) : fmtNum(toYi(x.value, gov.unit), 2)}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </div>
+      )}
+      <p class="small dim note">★ 是每日追蹤的股票。</p>
+    </section>
+  )}
+</Base>
+
+<script>
+  // 現在（台北時間）過了預測日 T 的 13:30 → 應有 T 的資料；否則應有最後收盤日 B 的資料。沒有就上鎖。
+  const lock = document.getElementById('gov-lock');
+  if (lock) {
+    const { t, b, gov } = lock.dataset;
+    const now = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 16).replace('T', ' ');
+    const need = t && now >= `${t} 13:30` ? t : b;
+    if (need && (gov ?? '') < need) {
+      const [, m, d] = need.split('-').map(Number);
+      document.getElementById('lock-title')!.textContent = `🔒 ${m}/${d} 官股資料尚未上傳`;
+      lock.hidden = false;
+      document.getElementById('gov-body')?.setAttribute('hidden', '');
+    }
+  }
+</script>
+
+<style>
+  h1 { font-size: 26px; margin: 4px 0 2px; }
+  .sub { margin: 0 0 14px; }
+  .empty { padding: 12px 14px; }
+  .lock { text-align: center; padding: 28px 16px; }
+  .lock[hidden] { display: none; }
+  .lock-icon { font-size: 36px; }
+  .lock b { display: block; font-size: 18px; margin-top: 6px; }
+  .btn { display: inline-block; margin-top: 6px; padding: 8px 18px; min-height: 32px; border-radius: var(--radius-sm); background: var(--accent); color: var(--bg); font-weight: 700; }
+  .btn:hover { text-decoration: none; opacity: 0.9; }
+  .gov { padding: 12px 14px; }
+  .gov[hidden] { display: none; }
+  .gov-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 8px; }
+  .big-net { font-size: 20px; font-weight: 700; }
+  .trend { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; height: 110px; margin: 4px 0 8px; }
+  .tcol { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+  .tbar-wrap { position: relative; flex: 1; width: 100%; }
+  .tbar-wrap::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--line-strong); }
+  .tbar { position: absolute; left: 20%; right: 20%; border-radius: 2px; }
+  .tbar.pos { bottom: 50%; background: var(--up); }
+  .tbar.neg { top: 50%; background: var(--down); }
+  .tdate { font-size: 10px; color: var(--dim); font-family: var(--mono); }
+  .banks { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .bank { white-space: nowrap; }
+  .gov-cols { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .gov-list { margin: 4px 0 0; padding-left: 20px; font-size: 14px; }
+  .gov-list li { padding: 2px 0; }
+  .gov-list li > span:first-child { display: inline-block; min-width: 6em; }
+  .gov-list li.watch { font-weight: 700; }
+  .gov-list li.watch::after { content: ' ★'; color: var(--accent); font-size: 11px; }
+  .note { margin: 10px 0 0; }
+</style>

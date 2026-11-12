@@ -1,226 +1,98 @@
 ---
-// 首頁：一眼看完今天的盤前預測。只放重點：隔夜行情條＋每檔一列（開盤預測、收盤預測、最關鍵理由）。
+// 盤後戰情（首頁）：只放數據與新聞，不放預測（預測在「戰況預測」頁，CLAUDE.md §3.3）。
+// 資料取最新一份快照：收盤後排程產生下一個交易日初版時抓的，隔天 05:40 再更新成含隔夜行情的版本。
 import Base from '../layouts/Base.astro';
 import MarketBoard from '../components/MarketBoard.astro';
 import NewsAlerts from '../components/NewsAlerts.astro';
 import LeveragedRadar from '../components/LeveragedRadar.astro';
 import ForeignFlow from '../components/ForeignFlow.astro';
-import { getReports, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL, govBanks, toYi, fmtNum } from '../lib/site.mjs';
+import { getReports, watchlist, url, md, weekday, fmtNum, lots, pct, tone } from '../lib/site.mjs';
 
 const reports = await getReports();
-const latestTarget = reports[0]?.data.target;
-const latest = reports.filter((r) => r.data.target === latestTarget);
-const earlier = reports.filter((r) => r.data.target !== latestTarget).slice(0, 10);
-const snap = latest.map((r) => r.snapshot).sort((a, b) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
+const watchCodes = watchlist.stocks.map((s) => s.code);
+// 每檔追蹤股票取最新的快照
+const latestSnap = (code: string) => reports.filter((r) => r.data.code === code && r.snapshot).map((r) => r.snapshot)
+  .sort((a, b) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
+const snaps = watchCodes.map(latestSnap).filter(Boolean);
+const snap = [...snaps].sort((a, b) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
+const day = snap?.meta.basedOn;
 
-const rank = { 強: 3, 中: 2, 弱: 1 } as Record<string, number>;
-const topFactor = (r: any) => r.data.factors.filter((f: any) => f.signal === '偏多' || f.signal === '偏空').sort((a: any, b: any) => (rank[b.strength] ?? 0) - (rank[a.strength] ?? 0))[0];
-// 盤前新聞警示：大盤新聞取最新快照；個股新聞看各自快照
+// 六檔個股當日數據：收盤、漲跌、三大法人（張，自營商只計自行買賣）、融資增減
+const rows = snaps.map((s: any) => {
+  const inst = s.institutional?.at(-1);
+  const instOk = inst?.date === s.meta.basedOn;
+  const m = s.margin && s.margin.date === s.meta.basedOn ? s.margin : null;
+  return {
+    code: s.meta.code, name: s.meta.name, close: s.indicators.close, chg: s.indicators.changePct,
+    foreign: instOk ? inst.foreign : null, trust: instOk ? inst.trust : null, dealer: instOk ? inst.dealerSelf : null,
+    margin: m ? m.marginToday - m.marginPrev : null,
+    news: s.news?.stock ?? [],
+  };
+});
 const marketNews = snap?.news?.market ?? [];
-const marketAlerts = marketNews.filter((x: any) => x.tags.length);
-const tagCount = Object.entries(marketAlerts.flatMap((x: any) => x.tags).reduce((a: any, t: string) => ((a[t] = (a[t] ?? 0) + 1), a), {}));
-const stockAlerts = (r: any) => (r.snapshot?.news?.stock ?? []).filter((x: any) => x.tags.length).length;
-
-// 八大官股（使用者提供）：顯示最後收盤日以前最新的一天，加上近 10 個交易日合計走勢
-const gov = govBanks.find((g) => g.date <= (snap?.meta.basedOn ?? '9999')) ?? null;
-const govTrend = govBanks.filter((g) => g.net != null && g.date <= (gov?.date ?? '')).slice(0, 10).reverse()
-  .map((g) => ({ date: g.date, yi: toYi(g.net, g.amountUnit) }));
-const govMax = Math.max(1, ...govTrend.map((x) => Math.abs(x.yi)));
-const govBanksYi = gov?.banks ? Object.entries(gov.banks).map(([n, v]) => [n, toYi(v as number, gov.amountUnit)] as [string, number]) : [];
-const yiText = (v: number) => `${v > 0 ? '+' : ''}${fmtNum(v, 2)}`;
-const watchCodes = new Set(watchlist.stocks.map((s) => s.code));
-const govVal = (v: number) => (gov?.unit === '億' ? `${fmtNum(v, 2)} 億` : `${fmtNum(v)} 張`);
-
-const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
-const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
+const alertCount = (items: any[]) => items.filter((x) => x.tags.length).length;
 ---
-<Base active="home">
-  {!reports.length ? (
-    <div class="panel section">
-      <h1>還沒有任何預測</h1>
-      <p class="muted">下一個開盤日 06:40 會自動產生第一批預測。</p>
-    </div>
+<Base title="盤後戰情" active="home">
+  {!snap ? (
+    <div class="panel section"><h1>還沒有資料</h1><p class="muted">下一個開盤日收盤後會自動產生。</p></div>
   ) : (
     <>
-      <section class="top">
-        <div>
-          <h1>{md(latestTarget)}（{weekday(latestTarget)}）盤前預測</h1>
-          <p class="small muted">0050 前六大權值股<span class="hide-sm">，每個開盤日 06:40 自動更新，收盤後自動對答案</span></p>
-        </div>
-      </section>
+      <h1>{md(day)}（{weekday(day)}）盤後戰情</h1>
+      <p class="small muted sub">只有數據與新聞<span class="hide-sm">，預測請看「戰況預測」</span>{!snap.meta.timingOk && <span class="warn">・美股與夜盤尚未更新</span>}</p>
 
-      <section class="section">
-        <div class="small muted label">隔夜行情<span class="hide-sm">（{md(snap.meta.basedOn)} 台股收盤後）</span>{!snap.meta.timingOk && <span class="warn">・部分未更新</span>}</div>
-        <MarketBoard snapshot={snap} />
+      <section class="section"><MarketBoard snapshot={snap} /></section>
+
+      <section class="section panel tbl">
+        <div class="panel-title">0050 前六大<span class="small dim">（法人、融資單位：張）</span></div>
+        <div class="table-wrap">
+          <table class="small">
+            <thead><tr><th>股票</th><th>收盤</th><th>漲跌</th><th>外資</th><th>投信</th><th>自營</th><th>融資</th></tr></thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr>
+                  <td><a href={url(`stocks/${r.code}`)}>{r.name}</a></td>
+                  <td class="num">{fmtNum(r.close, r.close < 100 ? 2 : 0)}</td>
+                  <td class:list={['num', tone(r.chg)]}>{pct(r.chg)}</td>
+                  {[r.foreign, r.trust, r.dealer, r.margin].map((v) => <td class:list={['num', tone(v)]}>{lots(v)}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="small dim note hide-sm">自營商只計自行買賣。融資約 21:30 公布，之前顯示「—」。</p>
       </section>
 
       {snap.market.flows?.length > 0 && <div class="section"><ForeignFlow flows={snap.market.flows} /></div>}
 
       {(snap.market.leveraged || snap.market.options) && <div class="section"><LeveragedRadar market={snap.market} /></div>}
 
-      {gov && (
-        <section class="section panel gov">
-          <div class="gov-head">
-            <b>八大官股 {md(gov.date)}</b>
-            {gov.net != null && (() => { const v = toYi(gov.net, gov.amountUnit); return <span class:list={['num big-net', v > 0 ? 'up' : v < 0 ? 'down' : '']}>{v > 0 ? '買超' : '賣超'} {fmtNum(Math.abs(v), 2)} 億</span>; })()}
-            <span class="small dim hide-sm">使用者提供・只顯示不計分</span>
-          </div>
-          {govTrend.length > 1 && (
-            <div class="trend" title="近 10 個交易日合計買賣超（億元）">
-              {govTrend.map((x) => (
-                <div class="tcol" title={`${md(x.date)} ${yiText(x.yi)} 億`}>
-                  <div class="tbar-wrap">
-                    <span class:list={['tbar', x.yi >= 0 ? 'pos' : 'neg']} style={`height:${(Math.abs(x.yi) / govMax) * 50}%`}></span>
-                  </div>
-                  <span class="tdate">{md(x.date)}</span>
-                </div>
-              ))}
-            </div>
-          )}
-          {govBanksYi.length > 0 && (
-            <div class="banks small">
-              {govBanksYi.map(([n, v]) => <span class="bank"><span class="muted">{n}</span> <span class:list={['num', v > 0 ? 'up' : v < 0 ? 'down' : '']}>{yiText(v)}</span></span>)}
-              <span class="dim">（億元）</span>
-            </div>
-          )}
-          {(gov.buy || gov.sell) && (
-            <div class="gov-cols">
-              {[['買超', 'buy', 'up'], ['賣超', 'sell', 'down']].map(([label, side, cls]) => (
-                <div>
-                  <div class:list={['small', cls]}>{label}（{gov.unit === '張' ? '張' : '億元'}）</div>
-                  <ol class="gov-list">
-                    {((gov as any)[side] ?? []).slice(0, 5).map((x: any) => (
-                      <li class:list={[watchCodes.has(x.code) && 'watch']}>
-                        <span>{x.name}<span class="dim small hide-sm"> {x.code}</span></span>
-                        <span class:list={['num', cls]}>{gov.unit === '張' ? fmtNum(x.value) : fmtNum(toYi(x.value, gov.unit), 2)}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
-      )}
-
-      {marketAlerts.length > 0 && (
-        <details class="section alerts">
-          <summary>⚠ 盤前大盤新聞：{tagCount.map(([t, n]) => `${t} ${n}`).join('、')}<span class="hide-sm dim">（點開看標題）</span></summary>
-          <NewsAlerts items={marketNews} limit={6} />
-          <p class="small dim">只提醒、不計分。要把新聞納入判斷，開盤前請 AI 升級為完整版。</p>
-        </details>
-      )}
-
-      <section class="section list">
-        <div class="row head small muted">
-          <span>股票</span><span>開盤預測</span><span>收盤預測</span><span>最關鍵的理由</span><span>結果</span>
-        </div>
-        {latest.map((r) => {
-          const f = topFactor(r);
-          const res = r.result && !r.void ? r.result : null;
-          return (
-            <a class="row item" href={url(`reports/${r.id}`)}>
-              <span class="stock">
-                <b><span class="num code">{r.data.code}</span> {r.data.name}</b>
-                <span class:list={['mode', r.data.mode]}>{MODE_LABEL[r.data.mode]}{stockAlerts(r) > 0 && <span class="news-flag" title="盤前有需注意的個股新聞">⚠ 新聞 {stockAlerts(r)}</span>}</span>
-              </span>
-              <span class:list={['call', verdictTone(r.open.verdict)]} data-k="開盤">
-                {icon(r.open.verdict)} {r.open.label}<em class="num">{r.open.confidence}%</em>
-              </span>
-              <span class:list={['call', verdictTone(r.data.verdict)]} data-k="收盤">
-                {icon(r.data.verdict)} {r.data.verdict}<em class="num">{r.data.confidence}%</em>
-              </span>
-              <span class="why small">
-                {f ? <><span class={signalTone(f.signal)}>{signalIcon(f.signal)}</span> {factorDefs[f.key].label}<span class="muted hide-sm">：{f.data}</span></> : <span class="muted">多空資訊不足</span>}
-              </span>
-              <span class="res small">
-                {r.void ? '⊘ 作廢' : res ? <>開 {mark(res.openHit)}　收 {mark(res.hit)}</> : <span class="dim">待驗證</span>}
-              </span>
-            </a>
-          );
-        })}
+      <section class="section panel">
+        <div class="panel-title">大盤新聞{alertCount(marketNews) > 0 && <span class="warn small">⚠ {alertCount(marketNews)}</span>}</div>
+        <NewsAlerts items={marketNews} limit={10} />
       </section>
 
-      {earlier.length > 0 && (
-        <section class="section">
-          <div class="small muted label">先前的預測</div>
-          <div class="table-wrap">
-            <table class="small">
-              <thead><tr><th>日期</th><th>股票</th><th>開盤</th><th>收盤</th><th>結果</th></tr></thead>
-              <tbody>
-                {earlier.map((r) => (
-                  <tr>
-                    <td class="num">{md(r.data.target)}</td>
-                    <td><a href={url(`reports/${r.id}`)}>{r.data.code} {r.data.name}</a></td>
-                    <td class={verdictTone(r.open.verdict)}>{r.open.label}</td>
-                    <td class={verdictTone(r.data.verdict)}>{r.data.verdict}</td>
-                    <td>{r.void ? '作廢' : r.result ? `開 ${mark(r.result.openHit)}　收 ${mark(r.result.hit)}` : '待驗證'}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
-
-      <p class="small dim foot hide-sm">每日追蹤：{watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('・')}。週末與國定假日不預測。點任一列看完整理由與走勢圖。</p>
+      <section class="section panel">
+        <div class="panel-title">個股新聞</div>
+        {rows.map((r, i) => (
+          <details class="stock-news" open={i === 0 && r.news.length > 0}>
+            <summary><b>{r.name}</b> <span class="small muted">{r.news.length} 則</span>{alertCount(r.news) > 0 && <span class="warn small">⚠ {alertCount(r.news)}</span>}</summary>
+            <NewsAlerts items={r.news} limit={6} />
+          </details>
+        ))}
+        <p class="small dim note">新聞為 {md(day)} 13:30 收盤後的標題，只提醒、不計分<span class="hide-sm">；⚠ 是含重大關鍵字的新聞</span>。</p>
+      </section>
     </>
   )}
 </Base>
 
 <style>
-  .top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin: 4px 0 18px; }
-  h1 { font-size: 26px; margin: 0 0 2px; }
-  .top p { margin: 0; }
-  .label { margin-bottom: 6px; }
-  .warn { color: var(--accent); }
-
-  .list { display: flex; flex-direction: column; gap: 6px; }
-  .row { display: grid; grid-template-columns: 1.3fr 0.9fr 0.9fr 2.4fr 0.8fr; gap: 12px; align-items: center; padding: 10px 14px; }
-  .head { padding-top: 0; padding-bottom: 0; }
-  .item { color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); transition: border-color 0.15s; }
-  .item:hover { border-color: var(--line-strong); text-decoration: none; }
-  .stock { display: flex; flex-direction: column; }
-  .code { color: var(--accent); }
-  .mode { font-size: 11px; color: var(--muted); }
-  .mode.ai { color: var(--info); }
-  .call { font-size: 18px; font-weight: 800; white-space: nowrap; }
-  .call em { font-style: normal; font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 6px; }
-  .why { line-height: 1.5; }
-  .gov { padding: 12px 14px; }
-  .gov-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-bottom: 8px; }
-  .big-net { font-size: 18px; font-weight: 700; }
-  .trend { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; height: 90px; margin: 4px 0 8px; }
-  .tcol { display: flex; flex-direction: column; align-items: center; min-width: 0; }
-  .tbar-wrap { position: relative; flex: 1; width: 100%; }
-  .tbar-wrap::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--line-strong); }
-  .tbar { position: absolute; left: 20%; right: 20%; border-radius: 2px; }
-  .tbar.pos { bottom: 50%; background: var(--up); }
-  .tbar.neg { top: 50%; background: var(--down); }
-  .tdate { font-size: 10px; color: var(--dim); font-family: var(--mono); }
-  .banks { display: flex; flex-wrap: wrap; gap: 4px 14px; }
-  .bank { white-space: nowrap; }
-  .gov-cols { margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .gov-list { margin: 4px 0 0; padding-left: 18px; font-size: 14px; }
-  .gov-list li { padding: 2px 0; }
-  .gov-list li > span:first-child { display: inline-block; min-width: 6em; }
-  .gov-list li.watch { font-weight: 700; }
-  .gov-list li.watch::after { content: ' ★'; color: var(--accent); font-size: 11px; }
-  .news-flag { color: var(--accent); margin-left: 6px; font-weight: 600; }
-  .alerts { background: var(--accent-bg); border: 1px solid rgba(245, 165, 36, 0.3); border-radius: var(--radius); padding: 0 14px; }
-  .alerts summary { cursor: pointer; padding: 10px 0; color: var(--accent); font-weight: 600; font-size: 14px; }
-  .alerts[open] { padding-bottom: 12px; }
-  .res { white-space: nowrap; }
-  .foot { margin-top: 18px; }
-
-  @media (max-width: 760px) {
-    .head { display: none; }
-    .row { grid-template-columns: 1fr 1fr; gap: 4px 12px; padding: 10px 12px; }
-    .stock { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: 8px; }
-    .call { font-size: 20px; }
-    .call::before { content: attr(data-k); display: block; font-size: 11px; font-weight: 600; color: var(--muted); }
-    .why { grid-column: 1; }
-    .res { grid-column: 2; text-align: right; }
-    .top { margin-bottom: 12px; }
-  }
+  h1 { font-size: 26px; margin: 4px 0 2px; }
+  .sub { margin: 0 0 14px; }
+  .warn { color: var(--accent); margin-left: 6px; }
+  .tbl table td:first-child { white-space: nowrap; }
+  .note { margin: 8px 0 0; }
+  .stock-news { border-top: 1px solid var(--line); }
+  .stock-news:first-of-type { border-top: 0; }
+  .stock-news summary { cursor: pointer; padding: 9px 0; }
+  .stock-news[open] { padding-bottom: 8px; }
 </style>

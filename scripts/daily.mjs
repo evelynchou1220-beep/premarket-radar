@@ -6,7 +6,7 @@
 //   2. 先補做還沒對答案的驗證
 //   3. 對 watchlist 每一檔：抓快照 → 產生程式版報告（mode: auto）→ 驗收
 //      已有 AI 完整版（mode: ai）的報告不覆寫
-// verify（開盤日 14:40 左右）：對答案，寫入 data/results.json
+// verify（開盤日 16:10 左右）：對答案，寫入 data/results.json；排程接著執行 predict 產生下一個交易日初版
 import { readFile, writeFile, access, rm } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { parse } from 'yaml';

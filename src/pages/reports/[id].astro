@@ -80,7 +80,7 @@ const marketAlertCount = alertCount - stockAlertCount;
 const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
 const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
 ---
-<Base title={`${d.code} ${d.name} ${md(d.target)} 盤前預測`} description={d.summary} active="stocks">
+<Base title={`${d.code} ${d.name} ${md(d.target)} 盤前預測`} description={d.summary} active="predict">
   <nav class="crumb small muted hide-sm">
     <a href={url('stocks')}>個股</a> / <a href={url(`stocks/${d.code}`)}>{d.code} {d.name}</a> / {md(d.target)}
   </nav>
