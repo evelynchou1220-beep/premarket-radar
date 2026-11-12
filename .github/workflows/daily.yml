@@ -52,6 +52,9 @@ jobs:
         run: npm run stocklist || echo "對照表更新失敗，沿用舊檔"
       - name: 執行 ${{ steps.task.outputs.task }}
         run: npm run daily -- ${{ steps.task.outputs.task }}
+      - name: 產生下一個交易日的初版預測（隔天 05:40 會加上美股、夜盤重做）
+        if: steps.task.outputs.task == 'verify'
+        run: npm run daily -- predict || echo "初版預測失敗，隔天早上排程會重做"
       - name: 驗收所有報告
         run: npm run check
       - id: commit
@@ -68,7 +71,7 @@ jobs:
             exit 0
           fi
           DAY=$(TZ=Asia/Taipei date +%F)
-          if [ "$TASK" = "predict" ]; then MSG="report: $DAY 程式版（排程）"; else MSG="verify: $DAY（排程）"; fi
+          if [ "$TASK" = "predict" ]; then MSG="report: $DAY 程式版（排程）"; else MSG="verify: $DAY＋下一個交易日初版預測（排程）"; fi
           git commit -m "$MSG"
           git pull --rebase origin main
           git push origin HEAD:main
