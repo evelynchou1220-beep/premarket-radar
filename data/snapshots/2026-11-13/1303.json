@@ -1,8 +1,16 @@
 {
  "news": {
-  "fetchedAt": "2026-11-12T08:42:31.920Z",
+  "fetchedAt": "2026-11-12T09:04:38.626Z",
   "since": "2026-11-12T13:30+08:00",
   "stock": [
+   {
+    "title": "南亞(1303) 個股概覽 | 個股 - 股市",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE0yelBjeGNXN0VNamlxcExWaWVCWWV2Mkg1VklGT0dsWkNVWG5YUVRwWlNRbDhPNjdwX0k2bGtVOE9WLUoyQkxETEdoQkhZQmRVQ2FJ?oc=5",
+    "time": "2026-11-12T06:49:27.000Z",
+    "tags": [],
+    "trusted": false
+   },
    {
     "title": "南亞115億蓋玻纖布5廠 股價紅翻黑收跌6%",
     "source": "非凡新聞台",
@@ -52,7 +60,7 @@
   "basedOn": "2026-11-12",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-12T08:42:31.920Z",
+  "fetchedAt": "2026-11-12T09:04:38.626Z",
   "newsSince": "2026-11-12T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -4684,9 +4692,9 @@
    "night": {
     "session": "2026-11-12",
     "contract": "臺指期116",
-    "close": 43265,
+    "close": 43219,
     "ref": 43128,
-    "changePct": 0.32
+    "changePct": 0.21
    }
   },
   "foreignFuturesOI": {
@@ -4854,7 +4862,7 @@
    {
     "date": "2026-11-12",
     "foreign": -6.8,
-    "usdtwd": 32.922
+    "usdtwd": 32.94
    }
   ]
  },
@@ -4918,9 +4926,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-12",
-   "close": 32.92,
+   "close": 32.94,
    "prevClose": 32.95,
-   "changePct": -0.1,
+   "changePct": -0.04,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4985,7 +4993,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "弱",
-   "data": "臺指期116夜盤 43265（+0.32%，相對日盤收盤 43128）",
+   "data": "臺指期116夜盤 43219（+0.21%，相對日盤收盤 43128）",
    "source": "期交所即時行情，夜盤 2026-11-12"
   },
   "futures_oi": {
@@ -4995,9 +5003,9 @@
    "source": "期交所 OpenAPI，2026-11-11"
   },
   "us_market": {
-   "signal": "偏多",
-   "strength": "強",
-   "data": "費半 +5.66%、那指 +1.6%、標普 +1.31%（2026-11-11 美股收盤；以費半判斷）",
+   "signal": "缺漏",
+   "strength": null,
+   "data": "尚無 2026-11-12 晚間的美股收盤（最新為 2026-11-11，已反映在台股收盤）",
    "source": "Yahoo Finance"
   },
   "asia": {
@@ -5015,7 +5023,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.92，新台幣升值 0.1%",
+   "data": "美元兌新台幣 32.94，新台幣升值 0.04%",
    "source": "Yahoo Finance TWD=X，2026-11-12"
   }
  }

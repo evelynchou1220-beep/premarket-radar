@@ -81,7 +81,7 @@ const yiText = (v: number) => `${v > 0 ? '+' : ''}${fmtNum(v, 2)}`;
     const need = t && now >= `${t} 13:30` ? t : b;
     if (need && (gov ?? '') < need) {
       const [, m, d] = need.split('-').map(Number);
-      document.getElementById('lock-title')!.textContent = `🔒 ${m}/${d} 官股資料尚未上傳`;
+      document.getElementById('lock-title')!.textContent = `${m}/${d} 官股資料尚未上傳`;
       lock.hidden = false;
       document.getElementById('gov-body')?.setAttribute('hidden', '');
     }

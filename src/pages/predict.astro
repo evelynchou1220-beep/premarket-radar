@@ -9,7 +9,8 @@ const reports = await getReports();
 const watchCodes = new Set(watchlist.stocks.map((s) => s.code));
 const fixedAll = reports.filter((r) => watchCodes.has(r.data.code));
 const target = fixedAll[0]?.data.target;
-const fixed = fixedAll.filter((r) => r.data.target === target);
+const order = watchlist.stocks.map((s) => s.code);
+const fixed = fixedAll.filter((r) => r.data.target === target).sort((a, b) => order.indexOf(a.data.code) - order.indexOf(b.data.code));
 // 交辦的股票：還沒對答案（沒有結果、沒有作廢）的才顯示
 const asked = reports.filter((r) => !watchCodes.has(r.data.code) && !r.result && !r.void)
   .sort((a, b) => a.data.target.localeCompare(b.data.target));
@@ -52,9 +53,9 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
                     {stockAlerts(r) > 0 && <span class="news-flag" title="盤前有需注意的個股新聞">⚠ 新聞 {stockAlerts(r)}</span>}
                   </span>
                 </span>
-                <span class:list={['call', verdictTone(r.open.verdict)]} data-k="開盤">
-                  {icon(r.open.verdict)} {r.open.label}<em class="num">{r.open.confidence}%</em>
-                </span>
+                {isDraft(r)
+                  ? <span class="call flat pending" data-k="開盤">05:40 更新</span>
+                  : <span class:list={['call', verdictTone(r.open.verdict)]} data-k="開盤">{icon(r.open.verdict)} {r.open.label}<em class="num">{r.open.confidence}%</em></span>}
                 <span class:list={['call', verdictTone(r.data.verdict)]} data-k="收盤">
                   {icon(r.data.verdict)} {r.data.verdict}<em class="num">{r.data.confidence}%</em>
                 </span>
@@ -93,6 +94,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
   .call { font-size: 18px; font-weight: 800; white-space: nowrap; }
   .call em { font-style: normal; font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 6px; }
   .why { line-height: 1.5; }
+  .call.pending { font-size: 14px; font-weight: 600; color: var(--muted); }
   .news-flag { color: var(--accent); margin-left: 6px; font-weight: 600; }
   .res { white-space: nowrap; }
   .foot { margin-top: 18px; }

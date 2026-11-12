@@ -1,8 +1,16 @@
 {
  "news": {
-  "fetchedAt": "2026-11-12T08:42:08.812Z",
+  "fetchedAt": "2026-11-12T09:04:14.825Z",
   "since": "2026-11-12T13:30+08:00",
   "stock": [
+   {
+    "title": "【Follow法人】外資連11賣卻大幅縮手！今僅砍6億元 分析師：開始翻多了",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMiuANBVV95cUxNSlBPSWhuTTNtcGUxYm1Wc1pBMEI1MVFXODZGbGhsaWpjTU1RZXlkeVg3QmdUOE5MWVFYS2JzbTNIc2xjYXQ2TUU3NnNwemhpUkpUTzYxeDZqbmpvaENWdG9Ednk5Y3NsNFdkV2VoUDNEeWVIRlVLSGdldFZVWjhNUmxCUVVXcDFUUTVEZWNrYmJ1ckQ2N21iT1RPbzJfanlRX0M4aVFXWGR0VzVPVTYxQjZqTXFwajJOc2lZRDZ2N1BkamdTaC16aHNVZHBwQkJNcVBqZmI5RnBlNWRaWWhtUjBZaFVvdmVKMV9PRFFuaFYwUmpaOGJPbTlwdGJXdzFLaTFERUJrR3A0MU43LWRwTTJUYlc4ZGs5VlR1cWxpUFhSaHN2NDJIZkVROGIxRy1laHdZeFdUWkI3by1jYi1aXzREeU9fQnRCaHhmUHQ5bHpTOTFLNW0wUFJQMHQ0UXBUUTVXSXZDMDdCbVdISlo3WWVYSzRfZUZPVUZpemlMeXpibWQ5TXVnR0E4cm5sVU50MG5OZ3gtRzFENmlJaDV3cC1GRDViYXJLYmxRQTVmTnFyYnNvcTBWcQ?oc=5",
+    "time": "2026-11-12T08:03:45.000Z",
+    "tags": [],
+    "trusted": false
+   },
    {
     "title": "地下論壇有人聲稱兜售4.6萬筆台積電員工紀錄，台積電回應無證據顯示公司系統遭入侵",
     "source": "iThome",
@@ -64,14 +72,6 @@
     "source": "Yahoo股市",
     "url": "https://news.google.com/rss/articles/CBMixgNBVV95cUxQcTVJV0pGclFjWG5yNmRSMlZ1Q1hQRUZUTDc5c0ljd25pV25QSEJBY2x0S0owZGx4YlVDS3VjNm50bHBLOVNEajYzVGE1V0hxaDNkMF9DU2V4T3NBRzJoVW1lYWlHQkpWN2FSeHdIaUk1akphS1QyME1hNGwxUUtNUGNqZ2trREloc3hPMEJlZWc3b0xHenNnNXpUM1lYWGVldFo5QkNRTXE2cFFnc2hyLWFQN1VjNUJLUEk3dTBWUDdfb1ZIaWVQNkwwRXBoeU9ENkx3ZzZMdWZ3d09PV2h6OGFrbWpYVHVqd0tvZ1lxLTZ0QzNxb0JMSkZuTFdEZ2x2NGFENjVaZjhoN3BBZjROcnFXeW9ncE9FT3ExNjh2emRrRWJwUS1KLVNpOXFUcE1hSW9OblFhTFZOb2dfVXcteE13SzUzdWlUTEVteFhXOGFSbDFDV256eEE1ZGYwOGFFcHJIX2ZmWTdhb2p3YlhNSWNmeUM0TDFReWJQV1BOVThvdmkzMzJrTDhLaDhTSnlGanRPV3BPUnZWS3dmTEFCR1NaZkV0ckczR1VFVnRyenBOc25ibHcwT1ljbXBSNHNmanItcXR3?oc=5",
     "time": "2026-11-12T06:12:51.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "台積電員工個資遭外流 遭駭客兜售4.6萬筆",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxQNHR2TjhtclNfdTFOWXFWZVhFVmZ3c2ZSUGppdUFuSjRxeWh4ckRrRUxKR1lvUzczajdYR2VPWkRUREpiN1dGYkxsUkREd0JUbUpQVzF4dzREamRQODNkS24xRzJsWUdSLVV4M2VLWTdmbVFCbnRvOU9nZkNWRTBobmFOX0dZNFNmazVoWi1WMG5BQnF4N2p0Q2VzRXkzWTBENzRyRTlGUHdud09VY0lqNEtlWVJmWXBvRnNrQWFncHlaM2p2azZPUjVwZlBFZl8yVHJ4Q0E3Qm9PYVVkTThuZWMyRTVmUkNwZ2tmb2pHck5NYldHeXNXUk93NjI1V1RITGFad0hBV2dELXN3c19SV3AyekpEdzZhalhhYTlnXzYwU1B5?oc=5",
-    "time": "2026-11-12T06:12:23.000Z",
     "tags": [],
     "trusted": false
    },
@@ -140,7 +140,7 @@
   "basedOn": "2026-11-12",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-12T08:42:08.812Z",
+  "fetchedAt": "2026-11-12T09:04:14.825Z",
   "newsSince": "2026-11-12T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -4773,9 +4773,9 @@
    "night": {
     "session": "2026-11-12",
     "contract": "臺指期116",
-    "close": 43265,
+    "close": 43219,
     "ref": 43128,
-    "changePct": 0.32
+    "changePct": 0.21
    }
   },
   "foreignFuturesOI": {
@@ -4943,7 +4943,7 @@
    {
     "date": "2026-11-12",
     "foreign": -6.8,
-    "usdtwd": 32.922
+    "usdtwd": 32.94
    }
   ]
  },
@@ -5007,9 +5007,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-12",
-   "close": 32.92,
+   "close": 32.94,
    "prevClose": 32.95,
-   "changePct": -0.1,
+   "changePct": -0.04,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -5029,7 +5029,7 @@
   "changePct": 4.25,
   "name": "台積電 ADR",
   "ratio": 5,
-  "impliedTwd": 2721.5
+  "impliedTwd": 2723.1
  },
  "hints": {
   "kline": {
@@ -5083,7 +5083,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "弱",
-   "data": "臺指期116夜盤 43265（+0.32%，相對日盤收盤 43128）",
+   "data": "臺指期116夜盤 43219（+0.21%，相對日盤收盤 43128）",
    "source": "期交所即時行情，夜盤 2026-11-12"
   },
   "futures_oi": {
@@ -5093,16 +5093,16 @@
    "source": "期交所 OpenAPI，2026-11-11"
   },
   "us_market": {
-   "signal": "偏多",
-   "strength": "強",
-   "data": "費半 +5.66%、那指 +1.6%、標普 +1.31%（2026-11-11 美股收盤；以費半判斷）",
+   "signal": "缺漏",
+   "strength": null,
+   "data": "尚無 2026-11-12 晚間的美股收盤（最新為 2026-11-11，已反映在台股收盤）",
    "source": "Yahoo Finance"
   },
   "adr": {
-   "signal": "偏多",
-   "strength": "強",
-   "data": "台積電 ADR 413.35 美元（+4.25%，2026-11-11 美股收盤）。ADR 長期有溢價，只看漲跌幅",
-   "source": "Yahoo Finance TSM，2026-11-11"
+   "signal": "缺漏",
+   "strength": null,
+   "data": "尚無 2026-11-12 晚間的 ADR 收盤（最新為 2026-11-11，已反映在台股收盤）",
+   "source": "Yahoo Finance TSM"
   },
   "asia": {
    "signal": "偏空",
@@ -5119,7 +5119,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.92，新台幣升值 0.1%",
+   "data": "美元兌新台幣 32.94，新台幣升值 0.04%",
    "source": "Yahoo Finance TWD=X，2026-11-12"
   }
  }

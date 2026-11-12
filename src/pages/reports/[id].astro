@@ -108,7 +108,9 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
   <section class="picks">
     <article class:list={['pick', verdictTone(op.verdict)]}>
       <div class="pick-label">開盤預測</div>
-      <div class="pick-main"><span class="big">{icon(op.verdict)} {op.label}</span><span class="num conf">{op.confidence}%</span></div>
+      {d.timingNote?.startsWith('初版')
+        ? <div class="pick-main"><span class="big">05:40 更新</span></div>
+        : <div class="pick-main"><span class="big">{icon(op.verdict)} {op.label}</span><span class="num conf">{op.confidence}%</span></div>}
       <div class="meter"><i style={`width:${confBar(op.confidence)}`}></i></div>
       <div class="chips">
         {openFactors.map((f) => <span class:list={['chip', signalTone(f.signal)]} title={f.data}>{openShort[f.key]} {signalIcon(f.signal)}</span>)}

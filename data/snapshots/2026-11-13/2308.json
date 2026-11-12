@@ -1,8 +1,56 @@
 {
  "news": {
-  "fetchedAt": "2026-11-12T08:42:21.886Z",
+  "fetchedAt": "2026-11-12T09:04:29.662Z",
   "since": "2026-11-12T13:30+08:00",
   "stock": [
+   {
+    "title": "Gogolook第三季獲利創新高！每股賺1.69元 年增超過7倍",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxPZEp6czFtY2tmaFdQc3h1OTFLM2l4dFJtcGhYWi1vUURBR1F3YU9HT2RkR09QTWVMdWhlb2NhOWlrdUxoUUlGc3lPb2lIc2xWSkxZaWpUVlloUi1SUW0ySjh5RzVvb1VIWHdYVF9HOHVjdVdjOG9rMHFFbWtFYTBudVN0YTl6bXRFVzNTMDFaY1FXN0FURmFiTHBFalczbUxKMlRSd19PX05NTDZSUXZTS0E2MUM0c3QxbTZ1N1FjbGVVcUJtVFJqTjM0MFZKUGZCeVJtZDVBSWxOdlZxT2c4aE9aMXpvX1RtWmYxb2tkbm04ZV94eUxfbE1oczloWWstVUtRU1dTWHY3STdKN0NsV2kySEpBd3g4T3FBaDlWOEhORTI4SE9QR3BmaEdaWjNpNlNseURJYkljWjlQNFJCTmltQVQ?oc=5",
+    "time": "2026-11-12T09:01:54.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "限空令成效如何？何時會退場？金管會一併回應了",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMi4wJBVV95cUxQX0RHaWtfR05TejlDOEFRalpQYkpWTjhFUlp4V0hEUnZUc3VLOHFzWU1feml1OUJvc05XakVZTlpFOURqYmRFd0RCekJfVm1KNklJbnN0VjNYSEZFZ1hYbUZReHE4c3F6MkxKWVBySHJuRGlBX09BMEdOOUVQVkUyblJtUUVPVTVXU0JXeVAwY3B6a19NeTRPMEJEd2pVMnNxTFQwSGo0c2xjVkoxdGFhX05heTF2ZFd6WDI5WE51SU91VVFpeHV2WHRIQzdsUEpZVEZaMGZsbDZwNXZoRjA3SDBVZVltVE9QNEtpMzN5T21XQjhfVGREN0ktWG9kYkZlY3JhYUExRHdwdjBBbWFqSWoyVVdXNWFyTDA2ZEJsdl9KZWdSTnJMeUMydTJPbVBfSk93QnFLQ0FXTVdVdXlJV2pkNlZWd2dVTW9RVnktMHhERmZOOVl3cnpKTGhJdG44ZnVR?oc=5",
+    "time": "2026-11-12T08:58:56.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "AI代理蔓延催生資安新需求 Netskope雲端防護嶄露頭角",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMizgJBVV95cUxOUkpCQXc5WElqRDhpdzRjTG1mNmUzN0pUWkUwUFFaRFdqdzc1cUw0UkJZNkZfeDlRYkhVNEFYS2ZxMzNyN2VnRTBIQXJLN3kxSm40SjFSeGZ6LXlPTkZPRVRmbGNTc0lldkdkMTY2Rk9xQWk1WkhlVWoyYk5vdV9EMHhXaEtaRTFUQ1ZiNmFDQ2Z4WEE4YlhpV3lJUnhteUJuUk84d1dSUTVYVlh1a3pxVGVkeFZfS1VoT09hVDl3QUtUZ3YtZVM4VE5xdHJCSGNVQVo4cGZ6LV90SExwOHE0VzEtR2M4WEg0T2hrbVRkZE5Xdk9sc2lHQUhGOEpBZ0M4R2hzX0NRMG5MTlFHQzAwZG9vclRsa215S2FpWV9Ddm1mRVNJQm12bkFNaG1MdHV3YlIwUHAwcWd6eTlacU9ZcC0yWXhlcWROTVR6ZURB?oc=5",
+    "time": "2026-11-12T08:51:48.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "黃仁勳風暴衝擊台股！股魚示警「這5檔ETF」恐受波及 它「含輝量」直逼20％最高",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMi1gJBVV95cUxQU2dJUzBRWk5UaTdxYmN6NTJsMWdiNUd0NDhhUkN1YnZrd1lIM1dBcHZHWENnb21ha0prT3dIZGJreFM4bkhlZXVsVnhrMzYtY2ZjSTRnb2huS3AzQ2FlRXphMnd3TklRTHVLSUhPRWJySkFvX0xGMXpReGV6a1JMNUx0dktBaDBYVEVRYTBVZTFYYk5zbVVIaVZsSFkzdG1iUEdnLV9QNmhLTkF5T2pHQVlJOENWNTN6SVJWazNZaXJ5dkM3N2x3dFk0ejlBRjhDblhSME9RSVFjRTM4UmRzQlpEMHkyR1NYTGJ0YXhYTDhVMkdQLWd1QkYzcTJ4V2R4QnVOR1Q0YXBrSFRXbWRmM00zd3pjQloza3RpSlFvOVRoeFIzd2lQZ0k4Ti0yUVRrbS1oem1UNXo0dDFPLV9ITVFqTG1CSEdIaFpVX05OTjB2ZFZNUWc?oc=5",
+    "time": "2026-11-12T08:46:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "博智前三季賺11.15元；伺服器訂單能見度可達8個月",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMiyAJBVV95cUxOdnZLT2dSZFRkQU1XVGJBXzN2LU8wcTNpa3pNaGFXVmFYWXRmRzY0T05EX0tDT3B3QTV2NGpyUUh2V3p5V3hJUHpycFJwb0ZldXZ5YzhBdjNGUGJnandBcjRLT28xZ09QQmlmNzJZQ2JnR00wbnR3Zkd5dDlneGV2cHM0YnBOLVhiSTMyc3J0eEpUZnFNNnI1MUp6Z2hiaUZyWGxKU2JQaGxrWjVzZlh3TDh2MmZtNUlPMzJQZ2picFgwcmJfSk5WaXVzbGNxVUhiLUhZM0JrOTB4dWFJRFFTZk1NWXNQTzFXRHBMM25DOFJlUkI5YnhWOGV6dFNVYlJUQV9YcnVBWC1JVTJabDZiVFNBaTlDYXFhV2RiMzQwZXBvUFJUaWhBNVJuYmJUS1prX29XeXRXc0pnNG9XVW91aEhja2RmM1RS?oc=5",
+    "time": "2026-11-12T08:45:18.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "三大法人撒51億進場無用！台股崩千點退保43K 股民苦笑：散戶被老黃嚇到",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMitgNBVV95cUxNYThSVzFVNzVLc2x6ek8zeUNELTBleW4wVi1wcW1DS0Y5SGJoRndYd255dGZPQS1Ca2g1Z2FkbVN4S0xfclBaZFEtZlJDNnRVRW4yd2FrVnJQY0F5aWN3ajFIM1R6U29yX2N2VUNZWXlBREUtUlFnTWwwd0tobW9hNVdPQ1FQTDlCd1F1alVmZnA2QW9NTnVHRzBGT210dDRST3Z4Vnc0T2JwbGpjRW1iLUpqenVNNWpadWJ5WU10SHY3eFRQRTRkLUhpUGI0Vl9kOEt0a2FRekdGWHh5dkpUMUdRWUFQV0d5ZEdva0hxcVNKVU1qSmpjb1RsVXB5ZVNOM2UwUkFHSUpxOGZLTGNPT3F5RTRLVzczTktDX3FkSm1US0FEUzhMYnpQUndaLTItVUtxZm9OM2NEVklSbHhKaXg1MXM2TXNwYTA1clZLdjVNNU80LW5ZYURmOVk2WWZURERUczEzczRiMlZ6MHR1YkZDdGIyZnRNUzVxaEkyVW9UaDlSdmtFSnlsSkVaNjY4em12VEFhMm5rcEpKNXhOMUNrSEViQlRjS1F5NmRGd0hkYnMzNlE?oc=5",
+    "time": "2026-11-12T08:40:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
    {
     "title": "你相信AI推薦的購物清單嗎？Visa首創評測：失敗率破43%",
     "source": "Yahoo股市",
@@ -15,7 +63,7 @@
     "title": "旺旺保前3季賺22.6億元EPS 10.12元 超越歷年全年",
     "source": "Yahoo股市",
     "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxOTnkwTlNnYWhldmhwRm5JaUFLcXZBVm1acXh6SHAzYTdEcTZmSG9JUFQtVXk1ZXMzczViNkc0blFuMUVyenpGT2NkbW51Z09qN0pReklTSXBkbGxqNjZ3d1ZIMktyeE9Kb3hmdUcwYjhJLVljbFFRcGNjamJDempteUJkaFgzUXJQQmh3SklCbmVLZnZPMVA0NjFjSHNfRVhUdUVpYzE1VjIwSHFGNkFKeDlCazFkaGl1QkRmZlZ5UHpPRGlqY1BUSTZJbjkwaWs2NWt0d0dqdTJqZUNHQzZLX1dTWGVFVnNPc2pjblJWS1NEU1RlV3lMMHdpTk83eXZTLXBYTU5Mc1p4VHNNN25jdXIwVE1XSHBOLUdjUHlNQW1LWDA?oc=5",
-    "time": "2026-11-12T08:37:08.000Z",
+    "time": "2026-11-12T08:37:30.000Z",
     "tags": [
      "公司事件"
     ],
@@ -29,14 +77,6 @@
     "tags": [
      "風險事件"
     ],
-    "trusted": false
-   },
-   {
-    "title": "亞洲開發銀行警示：東南亞基建2040年需7.1兆美元 逾半資金待補",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMihwNBVV95cUxNdGQwbEk5ZWxrai12b2U3VjlGZTIwMjdEQWJTeDBYckJCNzdRb3RfcHBMdl84V3pQM3p1Ni1lTTJyanBaMTFDb1djNkN3cGd6a2FucWlfU09uQXJlcXV4TEd2Ql9RRXJ1YnczYjJPWU8tcmdPY09hREVwd0lCRkNuNF81V1JJeWRjZ0tJTUVJQXZWalI5cWNaN3JXNnYyTjNhdGNnU045SFo3NW1GWjRYanVucS1hOFJhS2Z5ckJQUHFMN0UxSjBXNFQ5MFVuZm1KSHc1UXlxc3dMTWE2ZElUelc1LUNXYmlmREctd2xCcXI3a0Y0d2plcGNzM3BKNzVLV3hBSDZNTVQyT1hPYXBqdmp5blJFT0xXVjlQdmlfU2RNR29pRDF6SWxQRFlTZWpuNUtuc210ZTRzRDR6OUFzRHk3czJVbDM4ZC1MdDlIMTF1YmhiQW1PN2luUEZUbkdIRUtjUkxLVTFMWW1zWU5Nb1d4VjcyMUtual9iakhnR0tNUzEzc0lV?oc=5",
-    "time": "2026-11-12T08:32:42.000Z",
-    "tags": [],
     "trusted": false
    },
    {
@@ -62,46 +102,6 @@
     "source": "Yahoo股市",
     "url": "https://news.google.com/rss/articles/CBMi-AJBVV95cUxQb2NJc2N5eTh4elZpeS1BZlZWbGJ5OU9VUVZFdlVfYmZPQ0tMdnpicnYzc0R6RGY1TFdyaUw3UzFYSkMtY2VmX1pyV2JLZ3lJZ2t0bDR2bkVKaWFPY09EQ3ZhWDhwUVN0LUs4R2E1c0QtdE1GZkF3aHV4N3dwa0YzaEdFWmNQLUFlSjNpVk5rdjhMeEZuM21BZWJCVGR2MTZsdEMzSHRMeHZ0LWpmQmgyS0FZWjFOZG13ZllyVWxMbFAtc0xjOUtUblp5RFE1TWdzSWFZbHVmVjhmVjcyVmp3aG9XTGRhYzJLa0QtNkNaWmpVQ0FoME9iZmxXVDRaVFBNc3BpYWtZdnJsanB1RFl3UHNFN3RQbVFBM2dsakRTamlrOFhNaG1pSlNrZXRuQ2ZzZUdPTkpZN1VVRlYyd1ZCbHd0NXU3bWJLREp2QWtfczZIaUpYRmppTmxSS1pWLVRiSEN1SGMxZHFURFNER0ZtSlBkVWZ3dnJC?oc=5",
     "time": "2026-11-12T08:26:13.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "AI代理「Pulse 2.0」主導音樂網紅行銷 一鍵包辦推廣與支付",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNTW1TamhmZEpSeHpwejlRdWR1VE9BVmVUT1EwaVBnS3pSUkpkZ0dnTk5GdFZ4cC04Z1JvaF95ZWZZR2psaGVubFdQT082dzBtY0V3MTNUM3dLRmJkUTRLNkhnSHJLbHk2R05QN1hKNW1zMWIxUTdReUVwbjNmMjVIVXpzeTdXeGlNV2tOQkl3S3NZR1g3V0JWUHNkU0dlekJLN3V6RmREVUtfUjRFSndDMzJvNG1tcGhiSnltaUNfMjhGVXlyRzJFOE41TEJ4dmFwZ0VOUGRIZlg1OTE0ekJoN2laZE8?oc=5",
-    "time": "2026-11-12T08:23:19.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "年底想布局新標的！他手握成長股卻捨不得賣 網推1方法：兩邊都能賺",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMisANBVV95cUxQRkgwV0h6c3poMDhnNDhQaWJTdU9oOG5zUTBEeExaT2FISlM4bFNHLVBhcUh2eFBJVTA4X1NOV0pGcGdvYmpLQ19US2ozYlFmYXJVU3lzSkpqMDQzM0FrUTVaejU1YVVESlZJYzVrMTVkUXoxU2VBLTgtcG4yUHlRSVJlOGpDb1hGcmFvalRUSUo4YmM5SFlEMnhGRlpsRTRtS1RxTnVNbzh2QjFUUFAySnVzYm1rbEJQamlMdlpmbnVlQXhDMUtIdW0zTklFU3pWZDdRWk44ME1MSGFaZ0pnbkxuV0RqOGtJYnFSSC16R0k4U2FCNlRnbUo5Y2hhMTRaUV9yZXFDZ1lHdUFoMVRGNmxUdERKY1p3MjhjcXFjZHl0UmZRNTdwSmxqX1Vydmg5YWhqWnIzNFZJZmhpODUtWWhZd0NuWU1zRHhxdHA0ellYRTN1RTRmLVJhd2wzWXZ1bkc3UXd2ZGE0STJWWS05dUFlRzlrR1loZHhmelNfUG9KeHQzVno5Y3lEV0RYZnVVY0I1b3R2eWltWk1wR3dQaEhyNl9QeV9SQkNoMFVmeGU?oc=5",
-    "time": "2026-11-12T08:20:00.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "怕美國關門！ 中國AI圈急搶算力 狂囤輝達晶片",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiuAJBVV95cUxPM2RkRnZfanA5MWcySVlmYS1pcFNFdmlBNFhBUnVWTWxKaWRRWDF3WEdUTmQwS0Nna1V0N1JURzFxR2p1QUc4Z2Q1QjhWR0VuY2s1bWpwaFpZaS05OHlUMUpyQ0JURVlzU25sUUNHcTVRckNvLXJNdjVMYU02bVdYOFNhQzBoODJsWEN6b1ZYR2NjR2JpeXlzOFBlUWtOU015UVFRSlFrbFZxZ3FDTFlPQXVLbnRVZGNncmhiVFV0X2V4VjQydmppSzVIZ2ExVnFvd3g0ZW0zVWRrVUhJLUF3dkNuVUppNDR6Nl9obmg4VnJYc1lSUXAwOGtJckZKQjNJdF9iOTZpcWVGNjdDYlVFWXEteXRFbHVzNXduN01fanBSUVZiMUhsb1BrNHh3cWFuUGJuZzVMMmw?oc=5",
-    "time": "2026-11-12T08:18:00.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "日本GPIF第三季虧損5.25兆日圓 國內投資野心受考驗",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxONUNmR1RqZjc1akxNemhnUnVBeTkwYnRLT1dMZlhQSl85WkJzSThjMWY1cGdCcWkxeDlldUVkRFdBN3FjU3JDcHlYVDJpaWRHdE85NUxTMzNMaW5kN1lCMkhfSUNLV1FPa3I2TTBJbWtTMElpOW5kX0VBWDdtelRvdUJsc0d6RzJueVJGVUExWDRsUVpPM2pmSTZETUxFODZGenVPLXBEeHFrUjJpUy16cThDb2g4ZEZtTHN2dFlieWlxYVZPTkg3VU8tb29VUk5mZEdDU05oazVYOWVFdUxxMDNMc3dUeXBEcktSQ3VXSm03VHhNQXFEejdTY1JMdWVCam9KU3h6TEZnUEtmNFdHSHZEeUZJb0FIdGVNOWJjSDBUeEtfQ040QUtRc2M0VnhQQXBTeXlwRXhYSFRkZHFKUGJFTm9oVTF0amdV?oc=5",
-    "time": "2026-11-12T08:17:52.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "黃仁勳再爆偷吃恐下台 華爾街到底慌不慌？各大機構最新看法彙總",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMirgNBVV95cUxQVjZXaHJuUUVMMVBaM09rV2xqZFRXUHlWd1I0TUFwN3p2cHpzMU5LUzRQUGhzVldUZnFaZHFXbzlvLUJteUo3TFhwTHdkemZKd0lIZDNfZ2E0Y09Fb1NLR25JNTQxcERhVjJkRFEtX0licWlVRHlGSkpxYjQzRjlRWHE3clNkd1F5UVc4Um9yLVdwMER3RDMxbnVmVlNyZVdZYklCeWRxT0dLTXpJZnpuTktWaHZzNVpidkhxLWJCd1FZT3Y4d1dKSkFmME9lQi1qc04xZGZLWGU1bHFDRVR1cFBaVWRRc1ZaT0VyOGtLdmlEcms0Vk51M0ZwN00yRE5GRFRKRmVQS0VuQXM2V2p0cVhnWUlMbU9PMVFIcXlOMWpnWVFHSUZFaGt6NVJQQzZMNWJEZ2VRRjBSaUtrMlN0SUlIUXkzYm8zTWZDNFIwX2s0TzBPbXYwRDBEZjVrNnFzd0JteWdjRllUVzFWVG52anZBbWN0b2NUR3B3YXFpckxRWmNFeV92aDkzZ3MwSDFGWHpDaVl5anNUX1BtQWlpUnpUMlhmQnZ3cUo3Z3Vn?oc=5",
-    "time": "2026-11-12T08:15:00.000Z",
     "tags": [],
     "trusted": false
    }
@@ -146,7 +146,7 @@
   "basedOn": "2026-11-12",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-12T08:42:21.886Z",
+  "fetchedAt": "2026-11-12T09:04:29.662Z",
   "newsSince": "2026-11-12T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -4778,9 +4778,9 @@
    "night": {
     "session": "2026-11-12",
     "contract": "臺指期116",
-    "close": 43265,
+    "close": 43219,
     "ref": 43128,
-    "changePct": 0.32
+    "changePct": 0.21
    }
   },
   "foreignFuturesOI": {
@@ -4948,7 +4948,7 @@
    {
     "date": "2026-11-12",
     "foreign": -6.8,
-    "usdtwd": 32.922
+    "usdtwd": 32.94
    }
   ]
  },
@@ -5012,9 +5012,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-12",
-   "close": 32.92,
+   "close": 32.94,
    "prevClose": 32.95,
-   "changePct": -0.1,
+   "changePct": -0.04,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -5079,7 +5079,7 @@
   "txf": {
    "signal": "偏多",
    "strength": "弱",
-   "data": "臺指期116夜盤 43265（+0.32%，相對日盤收盤 43128）",
+   "data": "臺指期116夜盤 43219（+0.21%，相對日盤收盤 43128）",
    "source": "期交所即時行情，夜盤 2026-11-12"
   },
   "futures_oi": {
@@ -5089,9 +5089,9 @@
    "source": "期交所 OpenAPI，2026-11-11"
   },
   "us_market": {
-   "signal": "偏多",
-   "strength": "強",
-   "data": "費半 +5.66%、那指 +1.6%、標普 +1.31%（2026-11-11 美股收盤；以費半判斷）",
+   "signal": "缺漏",
+   "strength": null,
+   "data": "尚無 2026-11-12 晚間的美股收盤（最新為 2026-11-11，已反映在台股收盤）",
    "source": "Yahoo Finance"
   },
   "asia": {
@@ -5109,7 +5109,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.92，新台幣升值 0.1%",
+   "data": "美元兌新台幣 32.94，新台幣升值 0.04%",
    "source": "Yahoo Finance TWD=X，2026-11-12"
   }
  }

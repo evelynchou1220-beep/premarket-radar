@@ -143,13 +143,17 @@ export function buildHints(s) {
     const base = tech ? g.sox : g.sp500;
     const th = tech ? [2, 1, 0.3] : [1, 0.5, 0.15];
     const strength = tier(Math.abs(base.changePct), th);
-    h.us_market = hint(strength ? sign(base.changePct) : '中性', strength,
+    // 美股日期早於台股最後收盤日 → 那根美股已經反映在台股收盤價，不能再當成新的訊號（收盤後產生的初版會遇到）
+    if (base.date < s.meta.basedOn) h.us_market = missing(`尚無 ${s.meta.basedOn} 晚間的美股收盤（最新為 ${base.date}，已反映在台股收盤）`, 'Yahoo Finance');
+    else h.us_market = hint(strength ? sign(base.changePct) : '中性', strength,
       `費半 ${fmt(g.sox.changePct)}、那指 ${fmt(g.nasdaq.changePct)}、標普 ${fmt(g.sp500.changePct)}（${g.sox.date} 美股收盤；以${tech ? '費半' : '標普'}判斷）`,
       'Yahoo Finance');
   }
 
   // ADR
-  if (s.adr) {
+  if (s.adr && s.adr.date < s.meta.basedOn) {
+    h.adr = missing(`尚無 ${s.meta.basedOn} 晚間的 ADR 收盤（最新為 ${s.adr.date}，已反映在台股收盤）`, `Yahoo Finance ${s.adr.symbol}`);
+  } else if (s.adr) {
     const a = s.adr;
     const strength = tier(Math.abs(a.changePct), [2, 1, 0.3]);
     h.adr = hint(strength ? sign(a.changePct) : '中性', strength,
