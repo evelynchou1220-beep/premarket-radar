@@ -6,7 +6,7 @@ import PriceCharts from '../../components/PriceCharts.astro';
 import InstitutionalBars from '../../components/InstitutionalBars.astro';
 import FactorCard from '../../components/FactorCard.astro';
 import NewsAlerts from '../../components/NewsAlerts.astro';
-import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, verdictTone, MODE_LABEL, govBankOf, toYi } from '../../lib/site.mjs';
+import { getReports, url, md, weekday, pct, tone, fmtNum, categories, factorDefs, signalTone, signalIcon, verdictTone, MODE_LABEL, govBankOf, toYi, isScored } from '../../lib/site.mjs';
 import factorConfig from '../../data/factors.json';
 
 export async function getStaticPaths() {
@@ -27,12 +27,17 @@ const op = report.open;
 const prog = report.program;
 const isAuto = d.mode === 'auto';
 const { Content } = await render(report);
+// 回吐提醒（只提醒、不計分，CLAUDE.md §3.3）：前一日已大漲 ≥ 2%，隔夜費半又漲 ≥ 3% 或夜盤漲 ≥ 1%
+const soxNew = s.global?.sox && s.global.sox.date >= d.basedOn ? s.global.sox.changePct : null;
+const nightPct = s.market?.txf?.night?.changePct ?? null;
+const fadeWarn = (s.indicators?.changePct ?? 0) >= 2 && ((soxNew ?? 0) >= 3 || (nightPct ?? 0) >= 1);
 const ind = s.indicators;
 
 const rank = { 強: 3, 中: 2, 弱: 1 } as Record<string, number>;
 const byStrength = (a: any, b: any) => (rank[b.strength] ?? 0) - (rank[a.strength] ?? 0);
 const directional = d.factors.filter((f) => f.signal === '偏多' || f.signal === '偏空').sort(byStrength);
-const top = directional.slice(0, 3);
+// 關鍵理由只取計分的因子（2026-11-13 起收盤預測只計隔夜因子，其他為參考）
+const top = directional.filter((f) => isScored(f.key, d.target, f.signal)).slice(0, 3);
 const bulls = directional.filter((f) => f.signal === '偏多');
 const bears = directional.filter((f) => f.signal === '偏空');
 
@@ -180,6 +185,9 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
   </section>
 
   <p class="summary">{d.summary}</p>
+  {fadeWarn && (
+    <p class="alert-bar small fade">⚠ 前一日已大漲 {s.indicators.changePct}%，隔夜又大漲<span class="hide-sm">：三年回測同類情況 81% 開高，但開盤後平均回吐 0.8%，追高要小心（只提醒、不計分）</span></p>
+  )}
   {alertCount > 0 && (
     <a class="alert-bar small" href="#detail-news">
       ⚠ 盤前新聞：個股 {stockAlertCount} 則、大盤 {marketAlertCount} 則需注意<span class="hide-sm">{isAuto ? '，程式版未納入判斷，建議請 AI 升級為完整版' : '，已由 AI 判讀'}</span> ↓
@@ -228,8 +236,8 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
     <details>
       <summary>多方理由 {bulls.length} 個・空方風險 {bears.length} 個</summary>
       <div class="grid grid-2">
-        <div class="stack">{bulls.length ? bulls.map((f) => <FactorCard factor={f} />) : <p class="muted">沒有偏多因子。</p>}</div>
-        <div class="stack">{bears.length ? bears.map((f) => <FactorCard factor={f} />) : <p class="muted">沒有偏空因子。</p>}</div>
+        <div class="stack">{bulls.length ? bulls.map((f) => <FactorCard factor={f} target={d.target} />) : <p class="muted">沒有偏多因子。</p>}</div>
+        <div class="stack">{bears.length ? bears.map((f) => <FactorCard factor={f} target={d.target} />) : <p class="muted">沒有偏空因子。</p>}</div>
       </div>
     </details>
     <details>
@@ -245,7 +253,7 @@ const confBar = (c: number) => `${Math.round(((c - 50) / 35) * 100)}%`;
             {categories.map((c) => d.factors.filter((f) => factorDefs[f.key].category === c.id).map((f, i, arr) => (
               <tr>
                 {i === 0 && <td rowspan={arr.length} class="muted">{c.icon} {c.label}</td>}
-                <td>{factorDefs[f.key].label}</td>
+                <td>{factorDefs[f.key].label}{!isScored(f.key, d.target, f.signal) && <span class="dim small">（參考）</span>}</td>
                 <td><span class:list={['tag', signalTone(f.signal)]}>{signalIcon(f.signal)} {f.signal}{f.strength && `・${f.strength}`}</span></td>
                 <td class="small">{f.data}</td>
               </tr>

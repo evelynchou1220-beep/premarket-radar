@@ -58,7 +58,7 @@ for (const file of (await readdir('src/content/reports')).filter((f) => f.endsWi
   const openBand = flatBand(snap.daily, 'open');
   const op = openScore(fm.factors);
   const openJudge = judge(op.verdict, openPct, openBand);
-  const prog = programScore(snap.hints);
+  const prog = programScore(snap.hints, fm.target);
   const mode = fm.mode ?? 'ai';
   results[id] = {
     code: fm.code, target: fm.target, mode, verdict: fm.verdict, confidence: fm.confidence,

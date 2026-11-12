@@ -16,7 +16,8 @@
     "verify": "node scripts/verify.mjs",
     "daily": "node scripts/daily.mjs",
     "stocklist": "node scripts/stocklist.mjs",
-    "govbanks": "node scripts/govbanks-import.mjs"
+    "govbanks": "node scripts/govbanks-import.mjs",
+    "backtest": "node scripts/backtest/fetch.mjs && node scripts/backtest/backtest.mjs && node scripts/backtest/analyze.mjs && node scripts/backtest/variants.mjs"
   },
   "dependencies": {
     "astro": "^7.4.10",

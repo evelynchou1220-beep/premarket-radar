@@ -54,6 +54,22 @@ export function computeScore(factors) {
   return { score, max, ratio: Math.round(ratio * 1000) / 1000, verdict, confidence, missing, bull, bear, neutral };
 }
 
+/** 是否計入收盤預測：2026-11-13 起只計隔夜因子（scoring.closeFactors）與 AI 完整版有方向的新聞因子；之前的報告所有因子都計分 */
+export function isScored(key, target, signal) {
+  if (!target || target < S.closeFactorsFrom) return true;
+  if (S.closeFactors.includes(key)) return true;
+  return !AUTO.has(key) && (signal === '偏多' || signal === '偏空');
+}
+
+/**
+ * 收盤預測（報告結論）。依報告的預測日套用當時的公式版本，舊報告不追溯（CLAUDE.md §8.6）。
+ * @param {{key:string,signal:string,strength?:string|null}[]} factors
+ * @param {string} target 預測日 YYYY-MM-DD
+ */
+export function closeScore(factors, target) {
+  return computeScore((factors ?? []).filter((f) => isScored(f.key, target, f.signal)));
+}
+
 /** 開盤預測的文字：偏多→開高、偏空→開低、盤整→平盤 */
 export const OPEN_LABEL = { 偏多: '開高', 偏空: '開低', 盤整: '平盤' };
 
@@ -78,9 +94,10 @@ export function openScore(factors) {
  * 程式版判定：只用快照 hints（程式依規則算出的因子）計分。
  * 每份報告（不論 auto 或 ai）都能由快照重算，用來比較「AI 讀新聞」是否讓預測更準。
  * @param {Record<string,{signal:string,strength?:string|null}>} hints snapshot.hints
+ * @param {string} target 預測日
  */
-export function programScore(hints) {
-  return computeScore(Object.values(hints ?? {}));
+export function programScore(hints, target) {
+  return closeScore(Object.entries(hints ?? {}).map(([key, h]) => ({ key, ...h })), target);
 }
 
 /**

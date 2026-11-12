@@ -1,8 +1,34 @@
 {
  "news": {
-  "fetchedAt": "2026-11-12T09:04:14.825Z",
+  "fetchedAt": "2026-11-12T09:41:58.711Z",
   "since": "2026-11-12T13:30+08:00",
   "stock": [
+   {
+    "title": "外資只賣6.8億卻猛砍AI股！仁寶遭倒5.2萬張 台積電、廣達也入列",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMiuAJBVV95cUxNMVdIQ3J2aEhtRHdkLXZuWVpRMVZKMlZYaWJzZzNYTktFTjVGM2pnZWVqTnhCYmJna0JOaldrN013MUxmR3VSLW5FeTFCaVhqMVlfMUF2Q3dfM0daX0I4RlIwR1FSWFN3WE8tQVpmMXBwZW9BdEtHb3BicGl4ek9IYllEbXNocEtNQzFDU09QUWFxYVkxMjBwMDVPX0NiNmpMVEZKcldabEFLVWI4SEJJeW5nSlA4RkwxQlNTdU1LekJlbFFJSTBtODZXblh4T09OU0kxaUQ0MHFoUU03cmRBMUpJM3h3U2MxUnJ0SVFuYkZZMlhiY1hqcjNJdHplUTVQajNNcDRQR09JU2IwVUlmeUtkWmhaS1dVTjl5MHRGNWtHTFFWVkNUYWRaVkpNTXJsR1J0S0Rfelk?oc=5",
+    "time": "2026-11-12T09:14:20.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台灣資安戰》台積電捲4.6萬筆個資疑雲 外交部、91APP也拉警報",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi6gJBVV95cUxOcFRlQU5RZWRuUmtWRXZOTVZXSkxBU3VDOXZFS2Y2WmlDZE02MnBhbTB1VFhGdEVvdXhuUmszY2Ftb0EzcGtOemtvR1JPYzVXY21vRHk2R3RNSzVEMkp5bWlxR0d5RTVFX0VGVHQ4Rkc1MFp3NUI4YncyaEhuazNGU3ZKYXJhWlF3NUJ6WkQ5WGQ5M3VYdDVld0hhWHlXdGZEbmNsNlVmby1qS1RueTFxLXRGUDJLdzlNX2FIQ05rMmtmMzgxWVpMcnVSaGVrc1RVUEJScFI4ZU5ackM5LUliVFNibVB5eEJiZzFqZE9CdmE5MlFZSThyVC1TTk1BX1ZrS0xSLTlDRE40TzJ0OExiZUxmM1Rjd1plMHl3ZHJlczVGNDNMMTV2TkRPcU9vTXo1ZERidDVlU21iSHdyTWRqS01LSG9GYVFwRzM0OEg5SFdVQTZucmZUaWlsbG5LaEdyZ0JHeEVfaDhmUQ?oc=5",
+    "time": "2026-11-12T08:58:29.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台股重挫1165點、驚險守住4萬3！台積電跌55元 南電、景碩跌停",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi3wJBVV95cUxOZEs1MzRSUzlOQ3FWNnI5TEc2SnF3ay1ieHk3OWlkb1Vaa0REWEV6UFFOTXVPbm44TFBSZ0M3clFYSzlfdlZfd19UUXY2MkxiUUVPRTZHNi02cnBSUXBiRW5NZm5GOHFMNGZqY2NVb2dLZmdQdGMzNml1V0JXUGUwZkczMERuRURGWF9DWnh2dVN1bGNZLVQ1VC0wTFdIRnFELXI3d1ZvRE5uSXJRYU8zZVJ6dGVnSDNVX0hnRE96WXdDNVNSeE1pcUJvODlPYlB1UzZIRkJDUkprR0g1QzdfUHF1NXVpZmlieFpPZ25CeW5MV1VNZi13RDdxY1RYS0IzekdDMEJSRFBKeTJfVUdlRnR0WFMwNnZzWGpDZXdwMTJ1SllreXROVC1Rb2RMSFZjWEpia3ZkR1JNNlR3THVIV1d3bE02cEFuMm42bWc0dzItZzl0Ulk5bGJQZnVGeGM?oc=5",
+    "time": "2026-11-12T08:56:43.000Z",
+    "tags": [
+     "風險事件"
+    ],
+    "trusted": false
+   },
    {
     "title": "【Follow法人】外資連11賣卻大幅縮手！今僅砍6億元 分析師：開始翻多了",
     "source": "Yahoo股市",
@@ -23,7 +49,15 @@
     "title": "00413A掛牌第二天漲近4% 鎖定台積電生態系",
     "source": "Yahoo新聞",
     "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxQTTlhM1FhaTFnWlk5UEdqTi1raldjYURVSmk0UUNsdHBvT0ZmV1V3ZjFOT3dvVGhRNGlxTEs4YjRMU1B1X1d5NThfQWZTMUVGSGl0d2V2WXVreGV6d3h1OEpIb21RU241bV9VdUU2a2Q2bFU2UnEybmE1cVRFQXRISktWQ3MxY3ZMaXV6ZVJZa3R0ZXdSTGhETzdVcFRNTXBKSExTVDVOUC1tbkR3bHVWX2FYcHFZbVRvX19PeU1NeEVkcDFZSGh4VnRuWlNCS2cySzJfeVAtVmQ2Mkx5akVmRWtGNjFWcnd1M2FoS0IwWkpSSTZQRTRUWlRGVW1CYUttb3lIcXEyOGd4THVteXRyNlB3?oc=5",
-    "time": "2026-11-12T07:34:20.000Z",
+    "time": "2026-11-12T07:43:28.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台股收跌1165點守住10日線 台積電挫55元",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxONnBIUFRDS1FqRkp6NmpBcmhPb3ZsdEpyRFBVODFwQ2dlRlRhYmhRNTNnNGVHZWpQdERjN2VtRkpVWEQ2UTh2bVN0SnpfNWdtNkpnNXJibHZXS0cwcm1mR2x2THBpNUs1WEduU1Q5UVVYREd4TXFPTFhwbV9NbUk4MDR5Q2Jxak5nQkRHQndoaWgyak1FcFoydGN0NjVYX0hWbUZGbDZ1b3diN3F6Wk0xODBaLVVQNExYM2VmMUxRYnI1Nmd3VXJUQ21yOXpfNFFpT2hudGVnQW02MHdnVklpUFJEdUZOd0RZejNNSEhoV2dGTUJaeHZ0cDk3NE5MTmlZalAwWEYwdw?oc=5",
+    "time": "2026-11-12T07:38:06.000Z",
     "tags": [],
     "trusted": false
    },
@@ -34,14 +68,6 @@
     "time": "2026-11-12T07:26:00.000Z",
     "tags": [],
     "trusted": true
-   },
-   {
-    "title": "台股收跌1165點守住10日線 台積電挫55元",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxONnBIUFRDS1FqRkp6NmpBcmhPb3ZsdEpyRFBVODFwQ2dlRlRhYmhRNTNnNGVHZWpQdERjN2VtRkpVWEQ2UTh2bVN0SnpfNWdtNkpnNXJibHZXS0cwcm1mR2x2THBpNUs1WEduU1Q5UVVYREd4TXFPTFhwbV9NbUk4MDR5Q2Jxak5nQkRHQndoaWgyak1FcFoydGN0NjVYX0hWbUZGbDZ1b3diN3F6Wk0xODBaLVVQNExYM2VmMUxRYnI1Nmd3VXJUQ21yOXpfNFFpT2hudGVnQW02MHdnVklpUFJEdUZOd0RZejNNSEhoV2dGTUJaeHZ0cDk3NE5MTmlZalAwWEYwdw?oc=5",
-    "time": "2026-11-12T07:07:02.000Z",
-    "tags": [],
-    "trusted": false
    },
    {
     "title": "部分員工資訊遭置外部網站 台積電：無證據顯示系統遭入侵",
@@ -74,30 +100,6 @@
     "time": "2026-11-12T06:12:51.000Z",
     "tags": [],
     "trusted": false
-   },
-   {
-    "title": "台積電驚傳4.6萬筆員工個資遭駭勒索！第三方雲端拉警報！",
-    "source": "理財周刊",
-    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE11QWxFNXhqR1FMRXdhcXUzamFLOE01ZEl2ekdOSFZKcF9YSmZRVHAyQVd4cWswMEEtSkNVRUFmclVURjFoNjhWSmFzR3ZvSXZRVUd0d0RHSklZa25TaE9LRHB2Qy1BSDl1RTltX1NTMA?oc=5",
-    "time": "2026-11-12T06:08:10.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "台股V轉失敗！終場大跌1165點險守43K 護國神山台積電跌55元",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMi3wJBVV95cUxNQXg2SmdKOTFKaTRsenVtbWFGdE9aYlgxakJfZmRIVkxtV0FQNTAtZmZqcjdKQ1RHcTJKamN2aGhQeU1hY2t0UzNtbzAtS1NJOXhPcFhMamdCM0h2YldwWFA3ajU5Q3hYMkt6UkRvSUlIalowYWhDRXIybFl6ZHdSNkxXNVlFWTJWQ0R5ZDFZZTEyOF9rQzA0U3ZQNDlnVDFkS0VDUmtjZE9RUzFPVlNQS3NDSjlLRktZc0doZkFJWENlRVhPTGh2bERQRTdhb2ZfelNwdXN0Qi1XNXJTNFI0d0xlUGI2ZTRXTFNUYllsR01rRnU5aHg3bXZ1NlZTQTlvVVJGQVZMbGJBRlJGNGFBVjZ5ZERRcWJILXljMmxsb0YtYlpRb0JqMnY2Zk8yV1hMdGRBYjNBMWtqMmgwbTc3ZWJCbGh1ekRJcXFtMFFqMklDcmZpWHZadFdTNVlWVTQ?oc=5",
-    "time": "2026-11-12T06:03:08.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "台股挫1165點險守43000點　台積電跌55元",
-    "source": "經濟日報",
-    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1pWV82M3VSdHZrU1lLY09adkhYQVpZSG8tNWRjUzU1Mkx1OHlsWlhkbE9TYmhETDU4RWZjYVBYTVZDaUUxLUVFQ3cwSGtRRFFTVkk0a1R2bmNyZ9IBX0FVX3lxTE4xd094SGtoSjJiRG5XTEdDRzdWbXFKSm1Wd0gtdTlkeFdxVWZ4dGlTSXlzUklpUTY1Z09DU1dFYWllSnUza0UwYzdjcnlyZDRpZTNoQ3lmeWpNYlFPOVVj?oc=5",
-    "time": "2026-11-12T06:01:19.000Z",
-    "tags": [],
-    "trusted": true
    }
   ],
   "market": [
@@ -140,7 +142,7 @@
   "basedOn": "2026-11-12",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-12T09:04:14.825Z",
+  "fetchedAt": "2026-11-12T09:41:58.711Z",
   "newsSince": "2026-11-12T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -212,7 +214,7 @@
   "d": 48.5,
   "prevK": 60.6,
   "prevD": 38.3,
-  "volumeRatio": 0.58,
+  "volumeRatio": 0.63,
   "candle": {
    "bodyPct": -1.88,
    "upperShadowPct": 0.42,
@@ -4164,7 +4166,7 @@
    "high": 2395,
    "low": 2330,
    "close": 2340,
-   "volume": 31221285
+   "volume": 34359285
   }
  ],
  "intraday": [
@@ -4773,9 +4775,9 @@
    "night": {
     "session": "2026-11-12",
     "contract": "臺指期116",
-    "close": 43219,
+    "close": 43455,
     "ref": 43128,
-    "changePct": 0.21
+    "changePct": 0.76
    }
   },
   "foreignFuturesOI": {
@@ -4943,7 +4945,7 @@
    {
     "date": "2026-11-12",
     "foreign": -6.8,
-    "usdtwd": 32.94
+    "usdtwd": 32.918
    }
   ]
  },
@@ -5007,9 +5009,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-12",
-   "close": 32.94,
+   "close": 32.92,
    "prevClose": 32.95,
-   "changePct": -0.04,
+   "changePct": -0.11,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -5029,7 +5031,7 @@
   "changePct": 4.25,
   "name": "台積電 ADR",
   "ratio": 5,
-  "impliedTwd": 2723.1
+  "impliedTwd": 2721.5
  },
  "hints": {
   "kline": {
@@ -5047,7 +5049,7 @@
   "volume": {
    "signal": "中性",
    "strength": null,
-   "data": "成交量為前 5 日均量的 0.58 倍，當日漲跌 -2.3%",
+   "data": "成交量為前 5 日均量的 0.63 倍，當日漲跌 -2.3%",
    "source": "由日 K 計算"
   },
   "momentum": {
@@ -5059,7 +5061,7 @@
   "foreign": {
    "signal": "偏空",
    "strength": "強",
-   "data": "2026-11-12 外資賣超 3,955 張（占成交量 12.7%）；近 5 日合計賣超 37,702 張",
+   "data": "2026-11-12 外資賣超 3,955 張（占成交量 11.5%）；近 5 日合計賣超 37,702 張",
    "source": "證交所 T86，2026-11-12"
   },
   "trust": {
@@ -5071,7 +5073,7 @@
   "dealer": {
    "signal": "中性",
    "strength": null,
-   "data": "2026-11-12 自營商（自行買賣）賣超 298 張（占成交量 1%），連 3 日同向；近 5 日合計賣超 1,891 張",
+   "data": "2026-11-12 自營商（自行買賣）賣超 298 張（占成交量 0.9%），連 3 日同向；近 5 日合計賣超 1,891 張",
    "source": "證交所 T86，2026-11-12"
   },
   "margin": {
@@ -5082,8 +5084,8 @@
   },
   "txf": {
    "signal": "偏多",
-   "strength": "弱",
-   "data": "臺指期116夜盤 43219（+0.21%，相對日盤收盤 43128）",
+   "strength": "中",
+   "data": "臺指期116夜盤 43455（+0.76%，相對日盤收盤 43128）",
    "source": "期交所即時行情，夜盤 2026-11-12"
   },
   "futures_oi": {
@@ -5119,7 +5121,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.94，新台幣升值 0.04%",
+   "data": "美元兌新台幣 32.92，新台幣升值 0.11%",
    "source": "Yahoo Finance TWD=X，2026-11-12"
   }
  }

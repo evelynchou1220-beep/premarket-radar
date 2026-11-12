@@ -4,7 +4,7 @@
 import { readFile, readdir, access } from 'node:fs/promises';
 import { parse } from 'yaml';
 import { validateReport, validateBody, validateGovBank } from '../src/lib/validate.mjs';
-import { computeScore } from '../src/lib/scoring.mjs';
+import { closeScore } from '../src/lib/scoring.mjs';
 
 const DIR = 'src/content/reports';
 const only = process.argv[2]?.replace(/\.md$/, '');
@@ -41,7 +41,7 @@ for (const file of files) {
     console.log(`✘ ${file}`);
     errors.forEach((e) => console.log(`   - ${e}`));
   } else {
-    const s = computeScore(fm.factors);
+    const s = closeScore(fm.factors, fm.target);
     console.log(`✔ ${file}  ${fm.verdict}｜信心度 ${fm.confidence}%｜得分 ${s.score}/${s.max}（多 ${s.bull}・空 ${s.bear}・中性 ${s.neutral}・缺漏 ${s.missing}）`);
   }
 }

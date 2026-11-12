@@ -26,7 +26,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
   <h1>{target ? `${md(target)}（${weekday(target)}）戰況預測` : '戰況預測'}</h1>
   <p class="small muted sub">
     {fixed.some(isDraft)
-      ? <span class="warn">初版：尚未納入今晚美股與夜盤，開盤日 05:40 自動更新</span>
+      ? <span class="warn">初版：尚未納入今晚美股與夜盤，開盤日 05:40 自動更新<span class="hide-sm">。三年回測初版只有約 32% 準，僅供參考</span></span>
       : <>開盤前最後一版<span class="hide-sm">，收盤後自動對答案</span></>}
   </p>
 

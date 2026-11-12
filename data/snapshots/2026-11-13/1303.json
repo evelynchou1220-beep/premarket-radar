@@ -1,8 +1,16 @@
 {
  "news": {
-  "fetchedAt": "2026-11-12T09:04:38.626Z",
+  "fetchedAt": "2026-11-12T09:42:20.999Z",
   "since": "2026-11-12T13:30+08:00",
   "stock": [
+   {
+    "title": "【即時新聞】南亞今日成交金額放大，股價疲軟隨大盤下挫1165點！",
+    "source": "CMoney投資網誌",
+    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNMVBGZWp2V3Z5YzJXaTBhbnJ3UjhNaHdsd1lqVkZrbmNzMHhLZWdCMF85b0k4YkpPVWVxZjdyenRQUEJjcHA5VVJOT2FLV2hQeEJyQlFEaklYSDdNTFB4SVJudUJwRFg1UXZWamJSc3hETmRJdjBYZHNoWUFOMWtGSm1saTRNYnNxYmFHYnJsNWo?oc=5",
+    "time": "2026-11-12T09:05:23.000Z",
+    "tags": [],
+    "trusted": false
+   },
    {
     "title": "南亞(1303) 個股概覽 | 個股 - 股市",
     "source": "CMoney",
@@ -60,7 +68,7 @@
   "basedOn": "2026-11-12",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-12T09:04:38.626Z",
+  "fetchedAt": "2026-11-12T09:42:20.999Z",
   "newsSince": "2026-11-12T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -4692,9 +4700,9 @@
    "night": {
     "session": "2026-11-12",
     "contract": "臺指期116",
-    "close": 43219,
+    "close": 43455,
     "ref": 43128,
-    "changePct": 0.21
+    "changePct": 0.76
    }
   },
   "foreignFuturesOI": {
@@ -4862,7 +4870,7 @@
    {
     "date": "2026-11-12",
     "foreign": -6.8,
-    "usdtwd": 32.94
+    "usdtwd": 32.918
    }
   ]
  },
@@ -4926,9 +4934,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-12",
-   "close": 32.94,
+   "close": 32.92,
    "prevClose": 32.95,
-   "changePct": -0.04,
+   "changePct": -0.11,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4992,8 +5000,8 @@
   },
   "txf": {
    "signal": "偏多",
-   "strength": "弱",
-   "data": "臺指期116夜盤 43219（+0.21%，相對日盤收盤 43128）",
+   "strength": "中",
+   "data": "臺指期116夜盤 43455（+0.76%，相對日盤收盤 43128）",
    "source": "期交所即時行情，夜盤 2026-11-12"
   },
   "futures_oi": {
@@ -5023,7 +5031,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.94，新台幣升值 0.04%",
+   "data": "美元兌新台幣 32.92，新台幣升值 0.11%",
    "source": "Yahoo Finance TWD=X，2026-11-12"
   }
  }

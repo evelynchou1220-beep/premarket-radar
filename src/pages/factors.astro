@@ -15,11 +15,12 @@ const all = Object.values(factorDefs) as any[];
   <section class="panel section">
     <div class="panel-title">評分公式</div>
     <ol class="formula">
+      <li><b>計分因子：</b>收盤與開盤預測都只計<b>隔夜因子</b>（台指期夜盤、ADR、美股、日韓、匯率）與 AI 完整版中有方向的新聞因子。其他因子（K 線、均線、法人、融資、營收等）照常顯示，標示「參考」不計分。{S.closeFactorsNote}</li>
       <li>每個因子給分：偏多 = +強度、偏空 = −強度，強度「強 {S.strengthPoints['強']}／中 {S.strengthPoints['中']}／弱 {S.strengthPoints['弱']}」；中性 = 0；缺漏不計分。</li>
       <li>得分比例 = 總分 ÷（有資料的因子數 × 3），範圍 −1 到 +1。</li>
       <li>比例 ≥ {S.bullThreshold} → <span class="up">偏多</span>；≤ {S.bearThreshold} → <span class="down">偏空</span>；介於兩者之間 → 盤整。</li>
       <li>信心度：偏多／偏空 = 50 + 80 × |比例|；盤整 = 50 + 15 × (1 − |比例| ÷ {S.bullThreshold})。上限 {S.confidenceCap}%，每個缺漏因子扣 {S.missingPenalty} 分，最低 50%。</li>
-      <li>開盤預測：用隔夜因子（台指期夜盤、ADR、美股、日韓、匯率）加上 AI 完整版中有方向的新聞因子（強度用「開盤影響」），套用同一個公式，偏多＝開高、偏空＝開低、盤整＝平盤；驗證時以開盤跳空和「近 20 日跳空中位數 × 0.5（最低 0.2%）」比較。</li>
+      <li>開盤預測：和收盤用同一組因子，但新聞因子的強度改用「開盤影響」，套用同一個公式，偏多＝開高、偏空＝開低、盤整＝平盤；驗證時以開盤跳空和「近 20 日跳空中位數 × 0.5（最低 0.2%）」比較。</li>
       <li>驗證：先算該股的「盤整範圍」＝最後收盤日之前 {fb.window} 日每日漲跌幅（絕對值）的中位數 × {fb.factor}，最低 {fb.min}%。預測日收盤漲跌超過 +範圍算偏多、低於 −範圍算偏空，其餘算盤整。波動大的股票範圍較寬（例如台積電約 ±0.75%、台達電約 ±2%）。</li>
     </ol>
     <p class="dim small" style="margin:0">信心度上限設為 {S.confidenceCap}%，因為沒有任何方法能百分之百預測股價。</p>

@@ -1,8 +1,9 @@
 ---
 // 單一因子的理由卡片：判定、強度、數據、影響機制、來源。
-import { factorDefs, categories, signalTone, signalIcon } from '../lib/site.mjs';
-interface Props { factor: { key: string; signal: string; strength?: string | null; data: string; source: string; reason: string } }
-const { factor: f } = Astro.props;
+import { factorDefs, categories, signalTone, signalIcon, isScored } from '../lib/site.mjs';
+interface Props { factor: { key: string; signal: string; strength?: string | null; data: string; source: string; reason: string }; target?: string }
+const { factor: f, target } = Astro.props;
+const reference = target ? !isScored(f.key, target, f.signal) : false; // 不計入收盤預測的參考因子
 const def = factorDefs[f.key];
 const cat = categories.find((c) => c.id === def.category);
 const override = f.reason.startsWith('【改判】');
@@ -11,6 +12,7 @@ const override = f.reason.startsWith('【改判】');
   <header>
     <span class="name">{cat?.icon} {def.label}</span>
     <span class:list={['tag', signalTone(f.signal)]}>{signalIcon(f.signal)} {f.signal}{f.strength && `・${f.strength}`}</span>
+    {reference && <span class="tag" title="三年回測對隔日方向沒有預測力，只顯示、不計分">參考</span>}
     {override && <span class="tag accent" title="AI 推翻了程式的建議判定，原因寫在下方">改判</span>}
   </header>
   <p class="data num">{f.data}</p>

@@ -3,7 +3,8 @@ import { getCollection } from 'astro:content';
 import factorConfig from '../data/factors.json' with { type: 'json' };
 import results from '../../data/results.json' with { type: 'json' };
 import drafts from '../../data/drafts.json' with { type: 'json' };
-import { computeScore, programScore, flatBand, openScore, judge } from './scoring.mjs';
+import { closeScore, programScore, flatBand, openScore, judge } from './scoring.mjs';
+export { isScored } from './scoring.mjs';
 import { validateGovBank } from './validate.mjs';
 
 export const SITE_NAME = '盤前雷達';
@@ -69,8 +70,8 @@ export async function getReports() {
         ...r,
         snapshot,
         result,
-        score: computeScore(r.data.factors),
-        program: programScore(snapshot?.hints), // 只用程式因子重算的判定，AI 完整版用來對照
+        score: closeScore(r.data.factors, r.data.target),
+        program: programScore(snapshot?.hints, r.data.target), // 只用程式因子重算的判定，AI 完整版用來對照
         band, // 盤整範圍（%）
         draft,
         draftHit: draft && result && !result.void ? judge(draft.verdict, result.changePct, band).hit : null,

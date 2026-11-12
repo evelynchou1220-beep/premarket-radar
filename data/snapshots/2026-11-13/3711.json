@@ -1,6 +1,6 @@
 {
  "news": {
-  "fetchedAt": "2026-11-12T09:04:34.324Z",
+  "fetchedAt": "2026-11-12T09:42:15.472Z",
   "since": "2026-11-12T13:30+08:00",
   "stock": [],
   "market": [
@@ -43,7 +43,7 @@
   "basedOn": "2026-11-12",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-12T09:04:34.324Z",
+  "fetchedAt": "2026-11-12T09:42:15.472Z",
   "newsSince": "2026-11-12T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -115,7 +115,7 @@
   "d": 32.7,
   "prevK": 38,
   "prevD": 29.7,
-  "volumeRatio": 0.72,
+  "volumeRatio": 0.74,
   "candle": {
    "bodyPct": -5.51,
    "upperShadowPct": 1.62,
@@ -4067,7 +4067,7 @@
    "high": 630,
    "low": 580,
    "close": 586,
-   "volume": 22859233
+   "volume": 23611233
   }
  ],
  "intraday": [
@@ -4676,9 +4676,9 @@
    "night": {
     "session": "2026-11-12",
     "contract": "臺指期116",
-    "close": 43219,
+    "close": 43455,
     "ref": 43128,
-    "changePct": 0.21
+    "changePct": 0.76
    }
   },
   "foreignFuturesOI": {
@@ -4846,7 +4846,7 @@
    {
     "date": "2026-11-12",
     "foreign": -6.8,
-    "usdtwd": 32.94
+    "usdtwd": 32.918
    }
   ]
  },
@@ -4910,9 +4910,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-12",
-   "close": 32.94,
+   "close": 32.92,
    "prevClose": 32.95,
-   "changePct": -0.04,
+   "changePct": -0.11,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4932,7 +4932,7 @@
   "changePct": 6.6,
   "name": "日月光投控 ADR",
   "ratio": 2,
-  "impliedTwd": 622.9
+  "impliedTwd": 622.5
  },
  "hints": {
   "kline": {
@@ -4950,7 +4950,7 @@
   "volume": {
    "signal": "中性",
    "strength": null,
-   "data": "成交量為前 5 日均量的 0.72 倍，當日漲跌 -5.02%",
+   "data": "成交量為前 5 日均量的 0.74 倍，當日漲跌 -5.02%",
    "source": "由日 K 計算"
   },
   "momentum": {
@@ -4962,13 +4962,13 @@
   "foreign": {
    "signal": "偏空",
    "strength": "中",
-   "data": "2026-11-12 外資賣超 1,065 張（占成交量 4.7%），連 3 日同向；近 5 日合計賣超 25,063 張",
+   "data": "2026-11-12 外資賣超 1,065 張（占成交量 4.5%），連 3 日同向；近 5 日合計賣超 25,063 張",
    "source": "證交所 T86，2026-11-12"
   },
   "trust": {
    "signal": "偏多",
    "strength": "強",
-   "data": "2026-11-12 投信買超 613 張（占成交量 2.7%），連 3 日同向；近 5 日合計買超 9,378 張",
+   "data": "2026-11-12 投信買超 613 張（占成交量 2.6%），連 3 日同向；近 5 日合計買超 9,378 張",
    "source": "證交所 T86，2026-11-12"
   },
   "dealer": {
@@ -4985,8 +4985,8 @@
   },
   "txf": {
    "signal": "偏多",
-   "strength": "弱",
-   "data": "臺指期116夜盤 43219（+0.21%，相對日盤收盤 43128）",
+   "strength": "中",
+   "data": "臺指期116夜盤 43455（+0.76%，相對日盤收盤 43128）",
    "source": "期交所即時行情，夜盤 2026-11-12"
   },
   "futures_oi": {
@@ -5022,7 +5022,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.94，新台幣升值 0.04%",
+   "data": "美元兌新台幣 32.92，新台幣升值 0.11%",
    "source": "Yahoo Finance TWD=X，2026-11-12"
   }
  }

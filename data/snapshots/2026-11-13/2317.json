@@ -1,8 +1,104 @@
 {
  "news": {
-  "fetchedAt": "2026-11-12T09:04:24.401Z",
+  "fetchedAt": "2026-11-12T09:42:06.975Z",
   "since": "2026-11-12T13:30+08:00",
   "stock": [
+   {
+    "title": "劉揚偉：鴻海 AI 雲端業績占比拚逾六成，觀察記憶體零組件供應",
+    "source": "TechNews 科技新報",
+    "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5zSzRRZGM3ekpaekZuM3U1QW5WeGlZMTVzS0V6dEx4UGVoUFVRZ0tBZzZuZlJkYlhrTmwwcDd6Nkw1UGhRUXBFSFRVMmlFc0VkX3drdUVIWGJKNVdWS3dfdlE0azU?oc=5",
+    "time": "2026-11-12T09:40:33.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "鴻海Q3每股賺5.51元，2027年AI機櫃出貨估高雙位數成長",
+    "source": "口袋證券",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5aNDdiY01kdWpPcnNkLXBsbFRxQ3A0aElUVkhiSDR0bmtIZlUtZWt3RTlhSjFTN28tQlRIS0xuX0MwUzg1Rm9oYmhiYUNYWGYweDRjS0EwNVdqeVZ4b284R0FTWjNldw?oc=5",
+    "time": "2026-11-12T09:34:19.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "〈鴻海法說〉劉揚偉：明年AI機櫃出貨高雙位數成長、市占率提升 將新增更多NeoCloud客戶",
+    "source": "鉅亨網",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9BX1M1MjBST2FsZEh4bU1mV3RxVUdPMWJMN0tYRFFKZ3NleWxndlhOSTVnZ1JOazRQVk5wX1g4NTN0aG4yc3dwSm5BejVWcms?oc=5",
+    "time": "2026-11-12T09:33:01.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "鴻海Q3獲利創新高/EPS 5.51元，前三季EPS 13.35元",
+    "source": "台視全球資訊網",
+    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNSjFOLW5wZkJ5Vk9lYkZuZlRQLThZVWdyTGM3TU5aa3ZacGpMMjZBVzRyRzlFemZJMmY2ZV9YNDZDa1RxTnhQV2M0Y3hhb3VvaXoyX2ltLUdoNzhOYVpnSlRxY2hiLXRaMTREOHd4ajBBNVA1eU5LYXN0ZjJ0MTNiNlFBNU5sc0NnNlhwem9iRUp5UQ?oc=5",
+    "time": "2026-11-12T09:31:51.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "鴻海AI大轉骨2》獲利創高、淨現金轉負 財務長揭現金流考驗",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi7wJBVV95cUxOMkw0bW5hVkpWU0JJVHpmdTE1UV9sbDRxVUtiRUdKYWhJWHlYWFlLUUswTk9lRThtRWtidDNENVpWTzFzVHNCdVZ4SWVSSGFsTjNqaVo5MjFXS3VRa2NzVkdzRmhfbkhqQkRPVkFfcEpaMDU2ZnJ4Sl9ZZHFmY0VwZlR1R0ZJSWxxOGQ0VnVvTWg1blJNN3VqLXZ5aHBhSS02MkhEMFBQdWxCekVCZEpWZG9lX1VNTlh5NV9tQ2JqaldDQXEzLUU5TnpGTW40VzhKVXhocy1RWEZqTEZVU1lyVXVRb2JQTjc2d01MX2Rld3NSNGk1dzhWdFJCSU5iYmxOYmNBZzJNOWpPOFdYaEt2N3Fydk5KVVA1T3RuV3IwcUVWWGh1Qi11c0x0RlU2SVFRSmcxSEJXVGFmNDdiNGVUODMyUUtZTl9oZGhOT1NTTEY2SThPcG5MOG1DQTVodkNobjA5U2FRX2d2MzU5X0Zn?oc=5",
+    "time": "2026-11-12T09:28:13.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "拉回！跟上布局的機會、台積電、鴻海、建榮、富邦金",
+    "source": "鉅亨網",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5UQUY5SGFWVW5XODdrVFR3ajRaQTFNY3ZPcGtZWjlFZWs1cUIxbEtLWUpuSWtZa1JHYkxGNUFqY0dsNzFLUkNoVUVZYU1pSlk?oc=5",
+    "time": "2026-11-12T09:25:46.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "鴻海AI大轉骨1》回擊AI泡沫疑慮 劉揚偉連喊2次「拉貨非常強勁」",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi8wJBVV95cUxNRWJuWVFfdlRTT25Cb2NfTE1HZ3U4TnFxRVYwOFJsODhOXy1IYW1XUlhDZi1zbVRBZ2FQMHJEaHRYdkxiSGx1Ul9mZkFEQmhBQk9oZUhXQzZRN2lrNXlITE83V1NwVW9pUVZTNWZRQlRJYnR2MHA3M1JpMXRzSzZibW9pald1a3R1azQ5NFdsUm5renVCdG1OOEk2Qk9xT2ljRUw1SU5IYnpjc0ZEVlFTTE02c2ZneHNqdVZaNDlVOXNURFI4MHVuc0VuWTN2NFR5VlZpTUgzUUpVMkxjNmdGdDM5WHVVakpyTWJUeUxYVWJWREltNEtvdzYzRzZGc3ljZFRXQ2dVMERVaFpxdWV5ZV9lZFY2OTh2NmJkLTRHOXBDNmUxQjZPakZJQTF2bXFMLWV1WlU3RWRQQzB6bU5XMG1lVFJCY2pYbUZSY2F5cjhfTnhiT2RLR2p0V1EtRVVwcWc2TW5tbXhoVzZialk2MHNiMA?oc=5",
+    "time": "2026-11-12T09:15:54.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "TWA00 加權指數- 鴻海10月突破1.3兆！AI機櫃明年拚高雙位數成長！ - 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5oNlUyWlJHNnRXU01Qd0tfcURNSGE4SmJsWUNnVE5EbC1aSU83YlR6QTF4Q1p6RXJBTkNWeWhidV83X19lY2h4d2U2bVdteWhkNkN3V3JnZVo?oc=5",
+    "time": "2026-11-12T09:13:27.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "鴻海上調四大產品展望，明年AI機櫃出貨拚高雙位數增- 新聞",
+    "source": "MoneyDJ",
+    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUzQyTnZkVlFDREJ2dVdxYTFjQjh4VDlfOERCMnFLZkxTVGVyMTl2Q1dRM3hWeWxuVXU2VFFnZjBXSnN0TTdpSVFNSzlHSkxZRTdyQ2I3QVVodmtUSFQtZ09QQ0tjT0xYZ2p2NzFtYWpkcUlvekQ4YURSd1JlZ1pJTEE1R0VXMjlXTF82V282Q1pudw?oc=5",
+    "time": "2026-11-12T09:13:00.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "顧及輝達客戶關係 鴻海事前低調溝通讓法說會不失焦",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9fdXYzQ0NsYXpDY29YZFM3WXcySVgtYmJ5ck5odVRROVZZWjUtSzhtTmRrRm9rbFhkU1VfVHZHSE13S0FlZWNlQjhOZFdrTGVSS0J3b1VQbVVNWUx5ZUxKNHFvbHEwTGlELVZkbEtOMW8wT2vSAVZBVV95cUxNWUxkdW41dDlyVk1GZHdmdlVEV3pkMk1XNXlZNE5Majk1bjQ2MDNITTA2RXNwTzJvUFpvY1FpbGZpU2NIVkJDRnlZamlhWU9hZTFMejhodw?oc=5",
+    "time": "2026-11-12T09:11:11.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "【即時新聞】今日最新！鴻海第三季獲利高達775.24億元創單季新高，EPS衝上5.51元",
+    "source": "CMoney投資網誌",
+    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR2J5Zk5mbjEzZlpWTFgxS1BTM0dKLUZydHpNeWxFLVp3V0NvSGNWcFdqTnhNWE5SSnVGWlFfUzd2WEFhN2N5R29BTW5Eb2RqOXJqb2VhZ1VPTmxmZjVLdDZFTjFQQ042SXcxaVNmSHdmWXJZRDg5RENJLW10RXFmdjNnVzR4QTlDY0RkUVRsbGw?oc=5",
+    "time": "2026-11-12T09:07:02.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": false
+   },
    {
     "title": "鴻海法說／寄售模式助攻！伺服器出貨暴增1.5倍 劉揚偉看好CPO商機",
     "source": "TVBS新聞網",
@@ -12,112 +108,6 @@
      "公司事件"
     ],
     "trusted": false
-   },
-   {
-    "title": "鴻海AI業務續旺 雲端網路營收占比3至5年上看6成",
-    "source": "自由時報",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE92dllic25mQXJfQmhmcTdzaU85OV9DdGNVNG14c0IxS3l6dUlVTEV3UjBjcUlkcFNzS2Z5UjJvR2ZEa1BueG01TUpxY2R5TjZVbDVDTWM0SWY?oc=5",
-    "time": "2026-11-12T08:53:15.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "鴻海劉揚偉：AI 算力需求未見放緩，ASIC 開發週期已縮至 9 個月",
-    "source": "鏈新聞 ABMedia",
-    "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1aRXVNOC1VMmZpTGtlWEdBbEFWT2habE1LbnE4V2MxbnJIWC1HU25vZE1UMkhDdno0azlSTXZya2c2S1VmTGtqelJTOXJUcWFYeGFDd1BFa0RMeDJOTHkyOWxDelZReThSbHVITXhoR0Y?oc=5",
-    "time": "2026-11-12T08:34:25.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "創新高！鴻海Q3每股賺5.51元 前三季 EPS 13.35元",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxNTWJLRUtYLWc4aHVLUFZHZDR5NXlQM1BmX3lVS0s2T2hVTEpRR0lOVUtYWnNmZkh3bWtseFpwOVN5M2JveFFwb1ZsYUJtZ19aaW5DU0FGdWVhbDgtRjdCbXBaTlRVQjJiRU9Nb2JLY2FfOXdaZ2dtekpSbHZuMWh6VXhfc2FjMjhYNzZyUWpTYkw0aE5WQmlxREV6VHotZ1p2aWRaTXNpNWRPOElOeDhmcnNJblB3ZVZ2RHZ6cEkyVWwyQk5rNGhQMFYxZm9TLTk0cDZMR3Y1MktBbTBYLU1udFNSTWJxc0dNVjc3ME1SUzRhUzQ5ZmptajZlRQ?oc=5",
-    "time": "2026-11-12T08:30:00.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "鴻海預期第四季、明年AI機櫃出貨成長高雙位數- 產業",
-    "source": "工商時報",
-    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5GbWVsMVhKcDczdllVUkJTQlM0dDJITlk2ZlJHU2NEcDNBbHRRVUJJOWVhd1BVSWRBNTRzN2Z6Q3NaYWcxazlDaHFWdmJ6dkw4VWRBTF9RU2txYmNMV3hZ?oc=5",
-    "time": "2026-11-12T08:30:00.000Z",
-    "tags": [],
-    "trusted": true
-   },
-   {
-    "title": "鴻海法說／Q3營業利益首破千億 全面上調今年4大產品展望",
-    "source": "TVBS新聞網",
-    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9iMk5vUkVlTFZ5UjJCTTZpdHh2VWJJaXdkMGtKQmlaRXFSRGU2bXRETExXOFU2bjlhSWpwR1RnaUI2ajV5aFRvNjQxMEFudms?oc=5",
-    "time": "2026-11-12T08:27:00.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "鴻海法說》第3季EPS 5.51元創歷年單季新高、營業利益首次突破千億元 全年展望上修",
-    "source": "財訊",
-    "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9KR0xzeWc0dFJ3SENiUkMySHFXdWN6X1BqZWExd2VmeEZmWFJLWlVqeDBRUGl3OGliZWNaaTdORGJVcWlmaUZ2aXpjY2ZybHZ0bWVuQVJDQ2xVRHFqZFpRYldGZkZYVXBXSW5xMTdHUGEzeUdVTi1YSkdlaw?oc=5",
-    "time": "2026-11-12T08:21:07.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": true
-   },
-   {
-    "title": "鴻海法說會／劉揚偉：客戶 AI 需求短期強勁 長期是否影響還要觀察",
-    "source": "經濟日報",
-    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE94UFpKWUZTZnRQel9jUnlnTjVrb1Zhbjd0QnB5TWpDdlltSzVmbllYWG9JN0xsLTJuUzViS3drWEpxZGV2R1ZHZS1fVnh2a0xyTWdaMkppWEJqZ9IBX0FVX3lxTE1fSXZULU5yQlVoUTVsRDNtOHpfQmdyenVZU3RsY2R3RWJGWl80S2dZNTh4Z1laV09sMUZiaGN3dU5XczRSWVFlenRIYlRsUnRHZTNQaVNabklUZmprcUp3?oc=5",
-    "time": "2026-11-12T08:13:27.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": true
-   },
-   {
-    "title": "鴻海法說4》美國期中選舉結果衝擊AI？劉揚偉揭「短期未影響」：長期仍要觀察",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMi9wNBVV95cUxQUXRTd2tTZXlLSW1OZG5heVBIaERUNVpuQzFtUGZSMW9rRGhRNkhwWTRyTHBtaWgzM2NCTVo4bWJYRWdKWnpfWHdIV1hWNkdwSDhDNU5iaXh5QVhsUHluRVBxN1ZadklkemFuZXI2Vi1JRm9BZ2pyUTYtb0Z5LTlCMzZ2MzFmVEhUVkJpcDgteHc0Mi1DMHQwaC1VamNzWTk5LUY3eEREVURqUEdlblFPajJITWNhR3JFb3ItbDZWaWwyZHJEcmt6RzY1Rkw4SEtKd21ValYwQ2JjUjk5MENwSWpOSFVkMnVGaGRyNEltQ2s5Z0VKOUpvZUM4LVFqR1QyNjZEcVpVM2lhRkItN1ZjdGt3Y0ptRFR4bzFIYnM1TEcyT2lnVmgxUG9ZRjJ6elctQVZPRjNyYm5UNjNhcDFuUGtHT0ZWdWhyS21mOU50WHd1RDNtS2N4QXNocVltSGNCQVpZTVFDNTFiNi1DZHRoM193WnJ5YXVfMGdzTnI4S3l1bFZpQ1dnX0FrMFlmZ013U1FVbzl2QTJMcVI5c2RCWDVWNUk3dVlmU1VsX3RJUEhiRTFGb2p0WDQwbmdrelZFeFFHX2g2Ym5JeHdsRU9YV1BnZVJtZUN6Z2RKSWhiZVpUdHNteWsweEt0UjhuOTUtalVERGd5TQ?oc=5",
-    "time": "2026-11-12T08:12:13.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "2317 鴻海 - 〈鴻海法說〉劉揚偉：四大產品表現均優於預期Q4估強勁成長、上修全年展望- 股市爆料同學會",
-    "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5zY21ybmlBNGI0alFBU2ZiNnhTVVdXWlJxTkpfdFVnNGphX1YydVJfV2l3WUpvTVlXUzNfWV9UUmFQWkJGQm5ibHVab1l4NHRPMEc3NmZFQlQ?oc=5",
-    "time": "2026-11-12T08:10:20.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "鴻海法說會│AI伺服器營收佔比衝上54%，劉揚偉看好動能延續至2027年",
-    "source": "鏈新聞 ABMedia",
-    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5TOTdQbEpXQ0RVRU16a01oRHNkQ2hpNDdGeWptdUNVNmZZUGNpdjVrUVlnTTJRRGw1cVgxZkNVeGxsbm4tek91QkhFNkpoTUh6bzd1NjRxb1FvcG5IT1RFRGdtcXFpYlVjUEtfWkln?oc=5",
-    "time": "2026-11-12T08:06:44.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "〈鴻海法說〉劉揚偉：四大產品表現均優於預期 Q4估強勁成長、上修全年展望",
-    "source": "鉅亨網",
-    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAwRXRyVGc3RUMybTYzRFFhMVFHbHNGVGE3YjhjaHNXbkE0MG01OWp1bHVNWkRGMG93ZmFFOHhtbWxVa2hhUFJpVUV2MmtOcmc?oc=5",
-    "time": "2026-11-12T08:03:39.000Z",
-    "tags": [
-     "公司事件"
-    ],
-    "trusted": true
    }
   ],
   "market": [
@@ -160,7 +150,7 @@
   "basedOn": "2026-11-12",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-12T09:04:24.401Z",
+  "fetchedAt": "2026-11-12T09:42:06.975Z",
   "newsSince": "2026-11-12T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -231,7 +221,7 @@
   "d": 55.3,
   "prevK": 60,
   "prevD": 51.4,
-  "volumeRatio": 0.55,
+  "volumeRatio": 0.56,
   "candle": {
    "bodyPct": 0.21,
    "upperShadowPct": 2.07,
@@ -4175,7 +4165,7 @@
    "high": 245,
    "low": 239,
    "close": 240,
-   "volume": 28409817
+   "volume": 29209817
   }
  ],
  "intraday": [
@@ -4784,9 +4774,9 @@
    "night": {
     "session": "2026-11-12",
     "contract": "臺指期116",
-    "close": 43219,
+    "close": 43455,
     "ref": 43128,
-    "changePct": 0.21
+    "changePct": 0.76
    }
   },
   "foreignFuturesOI": {
@@ -4954,7 +4944,7 @@
    {
     "date": "2026-11-12",
     "foreign": -6.8,
-    "usdtwd": 32.94
+    "usdtwd": 32.918
    }
   ]
  },
@@ -5018,9 +5008,9 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-12",
-   "close": 32.94,
+   "close": 32.92,
    "prevClose": 32.95,
-   "changePct": -0.04,
+   "changePct": -0.11,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -5049,7 +5039,7 @@
   "volume": {
    "signal": "中性",
    "strength": null,
-   "data": "成交量為前 5 日均量的 0.55 倍，當日漲跌 -0.83%",
+   "data": "成交量為前 5 日均量的 0.56 倍，當日漲跌 -0.83%",
    "source": "由日 K 計算"
   },
   "momentum": {
@@ -5061,7 +5051,7 @@
   "foreign": {
    "signal": "偏多",
    "strength": "強",
-   "data": "2026-11-12 外資買超 8,391 張（占成交量 29.5%）；近 5 日合計賣超 1,481 張",
+   "data": "2026-11-12 外資買超 8,391 張（占成交量 28.7%）；近 5 日合計賣超 1,481 張",
    "source": "證交所 T86，2026-11-12"
   },
   "trust": {
@@ -5084,8 +5074,8 @@
   },
   "txf": {
    "signal": "偏多",
-   "strength": "弱",
-   "data": "臺指期116夜盤 43219（+0.21%，相對日盤收盤 43128）",
+   "strength": "中",
+   "data": "臺指期116夜盤 43455（+0.76%，相對日盤收盤 43128）",
    "source": "期交所即時行情，夜盤 2026-11-12"
   },
   "futures_oi": {
@@ -5115,7 +5105,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.94，新台幣升值 0.04%",
+   "data": "美元兌新台幣 32.92，新台幣升值 0.11%",
    "source": "Yahoo Finance TWD=X，2026-11-12"
   }
  }

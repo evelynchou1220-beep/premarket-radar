@@ -1,7 +1,7 @@
 // 報告驗收規則（CLAUDE.md §6「怎麼算做完」的程式版）。
 // 被 src/content.config.ts（建置時）與 scripts/check.mjs（npm run check）共用。
 import config from '../data/factors.json' with { type: 'json' };
-import { computeScore } from './scoring.mjs';
+import { closeScore } from './scoring.mjs';
 
 export const FACTOR_KEYS = config.factors.map((f) => f.key);
 export const REQUIRED_KEYS = config.factors.filter((f) => f.required).map((f) => f.key);
@@ -58,7 +58,7 @@ export function validateReport(fm, snapshot) {
   }
 
   // 3. 結論與信心度必須等於公式計算結果
-  const s = computeScore(factors);
+  const s = closeScore(factors, fm.target);
   if (fm.verdict !== s.verdict) errors.push(`verdict 應為「${s.verdict}」（公式計算），報告寫「${fm.verdict}」`);
   if (fm.confidence !== s.confidence) errors.push(`confidence 應為 ${s.confidence}（公式計算），報告寫 ${fm.confidence}`);
 

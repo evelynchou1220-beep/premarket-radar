@@ -151,6 +151,9 @@
     "confidenceCap": 85,
     "flatBand": { "window": 20, "factor": 0.5, "min": 0.5 },
     "openFactors": ["txf", "adr", "us_market", "asia", "fx"],
+    "closeFactors": ["txf", "adr", "us_market", "asia", "fx"],
+    "closeFactorsFrom": "2026-11-13",
+    "closeFactorsNote": "三年回測（2023/11～2026/11，6 檔 4,361 筆）：K 線、均線、動能、量能、法人、融資、營收、期貨未平倉對隔日方向的正確率只有 45～51%，納入計分反而把收盤命中率從 47.3% 拉低到 39.1%。2026-11-13 起收盤預測只計隔夜因子，其他因子照常顯示、標示「參考」。",
     "openBand": { "window": 20, "factor": 0.5, "min": 0.2 }
   },
   "foreignFlow": {

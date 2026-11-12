@@ -1,7 +1,7 @@
 // 程式版報告產生器（mode: auto）。只使用快照中的程式判定因子，不讀新聞。
 // 由 scripts/daily.mjs 在每個開盤日早上自動呼叫；AI 之後可依 CLAUDE.md §4 升級成 AI 完整版（mode: ai）。
 import { stringify } from 'yaml';
-import { computeScore } from '../../src/lib/scoring.mjs';
+import { closeScore, isScored } from '../../src/lib/scoring.mjs';
 import { factorDef } from '../../src/lib/validate.mjs';
 
 // 每個因子在各種判定下的「影響機制」說明。內容需符合 CLAUDE.md §5.2（具體因果、不用空泛用語）。
@@ -106,15 +106,16 @@ export function buildAutoReport(s) {
     f.reason = h.signal === '缺漏' ? MISSING : REASONS[key]?.[h.signal] ?? REASONS[key]?.中性 ?? '依規則判定。';
     return f;
   });
-  const sc = computeScore(factors);
-  const top = (signal) => factors.filter((f) => f.signal === signal).sort((a, b) => rank[b.strength] - rank[a.strength])[0];
+  const sc = closeScore(factors, m.target);
+  const scored = factors.filter((f) => isScored(f.key, m.target, f.signal));
+  const top = (signal) => scored.filter((f) => f.signal === signal).sort((a, b) => rank[b.strength] - rank[a.strength])[0];
   const bull = top('偏多'), bear = top('偏空');
   const label = (f) => factorDef[f.key].label;
 
   const lead = [bull, bear].filter(Boolean).sort((a, b) => rank[b.strength] - rank[a.strength]);
   const summary = lead.length
     ? `程式版｜多 ${sc.bull}・空 ${sc.bear}；最強：${lead.map((f) => `${label(f)}${f.signal}${f.strength}`).join('、')}`
-    : `程式版｜${factors.length} 個程式因子皆無明確方向，判定盤整`;
+    : `程式版｜計分的 ${scored.length} 個因子皆無明確方向，判定盤整`;
 
   const fm = {
     code: m.code,
