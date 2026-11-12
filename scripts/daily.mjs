@@ -42,8 +42,13 @@ if (!isTradingDay(today)) {
 // 13:30 收盤前執行 → 預測今天；收盤後執行（例如晚上手動補跑）→ 預測下一個交易日
 const hhmm = new Date(Date.now() + 8 * 3600e3).toISOString().slice(11, 16);
 const target = hhmm < '13:30' ? today : nextTradingDay(today);
-console.log(`▶ ${target} 盤前程式版預測：${watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('、')}`);
 verify(); // 補做先前漏掉的驗證
+// 09:00～13:30 已開盤：不可以再產生或覆寫今天的預測（GitHub 排程可能延遲數小時，CLAUDE.md §4、§7.1）
+if (hhmm >= '09:00' && hhmm < '13:30') {
+  console.log(`⏰ 現在 ${hhmm} 已開盤，不產生或覆寫 ${target} 的預測（排程延遲）。`);
+  process.exit(0);
+}
+console.log(`▶ ${target} 盤前程式版預測：${watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('、')}`);
 
 const exists = (p) => access(p).then(() => true, () => false);
 let ok = 0;
@@ -55,6 +60,9 @@ for (const { code, name } of watchlist.stocks) {
     if (await exists(file)) {
       const fm = parse((await readFile(file, 'utf8')).replace(/\r\n/g, '\n').split('---\n')[1]);
       if ((fm.mode ?? 'ai') === 'ai') { console.log(`… ${code} ${name}：已有 AI 完整版，不覆寫`); ok++; continue; }
+      // 備援排程：前一次排程已用完整資料（時序檢查通過）產生過，就不重做，避免和雲端晨報的 PR 衝突
+      const snap = await readFile(`data/snapshots/${target}/${code}.json`, 'utf8').then(JSON.parse, () => null);
+      if (snap?.meta?.timingOk && Date.now() - new Date(snap.meta.fetchedAt) < 12 * 3600e3) { console.log(`… ${code} ${name}：今天已產生（時序檢查通過），不重做`); ok++; continue; }
     }
     const { snapshot } = await fetchSnapshot(code, { target });
     fetched = true;

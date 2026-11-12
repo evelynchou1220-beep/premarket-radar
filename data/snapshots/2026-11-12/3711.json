@@ -1,8 +1,16 @@
 {
  "news": {
-  "fetchedAt": "2026-11-12T03:22:40.998Z",
+  "fetchedAt": "2026-11-11T15:28:56.873Z",
   "since": "2026-11-11T13:30+08:00",
   "stock": [
+   {
+    "title": "日月光投控成長加速！矽品CoWoS、CPO背後共同貴人是輝達 研發大將揭10年布局",
+    "source": "聚財網",
+    "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE1FTXVPWVp4a3AweW5RVkdiYWtUczRNTWZOSHhqU0gyQXk0dGFhYjJUcUlCLTZNZTUxNGxSV1JFTFZubnNKVFhMSmtaaHg?oc=5",
+    "time": "2026-11-11T15:21:29.000Z",
+    "tags": [],
+    "trusted": false
+   },
    {
     "title": "3711 日月光投控- CPU 封裝成為OSAT 重要戰場- 股市爆料同學會",
     "source": "CMoney",
@@ -14,79 +22,9 @@
   ],
   "market": [
    {
-    "title": "國安基金護盤 台股大反攻",
-    "source": "台灣好新聞",
-    "url": "https://news.google.com/rss/articles/CBMikwJBVV95cUxQT0hzWFFqQVpGNTFWbDBJQlA5dWdPMG5tSFdTb3FGcS0tMDdOSXJVRzVDd0tGSUdEY2lfc3hlZWhLMGdyZ1F1dG5TQjFCMkMxN1laOFp2NEpheFRGelI4QnJzbjhqVEc3QkRsRl9fa1YwNEZRVk5WSHQ5aHN1Z3NNTXJPdHcyTW55U1dyRlNWa3NJZVBPZmI2VWR1NGZjOXpTUTdoNkVNTkphQUlvWUhiRy05Ykw3SlQySlAwSkFZQlk2SVotX1FEbXhvWlFoWmVsemg3UmZXRFNlZk4td1JFeDdRQ19rdjYyV2ZaQjhURURlbmxPODJUanI2VFpFbzYtMHBleFl1bG9mdUJMTlRmRjZQYw?oc=5",
-    "time": "2026-11-12T03:19:04.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金今日出手阻跌使台股早盤黑翻紅法人這樣建議| 股市要聞| 股市",
-    "source": "udn",
-    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9wTG5FV0hBVGhMbUZCVzBFa2dwYWRSVkVNNk1NYXlPaGhxLWlaMGhMdXpmWnNuakIySk16a2JqZmgydmpycUlWRWl6cVZCUVZF?oc=5",
-    "time": "2026-11-12T02:24:14.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金護盤台股創史上第6大收盤漲點- 上市櫃",
-    "source": "旺得富理財網",
-    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBJVlB5SVp2bXdhQWd3RE1QRTlZbk5IakxJdFlvZFo4a3FSQUJZaTBZeTdRVkZJMThoeGVMNUNkQmg1WVhnZ2x1b0R3RGZfdXIzWGc3bmdfMkN3NUxBMVBUWHNBTHNtb2l3bXc?oc=5",
-    "time": "2026-11-11T23:55:38.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "美國通膨升溫推升聯準會升息預期 房地產股承壓下跌",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxOTG14QTNlMEdNYWhxVG53SGZHeGNrQVUtZ3luNkVveFhYbnRxQjBNTnUzRFdsNXdrSnpmOHlTbzFERjFMWU9paHVHT2lUazBOS1p2LUdRUmRBMGt3RlVQS1puTkQyQzlnRVlIdzN3X202eU1iSW9CQUFXVVN4ZnNzY0Q3TGlleTUtR2RtZ0tqQVlPQ054dFBCZ0ZTZDFKNUlQaE9ocDNyZ3ZxQ3h4ZnVmaWhIM0oxbjVyWEpyVFk3azJUWDlVMHU3aVo1RzNyRlQyWE9QSTQ5a2QwTHNuTWxaTTV4d2laclVaenZxLXA1QjBsemtjOVhsZk9WTTl5UW5pRE9pTk51eFo0dnBGcFg1M25zalVCbWJMZ3Qwa0NtQk9rU0xfVmdERXlMc0dvMUhlMnRHcTlYcVdqNV9jaTlKQmNtc0ZUaE5ZWjRqODdMaktRU2lQVU42ZXpsZDltZnk4OXJNTDFCZ1ZuVVZyOGc1RQ?oc=5",
-    "time": "2026-11-11T22:45:58.000Z",
-    "tags": [
-     "利率"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台股市值膨脹 17 倍 國安基金額度 26 年沒變！財長莊翠雲首度表態支持擴至1兆元",
-    "source": "Business Insider Taiwan",
-    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE53bm9rQUNSNENLMTlYVGhob2gtMlZmY01hbGx5RUZCSG1vOWFJOTVXX2trOFZDc2NNelZhRnV5Q2JRVDlLOGxaLXJDdkJEblE2THNzNjlR?oc=5",
-    "time": "2026-11-11T09:53:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金進場就底部？跟單穩賺？股海老牛破解10迷思：這點最厲害",
-    "source": "三立新聞網SETN.com",
-    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE43WTliaGVFaGVLcFBoS2VzbU1TMjBwTmJoR1RaeFdMcElNbC1fWnA4WEwtbWFtTjc1RU43ZkYzYlB5Y0xmUEhXYjc2SQ?oc=5",
-    "time": "2026-11-11T08:10:34.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台股見底了？分析師：國安基金宣布都是最低點 優先買這4檔權值股",
-    "source": "經濟日報",
-    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1YYWk2N3FqdzRXRmt0WXR4Y2cxRzMtRG1PZ1p3YzJZOG8zTThhTGpkY3o2bWxDMWxDckxPbGFxN0RnMlRtNm5oN0VTMkltMzIxQmo2MXFsd1Rod9IBX0FVX3lxTE9UNXNFaUU5eGZnb0RRQnB0dVNoaE5lc3RvT2wwYzhSejZrVjVpbVdnMkpPMW56V0s5dC1NZ0pVaDVSVnlvZkxtMGF3T0NMS3liRFExbVB6WTBibUVPTFBZ?oc=5",
-    "time": "2026-11-11T08:00:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": true
-   },
-   {
     "title": "國安基金進場 台股大反攻 法人：AI股V型反轉拐點浮現",
     "source": "理財周刊",
-    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5yM2JudVhCXzZ4VDVjTkM4QzVfN08wSGVwT3RldlRBOERGSFp4SVRmYXpHcTRvRkE3Rzl3M1Z2cUtXN3FBR1ljdFdMdnAxU0hnMUcwdENSVzlnVGpyU0VF?oc=5",
+    "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPdm41RjkyVUxNVUJSUlNuQXFDTlJLaVlEUnhwcWRsWDkwQzVZS21EWWhlS3RHaEhJOTFDNHBGVmNRdjBiRml2Z3k4MEtpQ2VBdVJpaG1GRnhwNlBnQ19ZTXoxLWtEMFZoSVp2VXN2dUFhR1JDaTdmdDhSRVNsbzZNYWZVV2NYdXAyV2lGaWJxRzY4VmVzVWc?oc=5",
     "time": "2026-11-11T07:36:27.000Z",
     "tags": [
      "國安基金"
@@ -124,10 +62,10 @@
     "trusted": true
    },
    {
-    "title": "國安基金擴至1兆抗外資？財政部長回應了",
-    "source": "三立新聞網SETN.com",
-    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE8xbzU5RGVIaF9SZVFKNXRmRkxlNDJOaTk3ZjlCdHMzb3ctSzhySHNsMUZEbzB4eUJhS2U1ZlVqTWppVnY0ZzFWckhzQQ?oc=5",
-    "time": "2026-11-11T06:17:11.000Z",
+    "title": "國安基金進場3日強彈4550點！分析師揭護盤真相、示警「第二隻腳」",
+    "source": "民報",
+    "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5ybk9Ia2NRdnJ3ckhuUTZ2TzdhajJmUTdCa1o3OE94T2FzX1h0U1BaRGg2akFDZjdtNVFUVWROWkNrTW5HVlNzbUZ5RzIzX1NSeE15aktXQXJnT3NfTVY2bUVHa0VPMnFEa2xsZTFMZ3FmQjA?oc=5",
+    "time": "2026-11-11T05:49:03.000Z",
     "tags": [
      "國安基金"
     ],
@@ -142,15 +80,15 @@
   "basedOn": "2026-11-11",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-12T03:22:40.998Z",
+  "fetchedAt": "2026-11-11T15:28:56.873Z",
   "newsSince": "2026-11-11T13:30+08:00",
   "timingOk": false,
   "stale": [
-   "尚無 2026-11-11 晚間的台指期夜盤"
+   "美股（2026-11-10）早於台股最後收盤日 2026-11-11",
+   "ADR（2026-11-10）早於台股最後收盤日 2026-11-11"
   ],
   "warnings": [
-   "台指期夜盤尚無最新資料（夜盤 15:00 開盤、隔日 05:00 收盤）",
-   "⏰ 時序檢查未通過：尚無 2026-11-11 晚間的台指期夜盤。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
+   "⏰ 時序檢查未通過：美股（2026-11-10）早於台股最後收盤日 2026-11-11；ADR（2026-11-10）早於台股最後收盤日 2026-11-11。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
   ],
   "sources": [
    {
@@ -4167,7 +4105,7 @@
    "high": 620,
    "low": 604,
    "close": 607,
-   "volume": 2795000
+   "volume": 0
   },
   {
    "time": "09:05",
@@ -4636,6 +4574,15 @@
    "low": 615,
    "close": 615,
    "volume": 416207
+  },
+  {
+   "time": "13:30",
+   "ts": 1794375000,
+   "open": 617,
+   "high": 617,
+   "low": 617,
+   "close": 617,
+   "volume": 0
   }
  ],
  "institutional": [
@@ -4757,20 +4704,26 @@
    "total": 240.8
   },
   "txf": {
-   "date": "2026-11-12",
+   "date": "2026-11-11",
    "contract": "臺指期116",
    "day": {
-    "session": "2026-11-12",
+    "session": "2026-11-11",
     "contract": "臺指期116",
-    "close": 44187,
-    "ref": 44136,
-    "changePct": 0.12
+    "close": 44091,
+    "ref": 42646,
+    "changePct": 3.39
    },
-   "night": null
+   "night": {
+    "session": "2026-11-11",
+    "contract": "臺指期116",
+    "close": 44560,
+    "ref": 44136,
+    "changePct": 0.96
+   }
   },
   "foreignFuturesOI": {
-   "date": "2026-11-11",
-   "net": -104271
+   "date": "2026-11-10",
+   "net": -103473
   },
   "leveraged": {
    "date": "2026-11-11",
@@ -4818,21 +4771,21 @@
    ]
   },
   "options": {
-   "date": "2026-11-11",
+   "date": "2026-11-10",
    "foreign": {
-    "callOI": 2250,
-    "callValue": 25031,
-    "putOI": 4306,
-    "putValue": 129564
+    "callOI": 2525,
+    "callValue": 200956,
+    "putOI": 3569,
+    "putValue": 193149
    },
    "dealer": {
-    "callOI": 8797,
-    "callValue": 1587715,
-    "putOI": -3297,
-    "putValue": 188760
+    "callOI": 23533,
+    "callValue": 3207127,
+    "putOI": -15125,
+    "putValue": 263342
    },
-   "putCallOIRatio": 65.17,
-   "putCallVolumeRatio": 107.08
+   "putCallOIRatio": 66.54,
+   "putCallVolumeRatio": 118.36
   },
   "flows": [
    {
@@ -4933,73 +4886,73 @@
    {
     "date": "2026-11-11",
     "foreign": -7.7,
-    "usdtwd": 32.954
+    "usdtwd": 32.899
    }
   ]
  },
  "global": {
   "sox": {
    "symbol": "^SOX",
-   "date": "2026-11-11",
-   "close": 10564.11,
-   "prevClose": 9998.33,
-   "changePct": 5.66,
+   "date": "2026-11-10",
+   "close": 9998.33,
+   "prevClose": 10033.93,
+   "changePct": -0.35,
    "label": "費城半導體"
   },
   "nasdaq": {
    "symbol": "^IXIC",
-   "date": "2026-11-11",
-   "close": 25466.19,
-   "prevClose": 25065.87,
-   "changePct": 1.6,
+   "date": "2026-11-10",
+   "close": 25065.87,
+   "prevClose": 25253.14,
+   "changePct": -0.74,
    "label": "那斯達克"
   },
   "sp500": {
    "symbol": "^GSPC",
-   "date": "2026-11-11",
-   "close": 7619.38,
-   "prevClose": 7520.93,
-   "changePct": 1.31,
+   "date": "2026-11-10",
+   "close": 7520.93,
+   "prevClose": 7549.94,
+   "changePct": -0.38,
    "label": "標普 500"
   },
   "dow": {
    "symbol": "^DJI",
-   "date": "2026-11-11",
-   "close": 52486.49,
-   "prevClose": 52231.89,
-   "changePct": 0.49,
+   "date": "2026-11-10",
+   "close": 52231.89,
+   "prevClose": 52389.75,
+   "changePct": -0.3,
    "label": "道瓊"
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-11",
-   "close": 17.49,
-   "prevClose": 19.46,
-   "changePct": -10.12,
+   "date": "2026-11-10",
+   "close": 19.46,
+   "prevClose": 19.92,
+   "changePct": -2.31,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
    "symbol": "^N225",
-   "date": "2026-11-11",
-   "close": 61248.59,
-   "prevClose": 60459.58,
-   "changePct": 1.31,
+   "date": "2026-11-10",
+   "close": 60459.58,
+   "prevClose": 58775.5,
+   "changePct": 2.87,
    "label": "日經 225"
   },
   "kospi": {
    "symbol": "^KS11",
-   "date": "2026-11-11",
-   "close": 5375.36,
-   "prevClose": 5239.13,
-   "changePct": 2.6,
+   "date": "2026-11-10",
+   "close": 5239.13,
+   "prevClose": 5018.85,
+   "changePct": 4.39,
    "label": "韓國 KOSPI"
   },
   "usdtwd": {
    "symbol": "TWD=X",
-   "date": "2026-11-12",
-   "close": 32.92,
-   "prevClose": 32.95,
-   "changePct": -0.11,
+   "date": "2026-11-11",
+   "close": 32.9,
+   "prevClose": 32.79,
+   "changePct": 0.34,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -5013,13 +4966,13 @@
  },
  "adr": {
   "symbol": "ASX",
-  "date": "2026-11-11",
-  "close": 37.82,
-  "prevClose": 35.48,
-  "changePct": 6.6,
+  "date": "2026-11-10",
+  "close": 35.48,
+  "prevClose": 34.36,
+  "changePct": 3.26,
   "name": "日月光投控 ADR",
   "ratio": 2,
-  "impliedTwd": 622.5
+  "impliedTwd": 583.6
  },
  "hints": {
   "kline": {
@@ -5071,33 +5024,33 @@
    "source": "證交所 MI_MARGN，2026-11-11"
   },
   "txf": {
-   "signal": "缺漏",
-   "strength": null,
-   "data": "尚無 2026-11-11 晚間夜盤資料（日盤 44187，+0.12%）",
-   "source": "期交所即時行情"
+   "signal": "偏多",
+   "strength": "中",
+   "data": "臺指期116夜盤 44560（+0.96%，相對日盤收盤 44136）",
+   "source": "期交所即時行情，夜盤 2026-11-11"
   },
   "futures_oi": {
    "signal": "偏空",
    "strength": "中",
-   "data": "外資台指期淨空單 104,271 口",
-   "source": "期交所 OpenAPI，2026-11-11"
+   "data": "外資台指期淨空單 103,473 口",
+   "source": "期交所 OpenAPI，2026-11-10"
   },
   "us_market": {
-   "signal": "偏多",
-   "strength": "強",
-   "data": "費半 +5.66%、那指 +1.6%、標普 +1.31%（2026-11-11 美股收盤；以費半判斷）",
+   "signal": "偏空",
+   "strength": "弱",
+   "data": "費半 -0.35%、那指 -0.74%、標普 -0.38%（2026-11-10 美股收盤；以費半判斷）",
    "source": "Yahoo Finance"
   },
   "adr": {
    "signal": "偏多",
    "strength": "強",
-   "data": "日月光投控 ADR 37.82 美元（+6.6%，2026-11-11 美股收盤）。ADR 長期有溢價，只看漲跌幅",
-   "source": "Yahoo Finance ASX，2026-11-11"
+   "data": "日月光投控 ADR 35.48 美元（+3.26%，2026-11-10 美股收盤）。ADR 長期有溢價，只看漲跌幅",
+   "source": "Yahoo Finance ASX，2026-11-10"
   },
   "asia": {
    "signal": "偏多",
    "strength": "中",
-   "data": "日經 +1.31%、KOSPI +2.6%（平均 +1.96%，2026-11-11）",
+   "data": "日經 +2.87%、KOSPI +4.39%（平均 +3.63%，2026-11-10）",
    "source": "Yahoo Finance"
   },
   "revenue": {
@@ -5107,10 +5060,10 @@
    "source": "公開資訊觀測站 月營收，2026-10"
   },
   "fx": {
-   "signal": "中性",
-   "strength": null,
-   "data": "美元兌新台幣 32.92，新台幣升值 0.11%",
-   "source": "Yahoo Finance TWD=X，2026-11-12"
+   "signal": "偏空",
+   "strength": "弱",
+   "data": "美元兌新台幣 32.9，新台幣貶值 0.34%",
+   "source": "Yahoo Finance TWD=X，2026-11-11"
   }
  }
 }
