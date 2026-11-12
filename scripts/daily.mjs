@@ -51,6 +51,9 @@ if (hhmm >= '09:00' && hhmm < '13:30') {
 console.log(`▶ ${target} 盤前程式版預測：${watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('、')}`);
 
 const exists = (p) => access(p).then(() => true, () => false);
+// 盤後初版的結論另外存一份（隔天 05:40 正式版會覆寫報告），戰績頁用來比較「盤後初版」與「盤前正式版」的命中率
+const DRAFTS = 'data/drafts.json';
+const drafts = await readFile(DRAFTS, 'utf8').then(JSON.parse, () => ({}));
 let ok = 0;
 const failed = [];
 for (const { code, name } of watchlist.stocks) {
@@ -72,6 +75,7 @@ for (const { code, name } of watchlist.stocks) {
     if (errors.length) throw new Error(`驗收未通過：${errors.join('；')}`);
     await writeFile(file, md);
     const fm = parse(fmText);
+    if (fm.timingNote?.startsWith('初版')) drafts[`${target}-${code}`] = { verdict: fm.verdict, confidence: fm.confidence, createdAt: fm.createdAt };
     console.log(`✔ ${code} ${name}：${fm.verdict}（信心度 ${fm.confidence}%）${snapshot.meta.timingOk ? '' : '｜⏰ 時序檢查未通過'}`);
     ok++;
   } catch (e) {
@@ -82,6 +86,7 @@ for (const { code, name } of watchlist.stocks) {
   }
 }
 
+await writeFile(DRAFTS, JSON.stringify(Object.fromEntries(Object.entries(drafts).sort()), null, 2) + '\n');
 console.log(`\n完成 ${ok}/${watchlist.stocks.length} 檔`);
 if (failed.length) {
   console.log('失敗：');

@@ -2,7 +2,8 @@
 import { getCollection } from 'astro:content';
 import factorConfig from '../data/factors.json' with { type: 'json' };
 import results from '../../data/results.json' with { type: 'json' };
-import { computeScore, programScore, flatBand, openScore } from './scoring.mjs';
+import drafts from '../../data/drafts.json' with { type: 'json' };
+import { computeScore, programScore, flatBand, openScore, judge } from './scoring.mjs';
 import { validateGovBank } from './validate.mjs';
 
 export const SITE_NAME = '盤前雷達';
@@ -62,13 +63,17 @@ export async function getReports() {
     .map((r) => {
       const snapshot = snapshots[r.id];
       const result = results[r.id] ?? null;
+      const band = result?.band ?? flatBand(snapshot?.daily);
+      const draft = drafts[r.id] ?? null; // 盤後初版的結論（daily.mjs 產生初版時記錄）
       return {
         ...r,
         snapshot,
         result,
         score: computeScore(r.data.factors),
         program: programScore(snapshot?.hints), // 只用程式因子重算的判定，AI 完整版用來對照
-        band: result?.band ?? flatBand(snapshot?.daily), // 盤整範圍（%）
+        band, // 盤整範圍（%）
+        draft,
+        draftHit: draft && result && !result.void ? judge(draft.verdict, result.changePct, band).hit : null,
         open: openScore(r.data.factors), // 開盤預測（開高／開低／平盤）
         openBand: result?.openBand ?? flatBand(snapshot?.daily, 'open'),
         void: Boolean(result?.void), // 預測日臨時休市，作廢
@@ -80,9 +85,15 @@ export async function getReports() {
 /**
  * 命中率統計（排除作廢）。
  * @param {any[]} reports
- * @param {'report'|'program'|'open'} [by] report＝報告本身的結論；program＝程式版判定（所有報告都有）；open＝開盤預測
+ * @param {'report'|'program'|'open'|'draft'} [by] report＝報告本身的結論；program＝程式版判定（所有報告都有）；open＝開盤預測；draft＝盤後初版
  */
 export function stats(reports, by = 'report') {
+  if (by === 'draft') {
+    const xs = reports.filter((r) => !r.void && r.draft);
+    const done = xs.filter((r) => r.draftHit != null);
+    const hits = done.filter((r) => r.draftHit).length;
+    return { total: xs.length, verified: done.length, pending: xs.length - done.length, hits, rate: done.length ? Math.round((hits / done.length) * 1000) / 10 : null };
+  }
   const valid = reports.filter((r) => !r.void);
   const verified = valid.filter((r) => r.result);
   const key = by === 'program' ? 'programHit' : by === 'open' ? 'openHit' : 'hit';
