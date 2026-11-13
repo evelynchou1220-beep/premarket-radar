@@ -85,6 +85,8 @@ export async function getReports() {
         open: openScore(r.data.factors), // 開盤預測（開高／開低／平盤）
         openBand: result?.openBand ?? flatBand(snapshot?.daily, 'open'),
         void: Boolean(result?.void), // 預測日臨時休市，作廢
+        // 資料完整：產生預測時已有前一晚的美股、ADR、夜盤（快照時序檢查通過）。在預測當下就決定，與結果無關（CLAUDE.md §7.2）
+        complete: snapshot?.meta?.timingOk === true,
       };
     })
     .sort((a, b) => b.data.target.localeCompare(a.data.target) || a.data.code.localeCompare(b.data.code));

@@ -5,12 +5,17 @@ import Base from '../layouts/Base.astro';
 import VerdictBadge from '../components/VerdictBadge.astro';
 import { getReports, stats, rateText, url, md, weekday, pct, tone, verdictTone, MODE_LABEL } from '../lib/site.mjs';
 
-const reports = await getReports();
+const all = await getReports();
+// 主戰績只算資料完整的預測；資料不完整（排程延遲、缺隔夜資料）的另列，照樣公開（CLAUDE.md §7.2）
+const reports = all.filter((r) => r.complete);
+const partial = all.filter((r) => !r.complete);
+const pProg = stats(partial, 'program');
+const pOpen = stats(partial, 'open');
 const prog = stats(reports, 'program');
 const aiReports = reports.filter((r) => r.data.mode === 'ai');
 const ai = stats(aiReports);
 const aiProg = stats(aiReports, 'program'); // 同一批 AI 報告，若只用程式因子的命中率
-const voided = reports.filter((r) => r.void).length;
+const voided = all.filter((r) => r.void).length;
 const open = stats(reports, 'open');
 
 // 依結論與信心度分組（以程式版判定計算，因為所有報告都有、方法一致）
@@ -23,10 +28,10 @@ const buckets = [[50, 60], [60, 70], [70, 86]].map(([lo, hi]) => ({
 const hitTag = (hit: boolean) => (hit ? '✔' : '✘');
 const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
 // 全部紀錄依預測日分組（新到舊）
-const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
-  const list = reports.filter((r) => r.data.target === date);
+const days = [...new Set(all.map((r) => r.data.target))].map((date) => {
+  const list = all.filter((r) => r.data.target === date);
   const ok = list.filter((r) => r.result && !r.void);
-  return { date, list, verified: ok.length, hits: ok.filter((r) => r.result.hit).length, openHits: ok.filter((r) => r.result.openHit).length };
+  return { date, list, partial: list.filter((r) => !r.complete).length, verified: ok.length, hits: ok.filter((r) => r.result.hit).length, openHits: ok.filter((r) => r.result.openHit).length };
 });
 ---
 <Base title="預測戰績" active="record">
@@ -50,8 +55,9 @@ const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
       <div class="small dim">{ai.hits}/{ai.verified} 筆<span class="hide-sm">｜同批只用程式因子 {rateText(aiProg)}</span></div>
     </div>
   </section>
+  <p class="small partial">⏰ 資料不完整（另列，不計入上方）：<b class="num">{pProg.verified}</b> 筆，收盤 <b class="num">{rateText(pProg)}</b>、開盤 <b class="num">{rateText(pOpen)}</b><span class="hide-sm">。產生預測時還沒有前一晚的美股、ADR 或夜盤（排程延遲或太早產生），在預測當下就已標記，與結果無關</span></p>
   <p class="small muted bt">三年回測（2023/11～2026/11，6 檔共 4,361 筆）：盤前開盤 <b class="num">56.3%</b>、盤前收盤 <b class="num">47.3%</b>（現行公式 v2；舊公式 39.1%）；亂猜約 33%。<span class="hide-sm">夜盤、美股、ADR 決定了大部分的準確度（收盤後、沒有隔夜資料的預測只有 32.3%，所以不做盤後預測）。</span></p>
-  <p class="small dim">共 {reports.length} 份預測：待驗證 {prog.pending}、作廢 {voided}。開盤預測只用隔夜資訊（夜盤、ADR、美股、日韓、匯率），平盤範圍同樣依個股近 20 日開盤跳空幅度計算。</p>
+  <p class="small dim">共 {all.length} 份預測：待驗證 {prog.pending + pProg.pending}、作廢 {voided}<span class="hide-sm">。開盤預測只用隔夜資訊（夜盤、ADR、美股、日韓、匯率），平盤範圍同樣依個股近 20 日開盤跳空幅度計算。</span></p>
 
   <section class="grid grid-2 section">
     <div class="panel">
@@ -79,6 +85,7 @@ const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
         <summary>
           <b class="num">{md(day.date)}（{weekday(day.date)}）</b>
           <span class="small muted">{day.list.length} 檔</span>
+          {day.partial > 0 && <span class="small partial">⏰ 資料不完整 {day.partial}</span>}
           <span class="small">{day.verified ? <>開盤 <b class="num">{day.openHits}/{day.verified}</b>・收盤 <b class="num">{day.hits}/{day.verified}</b></> : <span class="dim">⏳ 待驗證</span>}</span>
         </summary>
 
@@ -88,7 +95,7 @@ const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
             return (
               <li>
                 <a href={url(`reports/${r.id}`)}>
-                  <span class="nm">{r.data.code} {r.data.name}</span>
+                  <span class="nm">{!r.complete && '⏰'}{r.data.code} {r.data.name}</span>
                   <span class:list={['v', verdictTone(r.open.verdict)]}>{icon(r.open.verdict)}{r.open.label}{res?.openActual && <i>{hitTag(res.openHit)}</i>}</span>
                   <span class:list={['v', verdictTone(r.data.verdict)]}>{icon(r.data.verdict)}{r.data.verdict}{res && <i>{hitTag(res.hit)}</i>}</span>
                   <span class="rs small">{r.void ? '作廢' : res ? <span class:list={['num', tone(res.changePct)]}>{pct(res.changePct)}</span> : <span class="dim">待驗證</span>}</span>
@@ -105,7 +112,7 @@ const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
               {day.list.map((r: any) => (
                 <tr>
                   <td><a href={url(`reports/${r.id}`)}>{r.data.code} {r.data.name}</a></td>
-                  <td class="small">{MODE_LABEL[r.data.mode]}</td>
+                  <td class="small">{MODE_LABEL[r.data.mode]}{!r.complete && <span class="partial" title="資料不完整，不計入主戰績">・⏰</span>}</td>
                   <td class="small">{r.open.label} {r.open.confidence}%{r.result?.openActual && ` → ${r.result.openActual} ${r.result.openHit ? '✔' : '✘'}`}</td>
                   <td><VerdictBadge verdict={r.data.verdict} confidence={r.data.confidence} /></td>
                   <td class="small">{r.data.mode === 'ai' ? `${r.program.verdict} ${r.program.confidence}%` : '同左'}</td>
@@ -136,6 +143,7 @@ const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
   .accent { color: var(--accent); }
   .info { color: var(--info); }
   .bt { margin: 0 0 4px; }
+  .partial { color: var(--accent); }
   .day { border-top: 1px solid var(--line); }
   .day:first-of-type { border-top: 0; }
   .day summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 10px 0; }
