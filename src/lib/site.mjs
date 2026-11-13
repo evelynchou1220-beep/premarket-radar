@@ -2,10 +2,9 @@
 import { getCollection } from 'astro:content';
 import factorConfig from '../data/factors.json' with { type: 'json' };
 import results from '../../data/results.json' with { type: 'json' };
-import drafts from '../../data/drafts.json' with { type: 'json' };
-import { closeScore, programScore, flatBand, openScore, judge } from './scoring.mjs';
+import { closeScore, programScore, flatBand, openScore } from './scoring.mjs';
 export { isScored } from './scoring.mjs';
-import { validateGovBank } from './validate.mjs';
+import { validateGovBank, validateRecap, validateBrief } from './validate.mjs';
 
 export const SITE_NAME = '盤前雷達';
 export const SITE_TAGLINE = '台股開盤前的 AI 個股多空分析';
@@ -49,6 +48,17 @@ export function govBankOf(date, code) {
   if (s) return { side: 'sell', value: s.value, unit: g.unit, lots: s.lots, rank: g.sell.indexOf(s) + 1 };
   return null; // 有資料但未上榜
 }
+// AI 盤後分析（data/recaps/，收盤後雲端 AI 撰寫）與今早新聞重點（data/briefs/，07:20 雲端晨報），新到舊（CLAUDE.md §7.5、§7.6）
+const loadDaily = (mods, check, label) => Object.entries(mods)
+  .map(([path, x]) => {
+    const errors = check(x, path.split('/').pop());
+    if (errors.length) throw new Error(`${label}格式錯誤：${errors.join('；')}`);
+    return x;
+  })
+  .sort((a, b) => b.date.localeCompare(a.date));
+export const recaps = loadDaily(import.meta.glob('/data/recaps/*.json', { eager: true, import: 'default' }), validateRecap, '盤後分析');
+export const briefs = loadDaily(import.meta.glob('/data/briefs/*.json', { eager: true, import: 'default' }), validateBrief, '新聞重點');
+
 export const factorDefs = Object.fromEntries(factorConfig.factors.map((f) => [f.key, f]));
 export const categories = factorConfig.categories;
 export const scoringConfig = factorConfig.scoring;
@@ -65,7 +75,6 @@ export async function getReports() {
       const snapshot = snapshots[r.id];
       const result = results[r.id] ?? null;
       const band = result?.band ?? flatBand(snapshot?.daily);
-      const draft = drafts[r.id] ?? null; // 盤後初版的結論（daily.mjs 產生初版時記錄）
       return {
         ...r,
         snapshot,
@@ -73,8 +82,6 @@ export async function getReports() {
         score: closeScore(r.data.factors, r.data.target),
         program: programScore(snapshot?.hints, r.data.target), // 只用程式因子重算的判定，AI 完整版用來對照
         band, // 盤整範圍（%）
-        draft,
-        draftHit: draft && result && !result.void ? judge(draft.verdict, result.changePct, band).hit : null,
         open: openScore(r.data.factors), // 開盤預測（開高／開低／平盤）
         openBand: result?.openBand ?? flatBand(snapshot?.daily, 'open'),
         void: Boolean(result?.void), // 預測日臨時休市，作廢
@@ -86,15 +93,9 @@ export async function getReports() {
 /**
  * 命中率統計（排除作廢）。
  * @param {any[]} reports
- * @param {'report'|'program'|'open'|'draft'} [by] report＝報告本身的結論；program＝程式版判定（所有報告都有）；open＝開盤預測；draft＝盤後初版
+ * @param {'report'|'program'|'open'} [by] report＝報告本身的結論；program＝程式版判定（所有報告都有）；open＝開盤預測
  */
 export function stats(reports, by = 'report') {
-  if (by === 'draft') {
-    const xs = reports.filter((r) => !r.void && r.draft);
-    const done = xs.filter((r) => r.draftHit != null);
-    const hits = done.filter((r) => r.draftHit).length;
-    return { total: xs.length, verified: done.length, pending: xs.length - done.length, hits, rate: done.length ? Math.round((hits / done.length) * 1000) / 10 : null };
-  }
   const valid = reports.filter((r) => !r.void);
   const verified = valid.filter((r) => r.result);
   const key = by === 'program' ? 'programHit' : by === 'open' ? 'openHit' : 'hit';

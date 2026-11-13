@@ -7,13 +7,13 @@ on:
     # GitHub 排程曾延遲 4 小時以上，所以盤前預測排兩次：先跑成功的就完成，後面那次自動略過；09:00 後一律不產生（daily.mjs）
     - cron: '40 21 * * 0-4' # 台北時間週一～五 05:40：盤前預測（美股已收盤、夜盤已結束）
     - cron: '40 22 * * 0-4' # 台北時間週一～五 06:40：盤前預測備援
-    - cron: '10 8 * * 1-5'  # 台北時間週一～五 16:10：收盤後對答案＋下一個交易日初版（證交所法人、期交所部位約 15:00 後才公布）
+    - cron: '10 8 * * 1-5'  # 台北時間週一～五 16:10：收盤後對答案＋盤後數據（證交所法人、期交所部位約 15:00 後才公布；不產生預測）
   workflow_dispatch:
     inputs:
       task:
         description: '要執行的工作'
         type: choice
-        options: [predict, verify]
+        options: [predict, verify, postclose]
         default: predict
 
 permissions:
@@ -43,7 +43,7 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "task=${{ inputs.task }}" >> "$GITHUB_OUTPUT"
           elif [ "${{ github.event.schedule }}" = "10 8 * * 1-5" ]; then
-            echo "task=verify" >> "$GITHUB_OUTPUT"
+            echo "task=postclose" >> "$GITHUB_OUTPUT"
           else
             echo "task=predict" >> "$GITHUB_OUTPUT"
           fi
@@ -52,9 +52,6 @@ jobs:
         run: npm run stocklist || echo "對照表更新失敗，沿用舊檔"
       - name: 執行 ${{ steps.task.outputs.task }}
         run: npm run daily -- ${{ steps.task.outputs.task }}
-      - name: 產生下一個交易日的初版預測（隔天 05:40 會加上美股、夜盤重做）
-        if: steps.task.outputs.task == 'verify'
-        run: npm run daily -- predict || echo "初版預測失敗，隔天早上排程會重做"
       - name: 驗收所有報告
         run: npm run check
       - id: commit
@@ -71,7 +68,7 @@ jobs:
             exit 0
           fi
           DAY=$(TZ=Asia/Taipei date +%F)
-          if [ "$TASK" = "predict" ]; then MSG="report: $DAY 程式版（排程）"; else MSG="verify: $DAY＋下一個交易日初版預測（排程）"; fi
+          if [ "$TASK" = "predict" ]; then MSG="report: $DAY 程式版（排程）"; else MSG="verify: $DAY＋盤後數據（排程）"; fi
           git commit -m "$MSG"
           git pull --rebase origin main
           git push origin HEAD:main

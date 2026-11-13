@@ -1,21 +1,19 @@
-# 雲端 AI 晨報自動發布（CLAUDE.md §7.5）：
-# 1. 雲端 AI 把升級後的報告推到 claude/ai-report-<日期> 分支（AI 不直接改 main）
-# 2. 這裡檢查「只改了報告與快照」、npm run check 通過，且現在是當天台北時間 09:00 以前
-# 3. 全部通過 → 自動合併進 main 並部署；任一項沒通過 → 不發布、刪除分支（網站維持程式版）
-# 開盤後才發布等於看了行情才公開，戰績就不誠實，所以 09:00 是硬性截止時間。
-name: AI report publish
+# 雲端 AI 產出的自動發布（CLAUDE.md §7.5、§7.6）。AI 一律推到分支，不直接改 main：
+# - claude/ai-report-<日期>：07:20 晨報（AI 完整版報告＋今早新聞重點）。只能改報告、快照、data/briefs/，且必須在當天 09:00 前
+#   （開盤後才發布等於看了行情才公開，戰績就不誠實）
+# - claude/recap-<日期>：收盤後的 AI 盤後分析。只能改 data/recaps/，當天內發布
+# 檢查都通過 → 自動合併進 main 並部署；任一項沒通過 → 不發布、刪除分支
+name: AI publish
 
 on:
   push:
-    branches: ['claude/ai-report-**']
-  workflow_dispatch:
+    branches: ['claude/ai-report-**', 'claude/recap-**']
 
 permissions:
   contents: write
 
 jobs:
   publish:
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
       published: ${{ steps.push.outputs.published }}
@@ -27,37 +25,49 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - id: kind
+        name: 判斷類型
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          case "$BRANCH" in
+            claude/ai-report-*) echo "day=${BRANCH#claude/ai-report-}" >> "$GITHUB_OUTPUT"; echo "allow=^(src/content/reports/|data/snapshots/|data/briefs/)" >> "$GITHUB_OUTPUT"; echo "deadline=08:59" >> "$GITHUB_OUTPUT" ;;
+            claude/recap-*) echo "day=${BRANCH#claude/recap-}" >> "$GITHUB_OUTPUT"; echo "allow=^data/recaps/" >> "$GITHUB_OUTPUT"; echo "deadline=23:59" >> "$GITHUB_OUTPUT" ;;
+          esac
       - name: 接到最新的 main 之後
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git rebase origin/main
-      - name: 只允許修改報告與快照
+      - name: 檢查修改範圍
+        env:
+          ALLOW: ${{ steps.kind.outputs.allow }}
         run: |
           CHANGED=$(git diff --name-only origin/main...HEAD)
           echo "$CHANGED"
-          BAD=$(echo "$CHANGED" | grep -vE '^(src/content/reports/|data/snapshots/)' || true)
-          if [ -n "$BAD" ]; then echo "❌ 修改了報告與快照以外的檔案：$BAD"; exit 1; fi
+          BAD=$(echo "$CHANGED" | grep -vE "$ALLOW" || true)
+          if [ -n "$BAD" ]; then echo "❌ 修改了不允許的檔案：$BAD"; exit 1; fi
       - run: npm ci
-      - name: 驗收所有報告
+      - name: 驗收
         run: npm run check
-      - name: 09:00 前才發布
+      - name: 時限內才發布
         id: push
         env:
           BRANCH: ${{ github.ref_name }}
+          DAY: ${{ steps.kind.outputs.day }}
+          DEADLINE: ${{ steps.kind.outputs.deadline }}
         run: |
-          DAY="${BRANCH#claude/ai-report-}"
           TODAY=$(TZ=Asia/Taipei date +%F); NOW=$(TZ=Asia/Taipei date +%H:%M)
-          if [ "$DAY" != "$TODAY" ] || [[ "$NOW" > "08:59" ]]; then
-            echo "⏰ 現在 $TODAY $NOW，晨報 $DAY 已超過 09:00 截止，不發布。"
+          if [ "$DAY" != "$TODAY" ] || [[ "$NOW" > "$DEADLINE" ]]; then
+            echo "⏰ 現在 $TODAY $NOW，$DAY 的內容已超過發布時限（$DEADLINE），不發布。"
             git push origin --delete "$BRANCH" || true
             exit 1
           fi
           git push origin HEAD:main
           git push origin --delete "$BRANCH" || true
           echo "published=true" >> "$GITHUB_OUTPUT"
-          echo "✅ $NOW 已發布 $DAY AI 完整版"
+          echo "✅ $NOW 已發布 $BRANCH"
 
   deploy:
     needs: publish

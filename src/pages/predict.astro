@@ -1,15 +1,17 @@
 ---
 // 戰況預測：只放預測。分兩區（CLAUDE.md §3.3）：
-// 1. 每日追蹤：0050 前六大，排程每天自動產生（收盤後出初版，開盤日 05:40 更新）
+// 1. 每日追蹤：0050 前六大，開盤日 05:40 排程產生程式版，07:20 雲端晨報升級成 AI 完整版
+// 最上方是晨報的「今早新聞重點」
 // 2. AI 個股分析：使用者在對話中交辦的其他股票；收盤對完答案後只留在戰績，不再出現在這裡
 import Base from '../layouts/Base.astro';
-import { getReports, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL } from '../lib/site.mjs';
+import { getReports, briefs, watchlist, url, md, weekday, factorDefs, verdictTone, signalTone, signalIcon, MODE_LABEL } from '../lib/site.mjs';
 
 const reports = await getReports();
 const watchCodes = new Set(watchlist.stocks.map((s) => s.code));
 const fixedAll = reports.filter((r) => watchCodes.has(r.data.code));
 const target = fixedAll[0]?.data.target;
 const order = watchlist.stocks.map((s) => s.code);
+const brief = briefs.find((b: any) => b.date === target); // 07:20 雲端晨報的今早新聞重點（§7.5）
 const fixed = fixedAll.filter((r) => r.data.target === target).sort((a, b) => order.indexOf(a.data.code) - order.indexOf(b.data.code));
 // 交辦的股票：還沒對答案（沒有結果、沒有作廢）的才顯示
 const asked = reports.filter((r) => !watchCodes.has(r.data.code) && !r.result && !r.void)
@@ -30,8 +32,22 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
       : <>開盤前最後一版<span class="hide-sm">，收盤後自動對答案</span></>}
   </p>
 
+  {brief && (
+    <section class="section panel brief">
+      <div class="panel-title">今早新聞重點</div>
+      <ul class="items">
+        {brief.items.map((n: any) => (
+          <li>
+            <span class:list={['imp', signalTone(n.impact)]}>{signalIcon(n.impact)}</span>
+            <span><a href={n.url} target="_blank" rel="noopener"><b>{n.title}</b></a> <span class="small dim">{n.source}</span><br /><span class="small muted">{n.point}</span></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
   {[
-    { title: '每日追蹤・0050 前六大', list: fixed, empty: '下一個開盤日收盤後會自動產生。' },
+    { title: '每日追蹤・0050 前六大', list: fixed, empty: '開盤日 05:40 自動產生。' },
     { title: 'AI 個股分析', list: asked, empty: '盤前在對話中說「分析 XXXX」，AI 產生的報告會出現在這裡；收盤對完答案後移到戰績。', showDate: true },
   ].map((sec) => (
     <section class="section">
@@ -82,6 +98,10 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
   .warn { color: var(--accent); }
   .label { margin-bottom: 6px; }
   .empty { padding: 12px 14px; margin: 0; }
+  .brief { border-left: 3px solid var(--accent); }
+  .items { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .items li { display: grid; grid-template-columns: 18px 1fr; gap: 6px; line-height: 1.5; }
+  .imp.up { color: var(--up); } .imp.down { color: var(--down); } .imp.flat { color: var(--flat); }
   .list { display: flex; flex-direction: column; gap: 6px; }
   .row { display: grid; grid-template-columns: 1.3fr 0.9fr 0.9fr 2.4fr 0.8fr; gap: 12px; align-items: center; padding: 10px 14px; }
   .head { padding-top: 0; padding-bottom: 0; }

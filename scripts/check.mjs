@@ -3,7 +3,7 @@
 // 檢查所有（或指定）報告是否符合 CLAUDE.md §6 的驗收清單。全部通過才可以 build / push。
 import { readFile, readdir, access } from 'node:fs/promises';
 import { parse } from 'yaml';
-import { validateReport, validateBody, validateGovBank } from '../src/lib/validate.mjs';
+import { validateReport, validateBody, validateGovBank, validateRecap, validateBrief } from '../src/lib/validate.mjs';
 import { closeScore } from '../src/lib/scoring.mjs';
 
 const DIR = 'src/content/reports';
@@ -59,4 +59,17 @@ for (const f of govFiles) {
   else console.log(`✔ ${GOV}/${f}`);
 }
 if (govFiles.length) console.log(`官股資料 ${govFiles.length} 份`);
+
+// AI 盤後分析與今早新聞重點（雲端 AI 產生，CLAUDE.md §7.5、§7.6）
+for (const [dir, check] of [['data/recaps', validateRecap], ['data/briefs', validateBrief]]) {
+  let fs2 = [];
+  try { fs2 = (await readdir(dir)).filter((f) => f.endsWith('.json')); } catch { /* 還沒有資料 */ }
+  for (const f of fs2) {
+    let errs;
+    try { errs = check(JSON.parse(await readFile(`${dir}/${f}`, 'utf8')), f); }
+    catch (e) { errs = [`[${f}] 不是合法的 JSON：${e.message}`]; }
+    if (errs.length) { failed++; console.log(`✘ ${dir}/${f}`); errs.forEach((e) => console.log(`   - ${e}`)); }
+    else console.log(`✔ ${dir}/${f}`);
+  }
+}
 process.exit(failed ? 1 : 0);

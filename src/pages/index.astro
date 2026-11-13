@@ -1,21 +1,21 @@
 ---
 // 盤後戰情（首頁）：只放數據與新聞，不放預測（預測在「戰況預測」頁，CLAUDE.md §3.3）。
-// 資料取最新一份快照：收盤後排程產生下一個交易日初版時抓的，隔天 05:40 再更新成含隔夜行情的版本。
+// 資料取最新一份快照：16:10 排程抓的盤後數據，隔天 05:40 再更新成含隔夜行情的版本。最上方是雲端 AI 的盤後分析（§7.6）。
 import Base from '../layouts/Base.astro';
 import MarketBoard from '../components/MarketBoard.astro';
 import NewsAlerts from '../components/NewsAlerts.astro';
 import LeveragedRadar from '../components/LeveragedRadar.astro';
 import ForeignFlow from '../components/ForeignFlow.astro';
-import { getReports, watchlist, url, md, weekday, fmtNum, lots, pct, tone } from '../lib/site.mjs';
+import { snapshots, recaps, watchlist, url, md, weekday, fmtNum, lots, pct, tone } from '../lib/site.mjs';
 
-const reports = await getReports();
 const watchCodes = watchlist.stocks.map((s) => s.code);
-// 每檔追蹤股票取最新的快照
-const latestSnap = (code: string) => reports.filter((r) => r.data.code === code && r.snapshot).map((r) => r.snapshot)
-  .sort((a, b) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
+// 每檔追蹤股票取最新的快照（不一定有報告：16:10 只抓數據、不產生預測）
+const latestSnap = (code: string) => Object.values(snapshots).filter((s: any) => s.meta.code === code)
+  .sort((a: any, b: any) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
 const snaps = watchCodes.map(latestSnap).filter(Boolean);
 const snap = [...snaps].sort((a, b) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
 const day = snap?.meta.basedOn;
+const recap = recaps.find((r: any) => r.date === day);
 
 // 六檔個股當日數據：收盤、漲跌、三大法人（張，自營商只計自行買賣）、融資增減
 const rows = snaps.map((s: any) => {
@@ -39,6 +39,20 @@ const alertCount = (items: any[]) => items.filter((x) => x.tags.length).length;
     <>
       <h1>{md(day)}（{weekday(day)}）盤後戰情</h1>
       <p class="small muted sub">只有數據與新聞<span class="hide-sm">，預測請看「戰況預測」</span>{!snap.meta.timingOk && <span class="warn">・美股與夜盤尚未更新</span>}</p>
+
+      {recap && (
+        <section class="section panel recap">
+          <div class="panel-title">AI 盤後分析</div>
+          <p class="headline">{recap.headline}</p>
+          <ul class="pts">{recap.points.map((p: string) => <li>{p}</li>)}</ul>
+          <div class="small muted label">下個交易日注意</div>
+          <ul class="pts watch">{recap.watch.map((p: string) => <li>{p}</li>)}</ul>
+          <details class="small">
+            <summary class="muted">參考新聞 {recap.news.length} 則</summary>
+            <ul class="src">{recap.news.map((n: any) => <li><a href={n.url} target="_blank" rel="noopener">{n.title}</a> <span class="dim">{n.source}</span></li>)}</ul>
+          </details>
+        </section>
+      )}
 
       <section class="section"><MarketBoard snapshot={snap} /></section>
 
@@ -95,4 +109,10 @@ const alertCount = (items: any[]) => items.filter((x) => x.tags.length).length;
   .stock-news:first-of-type { border-top: 0; }
   .stock-news summary { cursor: pointer; padding: 9px 0; }
   .stock-news[open] { padding-bottom: 8px; }
+  .recap { border-left: 3px solid var(--accent); }
+  .headline { font-size: 18px; font-weight: 700; margin: 4px 0 8px; }
+  .pts { margin: 0 0 10px; padding-left: 20px; line-height: 1.7; }
+  .watch li::marker { color: var(--accent); }
+  .label { margin-top: 4px; }
+  .src { margin: 6px 0 0; padding-left: 18px; line-height: 1.8; }
 </style>

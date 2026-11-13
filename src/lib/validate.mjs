@@ -161,3 +161,59 @@ export const REQUIRED_SECTIONS = ['## 綜合判斷', '## 開盤觀察重點', '#
 export function validateBody(body) {
   return REQUIRED_SECTIONS.filter((h) => !body.includes(h)).map((h) => `內文缺少章節「${h}」`);
 }
+
+/** 新聞連結的共同檢查：網址、禁用來源、喊盤用語 */
+function checkLink(n, where, errors) {
+  if (!n?.title) errors.push(`${where} 缺少標題`);
+  if (!n?.source) errors.push(`${where} 缺少媒體名稱（source）`);
+  if (!/^https?:\/\//.test(n?.url ?? '')) errors.push(`${where} 缺少有效網址`);
+  const host = domainOf(n?.url ?? '');
+  if (NEWS.blockedDomains.some((d) => host === d || host.endsWith('.' + d))) errors.push(`${where} 來自論壇或社群（${host}），不可採用`);
+  const hype = NEWS.hypeWords.find((w) => (n?.title ?? '').includes(w));
+  if (hype) errors.push(`${where} 標題含喊盤用語「${hype}」，不可採用`);
+}
+const vagueIn = (texts) => VAGUE.find((w) => texts.some((t) => (t ?? '').includes(w)));
+const dateCheck = (x, file, tag, errors) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(x.date ?? '')) errors.push(`${tag}date 必須是 YYYY-MM-DD`);
+  if (file && x.date && file !== `${x.date}.json`) errors.push(`${tag}檔名應為 ${x.date}.json`);
+};
+const lenOk = (s, max) => typeof s === 'string' && s.length > 0 && s.length <= max;
+
+/**
+ * AI 盤後分析（data/recaps/<交易日>.json，CLAUDE.md §7.6）
+ * { date, createdAt, headline, points: [3～5], watch: [1～3], news: [{title, source, url}] ≥ 2 }
+ */
+export function validateRecap(x, file = '') {
+  const errors = [];
+  const tag = file ? `[${file}] ` : '';
+  dateCheck(x, file, tag, errors);
+  if (!lenOk(x.headline, 40)) errors.push(`${tag}headline 必須是 1～40 字的一句話結論`);
+  if (!Array.isArray(x.points) || x.points.length < 3 || x.points.length > 5) errors.push(`${tag}points 必須 3～5 點`);
+  else x.points.forEach((p, i) => { if (!lenOk(p, 80)) errors.push(`${tag}points[${i}] 必須是 1～80 字`); });
+  if (!Array.isArray(x.watch) || x.watch.length < 1 || x.watch.length > 3) errors.push(`${tag}watch（明天要注意）必須 1～3 點`);
+  else x.watch.forEach((p, i) => { if (!lenOk(p, 60)) errors.push(`${tag}watch[${i}] 必須是 1～60 字`); });
+  if (!Array.isArray(x.news) || x.news.length < 2) errors.push(`${tag}news 至少 2 則（附真實網址）`);
+  else x.news.forEach((n, i) => checkLink(n, `${tag}news[${i}]`, errors));
+  const v = vagueIn([x.headline, ...(x.points ?? []), ...(x.watch ?? [])]);
+  if (v) errors.push(`${tag}含空泛用語「${v}」`);
+  return errors;
+}
+
+/**
+ * 今早新聞重點（data/briefs/<交易日>.json，雲端晨報產生，CLAUDE.md §7.5）
+ * { date, createdAt, items: [{ title, point, impact: 偏多|偏空|中性, source, url }] 3～5 則 }
+ */
+export function validateBrief(x, file = '') {
+  const errors = [];
+  const tag = file ? `[${file}] ` : '';
+  dateCheck(x, file, tag, errors);
+  if (!Array.isArray(x.items) || x.items.length < 3 || x.items.length > 5) errors.push(`${tag}items 必須 3～5 則`);
+  else x.items.forEach((n, i) => {
+    checkLink(n, `${tag}items[${i}]`, errors);
+    if (!lenOk(n.point, 60)) errors.push(`${tag}items[${i}].point（對台股的影響）必須是 1～60 字`);
+    if (!['偏多', '偏空', '中性'].includes(n.impact)) errors.push(`${tag}items[${i}].impact 只能是偏多、偏空、中性`);
+  });
+  const v = vagueIn((x.items ?? []).map((n) => n.point));
+  if (v) errors.push(`${tag}含空泛用語「${v}」`);
+  return errors;
+}

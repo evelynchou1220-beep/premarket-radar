@@ -1,12 +1,13 @@
 #!/usr/bin/env node
-// 每日排程：npm run daily -- predict｜verify  （由 .github/workflows/daily.yml 自動執行，也可以手動執行）
+// 每日排程：npm run daily -- predict｜verify｜postclose  （由 .github/workflows/daily.yml 自動執行，也可以手動執行）
 //
 // predict（開盤日 06:40 左右）：
 //   1. 今天不是交易日 → 什麼都不做（週末、國定假日）
 //   2. 先補做還沒對答案的驗證
 //   3. 對 watchlist 每一檔：抓快照 → 產生程式版報告（mode: auto）→ 驗收
 //      已有 AI 完整版（mode: ai）的報告不覆寫
-// verify（開盤日 16:10 左右）：對答案，寫入 data/results.json；排程接著執行 predict 產生下一個交易日初版
+// verify：對答案，寫入 data/results.json
+// postclose（開盤日 16:10 左右）：對答案＋抓下一個交易日的快照（只有數據，不產生預測），給盤後戰情頁與 AI 盤後分析使用
 import { readFile, writeFile, access, rm } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { parse } from 'yaml';
@@ -17,8 +18,8 @@ import { buildAutoReport } from './lib/autoreport.mjs';
 import { validateReport, validateBody } from '../src/lib/validate.mjs';
 
 const task = process.argv[2];
-if (!['predict', 'verify'].includes(task)) {
-  console.error('用法：npm run daily -- predict｜verify');
+if (!['predict', 'verify', 'postclose'].includes(task)) {
+  console.error('用法：npm run daily -- predict｜verify｜postclose');
   process.exit(1);
 }
 
@@ -33,11 +34,25 @@ if (task === 'verify') {
   process.exit(0);
 }
 
-// ---------- predict ----------
 if (!isTradingDay(today)) {
   console.log(`📅 ${today} 休市，不產生預測。`);
   process.exit(0);
 }
+
+// ---------- postclose：收盤後只抓數據，不產生預測（CLAUDE.md §7.1） ----------
+if (task === 'postclose') {
+  verify();
+  const next = nextTradingDay(today);
+  let n = 0;
+  for (const { code, name } of watchlist.stocks) {
+    try { await fetchSnapshot(code, { target: next }); n++; console.log(`✔ ${code} ${name}：盤後數據`); }
+    catch (e) { console.log(`✘ ${code} ${name}：${e.message}`); }
+  }
+  console.log(`盤後數據 ${n}/${watchlist.stocks.length} 檔（快照 data/snapshots/${next}/）`);
+  process.exit(n ? 0 : 1);
+}
+
+// ---------- predict ----------
 
 // 13:30 收盤前執行 → 預測今天；收盤後執行（例如晚上手動補跑）→ 預測下一個交易日
 const hhmm = new Date(Date.now() + 8 * 3600e3).toISOString().slice(11, 16);
@@ -51,9 +66,6 @@ if (hhmm >= '09:00' && hhmm < '13:30') {
 console.log(`▶ ${target} 盤前程式版預測：${watchlist.stocks.map((s) => `${s.code} ${s.name}`).join('、')}`);
 
 const exists = (p) => access(p).then(() => true, () => false);
-// 盤後初版的結論另外存一份（隔天 05:40 正式版會覆寫報告），戰績頁用來比較「盤後初版」與「盤前正式版」的命中率
-const DRAFTS = 'data/drafts.json';
-const drafts = await readFile(DRAFTS, 'utf8').then(JSON.parse, () => ({}));
 let ok = 0;
 const failed = [];
 for (const { code, name } of watchlist.stocks) {
@@ -75,7 +87,6 @@ for (const { code, name } of watchlist.stocks) {
     if (errors.length) throw new Error(`驗收未通過：${errors.join('；')}`);
     await writeFile(file, md);
     const fm = parse(fmText);
-    if (fm.timingNote?.startsWith('初版')) drafts[`${target}-${code}`] = { verdict: fm.verdict, confidence: fm.confidence, createdAt: fm.createdAt };
     console.log(`✔ ${code} ${name}：${fm.verdict}（信心度 ${fm.confidence}%）${snapshot.meta.timingOk ? '' : '｜⏰ 時序檢查未通過'}`);
     ok++;
   } catch (e) {
@@ -86,7 +97,6 @@ for (const { code, name } of watchlist.stocks) {
   }
 }
 
-await writeFile(DRAFTS, JSON.stringify(Object.fromEntries(Object.entries(drafts).sort()), null, 2) + '\n');
 console.log(`\n完成 ${ok}/${watchlist.stocks.length} 檔`);
 if (failed.length) {
   console.log('失敗：');
