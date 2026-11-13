@@ -11,12 +11,11 @@ on:
 
 permissions:
   contents: write
+  actions: write # 啟動 deploy.yml
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    outputs:
-      published: ${{ steps.push.outputs.published }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -68,13 +67,9 @@ jobs:
           git push origin --delete "$BRANCH" || true
           echo "published=true" >> "$GITHUB_OUTPUT"
           echo "✅ $NOW 已發布 $BRANCH"
-
-  deploy:
-    needs: publish
-    if: needs.publish.outputs.published == 'true'
-    # 用 GITHUB_TOKEN push 不會觸發 deploy.yml 的 push 事件，所以直接呼叫部署流程
-    uses: ./.github/workflows/deploy.yml
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
+      # 分支不是 main，不能直接部署到 GitHub Pages；在 main 上另外啟動部署
+      - name: 部署
+        if: steps.push.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main --repo "${{ github.repository }}"
