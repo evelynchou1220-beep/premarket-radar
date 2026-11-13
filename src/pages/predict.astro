@@ -21,15 +21,19 @@ const rank = { 強: 3, 中: 2, 弱: 1 } as Record<string, number>;
 const topFactor = (r: any) => r.data.factors.filter((f: any) => (f.signal === '偏多' || f.signal === '偏空') && isScored(f.key, r.data.target, f.signal)).sort((a: any, b: any) => (rank[b.strength] ?? 0) - (rank[a.strength] ?? 0))[0];
 const stockAlerts = (r: any) => (r.snapshot?.news?.stock ?? []).filter((x: any) => x.tags.length).length;
 const isDraft = (r: any) => r.data.timingNote?.startsWith('初版');
+// 還沒對答案的初版：開盤預測要等隔夜資料；已對答案的初版照常顯示當時的預測
+const pendingDraft = (r: any) => isDraft(r) && !r.result;
 const icon = (v: string) => ({ 偏多: '▲', 偏空: '▼', 盤整: '◆' })[v];
 const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
 ---
 <Base title="戰況預測" active="predict">
   <h1>{target ? `${md(target)}（${weekday(target)}）戰況預測` : '戰況預測'}</h1>
   <p class="small muted sub">
-    {fixed.some(isDraft)
+    {fixed.some(pendingDraft)
       ? <span class="warn">初版：尚未納入今晚美股與夜盤，開盤日 05:45 自動更新<span class="hide-sm">。三年回測初版只有約 32% 準，僅供參考</span></span>
-      : <>開盤前最後一版<span class="hide-sm">，收盤後自動對答案</span></>}
+      : fixed.some(isDraft)
+        ? <span class="warn">這天的預測是前一天收盤後的初版（早上排程延遲，沒有隔夜資料）</span>
+        : <>開盤前最後一版<span class="hide-sm">，收盤後自動對答案</span></>}
   </p>
 
   {brief && (
@@ -69,7 +73,7 @@ const mark = (hit?: boolean) => (hit == null ? '' : hit ? '✔' : '✘');
                     {stockAlerts(r) > 0 && <span class="news-flag" title="盤前有需注意的個股新聞">⚠ 新聞 {stockAlerts(r)}</span>}
                   </span>
                 </span>
-                {isDraft(r)
+                {pendingDraft(r)
                   ? <span class="call flat pending" data-k="開盤">05:45 更新</span>
                   : <span class:list={['call', verdictTone(r.open.verdict)]} data-k="開盤">{icon(r.open.verdict)} {r.open.label}<em class="num">{r.open.confidence}%</em></span>}
                 <span class:list={['call', verdictTone(r.data.verdict)]} data-k="收盤">
