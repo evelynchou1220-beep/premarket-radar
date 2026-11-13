@@ -1,10 +1,13 @@
 # 每日排程（CLAUDE.md §7）：開盤日早上產生程式版預測、收盤後對答案，有變動就 commit 並重新部署。
-# GitHub 的 cron 使用 UTC 時間，且尖峰時段可能延遲 10～30 分鐘，所以提早排在整點前。
+# 主要觸發：Claude 雲端排程準時推一個「觸發分支」claude/run-<工作>-<日期>，push 事件會立即執行（CLAUDE.md §7.1）。
+# GitHub 的 cron 實測延遲 4～5 小時（2026-11-12、11-13 的 05:40 都到 10:00 後才跑），只當備援。
 name: Daily predict & verify
 
 on:
+  push:
+    branches: ['claude/run-**']
   schedule:
-    # GitHub 排程曾延遲 4 小時以上，所以盤前預測排兩次：先跑成功的就完成，後面那次自動略過；09:00 後一律不產生（daily.mjs）
+    # 備援：先跑成功的就完成，後面的自動略過；09:00 後一律不產生預測（daily.mjs）
     - cron: '40 21 * * 0-4' # 台北時間週一～五 05:40：盤前預測（美股已收盤、夜盤已結束）
     - cron: '40 22 * * 0-4' # 台北時間週一～五 06:40：盤前預測備援
     - cron: '10 8 * * 1-5'  # 台北時間週一～五 16:10：收盤後對答案＋盤後數據（證交所法人、期交所部位約 15:00 後才公布；不產生預測）
@@ -32,15 +35,25 @@ jobs:
       changed: ${{ steps.commit.outputs.changed }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main # 觸發分支只用來啟動，一律在最新的 main 上執行
       - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
       - run: npm ci
+      - name: 刪除觸發分支
+        if: github.event_name == 'push'
+        run: git push origin --delete "${{ github.ref_name }}" || true
       - id: task
         name: 判斷工作
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "${{ github.event_name }}" = "push" ]; then
+            case "${{ github.ref_name }}" in
+              claude/run-postclose-*) echo "task=postclose" >> "$GITHUB_OUTPUT" ;;
+              *) echo "task=predict" >> "$GITHUB_OUTPUT" ;;
+            esac
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "task=${{ inputs.task }}" >> "$GITHUB_OUTPUT"
           elif [ "${{ github.event.schedule }}" = "10 8 * * 1-5" ]; then
             echo "task=postclose" >> "$GITHUB_OUTPUT"

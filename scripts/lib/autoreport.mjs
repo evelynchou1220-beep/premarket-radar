@@ -127,9 +127,9 @@ export function buildAutoReport(s) {
     verdict: sc.verdict,
     confidence: sc.confidence,
     summary,
-    // 收盤後產生的初版：當晚美股、夜盤還沒出來，隔天 05:40 排程會用最新資料重做（CLAUDE.md §7.1）
+    // 收盤後產生的初版：當晚美股、夜盤還沒出來，隔天 05:45 排程會用最新資料重做（CLAUDE.md §7.1）
     ...(m.timingOk ? {} : { timingNote: nowTpe().slice(0, 10) < m.target
-      ? `初版（收盤後產生）：尚未納入今晚的美股、ADR 與台指期夜盤，開盤日 05:40 會用最新資料自動更新。`
+      ? `初版（收盤後產生）：尚未納入今晚的美股、ADR 與台指期夜盤，開盤日 05:45 會用最新資料自動更新。`
       : `程式自動產生時資料不是最新：${m.stale.join('；')}。` }),
     factors,
     news: [],

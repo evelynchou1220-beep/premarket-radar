@@ -29,6 +29,13 @@ for (const file of (await readdir('src/content/reports')).filter((f) => f.endsWi
   if (results[id]) continue;
   const fm = parse((await readFile(`src/content/reports/${file}`, 'utf8')).replace(/\r\n/g, '\n').split('---\n')[1]);
   if (fm.target > today) { console.log(`… ${id}：預測日 ${fm.target} 尚未到`); continue; }
+  // 開盤（預測日 09:00）後才產生的報告：已經看到盤勢，不列入戰績（CLAUDE.md §4、§7.2）
+  if (new Date(String(fm.createdAt)) >= new Date(`${fm.target}T09:00+08:00`)) {
+    results[id] = { code: fm.code, target: fm.target, mode: fm.mode ?? 'ai', void: true, note: `${fm.createdAt} 才產生，晚於 ${fm.target} 09:00 開盤，不列入戰績`, verifiedAt: new Date().toISOString() };
+    updated++;
+    console.log(`⊘ ${id}：開盤後才產生，作廢`);
+    continue;
+  }
 
   const rows = await monthRows(fm.code, fm.target);
   const day = rows.find((r) => r.date === fm.target);

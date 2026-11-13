@@ -42,7 +42,7 @@ const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
     <div class="panel kpi">
       <div class="small muted">盤前・收盤預測</div>
       <div class="num big accent">{rateText(prog)}</div>
-      <div class="small dim">{prog.hits}/{prog.verified} 筆<span class="hide-sm">｜05:40 正式版（程式）</span></div>
+      <div class="small dim">{prog.hits}/{prog.verified} 筆<span class="hide-sm">｜05:45 正式版（程式）</span></div>
     </div>
     <div class="panel kpi">
       <div class="small muted">AI 完整版・收盤預測</div>
@@ -50,7 +50,7 @@ const days = [...new Set(reports.map((r) => r.data.target))].map((date) => {
       <div class="small dim">{ai.hits}/{ai.verified} 筆<span class="hide-sm">｜同批只用程式因子 {rateText(aiProg)}</span></div>
     </div>
   </section>
-  <p class="small muted bt">三年回測（2023/11～2026/11，6 檔共 4,361 筆，現行公式）：盤前開盤 <b class="num">56.3%</b>、盤前收盤 <b class="num">39.1%</b>；亂猜約 33%。<span class="hide-sm">夜盤、美股、ADR 決定了大部分的準確度（收盤後、沒有隔夜資料的預測只有 32.3%，所以不做盤後預測）。</span></p>
+  <p class="small muted bt">三年回測（2023/11～2026/11，6 檔共 4,361 筆）：盤前開盤 <b class="num">56.3%</b>、盤前收盤 <b class="num">47.3%</b>（現行公式 v2；舊公式 39.1%）；亂猜約 33%。<span class="hide-sm">夜盤、美股、ADR 決定了大部分的準確度（收盤後、沒有隔夜資料的預測只有 32.3%，所以不做盤後預測）。</span></p>
   <p class="small dim">共 {reports.length} 份預測：待驗證 {prog.pending}、作廢 {voided}。開盤預測只用隔夜資訊（夜盤、ADR、美股、日韓、匯率），平盤範圍同樣依個股近 20 日開盤跳空幅度計算。</p>
 
   <section class="grid grid-2 section">

@@ -1,6 +1,6 @@
 ---
 // 盤後戰情（首頁）：只放數據與新聞，不放預測（預測在「戰況預測」頁，CLAUDE.md §3.3）。
-// 資料取最新一份快照：16:10 排程抓的盤後數據，隔天 05:40 再更新成含隔夜行情的版本。最上方是雲端 AI 的盤後分析（§7.6）。
+// 資料取最新一份快照：收盤後排程抓的盤後數據，隔天 05:45 再更新成含隔夜行情的版本。最上方是雲端 AI 的盤後分析（§7.6）。
 import Base from '../layouts/Base.astro';
 import MarketBoard from '../components/MarketBoard.astro';
 import NewsAlerts from '../components/NewsAlerts.astro';
@@ -9,7 +9,7 @@ import ForeignFlow from '../components/ForeignFlow.astro';
 import { snapshots, recaps, watchlist, url, md, weekday, fmtNum, lots, pct, tone } from '../lib/site.mjs';
 
 const watchCodes = watchlist.stocks.map((s) => s.code);
-// 每檔追蹤股票取最新的快照（不一定有報告：16:10 只抓數據、不產生預測）
+// 每檔追蹤股票取最新的快照（不一定有報告：收盤後只抓數據、不產生預測）
 const latestSnap = (code: string) => Object.values(snapshots).filter((s: any) => s.meta.code === code)
   .sort((a: any, b: any) => b.meta.fetchedAt.localeCompare(a.meta.fetchedAt))[0];
 const snaps = watchCodes.map(latestSnap).filter(Boolean);
