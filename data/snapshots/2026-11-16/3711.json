@@ -1,13 +1,37 @@
 {
  "news": {
-  "fetchedAt": "2026-11-13T09:41:28.520Z",
+  "fetchedAt": "2026-11-15T21:47:45.095Z",
   "since": "2026-11-13T13:30+08:00",
   "stock": [
    {
-    "title": "3711 日月光投控- 日月光長期如何？ - 股市爆料同學會",
+    "title": "日月光投控：日月光半導體製造7/9~11/13向印能科技取得營業用機器設備，計約10億",
+    "source": "台視全球資訊網",
+    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNT1ZQVlczN2NhNHU5eGZDd1lSZ2tCQnluY0JlaUd6eS1DbmRNVXhFSWREejN1Zzk0TW4yTnBkVXdsTWJaX2lUbW1yTFNieHgwbnJzSk9TZ25KOVZUNDNSdVBQRWlsZUdGXzhLUEJxMmNwbGl6RGZNRElROUtjTDduTjV4Mlg2bGlpVGwzbGZMTTA1QQ?oc=5",
+    "time": "2026-11-13T14:16:37.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "3711 日月光投控- 營運追蹤- 股市爆料同學會",
     "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1mQWJsT1dQZ2IxaktOZ1U3Nzc2d3YweWx0QXcwS21VVHpVU0MzZmIyNWduMFp1OHZsVUFSSHBVckdtSnlHdUxIekUtU3dNcGRRcklYNUxrWkw?oc=5",
-    "time": "2026-11-13T07:41:07.000Z",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBvZElxUm1vNGw2X3h5ODJpRG9kWlpZbHVVYjRpV21CTEU2X0U5cFVxb3BCOUNhc1ExcWE4eGR5dTdiaXdqNC00TVVzYWFocHJVdzR6aXpNQzg?oc=5",
+    "time": "2026-11-13T12:21:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "3711 日月光投控- 日月光路竹廠一期啟用、二期動土千億元布局擴大先進封裝量能- 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5GRndWMHRKN0N6ME80Z0V0R0NpdXVjWS1XN2pFYzJMakJlNDk3eS1sYUNSM01HVEpiMXY1eG5nOEpaa2JzbzZVOWNDU1pPSmVHTVJsV3Z6QW8?oc=5",
+    "time": "2026-11-13T11:59:06.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "日月光投控(3711)股價漲跌預測排行｜漲跌預言家第1 名：亮亮(量滾量)存股變飆股- 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE51c0ZIRlIxc3NHVGhJM2Mzam1pTDdkV1BJako3Q18zTUtDRTczMklyRGJ5dXRrUFUwTDU4bk1YcTd2NTRWMmJ3NWRZSTZ2NXB3UmpaV1gxVVJrT2xI?oc=5",
+    "time": "2026-11-13T08:00:00.000Z",
     "tags": [],
     "trusted": false
    },
@@ -40,7 +64,118 @@
     "trusted": false
    }
   ],
-  "market": []
+  "market": [
+   {
+    "title": "輝達跌倒ASIC吃飽！「21檔」轉單概念股",
+    "source": "三立新聞網SETN.com",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9Oa0dsVkkyMDl2dDl4aHQ1SWhLNnUzaUp6Nm5Dam9GSG9DRXNncmFuWGgwb040S01iSjlIZ0Z4eU05bmFiVXFmTG9QUQ?oc=5",
+    "time": "2026-11-15T20:51:37.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "年線攻防戰！「12檔」抱緊處理準沒錯",
+    "source": "鏡週刊Mirror Media",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5Ea2ZlRmlrRFJZbGYtcFU4clJxWUdvOWt3M0owVW40M0E0bnRXRFZfR3ktTVoxUHpWRG15WDdrZzFUa2tjQ1hmNUNMY2kwMm9tX1VJejJ2Zll6YUJz0gFiQVVfeXFMT1dJMWtJcXFRTEdjVUN2YWNvRFJWSVVYaXFpa3M4VVJkZnRIS0gxbWltZzdWWjlJMVBPQTAtRUk0WFJ5VWU1dDFBZ3VGSDdra1pFVVZDVjlrX1dvdGUtVC1RTWc?oc=5",
+    "time": "2026-11-15T20:30:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "工商社論》國安基金啟動指標應更具象化- 財經要聞- 工商時報",
+    "source": "中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1PcmV4MW1GX3NRN0xialpSWE9hSWt4VDlDbDRacnNnYTNKdkFuTkpqUnhiR1hFa0pOcDRNdU9JMm1fUk52VlMyMlU2NTBGYzdGa0FDWmdOZVZZYU5vZU9nWFF2aDI1eHlwU25F?oc=5",
+    "time": "2026-11-15T20:10:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "國安基金護盤加持 中小利基股升勢可期",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBHVDA2WDV4aEdwNE4xU0JTTWZuUnF6RnUyLXZBZG5BNDM1UTk4eFNMQzRjdzJtUFdsSWE3MDJFME1hUXdENUNFa2JGd09RbEx30gFWQVVfeXFMTVJsdzNJb1VielJrSWNoWFVRbHowclp3U214cFgzTW0wTFppcEJDSEV2NFJXYjltT0RlRWVCeXRFVjc3a3BmLTJfaEp0X3czcFpDZDY0bVE?oc=5",
+    "time": "2026-11-15T19:49:01.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "國安基金啟動指標應更具象化- 日報",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE10TXlsRVdSV3RzcVR1RHZIREVaNjlaSVRzQ2pxMTluczZmMGs3N050Q2RiSTdWOHJpSHBKSm51T0N5bHFMZUpyOWVtVVN2cjZ2TnVwSmdFRHBhWjF4MlRJ?oc=5",
+    "time": "2026-11-15T19:00:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "16檔外資買超強勢股聚光 台玻、華航等可望助攻多頭氣勢 | 市場焦點 | 證券",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA4THkwWXNKRURUY003Q0VXSzkyTkUyRnQ2eUx2d19jM09vbHRmY2RnZThTSlMyLW8ycXFRSWt2cjFXUXlFSTUtMW9VaUJDNGxMT0tpRnBTRGE0UQ?oc=5",
+    "time": "2026-11-15T17:19:09.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "名師指路 國安基金青睞股 上漲機率高",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9sN0V2S1lHdlVtcExrZnRYanZSY01DZ2pGSFNqRmZaVmJ3NnUxT3lST0pRQ0pidzRHQnBaSjI4SFZZd2dQWUxGWlBSVEIzQ2I50gFWQVVfeXFMUGFFWW9vQzdFMVhXWmdVUDZJY1JoV1lkV01Dc1hiZU0zTXUybnhPMWNKc3d3VFB3WFBTa2hHUVJ1ZDRWVUpGTXVKRUFQRjB3ZmdNTE9SVlE?oc=5",
+    "time": "2026-11-15T17:17:22.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "影音／台股單周漲幅全球居冠！輝達、AMD挫 台股週一不妙恐補跌",
+    "source": "TVBS新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE82bXV3UzFfVVNmd2VIRWlZLWhCamNlNEhuTjZORHExZGZCY2lDenFjUWx0RDNrS3ZCdldKVmJkWFNsQ2hhS1EwM202ak1WSmc?oc=5",
+    "time": "2026-11-15T11:54:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "國安基金第10度護盤台股｜新聞事件整理與重點摘要",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE41UUlsSzQ2TG43Wmc1ajBvbW9HTjd1VW9SdkFpN3RIZHN5NWxBblY4U1BKOWVaNC13cTZLdnQ1YnM2bFd4ajY3dHZ2ajl4QXZGRWRsak5OTDlpY1RSSGFiWVl5THZhMHJmUXJrcTFjb3MycjM1cEVtQy1Hc2QtZw?oc=5",
+    "time": "2026-11-15T09:41:39.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金連3次護盤都買「這6檔」！9次護盤8次賺錢，投資達人艾蜜莉：這3件事值得學| 幸福熟齡X 今周刊",
+    "source": "LINE TODAY",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAwLXhGRnlVclZUQnJfYnM3TDZsYmlVcEhZS2x6LWZ0MDdiY1FwTjF6X3c3NXVNek13Mkg5VWh1TGtkMmZjRHFMdjJXRXNqVWZZSTZKY2hR?oc=5",
+    "time": "2026-11-15T05:05:58.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "從暴跌千點到狂噴10.01％！台股上周發生什麼事？「資金瘋狂湧入ASIC、PCB」法人趁震盪逆勢掃貨6檔三高績優股- 上市櫃",
+    "source": "旺得富理財網",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE84TFRndFVGVWZSUFQ5NTBNLUg0elROSTgzNW1CeUR1MWppSklweU1mRFBibFdXYmF6a0hObjFBVTA1aUl4V3djWXdnZ3gxRUlOb3p3MURlUWVLdHN5a2hwQjE3dGI2YTVoM3c?oc=5",
+    "time": "2026-11-15T02:45:08.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台股反彈別急著追！分析師示警國安基金護盤後恐有第二隻腳點名2檔個股伺機上車- 證券",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9LZHZzSlhTeW0yNUFSQmNfTC1zcERzakVXYkpxMUtWNkRQRTVlYXgySF9odzV2Wkxib1pCd2h4OW9nLW1hQlNXVFMzakxDOUhIV1J5RUxMVjcxV3ZVYUpz?oc=5",
+    "time": "2026-11-15T01:31:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   }
+  ]
  },
  "meta": {
   "code": "3711",
@@ -52,17 +187,12 @@
    "2026-11-15"
   ],
   "isTech": true,
-  "fetchedAt": "2026-11-13T09:41:28.520Z",
+  "fetchedAt": "2026-11-15T21:47:45.095Z",
   "newsSince": "2026-11-13T13:30+08:00",
-  "timingOk": false,
-  "stale": [
-   "美股（2026-11-12）早於台股最後收盤日 2026-11-13",
-   "ADR（2026-11-12）早於台股最後收盤日 2026-11-13"
-  ],
+  "timingOk": true,
+  "stale": [],
   "warnings": [
-   "證交所尚未公布 2026-11-13 借券賣出餘額",
-   "證交所尚未公布 2026-11-13 融資融券",
-   "⏰ 時序檢查未通過：美股（2026-11-12）早於台股最後收盤日 2026-11-13；ADR（2026-11-12）早於台股最後收盤日 2026-11-13。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
+   "外資期貨未平倉取得失敗：抓取失敗 https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfFuturesContractsBytheDate：Unexpected token '日', \"日期,商品名稱,身份\"... is not valid JSON"
   ],
   "sources": [
    {
@@ -4657,8 +4787,21 @@
    "dealerHedge": 190
   }
  ],
- "margin": null,
- "lending": null,
+ "margin": {
+  "date": "2026-11-13",
+  "marginPrev": 11563,
+  "marginToday": 11771,
+  "shortPrev": 227,
+  "shortToday": 196
+ },
+ "lending": {
+  "date": "2026-11-13",
+  "prev": 24956,
+  "today": 25087,
+  "change": 131,
+  "sold": 573,
+  "returned": 442
+ },
  "revenue": {
   "month": "2026-10",
   "revenue": 88615136,
@@ -4674,11 +4817,11 @@
   "institutional": {
    "date": "2026-11-13",
    "foreign": 288.4,
-   "trust": 82.4,
+   "trust": 95.4,
    "dealer": 68.9,
    "dealerSelf": 43,
    "dealerHedge": 25.9,
-   "total": 439.7
+   "total": 452.7
   },
   "txf": {
    "date": "2026-11-13",
@@ -4693,15 +4836,12 @@
    "night": {
     "session": "2026-11-13",
     "contract": "臺指期116",
-    "close": 43972,
+    "close": 43706,
     "ref": 43839,
-    "changePct": 0.3
+    "changePct": -0.3
    }
   },
-  "foreignFuturesOI": {
-   "date": "2026-11-12",
-   "net": -99573
-  },
+  "foreignFuturesOI": null,
   "leveraged": {
    "date": "2026-11-13",
    "items": [
@@ -4721,9 +4861,9 @@
       "dealerSelf": 257,
       "dealerHedge": 30577
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": 820,
+     "marginBalance": 314104,
+     "lendingChange": -515
     },
     {
      "code": "00632R",
@@ -4741,28 +4881,28 @@
       "dealerSelf": 20706,
       "dealerHedge": -6220
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": -15079,
+     "marginBalance": 279844,
+     "lendingChange": 1045
     }
    ]
   },
   "options": {
-   "date": "2026-11-12",
+   "date": "2026-11-13",
    "foreign": {
-    "callOI": 4031,
-    "callValue": 27153,
-    "putOI": 3742,
-    "putValue": 148546
+    "callOI": 3720,
+    "callValue": 158354,
+    "putOI": 5603,
+    "putValue": 154525
    },
    "dealer": {
-    "callOI": 9944,
-    "callValue": 1274474,
-    "putOI": -6010,
-    "putValue": 190412
+    "callOI": 21960,
+    "callValue": 914937,
+    "putOI": -6029,
+    "putValue": 108910
    },
-   "putCallOIRatio": 66.69,
-   "putCallVolumeRatio": 98.17
+   "putCallOIRatio": 57.75,
+   "putCallVolumeRatio": 98.66
   },
   "flows": [
    {
@@ -4863,49 +5003,49 @@
    {
     "date": "2026-11-13",
     "foreign": 288.4,
-    "usdtwd": 32.857
+    "usdtwd": 32.939
    }
   ]
  },
  "global": {
   "sox": {
    "symbol": "^SOX",
-   "date": "2026-11-12",
-   "close": 10506.67,
-   "prevClose": 10564.11,
-   "changePct": -0.54,
+   "date": "2026-11-13",
+   "close": 10146.32,
+   "prevClose": 10506.67,
+   "changePct": -3.43,
    "label": "費城半導體"
   },
   "nasdaq": {
    "symbol": "^IXIC",
-   "date": "2026-11-12",
-   "close": 25366.09,
-   "prevClose": 25466.19,
-   "changePct": -0.39,
+   "date": "2026-11-13",
+   "close": 25136.27,
+   "prevClose": 25366.09,
+   "changePct": -0.91,
    "label": "那斯達克"
   },
   "sp500": {
    "symbol": "^GSPC",
-   "date": "2026-11-12",
-   "close": 7592.4,
-   "prevClose": 7619.38,
-   "changePct": -0.35,
+   "date": "2026-11-13",
+   "close": 7561.67,
+   "prevClose": 7592.4,
+   "changePct": -0.4,
    "label": "標普 500"
   },
   "dow": {
    "symbol": "^DJI",
-   "date": "2026-11-12",
-   "close": 52297.09,
-   "prevClose": 52486.49,
-   "changePct": -0.36,
+   "date": "2026-11-13",
+   "close": 52347.55,
+   "prevClose": 52297.09,
+   "changePct": 0.1,
    "label": "道瓊"
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-12",
-   "close": 18.7,
-   "prevClose": 17.49,
-   "changePct": 6.92,
+   "date": "2026-11-13",
+   "close": 19.3,
+   "prevClose": 18.7,
+   "changePct": 3.21,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -4926,10 +5066,10 @@
   },
   "usdtwd": {
    "symbol": "TWD=X",
-   "date": "2026-11-13",
-   "close": 32.86,
-   "prevClose": 32.86,
-   "changePct": -0.01,
+   "date": "2026-11-15",
+   "close": 32.9,
+   "prevClose": 32.94,
+   "changePct": -0.12,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -4943,13 +5083,13 @@
  },
  "adr": {
   "symbol": "ASX",
-  "date": "2026-11-12",
-  "close": 36.29,
-  "prevClose": 37.82,
-  "changePct": -4.05,
+  "date": "2026-11-13",
+  "close": 35.55,
+  "prevClose": 36.29,
+  "changePct": -2.04,
   "name": "日月光投控 ADR",
   "ratio": 2,
-  "impliedTwd": 596.2
+  "impliedTwd": 584.8
  },
  "hints": {
   "kline": {
@@ -4995,34 +5135,34 @@
    "source": "證交所 T86，2026-11-13"
   },
   "margin": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "證交所尚未公布 2026-11-13 融資融券資料",
-   "source": "證交所 MI_MARGN"
+   "data": "融資餘額 11,771 張（+1.8%），融券餘額 196 張",
+   "source": "證交所 MI_MARGN，2026-11-13"
   },
   "txf": {
-   "signal": "偏多",
+   "signal": "偏空",
    "strength": "弱",
-   "data": "臺指期116夜盤 43972（+0.3%，相對日盤收盤 43839）",
+   "data": "臺指期116夜盤 43706（-0.3%，相對日盤收盤 43839）",
    "source": "期交所即時行情，夜盤 2026-11-13"
   },
   "futures_oi": {
-   "signal": "偏空",
-   "strength": "中",
-   "data": "外資台指期淨空單 99,573 口",
-   "source": "期交所 OpenAPI，2026-11-12"
-  },
-  "us_market": {
    "signal": "缺漏",
    "strength": null,
-   "data": "尚無 2026-11-13 晚間的美股收盤（最新為 2026-11-12，已反映在台股收盤）",
+   "data": "期交所資料取得失敗",
+   "source": "期交所 OpenAPI"
+  },
+  "us_market": {
+   "signal": "偏空",
+   "strength": "強",
+   "data": "費半 -3.43%、那指 -0.91%、標普 -0.4%（2026-11-13 美股收盤；以費半判斷）",
    "source": "Yahoo Finance"
   },
   "adr": {
-   "signal": "缺漏",
-   "strength": null,
-   "data": "尚無 2026-11-13 晚間的 ADR 收盤（最新為 2026-11-12，已反映在台股收盤）",
-   "source": "Yahoo Finance ASX"
+   "signal": "偏空",
+   "strength": "強",
+   "data": "日月光投控 ADR 35.55 美元（-2.04%，2026-11-13 美股收盤）。ADR 長期有溢價，只看漲跌幅",
+   "source": "Yahoo Finance ASX，2026-11-13"
   },
   "asia": {
    "signal": "中性",
@@ -5039,8 +5179,8 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.86，新台幣升值 0.01%",
-   "source": "Yahoo Finance TWD=X，2026-11-13"
+   "data": "美元兌新台幣 32.9，新台幣升值 0.12%",
+   "source": "Yahoo Finance TWD=X，2026-11-15"
   }
  }
 }

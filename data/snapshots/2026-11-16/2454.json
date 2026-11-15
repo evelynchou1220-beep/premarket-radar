@@ -1,29 +1,53 @@
 {
  "news": {
-  "fetchedAt": "2026-11-13T09:41:15.946Z",
+  "fetchedAt": "2026-11-15T21:47:31.041Z",
   "since": "2026-11-13T13:30+08:00",
   "stock": [
    {
-    "title": "【最新消息】聯發科、創意帶動，ASIC 18檔上漲看3檔指標股-起漲K線",
-    "source": "CMoney投資網誌",
-    "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOWEhxdEJDU2x3ZkVxdnZEajJXMGkzV1ZWbUJHZE4tc2lJUk82T09qdC16cDF4YU1SbzBpdFZGcGU3NnlkNzlaejNOYXdiR1d0RTBDRGFKaFNBUGhWb190VkdQOFhVY2VHbjU5SVZ1eDlFTGRoOUZrTU5YZDRoWks3RUFEYWs?oc=5",
-    "time": "2026-11-13T09:34:22.000Z",
+    "title": "黃仁勳請辭引爆AI大洗牌！法人揭聯發科AI ASIC暴利密碼喊強力買進- 產業",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9WWDZwZ0VoSWFjZ3hCd2dQQURYWjc2dVRaZFI4RXl3bG8wM3BlV2hoMTJlUzNNT1F6QUQyRi1hU0ZFcWZaNEVZa3RKbGFZVE9EY1dZNGZ4VkVjbUk2U0Fz?oc=5",
+    "time": "2026-11-15T06:30:00.000Z",
     "tags": [],
-    "trusted": false
+    "trusted": true
    },
    {
-    "title": "三大法人買賣超 – 外資買超(1802)台玻、(2454)聯發科，投信買超(3443)創意、(6223)旺矽，法人合計買超51.6億元",
+    "title": "投信連24買 高勝率股出列 聯發科、日月光等可伺機布局",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5qY2JtVURTLTNNV29GQl9QX2pPZ0pHME5LNmphYmIxZDJKU1dVM2QtTmJ1dzJvcjJpSUZxOVVEbDRfSER5TDFUUVpfV1p0dHRBS0FEREM4RjJ6d9IBX0FVX3lxTE1rNFFfZkhwQWplRV9YcVdvcy14enI4QTN2R2RvUk9aaUxfQzBpTjNRNkR0SWROTXh0X3YwSWZJMm5rd2pabkpEVlMzUmN1YzJGTXRBckotZGRmR0g0Znpj?oc=5",
+    "time": "2026-11-15T04:00:00.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "後黃仁勳時代來臨 聯發科、世芯、創意迎大單",
+    "source": "自由財經",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBrQzk4TXNtdzUtdjhvWDBMam03WHhMOEdnZGZ2TVRSMk9OaC1qTG13VG9VY28yVElJeHBNa2JBWGJRd0NrLWJRYkE5ZjBkTklIREdaR2F6TUdZSVJGbmFv0gFkQVVfeXFMTVQ5RjlWWEt5aXhYaFhkREZJRlJiakZOTHBrem1tNWRobDhyNXpjd0NSejBzb09ZeUk0Yy1HMDRJbHhiZlhXcUFwWEZtN21iV0dYaEhXTThRRzJPUU9zd0NnZGpRTg?oc=5",
+    "time": "2026-11-15T03:10:00.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、0056 元大高股息、2454 聯發科、00406A 主動中信台灣收益、1802 台玻(1113)｜豐雲學堂2026 年 11 月",
     "source": "永豐金證券",
-    "url": "https://news.google.com/rss/articles/CBMixARBVV95cUxNTV9rV3lDellvN3NCeDd5YlJfUFNxMlpCUERsYUdZREN3ZURDYjI4akF3VEVjU1I4b3hTMF9QMzNENFl3YURsRTVRUlE3am5OWGFLUEplMzBrQlQwY0g0Q2N2ZlI5dUFibUlwakVQalFuMkt5UnFuZVY0YXAwdHk1NVJUX1lOMVF1ZWxGUWF3dzc0dUFnRWQ3M2oyOFh2SWt1LUJmUTZ2aXdRSHJRSlBYR204cmVvRVRDRnROMmlGeTNVbG5pLVRCMzdPQVlSd2lod01ITEVydmVwaERBajVmbi1VbG00aE9TV1Vsck14V3h1RVVsUDNSbjMxcC03NWZkdExnaGM2T01rTWJzaWdkOEdBa21feFBDN2N0OHFZU3U0a0N3WWVmWEFMRjlLU1VPd09JaDZUVVRwZWc2YWI3cXNIcXVwdDl6TTZhVWw1Rk9OMWZ5QU9XTFVyZ1BTNnN6OG00NFJpS3RLbmt4U1BTckl5MXlvYThDX0tSdlRrRXVKMXIxazBTSmY3eUxoelhLdkQ1bVlrWTl0NlNFTmhXbXR5V2NUQmRlWEVDd296TXJLdnNuNFlPQjdkZTg3VnVTOF8yRkVfZE9SV0c5cHVMS3lEQzBUaTRTc3RBTW45NVkxQ18tOWpyMGl2NnlHREZrSm05V3hPdTBaY0FfM1BtYVI5YUh5b1V6ai02SGdOYVVZU1BrZjhCWVplRW9JUmJOWE43UWQ3QTlOczVRblE1Q3dIYl9SS0Foc3dxMHJab1hCYmlS?oc=5",
-    "time": "2026-11-13T09:30:20.000Z",
+    "url": "https://news.google.com/rss/articles/CBMi3ARBVV95cUxNc1o2SFh3ZjlaNDBNcTkzQjAwemtNeHc4Wlh0VnBPcjBUVE5scnp5ZkE0S1l2NEQ4SUhQZm1NYlVEVXpkQVRnck41eFlVWHJQN0tkYXhfVFlaQWhpRTM0V0xmbVllbUY5d3g3ZjluZjZOVWlXM2FsX3B4ZFhsUkVySnRtZDBfQjA0TlVwalM2S3R3andWX3BLRjNQMkdPZXdHck9hWExCa3BHNUkxZUhRTGRkbmRiUHVkdXB4Uk1TM1pHdnhBYTZfdWQ1cWF6eUhwRFloZW9PRUJBQ3BoaGJxNWN6eWxBMTNHRV9LMHZSbFVWZlpZN3ZQMjBkVHBfRklTbGV4TkFHdW10RUY1akVsXzR6M0FtZUIxNnpUQjJwb1NlUDVaSUxvb2pzVTlORk11bXQxd1M1T2FRaTRQRmhnTEI0eEJ3bld2eUdBSGdhVlNuR2NRRDUxQ0NqaUd2R2I2MnVtRUtNbHVMUVBTZE1YeHhlVDNCWGFyZ1dVQkdHTE9ic2p2Xzc2WVVOOFpTRXRQLUhRNURQTGdjdnFmbW5KNXFKUmlrdG9vQVdvaWpEM1ZMQXpweWd6NWJhRlZCc01XUTlxeTNvbDZsdTNfR0JaUjVSOXVlemFlc2J2WXJkMmdkMVRmelRFR2pOY1d5bXA5UHF2cmpJYUZKMjUtaWZuYldsUk5zVl9SbGQ4Z3RVQ0IxSG1ndWlUNGJ1Zk1WaFJLelk3UjVKb2s1c0wtQ2Q4aUZRUEJZZXQ1WFBoM0NuWmVnQk5FOFpITWZsWjk3WnU2XzBxU2ZVSmxlVi0y?oc=5",
+    "time": "2026-11-15T01:24:17.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "台股閃過「黃天鵝」強彈！周線終止連四黑大漲3973點聯發科強攻領ASIC衝鋒創意超車川湖首登股后｜Yahoo財經掃描",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiiwVBVV95cUxQTHRsZ0lYN2xSTmJtNDlsaEs1XzE0TTF1bjZoVUZ5dm54YXFjUy1SdFhYUGwwaDFZYzY5S1BudGl4TkpMdDlKUkJzdzRDN0c1YWJ2UVc1MjNTdThVUDdmUjVxQnRSZDVRd2xxWkdqOEFoRGxvZjhrSmliZHg3UllPLWN6OUJrM0lJMEZkaXJiRkJpbzZHeGtVVnVhdi1FQ3JmZ0szWHdKbkhoR0dKTmhiREtRVGduaTBkdmYwakl6WEtRT3pWSWh2YkhPOE4tLU5sOTQyQjZTcUkzYWlHUmdTLXE4OTJ2N2NSVkozSDAwVVhMbWw0RWFjMDRJSEFZbGh0blh0T1NwMXZjM3I5UXJUekxqX2FPbTFUYmlmX1czd0hpNnVvWGtadEJKd1Y2TzNoa0Y3NTVNQXlmMXFuUlZaQ1VKSU5hejVCZngxQ2JVeGhxc25ic3hxT2U0aTV1YnotX1FrcG1TWnpmQmtHWjJuQ29HelBTVDNQaHNnX0FXLVh6VGNHSUdRaktTbDhxdjlWalRaQzFPaXFhV3F2Y2hwMmMxVTZVS3ByYXJla0NDcl9kSXRQdU4wUzRMS0FsdUcydzZ0Vkd6NHNqMjZxaVNJVjVkTEw4Nmg2T2tPTTc3aXZYclRURGZzYTVRRDlPSkcwd0YxN1NDMlMzUDgtd1prOVdtc0Y0VXV4VFU4clpmUks1Ul9vLVhUbm1QX3pmWnVIWE5hUC1kdHhuTjNFakFuWVBlcHNQWkQ5eGJKNkdENlQxSDJuUEJwd3BFYlVTRmNmMGtyTFZDTUxoRnFmVEVzWTROZVUzWHdydTFhcjVrVzdZMURyNkVZN1dNaExONnNMMFh2QXNraVpmOE0?oc=5",
-    "time": "2026-11-13T08:59:02.000Z",
+    "title": "光電整合進入「打群架」時代，聯發科侯上勇：CPO路線未定，良率才是關鍵",
+    "source": "TechNews 科技新報",
+    "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQUNfREd5ZEM0T0g2WTJSczZHdDdNR1YtaW9DRS1uRkJUdER0Z2gxUnVpbGpzVmsxcWJWMHczN0JmVTR5czVleTVvSXlvWXZFVDdFcEhIX2R4Y3d4TXlkYzVZZk1TbVRkSEd6U3BwRXQyTmRYRlFxWVBoUmNyVXB0Vy02dTdUVXpkMHNxR3RUN1NaMzJwUmphZ3luZjhiUVhEZ2pIWTJtYUtDaTRQMkRSYUVEa2JTSzNrMmU1azZCWTlEQm83?oc=5",
+    "time": "2026-11-15T01:07:27.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "2454 聯發科 - 對發哥是好是壞？ - 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA1NC1VcnpLWWNEQmFlZFZCb2R5RXp2NG1IbWxMSUhCNnBwUkhvM01pLVdabEVSSnFJbHF5MkQ5bFNQUHFMeTl4ZF9BdnhBYTVndG9xdG95RUw?oc=5",
+    "time": "2026-11-14T11:35:36.000Z",
     "tags": [],
     "trusted": false
    },
@@ -31,76 +55,167 @@
     "title": "三大法人買賣超 – 外資買超(2454)聯發科、(2303)聯電，投信買超(2330)台積電、(3017)奇鋐，法人合計買超439.66億元",
     "source": "永豐金證券",
     "url": "https://news.google.com/rss/articles/CBMi0wRBVV95cUxQdWJqM2d2THJIMllITXZqY0RNODA4dXg0WjhWVm1VME9MOFl6eHhBVVJqUXE3MkcwYlJFV0VpME5IcG9tMkh1ck5SaFNrcXdPMEM3WVVrN3o3d2RudXNSWGYwS2xFSXJqd1Y0S1FHcFZ0dTk3NXVDTERRSjh6TlJsMUFXR1U4aC1GXzVfZTJwMTUzZFNDRDVhbUlZdHdvSnRraC1VdDVsNXZ0VkVyaDlyRGdKMkdzOXQxX3lsdzZ0bEk3TVhfQ3Zhekdleld4NDlzLVVxdlZ0VHpSLUxocHZDT29lbGpQdW9MQjBPVkR1STRxbmtsRW9EbnIzRkk5ejdRekhIWllZQWJKZVBqSDdMTG8wd19hbVR6TEk0Z2J0TGkwY2dPTDhvS040T3ZvbHA2TTY1S0d4ODNqeGpaeXFTa0N2TEVtMzFrYkc0emVXcU1Ob0g2Z3IwQkdVakpkeHFreE9wZmd2SGtKV2dLNEJSV0hKVEptRm84MW1KVy1RNkRzWEpDRDJDeVJtWG14M3QzX2EzV1hPbFJSMDlDT3FQb3g4WmFWWHB2Q1BzMnpLWTZVWUJGVWsxSXViS2d5YkNWb3V4QWpQRU9yWTlHQ3o4eWJ0eERsQUY5OXFuaUNfRFo0X09FcFltTXdNbEN2YjlTeGV1N1hVU3pyczB0VXhhLUNKeVdOMUNSME5GNDlsaXhWZjRVWnNCU2MwTEstMjVGMDNDVnlqSVlTZzUtdEcxUC12Q0pFNmFrTUhKWXRmc1ZnZlhzUEE5d296a1NsNDBYWDZB?oc=5",
-    "time": "2026-11-13T08:39:15.000Z",
+    "time": "2026-11-14T09:49:08.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "黃仁勳請辭股市卻大漲？ 他見聯發科漲停超傻眼：不是該跌嗎",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiigNBVV95cUxPazVnUHdzbzFwQU54dlg2TUxQd0V5V0NaUG5Xa1NFWkpQT1RkNXJVcTEwc3gwVzRIYWNSM3dlM0Z4M2VWU2p4dk1ZSW9RLWFDa25qUU5YZFJaMnNldjFCYjJLemJraWNHZENGdkF5X1pKemI0cm9HSlo3UC1SMERuU1cxS1VaM2JwYXNWeV9VeXdvZ083TkNxZkNNdThoUmd3cU42Vy1uenZpTmI2Zk43V1d5RndHYkx4ckdlLVNVN0JEOVhBT2I5SWdyb2RTY0RlWFF5enI4endlMEZ3NmIwczVSa3BvMFdsOXRaRnlYRF82WnU1eDM5WC1CX3lBeGlEZTJMZTFReXhkSHJMYWRRbExvOVdodGo1OU5wUVNsN0NGQ0JQRndfUllqTmJQYlRaZkxrWFQ2MnZRamNNdzFPTno3UmZHNFptY21ELTRHVjNCeXA5cm9zWHVhRktmNktwSWttX1YtdWwtS0d0bnJMSXVCUVJpZDdqYWZRS1IwVF9uSFhjTVpJZEZn?oc=5",
-    "time": "2026-11-13T08:15:00.000Z",
+    "title": "多頭力抗黑天鵝！台股漲583點收43,675點 聯發科領軍 ASIC 強攻",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBqTUt4bW5uamJweEtvUF9XaS1vNGlRcmxaOW1peHROZUo4cUR3VmlmaVpEX1dYY0phYjhKQnh6T1gzS18wTUZ3WFViMzd1SkdRb3BFaHNRcUphd9IBX0FVX3lxTFBZejZMZmNQSm5DaENuWWdaNWNMUGxCMk9tdDJUbFhzbzBRMGJNSi1reVNGTDR2bENCUHNxRFNVcjBsN3hUQTZZTkl2V0x0cU9jQ2Y4U18xbktBTUVvMUhF?oc=5",
+    "time": "2026-11-14T08:00:00.000Z",
     "tags": [],
-    "trusted": false
+    "trusted": true
    },
    {
-    "title": "外資回頭大買288億！聯發科、創意領軍猛攻 台股近千家上漲",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMi7wJBVV95cUxQTnludVlIdGJ0VmY5eVFBRUJmVmRXMnpGMjFqWjVIYjVJRU9xNjVDY1FFQUs5eDBhSWt5dUZOZnBDRHNVdG1zY3k4cFRYYTBuT2gtejY1b1Zva1BTQWJsaHlFRzl6ZHdoZnlld1Y5OEpoWl9OMDRwSmJaUkcxTVhwTlVSM3ViZXVtV0hvRTVHUXZMS0RVS1NVZGlyVTF4QkM2b3pXOUhxZkE2b2lvQ0pIQnFIN2cyb0tmaVc3RUpxemtWRVg0VWRYOXozTDYyY2FNbndGWTR2cktDLU43dVYwWU11Uk1IRGZ0VnNKNXhEeHBvTFFQUF9lZTdGZDNUS2dZR3ViTVhPQ0VzOGg0VGUxQzlCRlBmQkJ4WUh0SnkwTE5ySWFSdUtuT1g3cUdCRnhzSnJCQmRiN2FwUUhDakJlNVZHSk5KSEhQMUxTYmFPTXZSdElIem9uNkNlV2J6Zm1GVVdMbE91RE1tOTFZTmRV?oc=5",
-    "time": "2026-11-13T07:48:00.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "無懼輝達換帥！「發哥」開盤漲停領軍台股衝4萬4",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiuAJBVV95cUxQX2RQMk83RW9NMXc5ei1jcmhkWHZ6bUFWM3Z4cG5LdW1RaXpfNENEeUh3NzVraUxWZDR2czdQaFgyUEtQeWJtcWlmZFhsbWVMZGZjMTRfeUFjZ0tRLUwxUUk3UGtPLV8xUE1xSC1zTUsxNmxlaUh3akdYY3hTdEFPbXZRekhfc1ZDRUZfQ2xtdUU2UHBwV3M5Z2xDQnJ3ejk1T2RaYmJnQnQ1U0ZoT0FoY0poRG1GbGxGRWwwZlp5YlROenpKZFlUZjM0bWg2RmxVR0gyOFl0dVdtUDQ0NGdqby1KUmVBRktIVzlYYTBFLXRyRHR5eC15XzdPTE1aRHJvNlZadGlwbTJWQmhGWWNrdVB0eGl0bDRNc21HVjZHZ05fMTF0Mk5DcE11eGxKaWVRWU9tdkNvMEI?oc=5",
-    "time": "2026-11-13T07:44:25.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "【11/13台股收盤】衝高回落，聯發科、創意大漲",
-    "source": "口袋證券",
-    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1HMHRfa1RYUERNUndiTngtajItbGRVbmVsQ01GcmJmSHM0SDNLa3JDeGFRb2taZjE2NGgwSmhaX05adXZib1UzYnl3djRoTzJXMEFjT1RvY1U1V2ZaYWtLc3ctOWVTQQ?oc=5",
-    "time": "2026-11-13T07:36:38.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "台股年底衝5萬點？師母解定存搶聯發科！聯電甜甜價到了？杜金龍曝台積電地板價：「4檔口袋班底」我不清倉",
-    "source": "今周刊",
-    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOSFZnZmlYc0s0ZzhPdDhfeG1Ock1uZVVjMDF6VExjRWgwTjhtWTBnYWxOWW93TnZHNmxiZTB4MVhEa3IyLTIxeEtTTjkyZ2JfeXB2dWlvUW5QS244WHNzbE9yTEpkejRfajNPQ0E2RHdCYTZ1dHZlcUhkQm9VNHhhRQ?oc=5",
-    "time": "2026-11-13T07:04:50.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "黃拔拔出事 台股不跌反漲 聯發科、創意、世芯…IC三本柱噴最兇！這檔ETF也跳漲7％",
-    "source": "旺得富理財網",
-    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9lRDcyZ2dBWWtLZDJGeE1hc3QyUzFYRDlNMlZLd3pEZDRoSlNFcjByV01SeDM1eDRkMlN6VTlsZURSUzh3Q3luNTF2T0lmeUFPR1kyRFlZT1lGWExTekVRMUJ5T3NTclBadUE?oc=5",
-    "time": "2026-11-13T07:02:15.000Z",
-    "tags": [],
+    "title": "蔡力行喊買自家股！法人估聯發科EPS逐年翻倍 目標價飆5980元",
+    "source": "TVBS",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE10dXYxOVFUN05ZN25URWJicGJXSmdpWkJ1cmFpb0FMVFpxbmV5cVpFMlVCZUhvSlgyQUcwSVNnYVMxRTNsX1YzMU8zYm5NZ3M?oc=5",
+    "time": "2026-11-14T02:17:00.000Z",
+    "tags": [
+     "公司事件"
+    ],
     "trusted": false
    },
    {
     "title": "快訊／聯發科、大立光衝漲停！台股開高飆近1300點台積電站回月線| 金融",
     "source": "非凡新聞台",
     "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5DVU82MXhJdExnYlh3X3NONnpKTG5lT19JM1dXWWpfWnJEY3REbjRzSnA3a0xfVnVYbk9lOXlpQXdkUnR3VHo0Y0pYSHRPZzhrUnNCRVE2NmZ0NkRfV3pB?oc=5",
-    "time": "2026-11-13T06:39:37.000Z",
+    "time": "2026-11-13T21:51:56.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "【零股排行榜】 盤中零股成交量TOP 20｜0050 元大台灣50、0056 元大高股息、2454 聯發科、00406A 主動中信台灣收益、1802 台玻(1113)｜豐雲學堂2026 年 11 月",
-    "source": "永豐金證券",
-    "url": "https://news.google.com/rss/articles/CBMi3ARBVV95cUxNc1o2SFh3ZjlaNDBNcTkzQjAwemtNeHc4Wlh0VnBPcjBUVE5scnp5ZkE0S1l2NEQ4SUhQZm1NYlVEVXpkQVRnck41eFlVWHJQN0tkYXhfVFlaQWhpRTM0V0xmbVllbUY5d3g3ZjluZjZOVWlXM2FsX3B4ZFhsUkVySnRtZDBfQjA0TlVwalM2S3R3andWX3BLRjNQMkdPZXdHck9hWExCa3BHNUkxZUhRTGRkbmRiUHVkdXB4Uk1TM1pHdnhBYTZfdWQ1cWF6eUhwRFloZW9PRUJBQ3BoaGJxNWN6eWxBMTNHRV9LMHZSbFVWZlpZN3ZQMjBkVHBfRklTbGV4TkFHdW10RUY1akVsXzR6M0FtZUIxNnpUQjJwb1NlUDVaSUxvb2pzVTlORk11bXQxd1M1T2FRaTRQRmhnTEI0eEJ3bld2eUdBSGdhVlNuR2NRRDUxQ0NqaUd2R2I2MnVtRUtNbHVMUVBTZE1YeHhlVDNCWGFyZ1dVQkdHTE9ic2p2Xzc2WVVOOFpTRXRQLUhRNURQTGdjdnFmbW5KNXFKUmlrdG9vQVdvaWpEM1ZMQXpweWd6NWJhRlZCc01XUTlxeTNvbDZsdTNfR0JaUjVSOXVlemFlc2J2WXJkMmdkMVRmelRFR2pOY1d5bXA5UHF2cmpJYUZKMjUtaWZuYldsUk5zVl9SbGQ4Z3RVQ0IxSG1ndWlUNGJ1Zk1WaFJLelk3UjVKb2s1c0wtQ2Q4aUZRUEJZZXQ1WFBoM0NuWmVnQk5FOFpITWZsWjk3WnU2XzBxU2ZVSmxlVi0y?oc=5",
-    "time": "2026-11-13T06:37:09.000Z",
+    "title": "蔡力行喊多買自家股票！ 聯發科晶片爆發投顧目標價喊破這價",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMijANBVV95cUxOWTdGakpvNU1uXzZfeVJTbVdSRjBwSHhoUm1PTi1CQTNxc1lvNnZNclZaTnkzTXhud2NUUHE4YldYUUR6bXp5NVpCR2U2dmZseEJwMnQtZG0xT0lUVE1LanlYaU9KdTBBQTFJbXZfdFZVTmRUWWM3QndFaDVpUVJCZWNDb3JIdks0QXpzaGhZeld3LWVEcHBibU9mdF9LVUV5b1JfZXMwYlVWc1ZBMkZuak9wOGd2a0VGRG9Yem01TDh4SG1vUk1nVmtpaXU3YnRPOElYY21uTjlBWGIwbXR4VmdieG9IMWMwZzQ5UDV2VTFLMnI0cGlXYkZzMFkyVUx1Ung1Mm5nOUZSc2RMaHM3REsxem1zaC1RdmhueUN1Q2ZZc1ViM1Nidkk5TVNQVHpwa0hFNHpKeHQwUDFIZ1RWWkxJbWxZVGFuNDhKSHlxQmRUbDlLMGRXS2s0SWk5bk4xTXMwRk9UMmgxUEM4U19UTHZWeEVmSGFsMXVoNFc0MXQ3eDg2Rzk1ZzFCbno?oc=5",
+    "time": "2026-11-13T21:12:00.000Z",
     "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "【即時新聞】今日聯發科宣布AI ASIC商機爆發，2027年EPS上看137.69元！",
+    "source": "CMoney投資網誌",
+    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOd0pnUWpVdUM1SWhubWJMb3ZWdkJWNmktd0hvSEltZWhnbnE1UzIzTW1VTE42VGF4U1Q1V1ItaEdIallJYmY0OUs5amhaMktJcC1GUFYxN0dEMW9WVmtWZkdIWm1kVV93aS1QcWhvdWpBUVRadm5DdWZXYU12QTd3ekQ4UnNMc3pBOTZRbjhYU0I?oc=5",
+    "time": "2026-11-13T16:05:00.000Z",
+    "tags": [
+     "公司事件"
+    ],
     "trusted": false
    }
   ],
-  "market": []
+  "market": [
+   {
+    "title": "輝達跌倒ASIC吃飽！「21檔」轉單概念股",
+    "source": "三立新聞網SETN.com",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9Oa0dsVkkyMDl2dDl4aHQ1SWhLNnUzaUp6Nm5Dam9GSG9DRXNncmFuWGgwb040S01iSjlIZ0Z4eU05bmFiVXFmTG9QUQ?oc=5",
+    "time": "2026-11-15T20:51:37.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "年線攻防戰！「12檔」抱緊處理準沒錯",
+    "source": "鏡週刊Mirror Media",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5Ea2ZlRmlrRFJZbGYtcFU4clJxWUdvOWt3M0owVW40M0E0bnRXRFZfR3ktTVoxUHpWRG15WDdrZzFUa2tjQ1hmNUNMY2kwMm9tX1VJejJ2Zll6YUJz0gFiQVVfeXFMT1dJMWtJcXFRTEdjVUN2YWNvRFJWSVVYaXFpa3M4VVJkZnRIS0gxbWltZzdWWjlJMVBPQTAtRUk0WFJ5VWU1dDFBZ3VGSDdra1pFVVZDVjlrX1dvdGUtVC1RTWc?oc=5",
+    "time": "2026-11-15T20:30:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "工商社論》國安基金啟動指標應更具象化- 財經要聞- 工商時報",
+    "source": "中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE1PcmV4MW1GX3NRN0xialpSWE9hSWt4VDlDbDRacnNnYTNKdkFuTkpqUnhiR1hFa0pOcDRNdU9JMm1fUk52VlMyMlU2NTBGYzdGa0FDWmdOZVZZYU5vZU9nWFF2aDI1eHlwU25F?oc=5",
+    "time": "2026-11-15T20:10:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "國安基金護盤加持 中小利基股升勢可期",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBHVDA2WDV4aEdwNE4xU0JTTWZuUnF6RnUyLXZBZG5BNDM1UTk4eFNMQzRjdzJtUFdsSWE3MDJFME1hUXdENUNFa2JGd09RbEx30gFWQVVfeXFMTVJsdzNJb1VielJrSWNoWFVRbHowclp3U214cFgzTW0wTFppcEJDSEV2NFJXYjltT0RlRWVCeXRFVjc3a3BmLTJfaEp0X3czcFpDZDY0bVE?oc=5",
+    "time": "2026-11-15T19:49:01.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "國安基金啟動指標應更具象化- 日報",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE10TXlsRVdSV3RzcVR1RHZIREVaNjlaSVRzQ2pxMTluczZmMGs3N050Q2RiSTdWOHJpSHBKSm51T0N5bHFMZUpyOWVtVVN2cjZ2TnVwSmdFRHBhWjF4MlRJ?oc=5",
+    "time": "2026-11-15T19:00:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "16檔外資買超強勢股聚光 台玻、華航等可望助攻多頭氣勢 | 市場焦點 | 證券",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA4THkwWXNKRURUY003Q0VXSzkyTkUyRnQ2eUx2d19jM09vbHRmY2RnZThTSlMyLW8ycXFRSWt2cjFXUXlFSTUtMW9VaUJDNGxMT0tpRnBTRGE0UQ?oc=5",
+    "time": "2026-11-15T17:19:09.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "名師指路 國安基金青睞股 上漲機率高",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9sN0V2S1lHdlVtcExrZnRYanZSY01DZ2pGSFNqRmZaVmJ3NnUxT3lST0pRQ0pidzRHQnBaSjI4SFZZd2dQWUxGWlBSVEIzQ2I50gFWQVVfeXFMUGFFWW9vQzdFMVhXWmdVUDZJY1JoV1lkV01Dc1hiZU0zTXUybnhPMWNKc3d3VFB3WFBTa2hHUVJ1ZDRWVUpGTXVKRUFQRjB3ZmdNTE9SVlE?oc=5",
+    "time": "2026-11-15T17:17:22.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "影音／台股單周漲幅全球居冠！輝達、AMD挫 台股週一不妙恐補跌",
+    "source": "TVBS新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE82bXV3UzFfVVNmd2VIRWlZLWhCamNlNEhuTjZORHExZGZCY2lDenFjUWx0RDNrS3ZCdldKVmJkWFNsQ2hhS1EwM202ak1WSmc?oc=5",
+    "time": "2026-11-15T11:54:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "國安基金第10度護盤台股｜新聞事件整理與重點摘要",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE41UUlsSzQ2TG43Wmc1ajBvbW9HTjd1VW9SdkFpN3RIZHN5NWxBblY4U1BKOWVaNC13cTZLdnQ1YnM2bFd4ajY3dHZ2ajl4QXZGRWRsak5OTDlpY1RSSGFiWVl5THZhMHJmUXJrcTFjb3MycjM1cEVtQy1Hc2QtZw?oc=5",
+    "time": "2026-11-15T09:41:39.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金連3次護盤都買「這6檔」！9次護盤8次賺錢，投資達人艾蜜莉：這3件事值得學| 幸福熟齡X 今周刊",
+    "source": "LINE TODAY",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAwLXhGRnlVclZUQnJfYnM3TDZsYmlVcEhZS2x6LWZ0MDdiY1FwTjF6X3c3NXVNek13Mkg5VWh1TGtkMmZjRHFMdjJXRXNqVWZZSTZKY2hR?oc=5",
+    "time": "2026-11-15T05:05:58.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "從暴跌千點到狂噴10.01％！台股上周發生什麼事？「資金瘋狂湧入ASIC、PCB」法人趁震盪逆勢掃貨6檔三高績優股- 上市櫃",
+    "source": "旺得富理財網",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE84TFRndFVGVWZSUFQ5NTBNLUg0elROSTgzNW1CeUR1MWppSklweU1mRFBibFdXYmF6a0hObjFBVTA1aUl4V3djWXdnZ3gxRUlOb3p3MURlUWVLdHN5a2hwQjE3dGI2YTVoM3c?oc=5",
+    "time": "2026-11-15T02:45:08.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台股反彈別急著追！分析師示警國安基金護盤後恐有第二隻腳點名2檔個股伺機上車- 證券",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9LZHZzSlhTeW0yNUFSQmNfTC1zcERzakVXYkpxMUtWNkRQRTVlYXgySF9odzV2Wkxib1pCd2h4OW9nLW1hQlNXVFMzakxDOUhIV1J5RUxMVjcxV3ZVYUpz?oc=5",
+    "time": "2026-11-15T01:31:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   }
+  ]
  },
  "meta": {
   "code": "2454",
@@ -112,16 +227,12 @@
    "2026-11-15"
   ],
   "isTech": true,
-  "fetchedAt": "2026-11-13T09:41:15.946Z",
+  "fetchedAt": "2026-11-15T21:47:31.041Z",
   "newsSince": "2026-11-13T13:30+08:00",
-  "timingOk": false,
-  "stale": [
-   "美股（2026-11-12）早於台股最後收盤日 2026-11-13"
-  ],
+  "timingOk": true,
+  "stale": [],
   "warnings": [
-   "證交所尚未公布 2026-11-13 借券賣出餘額",
-   "證交所尚未公布 2026-11-13 融資融券",
-   "⏰ 時序檢查未通過：美股（2026-11-12）早於台股最後收盤日 2026-11-13。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
+   "外資期貨未平倉取得失敗：抓取失敗 https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfFuturesContractsBytheDate：Unexpected token '日', \"日期,商品名稱,身份\"... is not valid JSON"
   ],
   "sources": [
    {
@@ -4716,8 +4827,21 @@
    "dealerHedge": 69
   }
  ],
- "margin": null,
- "lending": null,
+ "margin": {
+  "date": "2026-11-13",
+  "marginPrev": 11553,
+  "marginToday": 11713,
+  "shortPrev": 46,
+  "shortToday": 61
+ },
+ "lending": {
+  "date": "2026-11-13",
+  "prev": 7296,
+  "today": 7616,
+  "change": 320,
+  "sold": 320,
+  "returned": 0
+ },
  "revenue": {
   "month": "2026-10",
   "revenue": 55025656,
@@ -4733,11 +4857,11 @@
   "institutional": {
    "date": "2026-11-13",
    "foreign": 288.4,
-   "trust": 82.4,
+   "trust": 95.4,
    "dealer": 68.9,
    "dealerSelf": 43,
    "dealerHedge": 25.9,
-   "total": 439.7
+   "total": 452.7
   },
   "txf": {
    "date": "2026-11-13",
@@ -4752,15 +4876,12 @@
    "night": {
     "session": "2026-11-13",
     "contract": "臺指期116",
-    "close": 43972,
+    "close": 43706,
     "ref": 43839,
-    "changePct": 0.3
+    "changePct": -0.3
    }
   },
-  "foreignFuturesOI": {
-   "date": "2026-11-12",
-   "net": -99573
-  },
+  "foreignFuturesOI": null,
   "leveraged": {
    "date": "2026-11-13",
    "items": [
@@ -4780,9 +4901,9 @@
       "dealerSelf": 257,
       "dealerHedge": 30577
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": 820,
+     "marginBalance": 314104,
+     "lendingChange": -515
     },
     {
      "code": "00632R",
@@ -4800,28 +4921,28 @@
       "dealerSelf": 20706,
       "dealerHedge": -6220
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": -15079,
+     "marginBalance": 279844,
+     "lendingChange": 1045
     }
    ]
   },
   "options": {
-   "date": "2026-11-12",
+   "date": "2026-11-13",
    "foreign": {
-    "callOI": 4031,
-    "callValue": 27153,
-    "putOI": 3742,
-    "putValue": 148546
+    "callOI": 3720,
+    "callValue": 158354,
+    "putOI": 5603,
+    "putValue": 154525
    },
    "dealer": {
-    "callOI": 9944,
-    "callValue": 1274474,
-    "putOI": -6010,
-    "putValue": 190412
+    "callOI": 21960,
+    "callValue": 914937,
+    "putOI": -6029,
+    "putValue": 108910
    },
-   "putCallOIRatio": 66.69,
-   "putCallVolumeRatio": 98.17
+   "putCallOIRatio": 57.75,
+   "putCallVolumeRatio": 98.66
   },
   "flows": [
    {
@@ -4922,49 +5043,49 @@
    {
     "date": "2026-11-13",
     "foreign": 288.4,
-    "usdtwd": 32.857
+    "usdtwd": 32.939
    }
   ]
  },
  "global": {
   "sox": {
    "symbol": "^SOX",
-   "date": "2026-11-12",
-   "close": 10506.67,
-   "prevClose": 10564.11,
-   "changePct": -0.54,
+   "date": "2026-11-13",
+   "close": 10146.32,
+   "prevClose": 10506.67,
+   "changePct": -3.43,
    "label": "費城半導體"
   },
   "nasdaq": {
    "symbol": "^IXIC",
-   "date": "2026-11-12",
-   "close": 25366.09,
-   "prevClose": 25466.19,
-   "changePct": -0.39,
+   "date": "2026-11-13",
+   "close": 25136.27,
+   "prevClose": 25366.09,
+   "changePct": -0.91,
    "label": "那斯達克"
   },
   "sp500": {
    "symbol": "^GSPC",
-   "date": "2026-11-12",
-   "close": 7592.4,
-   "prevClose": 7619.38,
-   "changePct": -0.35,
+   "date": "2026-11-13",
+   "close": 7561.67,
+   "prevClose": 7592.4,
+   "changePct": -0.4,
    "label": "標普 500"
   },
   "dow": {
    "symbol": "^DJI",
-   "date": "2026-11-12",
-   "close": 52297.09,
-   "prevClose": 52486.49,
-   "changePct": -0.36,
+   "date": "2026-11-13",
+   "close": 52347.55,
+   "prevClose": 52297.09,
+   "changePct": 0.1,
    "label": "道瓊"
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-12",
-   "close": 18.7,
-   "prevClose": 17.49,
-   "changePct": 6.92,
+   "date": "2026-11-13",
+   "close": 19.3,
+   "prevClose": 18.7,
+   "changePct": 3.21,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -4985,10 +5106,10 @@
   },
   "usdtwd": {
    "symbol": "TWD=X",
-   "date": "2026-11-13",
-   "close": 32.86,
-   "prevClose": 32.86,
-   "changePct": -0.01,
+   "date": "2026-11-15",
+   "close": 32.9,
+   "prevClose": 32.94,
+   "changePct": -0.12,
    "label": "美元／新台幣"
   },
   "taiex": {
@@ -5045,27 +5166,27 @@
    "source": "證交所 T86，2026-11-13"
   },
   "margin": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "證交所尚未公布 2026-11-13 融資融券資料",
-   "source": "證交所 MI_MARGN"
+   "data": "融資餘額 11,713 張（+1.38%），融券餘額 61 張",
+   "source": "證交所 MI_MARGN，2026-11-13"
   },
   "txf": {
-   "signal": "偏多",
+   "signal": "偏空",
    "strength": "弱",
-   "data": "臺指期116夜盤 43972（+0.3%，相對日盤收盤 43839）",
+   "data": "臺指期116夜盤 43706（-0.3%，相對日盤收盤 43839）",
    "source": "期交所即時行情，夜盤 2026-11-13"
   },
   "futures_oi": {
-   "signal": "偏空",
-   "strength": "中",
-   "data": "外資台指期淨空單 99,573 口",
-   "source": "期交所 OpenAPI，2026-11-12"
-  },
-  "us_market": {
    "signal": "缺漏",
    "strength": null,
-   "data": "尚無 2026-11-13 晚間的美股收盤（最新為 2026-11-12，已反映在台股收盤）",
+   "data": "期交所資料取得失敗",
+   "source": "期交所 OpenAPI"
+  },
+  "us_market": {
+   "signal": "偏空",
+   "strength": "強",
+   "data": "費半 -3.43%、那指 -0.91%、標普 -0.4%（2026-11-13 美股收盤；以費半判斷）",
    "source": "Yahoo Finance"
   },
   "asia": {
@@ -5083,8 +5204,8 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.86，新台幣升值 0.01%",
-   "source": "Yahoo Finance TWD=X，2026-11-13"
+   "data": "美元兌新台幣 32.9，新台幣升值 0.12%",
+   "source": "Yahoo Finance TWD=X，2026-11-15"
   }
  }
 }
