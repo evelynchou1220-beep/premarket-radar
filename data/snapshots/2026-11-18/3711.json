@@ -1,118 +1,87 @@
 {
  "news": {
-  "fetchedAt": "2026-11-16T18:22:35.744Z",
-  "since": "2026-11-16T13:30+08:00",
-  "stock": [],
+  "fetchedAt": "2026-11-17T09:44:08.245Z",
+  "since": "2026-11-17T13:30+08:00",
+  "stock": [
+   {
+    "title": "《半導體》日月光投控11月18日赴新加坡參加Morgan Stanley舉辦法說會",
+    "source": "富聯網",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPUjM5S25KOURULW1BMHNXTGFwWlQ0SFFNQ0ZnRGpvYlJ4R1JxNmwwdWI1ZWJzNnY5eU40dDZPX2dPZnNJcEZDWU85ZmNkZTVHN0ZOS2kyaTZ5NVBCVHZPRldsckF2UVlLVUJmb0VoRXRNOHVCWkI5MFFiUUl3QmZzWUZCVHBmZFpk?oc=5",
+    "time": "2026-11-17T06:19:00.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "個股：日月光投控(3711)11/18-11/19受邀參加Morgan Stanley舉辦之法人說明會",
+    "source": "富聯網",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQjN2QkRJRjctaUVPdG8wZEwweGx2cFc0clI3ZDZFbng3akkxdXhkYU5YcDRnclp6Tlh6M2VzRXFsTVNxaWRReFlkZWs1VGtkUXhNRzZjOV93ZVZQVzVaTjVnUFJlN19CSHZqc19QTVRxY0tOUm4tLVJ4ZFFrcG5qa1gxalRkT1Vz?oc=5",
+    "time": "2026-11-17T05:56:00.000Z",
+    "tags": [],
+    "trusted": false
+   }
+  ],
   "market": [
    {
-    "title": "別再幻想黃仁勳回歸！台股暴跌2635點 陳嘉偉點名「4族群」恐爆砍單潮",
-    "source": "三立新聞網SETN.com",
-    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9hdjg0UzlSSUdlcmNlVkRESERGaElOZ3g3VzliTFpBMEhfdHRsdHdOTGJUSXRjd2FQRjA0ckh2VjNNZFRrMWJsT3BrOA?oc=5",
-    "time": "2026-11-16T11:39:07.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "台股收盤4萬1創史上第二大跌點 央行：若無國安基金波動更大",
-    "source": "公視新聞",
-    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5taER1M2FnalRhNzdJaHc2Q1puT2szNmZ2N2VGcVdacGZBQWFZT254aGRmaS1TVXZuOUEwWFloZllQeTJFWTByZEs0dks1MlU?oc=5",
-    "time": "2026-11-16T11:14:43.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台股重挫2635點股匯雙殺上市櫃公司174家慘收跌停- 財經",
-    "source": "華視新聞網",
-    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE12UERvb0paRHlod3ZCNWtSenVHQ0ZzTG9LTGFfb1hvcXhOS1Q4VGV1NHJpUlB6SWM0by0xamMwaEZ3ZDlBaHYyZlQzdlRPMEN1a0lIUk1mR2FoRlBSazU3VDZjOGI0bmRXQXRYdnB3?oc=5",
-    "time": "2026-11-16T10:45:00.000Z",
-    "tags": [
-     "風險事件"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台股崩跌2635點金管會：密切注意市場變化- 生活新聞",
+    "title": "台股臨4萬點保衛戰黃文清揭盤勢3大變數- 財經新聞",
     "source": "PChome Online 新聞",
-    "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNQlJ1VldZdG9PSjZNLV9xQVRiOWRMbHFRRFpBYVhHYmdXejdveXpxeWdiVnRVaE5lNUpiYlVHeXp3T182bzlHZW5MeWZ5T2N0THAySHpaYU1KVVJ6YVcyREpCODBUZm0tdnZNQ3NJZTUtM0hSSDVqZDNZWUxuWi1DTkNzN1JYYjI2YXc?oc=5",
-    "time": "2026-11-16T10:37:47.000Z",
+    "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOU2tHM3RORFhYOVlieEdLbmtmNy05ZGRPU1RzNENNdTNxdGR4MEJXOTdxSTJESVF1VnlBSkY1ZHo5LWppd3R6aWc0MDR0aDNmV3FKNmdFQkZvR0c3REJmZ1VpLXo0cmQxNTg3cjZ4cFVqZ1dHbFFCUnQwRzUwYTZoQmF5UmQ0UXVCdVJz?oc=5",
+    "time": "2026-11-17T07:21:11.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "國安基金有進場？台股是打第二隻腳？外資又賣超700億…楊金龍：黃仁勳案像短期亂流，沒護盤波動恐更大",
-    "source": "今周刊",
-    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQdjRQM2dqZWtES0FzU01LRTlMclR4ZW14VmpodlNEWl9ZbEFCTl9KS241TFQyazQyR19MX2R1VS12ZktsSFQwM2pwdTVNQXlhcXhjY0NMaXA1dXUxeHMzN3cxZG5mbTZTQWt5emFHWk5JZC1IeEhSVEo4R0VsZDFtMg?oc=5",
-    "time": "2026-11-16T10:19:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台股慘摔2635點 國安基金護盤失利？ 公股投顧揭信心回流關鍵",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMi-wJBVV95cUxObUNhNTRiaFVtSE1wempoRDVaQlBSbVZzSkFiMHEwNnpIRFBhaEJNWDJrNGpNaDVxM0R1c09sazc0cFdiQXJuWlhPVVlSaXptbFpuRElMV3J2ODc0NHZNRlh4Tzc4R0Q4Zk5RTmdMYlRrU2xIU3JVc0ZVclAtWGNMMGdGWkF2SU9fbVlNOUJjY2hVc0lxRHRsWFJVc1JIdEpyU2l6UmtnVUVHR0tJalE1TldtbzV6UU5CNi1tNkFhcUdKaVJpNmpMWlRNSFhoX05QMDdsbFRwb3gzYUlTMWxfOUlycDJHcy1CYm90ekYyYTVDa21kYWdnY0lEbjZHUlJiXzgtRkZMSGprRFNoN2JadVI5blN2OFF0WXczazlDbGNxQzZqeWNPdGZ6b0F6Y3VyZmtpZk51bWFUNW1WTWdTTnFoeHhuRVBSWnJYVGZuMEZSOUFLX3FmZE5QVVUyOVkzWDVyb3d2RVdVYk9IelVzaHlEOENYLUJuYVZR?oc=5",
-    "time": "2026-11-16T09:47:10.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台股史詩級重挫後怎麼布局？AI資料中心卡關 國安基金護盤訊號成關鍵",
-    "source": "TVBS新聞網",
-    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9JeGcySkI2WFRJNndGaFJaaGJXbXkyZ09ScjNhakxLbjJ6N1lRUExqcGxXclNVbktxemFNX2JzU0U0ZWQtazBOMW5qUkpSYTg?oc=5",
-    "time": "2026-11-16T09:30:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金在場也擋不住的千億撤退：台股狂瀉2,635點背後的AI估值與利率重定價",
-    "source": "理財周刊",
-    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1oTGJNSXREUDdTWlpZQkVHcVUxdDJZbzFLbEJJM1Rvd0lHWENMdE9qZEVqWmt4QngxY0V5TlAtdU1NS2llM3JZc1FnR0FxUW5hTkZYZjBNbzBWZWZlUENvYVF4RFQ5blRvc3Flc2Zzaw?oc=5",
-    "time": "2026-11-16T08:05:50.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金護盤失利？楊金龍曝台股重挫3原因",
-    "source": "記者爆料網",
-    "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5uU0JBd2JRMktibGk5czRMSl9wRXBUSllLZ1laUENwMGVhTFZ1V3hBXy1oaVpQeXk3YmNwM3FlSld1b1VQZkJvN3d1TVdxdw?oc=5",
-    "time": "2026-11-16T07:00:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "輝達衝擊續燒！台股恐打「第二隻腳」殺至38K 國安基金沒用？",
+    "title": "名師操盤》黃仁勳風暴嚇趴台股！國安基金坐鎮6檔好股甜甜價- 財經",
     "source": "中時新聞網",
-    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5LZ0xOTHRtdmROT0JhZHRuUThwZ2tuNXRYX3kwNmw5QWVZSG1nWHdzc3hDb3UxcXAxYXo3UFV1U0ZxcGpMUmUtNW9xSmJzaWFFZ3VDZmNSbXpoejZLSElZdXgtcGphUW5mek15bjRR?oc=5",
-    "time": "2026-11-16T06:50:05.000Z",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBTZWhNeGpmWVE3VEVZRGgxTklTUmJmNkNkdmMtZVY2STBJTGxrWG9jQWlILUJpcWw4cnYwSWV6TzgydHdUUmFiV2UwaGJRUG5IdDdueGY4c2RzdlZuN2hGam95eEllV0pKeTZ0ZjlR?oc=5",
+    "time": "2026-11-17T07:13:27.000Z",
     "tags": [
      "國安基金"
     ],
     "trusted": true
    },
    {
-    "title": "台股崩盤後 本週3大考驗一次看",
-    "source": "短新聞SHOTNEWS",
-    "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5ZUjdlNm53c3hLTWRXYTFWYklRZE9GSW5mYXhhdGJQZEpqYllHYkpEN0p5Z0tleGp1MlFMejlNRkZCc3ZEaGFfdWRNVGpnUnpHZWs3ZQ?oc=5",
-    "time": "2026-11-16T06:23:00.000Z",
+    "title": "台股跌947點驚險守住4萬點 新台幣盤中破33元 一度重貶1.29角",
+    "source": "蕃新聞",
+    "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5SV21xZFlaeUtZUzkxS3pkdmYzeEswb3BvQkRQUEJJdWVrMzBTU2ZJNUZ4QWdTck5weUZVeVk3c1o5U2d3NUhtNExEN0FzUXdWUGc?oc=5",
+    "time": "2026-11-17T06:35:00.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "台股又重挫 楊金龍：外資撤出非恐慌心態 國安基金若沒進場波動會更大",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMiygNBVV95cUxONUFxWUxiaFh5ZmZ6RFBzVi1ORjFEdmRSLVY0MV9VVUFDb05RTE9fQVNsd2d0Sk1ZQkdxeHJWdmxybjMyU1hiMW94Qmt5NU5yYlJxVlRkZzhUTnJKZUxEQWhvX1dySk1sUkxVNC1oSkxGR1Vha2tjMTMybmRwTEhiTjhEYzVWN0ZQMm41dUNPRlV4aE1EaGZobFQza1gtVUdFTElMbGYzTVdSZWd1Mm9yVDNPejhEMVhjYTIzTWRzcWpWUExxTWdUU3Y0SzliQkJKaTd1S1JQNDAzRHE2WkM4MWtFZlNmUUxnckZxbjFFRUk1ajc2dGViQXVtZy04VnZ1clBrR3NrcldxTjNxQVFobHJSYUFpN2FRYVp4cXRXR0x1dHJIeDJjU2NhYzdBMzlwY0lDS09xVW95V0g4S2FUNURhQkRob1FnbzBYU0g2SDM2R0V0UG9lMnZuZ3VsRkdOZEp4OG11d3BSazdHNUpmZmNJVFhORDhKVldwcnZxV0xvNTRlQ28taEx1SERqZ2FVSnpNWkNMLXE0amNuSm5NZ2ZWaW1MMFdDc1VQdDFTcUY0RS1EamlWOFp0RjVhTnlpc01KYWpvR0k5dw?oc=5",
-    "time": "2026-11-16T06:18:14.000Z",
+    "title": "台股大怒神：半小時狂拉1,747 點，收盤全吐回、輝達財報明登場| 動區動趨-最具影響力的區塊鏈新聞媒體",
+    "source": "動區動趨",
+    "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOYUN6emFtMUE3YmZYY1BUdHdCNGxRcVZ3aUZNeTlLMkN3WW45b0F3Mjd5ZFNVbUVuN3hGS2VzU2htSXAzWEhJdUxWMXVPLW9VV2ZzWVloaF9heTN0TE93cUhOZkJuMGxtUkVzVkVaXzA5bWFBZ1R2RXUwSkVYRlBIM1J1SS12UlhiaFZDOWV6WGUtLUFQajI4Z2h1b1pDZw?oc=5",
+    "time": "2026-11-17T05:55:48.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "台股明年Q1上攻底氣！CES、MWC及普發現金3大利多來了",
+    "source": "中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5PamZHRGNMYzZIUmhyOGcxTlYzeEdKUG0tN0cwY1MzRGt5Mk5aYVBRNERLSll0SGstaGFpb3VIN0hvVGR3NFQzSXF2UXNnZG1tVVZQcF85Z2p4UzktYU1NaXk2QnRJaW1neTVVMmN3?oc=5",
+    "time": "2026-11-17T05:49:27.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "國安基金護盤失敗！台積電震盪115元下跌45元 指數收跌947點",
+    "source": "自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE40ZkQyUFJCS0tYS0pkSS1ESW1nMU9ESkotZXNwbU1aNUI1cFlfMm56MVhhbVhvaEI5eEVzT2VaVjJSa0QwbWNUUW5xTjI0N0FpVFB3dU5QNmJkRTdieXdn0gFkQVVfeXFMTTVTVzB3ckx2QnVITDFiLUpNSk1aQm5GTk9PMUlTZDBRODIzTmpVVDlFMFpJWE43cXUzSDE2cmE4bk9YYXV5ZVQ4X0xoc3B3WXJYSHV6b1hwa1BmNWlxODVHZ095cQ?oc=5",
+    "time": "2026-11-17T05:46:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金V拉10分鐘又放手？台股殺近千點仍守4萬！台積電台達電聯發科…點火名單先收下，股王信驊不救？",
+    "source": "今周刊",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQU0k4R0FzVm5aeVc3TUx4clZuUXEydklBTFgyVzQxMXJnLW1yM0NacXlSM1lUSENpSmstb1JDZVhqaXpXY081LWIyT0tJNlR5a3ZlZVNrSDhQbmo4bTB6bWtYdERHemZVa0gtVDllV0p3dUs1VHg5Q21Ib2MxX1I2TQ?oc=5",
+    "time": "2026-11-17T05:40:00.000Z",
     "tags": [
      "國安基金"
     ],
@@ -124,21 +93,21 @@
   "code": "3711",
   "name": "日月光投控",
   "target": "2026-11-18",
-  "basedOn": "2026-11-16",
-  "closedDays": [
-   "2026-11-17"
-  ],
+  "basedOn": "2026-11-17",
+  "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-16T18:22:35.744Z",
-  "newsSince": "2026-11-16T13:30+08:00",
+  "fetchedAt": "2026-11-17T09:44:08.245Z",
+  "newsSince": "2026-11-17T13:30+08:00",
   "timingOk": false,
   "stale": [
-   "美股（2026-11-13）早於台股最後收盤日 2026-11-16",
-   "ADR（2026-11-13）早於台股最後收盤日 2026-11-16"
+   "美股（2026-11-16）早於台股最後收盤日 2026-11-17",
+   "ADR（2026-11-16）早於台股最後收盤日 2026-11-17"
   ],
   "warnings": [
+   "證交所尚未公布 2026-11-17 借券賣出餘額",
+   "證交所尚未公布 2026-11-17 融資融券",
    "外資期貨未平倉取得失敗：抓取失敗 https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfFuturesContractsBytheDate：Unexpected token '日', \"日期,商品名稱,身份\"... is not valid JSON",
-   "⏰ 時序檢查未通過：美股（2026-11-13）早於台股最後收盤日 2026-11-16；ADR（2026-11-13）早於台股最後收盤日 2026-11-16。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
+   "⏰ 時序檢查未通過：美股（2026-11-16）早於台股最後收盤日 2026-11-17；ADR（2026-11-16）早於台股最後收盤日 2026-11-17。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
   ],
   "sources": [
    {
@@ -188,26 +157,26 @@
   ]
  },
  "indicators": {
-  "close": 550,
-  "prevClose": 598,
-  "changePct": -8.03,
-  "ma5": 591.2,
-  "ma10": 585.9,
-  "ma20": 628.45,
-  "ma60": 642.45,
-  "rsi14": 38.1,
-  "k": 39.9,
-  "d": 38.1,
-  "prevK": 46,
-  "prevD": 37.1,
-  "volumeRatio": 0.86,
+  "close": 520,
+  "prevClose": 550,
+  "changePct": -5.45,
+  "ma5": 574.2,
+  "ma10": 576.3,
+  "ma20": 620.9,
+  "ma60": 641.13,
+  "rsi14": 35,
+  "k": 30.4,
+  "d": 35.5,
+  "prevK": 39.9,
+  "prevD": 38.1,
+  "volumeRatio": 1.23,
   "candle": {
-   "bodyPct": -6.35,
-   "upperShadowPct": 0.33,
+   "bodyPct": 2.55,
+   "upperShadowPct": 5.09,
    "lowerShadowPct": 0
   },
   "high60": 765,
-  "low60": 515
+  "low60": 506
  },
  "daily": [
   {
@@ -4169,505 +4138,505 @@
    "low": 550,
    "close": 550,
    "volume": 22035615
+  },
+  {
+   "date": "2026-11-17",
+   "open": 506,
+   "high": 548,
+   "low": 506,
+   "close": 520,
+   "volume": 29248538
   }
  ],
  "intraday": [
   {
    "time": "09:00",
-   "ts": 1794790800,
-   "open": 588,
-   "high": 590,
-   "low": 568,
-   "close": 568,
+   "ts": 1794877200,
+   "open": 506,
+   "high": 523,
+   "low": 506,
+   "close": 516,
    "volume": 0
   },
   {
    "time": "09:05",
-   "ts": 1794791100,
-   "open": 568,
-   "high": 578,
-   "low": 565,
-   "close": 571,
-   "volume": 1080938
+   "ts": 1794877500,
+   "open": 516,
+   "high": 538,
+   "low": 514,
+   "close": 536,
+   "volume": 2174000
   },
   {
    "time": "09:10",
-   "ts": 1794791400,
-   "open": 570,
-   "high": 573,
-   "low": 566,
-   "close": 566,
-   "volume": 670969
+   "ts": 1794877800,
+   "open": 536,
+   "high": 542,
+   "low": 528,
+   "close": 540,
+   "volume": 2472880
   },
   {
    "time": "09:15",
-   "ts": 1794791700,
-   "open": 565,
-   "high": 568,
-   "low": 563,
-   "close": 568,
-   "volume": 630555
+   "ts": 1794878100,
+   "open": 540,
+   "high": 545,
+   "low": 536,
+   "close": 545,
+   "volume": 1097747
   },
   {
    "time": "09:20",
-   "ts": 1794792000,
-   "open": 568,
-   "high": 568,
-   "low": 558,
-   "close": 558,
-   "volume": 935252
+   "ts": 1794878400,
+   "open": 545,
+   "high": 548,
+   "low": 533,
+   "close": 537,
+   "volume": 1068494
   },
   {
    "time": "09:25",
-   "ts": 1794792300,
-   "open": 558,
-   "high": 560,
-   "low": 557,
-   "close": 559,
-   "volume": 589518
+   "ts": 1794878700,
+   "open": 538,
+   "high": 538,
+   "low": 525,
+   "close": 528,
+   "volume": 806605
   },
   {
    "time": "09:30",
-   "ts": 1794792600,
-   "open": 560,
-   "high": 562,
-   "low": 555,
-   "close": 556,
-   "volume": 508135
+   "ts": 1794879000,
+   "open": 529,
+   "high": 535,
+   "low": 527,
+   "close": 529,
+   "volume": 527826
   },
   {
    "time": "09:35",
-   "ts": 1794792900,
-   "open": 556,
-   "high": 560,
-   "low": 554,
-   "close": 560,
-   "volume": 364077
+   "ts": 1794879300,
+   "open": 529,
+   "high": 532,
+   "low": 527,
+   "close": 531,
+   "volume": 495446
   },
   {
    "time": "09:40",
-   "ts": 1794793200,
-   "open": 560,
-   "high": 564,
-   "low": 558,
-   "close": 561,
-   "volume": 304090
+   "ts": 1794879600,
+   "open": 531,
+   "high": 533,
+   "low": 527,
+   "close": 529,
+   "volume": 374785
   },
   {
    "time": "09:45",
-   "ts": 1794793500,
-   "open": 561,
-   "high": 564,
-   "low": 560,
-   "close": 560,
-   "volume": 289706
+   "ts": 1794879900,
+   "open": 529,
+   "high": 529,
+   "low": 517,
+   "close": 519,
+   "volume": 979017
   },
   {
    "time": "09:50",
-   "ts": 1794793800,
-   "open": 560,
-   "high": 562,
-   "low": 558,
-   "close": 558,
-   "volume": 227807
+   "ts": 1794880200,
+   "open": 519,
+   "high": 523,
+   "low": 518,
+   "close": 520,
+   "volume": 432644
   },
   {
    "time": "09:55",
-   "ts": 1794794100,
-   "open": 558,
-   "high": 558,
-   "low": 554,
-   "close": 556,
-   "volume": 427267
+   "ts": 1794880500,
+   "open": 520,
+   "high": 521,
+   "low": 515,
+   "close": 517,
+   "volume": 542678
   },
   {
    "time": "10:00",
-   "ts": 1794794400,
-   "open": 555,
-   "high": 562,
-   "low": 554,
-   "close": 561,
-   "volume": 229476
+   "ts": 1794880800,
+   "open": 517,
+   "high": 523,
+   "low": 517,
+   "close": 521,
+   "volume": 389331
   },
   {
    "time": "10:05",
-   "ts": 1794794700,
-   "open": 561,
-   "high": 563,
-   "low": 558,
-   "close": 560,
-   "volume": 187053
+   "ts": 1794881100,
+   "open": 520,
+   "high": 524,
+   "low": 519,
+   "close": 523,
+   "volume": 269475
   },
   {
    "time": "10:10",
-   "ts": 1794795000,
-   "open": 560,
-   "high": 562,
-   "low": 560,
-   "close": 560,
-   "volume": 120136
+   "ts": 1794881400,
+   "open": 523,
+   "high": 524,
+   "low": 519,
+   "close": 519,
+   "volume": 224715
   },
   {
    "time": "10:15",
-   "ts": 1794795300,
-   "open": 561,
-   "high": 562,
-   "low": 560,
-   "close": 562,
-   "volume": 76691
+   "ts": 1794881700,
+   "open": 519,
+   "high": 522,
+   "low": 516,
+   "close": 519,
+   "volume": 469803
   },
   {
    "time": "10:20",
-   "ts": 1794795600,
-   "open": 562,
-   "high": 565,
-   "low": 561,
-   "close": 565,
-   "volume": 202059
+   "ts": 1794882000,
+   "open": 519,
+   "high": 520,
+   "low": 515,
+   "close": 518,
+   "volume": 221400
   },
   {
    "time": "10:25",
-   "ts": 1794795900,
-   "open": 565,
-   "high": 567,
-   "low": 563,
-   "close": 563,
-   "volume": 259728
+   "ts": 1794882300,
+   "open": 517,
+   "high": 517,
+   "low": 513,
+   "close": 516,
+   "volume": 476013
   },
   {
    "time": "10:30",
-   "ts": 1794796200,
-   "open": 563,
-   "high": 563,
-   "low": 558,
-   "close": 558,
-   "volume": 233134
+   "ts": 1794882600,
+   "open": 516,
+   "high": 517,
+   "low": 514,
+   "close": 517,
+   "volume": 293716
   },
   {
    "time": "10:35",
-   "ts": 1794796500,
-   "open": 559,
-   "high": 563,
-   "low": 559,
-   "close": 563,
-   "volume": 152915
+   "ts": 1794882900,
+   "open": 516,
+   "high": 524,
+   "low": 516,
+   "close": 523,
+   "volume": 373695
   },
   {
    "time": "10:40",
-   "ts": 1794796800,
-   "open": 564,
-   "high": 565,
-   "low": 561,
-   "close": 562,
-   "volume": 116733
+   "ts": 1794883200,
+   "open": 523,
+   "high": 525,
+   "low": 521,
+   "close": 523,
+   "volume": 366568
   },
   {
    "time": "10:45",
-   "ts": 1794797100,
-   "open": 562,
-   "high": 563,
-   "low": 560,
-   "close": 561,
-   "volume": 126778
+   "ts": 1794883500,
+   "open": 523,
+   "high": 527,
+   "low": 523,
+   "close": 523,
+   "volume": 240548
   },
   {
    "time": "10:50",
-   "ts": 1794797400,
-   "open": 560,
-   "high": 561,
-   "low": 558,
-   "close": 560,
-   "volume": 204932
+   "ts": 1794883800,
+   "open": 523,
+   "high": 523,
+   "low": 518,
+   "close": 520,
+   "volume": 205723
   },
   {
    "time": "10:55",
-   "ts": 1794797700,
-   "open": 560,
-   "high": 562,
-   "low": 559,
-   "close": 560,
-   "volume": 145304
+   "ts": 1794884100,
+   "open": 520,
+   "high": 521,
+   "low": 517,
+   "close": 519,
+   "volume": 143047
   },
   {
    "time": "11:00",
-   "ts": 1794798000,
-   "open": 561,
-   "high": 561,
-   "low": 556,
-   "close": 557,
-   "volume": 236053
+   "ts": 1794884400,
+   "open": 518,
+   "high": 520,
+   "low": 517,
+   "close": 518,
+   "volume": 95852
   },
   {
    "time": "11:05",
-   "ts": 1794798300,
-   "open": 557,
-   "high": 559,
-   "low": 556,
-   "close": 559,
-   "volume": 382518
+   "ts": 1794884700,
+   "open": 517,
+   "high": 524,
+   "low": 517,
+   "close": 523,
+   "volume": 181257
   },
   {
    "time": "11:10",
-   "ts": 1794798600,
-   "open": 559,
-   "high": 560,
-   "low": 555,
-   "close": 557,
-   "volume": 194162
+   "ts": 1794885000,
+   "open": 523,
+   "high": 526,
+   "low": 523,
+   "close": 524,
+   "volume": 208350
   },
   {
    "time": "11:15",
-   "ts": 1794798900,
-   "open": 559,
-   "high": 559,
-   "low": 555,
-   "close": 555,
-   "volume": 118783
+   "ts": 1794885300,
+   "open": 525,
+   "high": 534,
+   "low": 524,
+   "close": 532,
+   "volume": 379984
   },
   {
    "time": "11:20",
-   "ts": 1794799200,
-   "open": 556,
-   "high": 559,
-   "low": 555,
-   "close": 558,
-   "volume": 111427
+   "ts": 1794885600,
+   "open": 532,
+   "high": 536,
+   "low": 530,
+   "close": 536,
+   "volume": 195531
   },
   {
    "time": "11:25",
-   "ts": 1794799500,
-   "open": 559,
-   "high": 559,
-   "low": 556,
-   "close": 558,
-   "volume": 135939
+   "ts": 1794885900,
+   "open": 536,
+   "high": 536,
+   "low": 533,
+   "close": 534,
+   "volume": 192220
   },
   {
    "time": "11:30",
-   "ts": 1794799800,
-   "open": 558,
-   "high": 560,
-   "low": 555,
-   "close": 559,
-   "volume": 244011
+   "ts": 1794886200,
+   "open": 534,
+   "high": 535,
+   "low": 530,
+   "close": 535,
+   "volume": 178734
   },
   {
    "time": "11:35",
-   "ts": 1794800100,
-   "open": 558,
-   "high": 558,
-   "low": 555,
-   "close": 555,
-   "volume": 158108
+   "ts": 1794886500,
+   "open": 535,
+   "high": 537,
+   "low": 534,
+   "close": 534,
+   "volume": 334386
   },
   {
    "time": "11:40",
-   "ts": 1794800400,
-   "open": 556,
-   "high": 557,
-   "low": 555,
-   "close": 556,
-   "volume": 150647
+   "ts": 1794886800,
+   "open": 533,
+   "high": 534,
+   "low": 529,
+   "close": 529,
+   "volume": 218582
   },
   {
    "time": "11:45",
-   "ts": 1794800700,
-   "open": 556,
-   "high": 556,
-   "low": 554,
-   "close": 554,
-   "volume": 189733
+   "ts": 1794887100,
+   "open": 529,
+   "high": 533,
+   "low": 526,
+   "close": 529,
+   "volume": 230726
   },
   {
    "time": "11:50",
-   "ts": 1794801000,
-   "open": 555,
-   "high": 556,
-   "low": 553,
-   "close": 556,
-   "volume": 243760
+   "ts": 1794887400,
+   "open": 529,
+   "high": 529,
+   "low": 526,
+   "close": 526,
+   "volume": 113003
   },
   {
    "time": "11:55",
-   "ts": 1794801300,
-   "open": 555,
-   "high": 558,
-   "low": 554,
-   "close": 557,
-   "volume": 125830
+   "ts": 1794887700,
+   "open": 526,
+   "high": 526,
+   "low": 522,
+   "close": 522,
+   "volume": 157197
   },
   {
    "time": "12:00",
-   "ts": 1794801600,
-   "open": 556,
-   "high": 557,
-   "low": 554,
-   "close": 554,
-   "volume": 132821
+   "ts": 1794888000,
+   "open": 523,
+   "high": 524,
+   "low": 520,
+   "close": 520,
+   "volume": 162275
   },
   {
    "time": "12:05",
-   "ts": 1794801900,
-   "open": 554,
-   "high": 554,
-   "low": 550,
-   "close": 550,
-   "volume": 427954
+   "ts": 1794888300,
+   "open": 521,
+   "high": 521,
+   "low": 518,
+   "close": 519,
+   "volume": 376212
   },
   {
    "time": "12:10",
-   "ts": 1794802200,
-   "open": 550,
-   "high": 555,
-   "low": 550,
-   "close": 555,
-   "volume": 595885
+   "ts": 1794888600,
+   "open": 519,
+   "high": 520,
+   "low": 517,
+   "close": 518,
+   "volume": 292954
   },
   {
    "time": "12:15",
-   "ts": 1794802500,
-   "open": 554,
-   "high": 556,
-   "low": 552,
-   "close": 553,
-   "volume": 163247
+   "ts": 1794888900,
+   "open": 517,
+   "high": 518,
+   "low": 513,
+   "close": 516,
+   "volume": 557670
   },
   {
    "time": "12:20",
-   "ts": 1794802800,
-   "open": 554,
-   "high": 561,
-   "low": 553,
-   "close": 560,
-   "volume": 395771
+   "ts": 1794889200,
+   "open": 516,
+   "high": 520,
+   "low": 515,
+   "close": 519,
+   "volume": 194421
   },
   {
    "time": "12:25",
-   "ts": 1794803100,
-   "open": 561,
-   "high": 562,
-   "low": 558,
-   "close": 559,
-   "volume": 277285
+   "ts": 1794889500,
+   "open": 519,
+   "high": 520,
+   "low": 518,
+   "close": 519,
+   "volume": 121101
   },
   {
    "time": "12:30",
-   "ts": 1794803400,
-   "open": 560,
-   "high": 562,
-   "low": 558,
-   "close": 558,
-   "volume": 246319
+   "ts": 1794889800,
+   "open": 519,
+   "high": 522,
+   "low": 516,
+   "close": 521,
+   "volume": 263987
   },
   {
    "time": "12:35",
-   "ts": 1794803700,
-   "open": 558,
-   "high": 559,
-   "low": 556,
-   "close": 557,
-   "volume": 196181
+   "ts": 1794890100,
+   "open": 520,
+   "high": 523,
+   "low": 519,
+   "close": 520,
+   "volume": 159283
   },
   {
    "time": "12:40",
-   "ts": 1794804000,
-   "open": 556,
-   "high": 557,
-   "low": 553,
-   "close": 555,
-   "volume": 246312
+   "ts": 1794890400,
+   "open": 520,
+   "high": 521,
+   "low": 518,
+   "close": 519,
+   "volume": 333078
   },
   {
    "time": "12:45",
-   "ts": 1794804300,
-   "open": 555,
-   "high": 556,
-   "low": 554,
-   "close": 555,
-   "volume": 210658
+   "ts": 1794890700,
+   "open": 519,
+   "high": 522,
+   "low": 518,
+   "close": 521,
+   "volume": 272464
   },
   {
    "time": "12:50",
-   "ts": 1794804600,
-   "open": 555,
-   "high": 555,
-   "low": 552,
-   "close": 553,
-   "volume": 218763
+   "ts": 1794891000,
+   "open": 522,
+   "high": 522,
+   "low": 519,
+   "close": 522,
+   "volume": 252565
   },
   {
    "time": "12:55",
-   "ts": 1794804900,
-   "open": 553,
-   "high": 555,
-   "low": 553,
-   "close": 554,
-   "volume": 158334
+   "ts": 1794891300,
+   "open": 522,
+   "high": 522,
+   "low": 520,
+   "close": 520,
+   "volume": 149936
   },
   {
    "time": "13:00",
-   "ts": 1794805200,
-   "open": 554,
-   "high": 555,
-   "low": 551,
-   "close": 552,
-   "volume": 335424
+   "ts": 1794891600,
+   "open": 520,
+   "high": 521,
+   "low": 514,
+   "close": 514,
+   "volume": 674743
   },
   {
    "time": "13:05",
-   "ts": 1794805500,
-   "open": 551,
-   "high": 553,
-   "low": 551,
-   "close": 552,
-   "volume": 302593
+   "ts": 1794891900,
+   "open": 515,
+   "high": 517,
+   "low": 513,
+   "close": 515,
+   "volume": 576943
   },
   {
    "time": "13:10",
-   "ts": 1794805800,
-   "open": 552,
-   "high": 553,
-   "low": 551,
-   "close": 551,
-   "volume": 388071
+   "ts": 1794892200,
+   "open": 516,
+   "high": 516,
+   "low": 514,
+   "close": 514,
+   "volume": 377985
   },
   {
    "time": "13:15",
-   "ts": 1794806100,
-   "open": 552,
-   "high": 553,
-   "low": 550,
-   "close": 552,
-   "volume": 1083442
+   "ts": 1794892500,
+   "open": 514,
+   "high": 518,
+   "low": 512,
+   "close": 517,
+   "volume": 751866
   },
   {
    "time": "13:20",
-   "ts": 1794806400,
-   "open": 552,
-   "high": 552,
-   "low": 550,
-   "close": 551,
-   "volume": 697827
+   "ts": 1794892800,
+   "open": 516,
+   "high": 520,
+   "low": 516,
+   "close": 518,
+   "volume": 707310
   },
   {
    "time": "13:30",
-   "ts": 1794807000,
-   "open": 550,
-   "high": 550,
-   "low": 550,
-   "close": 550,
+   "ts": 1794893400,
+   "open": 520,
+   "high": 520,
+   "low": 520,
+   "close": 520,
    "volume": 0
   }
  ],
  "institutional": [
-  {
-   "date": "2026-11-03",
-   "foreign": -10467,
-   "trust": 2582,
-   "dealer": -395,
-   "dealerSelf": -714,
-   "dealerHedge": 319
-  },
   {
    "date": "2026-11-04",
    "foreign": -8965,
@@ -4739,23 +4708,18 @@
    "dealer": 308,
    "dealerSelf": 175,
    "dealerHedge": 133
+  },
+  {
+   "date": "2026-11-17",
+   "foreign": -4962,
+   "trust": 199,
+   "dealer": 1266,
+   "dealerSelf": 363,
+   "dealerHedge": 903
   }
  ],
- "margin": {
-  "date": "2026-11-16",
-  "marginPrev": 11771,
-  "marginToday": 11508,
-  "shortPrev": 196,
-  "shortToday": 258
- },
- "lending": {
-  "date": "2026-11-16",
-  "prev": 25087,
-  "today": 24856,
-  "change": -231,
-  "sold": 561,
-  "returned": 792
- },
+ "margin": null,
+ "lending": null,
  "revenue": {
   "month": "2026-10",
   "revenue": 88615136,
@@ -4769,101 +4733,96 @@
  },
  "market": {
   "institutional": {
-   "date": "2026-11-16",
-   "foreign": -701.9,
-   "trust": -183,
-   "dealer": -259,
-   "dealerSelf": 31.2,
-   "dealerHedge": -290.2,
-   "total": -1143.9
+   "date": "2026-11-17",
+   "foreign": -380.9,
+   "trust": -9.3,
+   "dealer": -157,
+   "dealerSelf": 63.9,
+   "dealerHedge": -220.8,
+   "total": -547.3
   },
   "txf": {
-   "date": "2026-11-16",
+   "date": "2026-11-17",
    "contract": "臺指期116",
    "day": {
-    "session": "2026-11-16",
+    "session": "2026-11-17",
     "contract": "臺指期116",
-    "close": 40885,
-    "ref": 43839,
-    "changePct": -6.74
+    "close": 40073,
+    "ref": 40781,
+    "changePct": -1.74
    },
    "night": {
-    "session": "2026-11-16",
+    "session": "2026-11-17",
     "contract": "臺指期116",
-    "close": 41101,
-    "ref": 40781,
-    "changePct": 0.78
+    "close": 39761,
+    "ref": 40011,
+    "changePct": -0.62
    }
   },
   "foreignFuturesOI": null,
   "leveraged": {
-   "date": "2026-11-16",
+   "date": "2026-11-17",
    "items": [
     {
      "code": "00631L",
      "name": "元大台灣50正2",
      "side": "bull",
-     "date": "2026-11-16",
-     "close": 27.95,
-     "changePct": -12.44,
-     "volume": 678825,
-     "volumeRatio": 1.5,
+     "date": "2026-11-17",
+     "close": 26.86,
+     "changePct": -3.9,
+     "volume": 688053,
+     "volumeRatio": 1.46,
      "inst": {
-      "foreign": -23982,
-      "trust": -234,
-      "dealer": -191796,
-      "dealerSelf": 142,
-      "dealerHedge": -191938
+      "foreign": -98,
+      "trust": 0,
+      "dealer": -234394,
+      "dealerSelf": 410,
+      "dealerHedge": -234804
      },
-     "marginChange": 21394,
-     "marginBalance": 335498,
-     "lendingChange": 4183
+     "marginChange": null,
+     "marginBalance": null,
+     "lendingChange": null
     },
     {
      "code": "00632R",
      "name": "元大台灣50反1",
      "side": "bear",
-     "date": "2026-11-16",
-     "close": 10.99,
-     "changePct": 6.6,
-     "volume": 341295,
-     "volumeRatio": 1.07,
+     "date": "2026-11-17",
+     "close": 11.19,
+     "changePct": 1.82,
+     "volume": 458843,
+     "volumeRatio": 1.39,
      "inst": {
-      "foreign": -2314,
+      "foreign": 966,
       "trust": 0,
-      "dealer": 65024,
-      "dealerSelf": 4870,
-      "dealerHedge": 60154
+      "dealer": 98658,
+      "dealerSelf": -117,
+      "dealerHedge": 98775
      },
-     "marginChange": -10988,
-     "marginBalance": 268856,
-     "lendingChange": 1388
+     "marginChange": null,
+     "marginBalance": null,
+     "lendingChange": null
     }
    ]
   },
   "options": {
-   "date": "2026-11-13",
+   "date": "2026-11-16",
    "foreign": {
-    "callOI": 3720,
-    "callValue": 158354,
-    "putOI": 5603,
-    "putValue": 154525
+    "callOI": 3376,
+    "callValue": 49884,
+    "putOI": 4605,
+    "putValue": 417764
    },
    "dealer": {
-    "callOI": 21960,
-    "callValue": 914937,
-    "putOI": -6029,
-    "putValue": 108910
+    "callOI": 10914,
+    "callValue": 112206,
+    "putOI": -704,
+    "putValue": 79009
    },
-   "putCallOIRatio": 57.75,
-   "putCallVolumeRatio": 98.66
+   "putCallOIRatio": 53.79,
+   "putCallVolumeRatio": 81.01
   },
   "flows": [
-   {
-    "date": "2026-10-16",
-    "foreign": -461.5,
-    "usdtwd": 32.327
-   },
    {
     "date": "2026-10-19",
     "foreign": -767.4,
@@ -4957,148 +4916,153 @@
    {
     "date": "2026-11-16",
     "foreign": -701.9,
-    "usdtwd": null
+    "usdtwd": 32.876
+   },
+   {
+    "date": "2026-11-17",
+    "foreign": -380.9,
+    "usdtwd": 32.899
    }
   ]
  },
  "global": {
   "sox": {
    "symbol": "^SOX",
-   "date": "2026-11-13",
-   "close": 10146.32,
-   "prevClose": 10506.67,
-   "changePct": -3.43,
+   "date": "2026-11-16",
+   "close": 9610.65,
+   "prevClose": 10146.32,
+   "changePct": -5.28,
    "label": "費城半導體"
   },
   "nasdaq": {
    "symbol": "^IXIC",
-   "date": "2026-11-13",
-   "close": 25136.27,
-   "prevClose": 25366.09,
-   "changePct": -0.91,
+   "date": "2026-11-16",
+   "close": 24509.76,
+   "prevClose": 25136.27,
+   "changePct": -2.49,
    "label": "那斯達克"
   },
   "sp500": {
    "symbol": "^GSPC",
-   "date": "2026-11-13",
-   "close": 7561.67,
-   "prevClose": 7592.4,
-   "changePct": -0.4,
+   "date": "2026-11-16",
+   "close": 7416.59,
+   "prevClose": 7561.67,
+   "changePct": -1.92,
    "label": "標普 500"
   },
   "dow": {
    "symbol": "^DJI",
-   "date": "2026-11-13",
-   "close": 52347.55,
-   "prevClose": 52297.09,
-   "changePct": 0.1,
+   "date": "2026-11-16",
+   "close": 51608.17,
+   "prevClose": 52347.55,
+   "changePct": -1.41,
    "label": "道瓊"
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-13",
-   "close": 19.3,
-   "prevClose": 18.7,
-   "changePct": 3.21,
+   "date": "2026-11-16",
+   "close": 22.91,
+   "prevClose": 19.3,
+   "changePct": 18.7,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
    "symbol": "^N225",
-   "date": "2026-11-13",
-   "close": 61142.35,
-   "prevClose": 60819.36,
-   "changePct": 0.53,
+   "date": "2026-11-17",
+   "close": 58860.43,
+   "prevClose": 59662.02,
+   "changePct": -1.34,
    "label": "日經 225"
   },
   "kospi": {
    "symbol": "^KS11",
-   "date": "2026-11-13",
-   "close": 5290.53,
-   "prevClose": 5342.73,
-   "changePct": -0.98,
+   "date": "2026-11-17",
+   "close": 4968.48,
+   "prevClose": 5100.5,
+   "changePct": -2.59,
    "label": "韓國 KOSPI"
   },
   "usdtwd": {
    "symbol": "TWD=X",
-   "date": "2026-11-16",
-   "close": 32.94,
-   "prevClose": 32.94,
-   "changePct": 0,
+   "date": "2026-11-17",
+   "close": 32.9,
+   "prevClose": 32.88,
+   "changePct": 0.07,
    "label": "美元／新台幣"
   },
   "taiex": {
    "symbol": "^TWII",
-   "date": "2026-11-13",
-   "close": 43675.12,
-   "prevClose": 43091.87,
-   "changePct": 1.35,
+   "date": "2026-11-17",
+   "close": 40092.11,
+   "prevClose": 41040.08,
+   "changePct": -2.31,
    "label": "台灣加權指數"
   }
  },
  "adr": {
   "symbol": "ASX",
-  "date": "2026-11-13",
-  "close": 35.55,
-  "prevClose": 36.29,
-  "changePct": -2.04,
+  "date": "2026-11-16",
+  "close": 32.8,
+  "prevClose": 35.55,
+  "changePct": -7.74,
   "name": "日月光投控 ADR",
   "ratio": 2,
-  "impliedTwd": 585.5
+  "impliedTwd": 539.6
  },
  "hints": {
   "kline": {
-   "signal": "偏空",
-   "strength": "強",
-   "data": "2026-11-16 黑 K，實體 -6.35%，上影 0.33%、下影 0%",
+   "signal": "偏多",
+   "strength": "中",
+   "data": "2026-11-17 紅 K，實體 +2.55%，上影 5.09%、下影 0%",
    "source": "證交所 STOCK_DAY 日成交資訊"
   },
   "ma": {
    "signal": "偏空",
    "strength": "強",
-   "data": "收盤 550｜MA5 591.2｜MA20 628.45｜MA60 642.45",
+   "data": "收盤 520｜MA5 574.2｜MA20 620.9｜MA60 641.13",
    "source": "由日 K 計算"
   },
   "volume": {
-   "signal": "中性",
-   "strength": null,
-   "data": "成交量為前 5 日均量的 0.86 倍，當日漲跌 -8.03%",
+   "signal": "偏空",
+   "strength": "中",
+   "data": "成交量為前 5 日均量的 1.23 倍，當日漲跌 -5.45%",
    "source": "由日 K 計算"
   },
   "momentum": {
-   "signal": "中性",
-   "strength": null,
-   "data": "RSI14 38.1｜K 39.9｜D 38.1",
+   "signal": "偏空",
+   "strength": "弱",
+   "data": "RSI14 35｜K 30.4｜D 35.5（KD 死亡交叉）",
    "source": "由日 K 計算"
   },
   "foreign": {
    "signal": "偏空",
    "strength": "強",
-   "data": "2026-11-16 外資賣超 4,372 張（占成交量 19.8%），連 3 日同向；近 5 日合計賣超 11,304 張",
-   "source": "證交所 T86，2026-11-16"
+   "data": "2026-11-17 外資賣超 4,962 張（占成交量 17%），連 3 日同向；近 5 日合計賣超 14,721 張",
+   "source": "證交所 T86，2026-11-17"
   },
   "trust": {
-   "signal": "偏空",
-   "strength": "中",
-   "data": "2026-11-16 投信賣超 1,081 張（占成交量 4.9%）；近 5 日合計買超 4,728 張",
-   "source": "證交所 T86，2026-11-16"
+   "signal": "偏多",
+   "strength": "弱",
+   "data": "2026-11-17 投信買超 199 張（占成交量 0.7%）；近 5 日合計買超 1,313 張",
+   "source": "證交所 T86，2026-11-17"
   },
   "dealer": {
    "signal": "中性",
    "strength": null,
-   "data": "2026-11-16 自營商（自行買賣）買超 175 張（占成交量 0.8%）；近 5 日合計買超 84 張",
-   "source": "證交所 T86，2026-11-16"
+   "data": "2026-11-17 自營商（自行買賣）買超 363 張（占成交量 1.2%），連 3 日同向；近 5 日合計買超 957 張",
+   "source": "證交所 T86，2026-11-17"
   },
   "margin": {
-   "signal": "中性",
+   "signal": "缺漏",
    "strength": null,
-   "data": "融資餘額 11,508 張（-2.23%），融券餘額 258 張",
-   "source": "證交所 MI_MARGN，2026-11-16"
+   "data": "證交所尚未公布 2026-11-17 融資融券資料",
+   "source": "證交所 MI_MARGN"
   },
   "txf": {
-   "signal": "偏多",
+   "signal": "偏空",
    "strength": "中",
-   "data": "臺指期116夜盤 41101（+0.78%，相對日盤收盤 40781）",
-   "source": "期交所即時行情，夜盤 2026-11-16"
+   "data": "臺指期116夜盤 39761（-0.62%，相對日盤收盤 40011）",
+   "source": "期交所即時行情，夜盤 2026-11-17"
   },
   "futures_oi": {
    "signal": "缺漏",
@@ -5109,19 +5073,19 @@
   "us_market": {
    "signal": "缺漏",
    "strength": null,
-   "data": "尚無 2026-11-16 晚間的美股收盤（最新為 2026-11-13，已反映在台股收盤）",
+   "data": "尚無 2026-11-17 晚間的美股收盤（最新為 2026-11-16，已反映在台股收盤）",
    "source": "Yahoo Finance"
   },
   "adr": {
    "signal": "缺漏",
    "strength": null,
-   "data": "尚無 2026-11-16 晚間的 ADR 收盤（最新為 2026-11-13，已反映在台股收盤）",
+   "data": "尚無 2026-11-17 晚間的 ADR 收盤（最新為 2026-11-16，已反映在台股收盤）",
    "source": "Yahoo Finance ASX"
   },
   "asia": {
-   "signal": "中性",
-   "strength": null,
-   "data": "日經 +0.53%、KOSPI -0.98%（平均 -0.22%，2026-11-13）",
+   "signal": "偏空",
+   "strength": "中",
+   "data": "日經 -1.34%、KOSPI -2.59%（平均 -1.96%，2026-11-17）",
    "source": "Yahoo Finance"
   },
   "revenue": {
@@ -5133,8 +5097,8 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.94，新台幣升值 0%",
-   "source": "Yahoo Finance TWD=X，2026-11-16"
+   "data": "美元兌新台幣 32.9，新台幣貶值 0.07%",
+   "source": "Yahoo Finance TWD=X，2026-11-17"
   }
  }
 }
