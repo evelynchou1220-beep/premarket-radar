@@ -1,66 +1,182 @@
 {
  "news": {
-  "fetchedAt": "2026-11-17T09:43:59.791Z",
+  "fetchedAt": "2026-11-17T21:46:44.102Z",
   "since": "2026-11-17T13:30+08:00",
   "stock": [
    {
-    "title": "2317 鴻海 - 【台股盤後】加權收跌948點，中鼎強攻漲停- 股市爆料同學會",
+    "title": "2317 鴻海 - 鴻海斥資14 億買Sony 子公司深耕日本車用零組件市場- 股市爆料同學會",
     "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBIMExuV2d0Yl9lUEdqYUh1NEF5Mi1kNUZHaHUxYWJmQ245UTQtX3c0QzFDWDc2T2xrQ0JoNjBfc0JDd2lLd2M1MThpbS1fT0djRm5razZzUXQ?oc=5",
-    "time": "2026-11-17T09:00:18.000Z",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBwcDFxYTQwRTRkUENkUEZ1YS0wTi1WUjdZYUZfVjFlYzJqaEFTcVJ2T1M0NFRTQWdTWkNKWUVkY2pFenpaLUpIcXhDRTFUQnNWRHZlLUpQUXA?oc=5",
+    "time": "2026-11-17T19:03:30.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "台灣史上第一台！鴻海旗下鴻華先進首批國產純電車9月底啟航紐澳",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiuANBVV95cUxQQi1kbkRoUlpsVDh4eWlnQ1VXWkgzNXZhTTdxMzU2d3pQYWY5akVpSzVEdWNZc3lvNVltR1U2TFlVVU1LSUhCVm9HTzhkc2t4YjAwN014YmwxTmNURkFmRzYtbFJBVlZyNC1NTU9xYUJyT1JLaVN3TTdGWnFQeGpVX3ZGYzVKNjlqU0JZU1RnWDFWVmowSG94MmNDMjJnNWxCaHhfMjhKa1FrSF9SdHdDbWNHay1xR0RVVjBtOERlSklFYkxLaUNUVmJLLXk1Sms0SnliUVYtNWJSNGY0UWhFX0d6am9rVFVka3g0RHFPNklZdHFBVDg1RVczMDBQWG8zTEgwejYtQXNrdVpLRHZORm50cmFCTjhWekZycnBmd3VhSFQ2Y2hjV2x4THN2WlVKaW1NclJ3OElEZl9pTTN2dEtKLW5oT3FDYTFfYUFPaGdQcGFjcG9wNXVYUFhvM1hGRTVjbW43akpTZ05mWlVmTWI4OVZSbzZGUGlNUzFKVTZxb0xUT1hWcXVxWTM5Rk1iVUN1VFVvb2VBNFZVNlF1VlZQUm5XbFExNlpkcG9jbkN3dXBVb29kbQ?oc=5",
-    "time": "2026-11-17T08:54:22.000Z",
+    "title": "鴻海收購Sony車載相機事業- 日報",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBSTFoyQUxhR1NlUjh0VF9hcUtlNl9Lb2dyb0tBUmR2UFV2b2IxUVNMby02Z0h0dGlwQmhvNHVyUEpaS0pwQXNJMmo0RWJHZl9uZzlURkZRRndGRndwenF3?oc=5",
+    "time": "2026-11-17T19:00:00.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "鴻海斥資14億買Sony子公司 深耕日本車用零組件市場",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFB6M0J1SGRreUFMd2EwX2FublE2QjNuNG9jQkVsZzI0ZzU5UGxUM0VyOU1QZGZvazhFQTMtOUM4NXVlbnVXM2oxNG5HM1JtSEtzOEgtQ2VTekpLQWt1ZkhPMnpyODFqT05Eek9QUDY3Q2RLQdIBVkFVX3lxTE9FaElISXdWbXFjN2ItakNWQWpCUFZuWDhtVU01VUxnMTRrdjBsdDU2ZWhoRWVRUE9iV2F6YUNKMTdLZ1k4N0ZodTc1WEZHMGZjVlU4WVln?oc=5",
+    "time": "2026-11-17T18:52:40.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "鴻海純電車 賣向海外",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE40cElkRm56SFhsLWZ5dXZ2UEZ0X0p2S0lMTVhWUUk4cVhmR21NdkdhLV85ME1QZnlEeVdrUGM5ZFlXS1NfeGtHTFJBS0JXZ0hZWk5qUGI0Z0ljQdIBX0FVX3lxTE84TWh2Z3U2TzV0WTlwcWhqa0VnTmc1b3BuODNpTWpqRG5hai1yTjVmOFNJbkY3dXB4dHVZcmVaQ3VPZi1BbFNhc2k3SUZvdjByTVRLdkxYSnNTdVV0SWlV?oc=5",
+    "time": "2026-11-17T17:52:29.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "鴻海72億日圓收購Sony車載相機模組業務切入日系車廠供應鏈| 優分析",
+    "source": "LINE TODAY",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE96TXdnVi1KLVd3MXIxZC15dC1wc2xfTDRWVzRCUThVVHFoUnVVaUlKaHRBcVYwYUNmT0dtRU53MG1WWEEzMGxsenI2TzhWUUREX3VHeVJn?oc=5",
+    "time": "2026-11-17T14:07:44.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "【最新消息】輝達概念股回檔後，台股AI交換器僅3檔上漲，聚焦中磊鴻海-起漲K線",
-    "source": "CMoney投資網誌",
-    "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQckplcnd0TVlkcmFkQl82dmdDaS13TlQ5Q3pnTHZySm81aEJOcFdkU2ZYWVZYLWhpMDJicVVGZkl4aWtJZ0JmRnhUYjZGbDNPUHU1ZllIdGRLNVk1N2tSelg0Q0dvR0NPWldTUWkwcm43VnZFTnhfZTF3Z3ZCd3ExSXpYNXc?oc=5",
-    "time": "2026-11-17T08:54:20.000Z",
+    "title": "2317 鴻海 - 2026 資訊月AI－量子啟航論壇，國際產學嘉賓齊聚共探科技新局- 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBrdU5nOFlnMlA1ZndaVUpRVTMtS25FeEQwNDRTOFo2V0RMaFhZUnRjUWRKUkpKZTNDNjNyYldrRWd2OW5GQ0I3ZW4yN3dqbFB3TVYzSm5QRUE?oc=5",
+    "time": "2026-11-17T13:48:03.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "機器人規格尚未定型，台廠如何搶得話語權？鴻海、華碩、Google 談場域新機會",
-    "source": "TechOrange 科技報橘",
-    "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBLOTlRRWhHSkxKV1I4V2x2SXotOHVXQ2xvX0p0TnN4ZUNtMTdzS3FJb3NyY213MHlES0lWUDJVTHk2Q2tZZ1VZX1lsNXBYckdINlAtbnQ0M2RnZVZ1OXA3eGw0YVlwa0NTbWdrMmRsVC0?oc=5",
-    "time": "2026-11-17T08:13:05.000Z",
+    "title": "搶攻ADAS車用影像商機！鴻海擬斥14.5億元收購Sony車載相機模組事業，拚2027年4月底交割",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi1ANBVV95cUxNdkpTS1JabUVLN1JyM19RcjVzOEJ2djZfOU9VN1lVdXZJZEk2YUJpczZIblhXWVIzc2RJT2JWLXRjdXNmQ2hHLXR2dW5ZUklpNW5VMUZMcjVYTzJoVFNpY1lwdkd4S3hxRlRiS0hhcU94cEhyVHU2WG1ycGo3YjFxaWZ2YkEtRkVqSU1nNllGNGloY2RqcTFtNmxyeWotZVZUTlE0Rk5WQ2lfa2tQVFczNHBMU0xsTjI5Rll6Z0lyVWtuSllQdUpXd2xTS2RNY0FyblZpZm4wamgxdVdkNkhPT2FJTm5Da21vNjd0MzJ4QnNJSmlCYXpSSUtDZEY5YW54Zi1jZVZSd0ZZcExKc2ZQSTZOaWZoSEJqS21KNmlVeFBPc0xfLTZJZmxCZWJ0RUpYRXVPS0FBdF82REFUQ2xYNHI4YXp2cmFfWUQyUzFQaXlEWUYxV1ZKb3FvWGhHemJMMVNhMk1xTEVBTlNFR2tBN1F6dkJkUEpIRi1vTlJlWnBHOG42S293NVd0WFM4eVNELXhFT2h1SDlXUVlxdDZGNThrUmRMb0dlWFktUExoM1d5OVljaVRZUWZpV051Um0wVi1nUW5BYkhmQXhJYkpvblU4d3Y?oc=5",
+    "time": "2026-11-17T13:18:44.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "AI前景再掀疑慮外資調降鴻海.廣達目標價| 科技",
-    "source": "非凡新聞台",
-    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1KYnJWN050eFlibTBKWHh2RGJibVhPR2lyamtVWmZmVXNwYmlMXzhwcnNtWktsdlc1bTdtSElldy1LUlI5b1Fna0psVV9vbm41aW01Z2pBV05LejQ?oc=5",
-    "time": "2026-11-17T07:08:12.000Z",
+    "title": "目標明確買下去！ 鴻海14.5億元收購索尼半導體旗下車載相機模組事業",
+    "source": "鏡週刊Mirror Media",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE95RDladGdLRTZBOEpVMEpzUUNWcTJqay1iSWJ2d3EzVXR5MElMblFGM3RhZnoxU2h4Ti13dEF2N18yLV9DWE5HVTV2bzU4aU1DRXRMSDN3QUhmb3IyOVZNUm5kdFNfUQ?oc=5",
+    "time": "2026-11-17T12:18:00.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "【即時新聞】鴻海無懼台股重挫近千點！今日盤中發揮抗跌韌性穩守平盤",
-    "source": "CMoney投資網誌",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOR2RWV002UnlJWHNCcE5WRGs5OVhrNHlWUUtway1IbHdyX2FVUnV0NTVKY0hTcFZaZUpMOVlBckNPajFfclUtZjRMSC1mUV85LXlGaVRMR21qcmY4anNNTm44Njg3SjdSbHhJWVNfS1pweUZENlB3V0pWMFp0dTJfMzJ3X1lpSkdKNExaT19RSEo?oc=5",
-    "time": "2026-11-17T07:05:09.000Z",
+    "title": "鴻海子公司取得Sony Semiconductor Solutions車載相機模組事業部，計約72億日圓",
+    "source": "台視全球資訊網",
+    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPeHJFdHZzeG94N3FPcDVqTEN0U0pZZzhpS2NTd3ZJRFQyVnBFc0xfYTVSLVJlV3VlVVEwSmlxcWMwby12ZjJpYUV5d2pLYlpScnR6V0R1M0dZLUhVN3ExaWdQWWpPWkNxbTlISENENjUyV1l3UlF4aWxTeDYzSDJvSExUdUdwaGRTQjhmUEZGMThndw?oc=5",
+    "time": "2026-11-17T12:16:10.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "台股續跌947點險守40K！台達電、日月光挫逾5% 鴻海止跌翻紅、聯發科漲1.19%撐盤",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMilwNBVV95cUxPRHU3bHB5MTdfdFpMNHZUS1ZCcHlheDRMOTluRHhHcXQ2Y0UwdkdsSWkxdUhUWWl1TUV5R1hGTkdyQk5Fd2VvR04xNDk4ZWpBc2Zvc0tWVkI1UGxSQnIzdlNYY25zNnA2N1ZtXzZiN0tBd29CRkY1LW1ZOGxEdUI1YUdfdnRSa3VvXy1PM1Z1UzlOTW11YU9lQ0NDSkNpMll4aFNFd2pLRGR5MWdEcjlGUVZ6bnB5X2J2c1NVTlRJZ3ZEaUNqakh3MXlxRUhOTkx2aF85ZkN4NzI4ZXItNW94ZTc5SmRQdldrVTJEcGZDS0xhRVlxTEJTcXZPM0hoZlMwaUJJS2NNVElBclVNS1Uta2lnSXptZ3ppeElaU0l5V1ZZZ0lpVlZINnB0REZXWjZpU3U5OElfbUdEdnB6ckNvSGNsa3FYd1daYXRXZzdXdDlxWktEQ0FWN1FvMFBxc29yN1dzc1BMTk1iTXF6dVFQblpFWEktTEZRdjdwSWNvOVRwUWxSV2k4YzJhOEJqdW5HMlBBVS01RQ?oc=5",
-    "time": "2026-11-17T06:02:30.000Z",
+    "title": "鴻海併索尼車載相機模組事業 深化汽車電子布局",
+    "source": "Rti 中央廣播電臺",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5Kc3pmSWdiaVpWREs3S3dvMGxsd3lsdWtNMjBNWDBLU09ZZzFDblN4T3BWSVB0dTQwdDV0eUQwVFJ1R2dMWHBhVnZJYkpHYzZRWGxPSXdwSEw?oc=5",
+    "time": "2026-11-17T11:26:54.000Z",
     "tags": [],
     "trusted": false
+   },
+   {
+    "title": "2317 鴻海 - 鴻海擬斥14.5億元收購Sony半導體車載相機模組事業強化車用電子系統整合- 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE4tMDhWOU9DN1BxYzN2eGlQdXJGcUoxZC1tVmhNTVBRTndQVUZkWmFQTzhlaG5MR0kycnhzaF9YQllwQzFhSWVLekd4ZWxiT1BIejJzMDQzVUs?oc=5",
+    "time": "2026-11-17T11:17:10.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "鴻海收購Sony半導體車載相機模組事業",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9WVUI2WlBoblN1aDA5ZWZmLXl6MHRfMDJiS0U0djBhMVJkSll4OVNlVFpxM2FqQTNPdXZnYXVOOTJGcnRkYXZsVDRvdHJFdUVIVFR5dVRZOUJLUdIBX0FVX3lxTE9sOUhHV1JocjFkN1hTR2dqOWluMGZrTWNOVUU0RC1OTERkU2NBcVVWY2I2ZS01MTN1clRsd3JJOGxueG9odjFWR0JqZ3I4V3lGTEN4Yk5URkU4UzJOZ2NZ?oc=5",
+    "time": "2026-11-17T11:00:44.000Z",
+    "tags": [],
+    "trusted": true
    }
   ],
   "market": [
+   {
+    "title": "近五次國安基金護盤台股猛衝- 投資理財- 工商時報",
+    "source": "中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBnaFlBLTBaVmw5ZFBDRDdYRG9GdnF1b09wTjhiUXVQOERnRnpBUVlhbmRFUmdENkxhUzItZHZxLWdVZTFPRTJXenU5cmlreVNIQ0hRdDZBOW5xZlBFOWZkOXlsZDdIWXdfaC1V?oc=5",
+    "time": "2026-11-17T20:10:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "近五次國安基金護盤台股猛衝- 日報",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE02Z2xfMjc2cUxRd0ZzTmxrMTFCYVJ6MFFpYUtFTGZZYjlmb1RpcWk1SHBxQlhaNFVHQkpjZG0yakJ2XzdydTBFSEJydElEMUFQV3hjenE4Rld6blU4LWpF?oc=5",
+    "time": "2026-11-17T19:00:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "多空激戰 國安基金守40K",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1YbkFhT052S1pVdTVRWG9FeXhFNmtYV2dvS05VblpmckloUDRqN3AweGtHajIxaElRbXZsMVY3VUNrM1BHTEI3WWp3SERCUXhtam9jR0VGTzlfVzVVemJV?oc=5",
+    "time": "2026-11-17T19:00:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "台股4萬點多空激戰",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5uMTR1R3BiVzRnenNoVnZLUjJncDNzbzIxTFhoQzh4dnUxclJNREtFODA2clVOWWJ5d1RrdVllSlo3UllDR2ltSlQyNnRPekll0gFWQVVfeXFMTlpsQkVDbXBKa2JiWHlIX1R0V1daY0VJQmtzOTNPWnpvMU5IMUs1MzFiVDJ6SWNRY29EUjlPU2JGOG40RzI3SlZPTnFHS3l2VUh5RGRuN1E?oc=5",
+    "time": "2026-11-17T16:00:00.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "國安基金護盤 台股V轉秀拉抬1700點！「這檔」ETF破底 爆逾76萬張巨量",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi-gJBVV95cUxPUjJqTWlLYTRBUGpKSUpEbEVEMlZFdDZTZGNTQ1dGOTRlWXhfWGZGRjhBT0JPRXF3cDYtOHlzTW4zX2hiMzQ1Znp1WDFSQW9HMlk0QjdVM0ltWUtXX0tOTDhuN2lYbElBeEN2eGFvTkI3Mkl0Z2I2TmVHSWJSVFp3dmcwUmVpZV9OSVlsU2MyQjBaeFRjVzRJNWJmb29KX2ZPTnRINERUM0xEdVpDTHpZNWFaVzJpaUtRQURmbGZzTG5RWHM2V1RyN1pMb1E3N01BSXhLN2NGRGJNTnNkYWlkQnlfOFJBbDlyMGk5Rk1HWFFUN2VGTjJ3WGY5aUdNVi1zQUZqWnZieHVkMThOZVM0cUFXbUdNYzdfV2p4NDYyY0dVNDJkdTd0TlJlTEN3RkloWlh1bXFqTnUzVFk4TktiNUhGOEYzWXpYSlFqZGQ3YUZfWWN1dlZmSThnb21GSFVXRjhVWmNJZEVfdlM1bnQ3ay1KUGhlWWE2dlE?oc=5",
+    "time": "2026-11-17T10:43:36.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "近5次國安基金護盤 台股皆大漲二位數",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxPdHBSd3FMeklXcHlUbFRDTTVPRE5aR1pGUnR2WENnVVFPSWFKMWpjUDgyOGVXd2Q0bUttWUNfT2dHZWhHcVl3TS1nMTBpeGYzSzdzSzJaUTJFQ2o1eURLbTlHUUVMRDd6dS1EOFZ3V2Q3cnZ2T1dNQ2IwaGFtS1RKclZJWkxJTG54eFVJVldoZWE5QzVwWEhSSlZTcEVaeFU2MXpRVVl5aElzMFdXOXhaWk53Y2FDalJQcDRGc0draktadGEyaWtYU3hxWUI3OGZoWHBlN1dBb2hrVDdVaFBmTzI3MGhzclNWbjVpeE1meC00eFVxRGhHS2VCb1ZuNEZCekxDVTZDMVI2OVZ1VkJZNW1zMjRBSWE1NU13cWFn?oc=5",
+    "time": "2026-11-17T10:33:48.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金撐盤？6檔「護盤概念股」一度漲逾2% 分析師：點火跡象明顯",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMiuwNBVV95cUxPQlFIcThQR3NxdWVsOGZWbExQdVN5SXNEaG92TEM4bUVSSThzeW1WNFdLV0VsWllQWGFqNlJDZE44MFRrOEdFNEx4TkRoUWlwVEhEZGlSM3ZKRDBaTVhRcjhianZBZWhTWTN0Wm5JUnBoa04yNF95dUR3VGxYOWUzOWNRU3JEV0dydTdwS3BSM0RuLTlpQXR5WHozQW1sdjNzYzBTVC1JeXAwN29JaER5M1Q3Um5qUGVqV2NlNklYX0FoQ2pYeExJMFhwZ2RkUjFpZzVjdUlqQ2N6OVZlb0FWNW5ySGJVV1lPaTVsODV0QnFRNWMxVEZuakNXMjUtRHFiSUxSXzVEd3E3QzhzMTVMZzVfWU14QkJwdUlHRHRjLWszUE5SNnZKakM5SVlNbElXZkZVaVp4SmVjN3NLaHd4M2ZGaTM2ZUdMcXdKblJiUGVJMUhDVnBjOVVOUGs4V2RnZ01oQ2hId0hkMkUwN2JEdGdZNDFSMEVndl9mVWpYaWREWldBUm53U2sxcVNMcDAtTXNjeG1JZ2ZsZXhLM1VtLUVSNi1OSWhXbUp5NXQtNl80M0c4NEpFTzQ4TQ?oc=5",
+    "time": "2026-11-17T09:44:05.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "台股一度暴跌1254點！投信逆勢狂買「這檔」1.25萬張 爆量漲1％",
+    "source": "自由財經",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBoLThBaG9nTTZ3RUdNc3dlcE9CNDhTN1VWWUZ6cjZlaHdweUl0clNXbzhpSXN6enBNYVVpSVB6S3BHZzZ1cXJjOFdZemRuMUh3SnFDRlo3bnc0SkxZaklj0gFkQVVfeXFMTkpOMjMtMnVCZXBuekdLTU04RmhJeUlUUEU0cHRiZWQwTy1EZkFtbTNmYmJjeXVyc1phNi0zeGdRcW02R2xld2RudmtGMFhRM0lWRDdjZ0tCSHQ1RTBLcGZRZzdZcw?oc=5",
+    "time": "2026-11-17T08:23:48.000Z",
+    "tags": [],
+    "trusted": true
+   },
    {
     "title": "台股臨4萬點保衛戰黃文清揭盤勢3大變數- 財經新聞",
     "source": "PChome Online 新聞",
@@ -80,14 +196,6 @@
     "trusted": true
    },
    {
-    "title": "台股跌947點驚險守住4萬點 新台幣盤中破33元 一度重貶1.29角",
-    "source": "蕃新聞",
-    "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5SV21xZFlaeUtZUzkxS3pkdmYzeEswb3BvQkRQUEJJdWVrMzBTU2ZJNUZ4QWdTck5weUZVeVk3c1o5U2d3NUhtNExEN0FzUXdWUGc?oc=5",
-    "time": "2026-11-17T06:35:00.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
     "title": "台股大怒神：半小時狂拉1,747 點，收盤全吐回、輝達財報明登場| 動區動趨-最具影響力的區塊鏈新聞媒體",
     "source": "動區動趨",
     "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOYUN6emFtMUE3YmZYY1BUdHdCNGxRcVZ3aUZNeTlLMkN3WW45b0F3Mjd5ZFNVbUVuN3hGS2VzU2htSXAzWEhJdUxWMXVPLW9VV2ZzWVloaF9heTN0TE93cUhOZkJuMGxtUkVzVkVaXzA5bWFBZ1R2RXUwSkVYRlBIM1J1SS12UlhiaFZDOWV6WGUtLUFQajI4Z2h1b1pDZw?oc=5",
@@ -98,32 +206,14 @@
     "trusted": false
    },
    {
-    "title": "台股明年Q1上攻底氣！CES、MWC及普發現金3大利多來了",
-    "source": "中時新聞網",
-    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5PamZHRGNMYzZIUmhyOGcxTlYzeEdKUG0tN0cwY1MzRGt5Mk5aYVBRNERLSll0SGstaGFpb3VIN0hvVGR3NFQzSXF2UXNnZG1tVVZQcF85Z2p4UzktYU1NaXk2QnRJaW1neTVVMmN3?oc=5",
-    "time": "2026-11-17T05:49:27.000Z",
-    "tags": [],
-    "trusted": true
-   },
-   {
     "title": "國安基金護盤失敗！台積電震盪115元下跌45元 指數收跌947點",
-    "source": "自由時報",
+    "source": "自由財經",
     "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE40ZkQyUFJCS0tYS0pkSS1ESW1nMU9ESkotZXNwbU1aNUI1cFlfMm56MVhhbVhvaEI5eEVzT2VaVjJSa0QwbWNUUW5xTjI0N0FpVFB3dU5QNmJkRTdieXdn0gFkQVVfeXFMTTVTVzB3ckx2QnVITDFiLUpNSk1aQm5GTk9PMUlTZDBRODIzTmpVVDlFMFpJWE43cXUzSDE2cmE4bk9YYXV5ZVQ4X0xoc3B3WXJYSHV6b1hwa1BmNWlxODVHZ095cQ?oc=5",
     "time": "2026-11-17T05:46:00.000Z",
     "tags": [
      "國安基金"
     ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金V拉10分鐘又放手？台股殺近千點仍守4萬！台積電台達電聯發科…點火名單先收下，股王信驊不救？",
-    "source": "今周刊",
-    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQU0k4R0FzVm5aeVc3TUx4clZuUXEydklBTFgyVzQxMXJnLW1yM0NacXlSM1lUSENpSmstb1JDZVhqaXpXY081LWIyT0tJNlR5a3ZlZVNrSDhQbmo4bTB6bWtYdERHemZVa0gtVDllV0p3dUs1VHg5Q21Ib2MxX1I2TQ?oc=5",
-    "time": "2026-11-17T05:40:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
+    "trusted": true
    }
   ]
  },
@@ -134,17 +224,12 @@
   "basedOn": "2026-11-17",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-17T09:43:59.791Z",
+  "fetchedAt": "2026-11-17T21:46:44.102Z",
   "newsSince": "2026-11-17T13:30+08:00",
-  "timingOk": false,
-  "stale": [
-   "美股（2026-11-16）早於台股最後收盤日 2026-11-17"
-  ],
+  "timingOk": true,
+  "stale": [],
   "warnings": [
-   "證交所尚未公布 2026-11-17 借券賣出餘額",
-   "證交所尚未公布 2026-11-17 融資融券",
-   "外資期貨未平倉取得失敗：抓取失敗 https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfFuturesContractsBytheDate：Unexpected token '日', \"日期,商品名稱,身份\"... is not valid JSON",
-   "⏰ 時序檢查未通過：美股（2026-11-16）早於台股最後收盤日 2026-11-17。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
+   "外資期貨未平倉取得失敗：抓取失敗 https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfFuturesContractsBytheDate：Unexpected token '日', \"日期,商品名稱,身份\"... is not valid JSON"
   ],
   "sources": [
    {
@@ -4747,8 +4832,21 @@
    "dealerHedge": 2131
   }
  ],
- "margin": null,
- "lending": null,
+ "margin": {
+  "date": "2026-11-17",
+  "marginPrev": 51159,
+  "marginToday": 51455,
+  "shortPrev": 492,
+  "shortToday": 431
+ },
+ "lending": {
+  "date": "2026-11-17",
+  "prev": 101005,
+  "today": 102005,
+  "change": 1000,
+  "sold": 1470,
+  "returned": 470
+ },
  "revenue": {
   "month": "2026-10",
   "revenue": 1305319612,
@@ -4764,11 +4862,11 @@
   "institutional": {
    "date": "2026-11-17",
    "foreign": -380.9,
-   "trust": -9.3,
+   "trust": -38.2,
    "dealer": -157,
    "dealerSelf": 63.9,
    "dealerHedge": -220.8,
-   "total": -547.3
+   "total": -576.1
   },
   "txf": {
    "date": "2026-11-17",
@@ -4783,9 +4881,9 @@
    "night": {
     "session": "2026-11-17",
     "contract": "臺指期116",
-    "close": 39761,
+    "close": 39792,
     "ref": 40011,
-    "changePct": -0.62
+    "changePct": -0.55
    }
   },
   "foreignFuturesOI": null,
@@ -4808,9 +4906,9 @@
       "dealerSelf": 410,
       "dealerHedge": -234804
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": 31328,
+     "marginBalance": 366826,
+     "lendingChange": 2958
     },
     {
      "code": "00632R",
@@ -4828,9 +4926,9 @@
       "dealerSelf": -117,
       "dealerHedge": 98775
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": -15901,
+     "marginBalance": 252955,
+     "lendingChange": 88
     }
    ]
   },
@@ -4950,65 +5048,65 @@
    {
     "date": "2026-11-17",
     "foreign": -380.9,
-    "usdtwd": 32.899
+    "usdtwd": 32.895
    }
   ]
  },
  "global": {
   "sox": {
    "symbol": "^SOX",
-   "date": "2026-11-16",
-   "close": 9610.65,
-   "prevClose": 10146.32,
-   "changePct": -5.28,
+   "date": "2026-11-17",
+   "close": 9642.88,
+   "prevClose": 9610.65,
+   "changePct": 0.34,
    "label": "費城半導體"
   },
   "nasdaq": {
    "symbol": "^IXIC",
-   "date": "2026-11-16",
-   "close": 24509.76,
-   "prevClose": 25136.27,
-   "changePct": -2.49,
+   "date": "2026-11-17",
+   "close": 24328.38,
+   "prevClose": 24509.76,
+   "changePct": -0.74,
    "label": "那斯達克"
   },
   "sp500": {
    "symbol": "^GSPC",
-   "date": "2026-11-16",
-   "close": 7416.59,
-   "prevClose": 7561.67,
-   "changePct": -1.92,
+   "date": "2026-11-17",
+   "close": 7340.53,
+   "prevClose": 7416.59,
+   "changePct": -1.03,
    "label": "標普 500"
   },
   "dow": {
    "symbol": "^DJI",
-   "date": "2026-11-16",
-   "close": 51608.17,
-   "prevClose": 52347.55,
-   "changePct": -1.41,
+   "date": "2026-11-17",
+   "close": 50759.42,
+   "prevClose": 51608.17,
+   "changePct": -1.64,
    "label": "道瓊"
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-16",
-   "close": 22.91,
-   "prevClose": 19.3,
-   "changePct": 18.7,
+   "date": "2026-11-17",
+   "close": 25.46,
+   "prevClose": 22.91,
+   "changePct": 11.13,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
    "symbol": "^N225",
-   "date": "2026-11-17",
-   "close": 58860.43,
-   "prevClose": 59662.02,
-   "changePct": -1.34,
+   "date": "2026-11-16",
+   "close": 59662.02,
+   "prevClose": 61142.35,
+   "changePct": -2.42,
    "label": "日經 225"
   },
   "kospi": {
    "symbol": "^KS11",
-   "date": "2026-11-17",
-   "close": 4968.48,
-   "prevClose": 5100.5,
-   "changePct": -2.59,
+   "date": "2026-11-16",
+   "close": 5100.5,
+   "prevClose": 5290.53,
+   "changePct": -3.59,
    "label": "韓國 KOSPI"
   },
   "usdtwd": {
@@ -5016,15 +5114,15 @@
    "date": "2026-11-17",
    "close": 32.9,
    "prevClose": 32.88,
-   "changePct": 0.07,
+   "changePct": 0.06,
    "label": "美元／新台幣"
   },
   "taiex": {
    "symbol": "^TWII",
-   "date": "2026-11-17",
-   "close": 40092.11,
-   "prevClose": 41040.08,
-   "changePct": -2.31,
+   "date": "2026-11-16",
+   "close": 41040.08,
+   "prevClose": 43675.12,
+   "changePct": -6.03,
    "label": "台灣加權指數"
   }
  },
@@ -5073,15 +5171,15 @@
    "source": "證交所 T86，2026-11-17"
   },
   "margin": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "證交所尚未公布 2026-11-17 融資融券資料",
-   "source": "證交所 MI_MARGN"
+   "data": "融資餘額 51,455 張（+0.58%），融券餘額 431 張",
+   "source": "證交所 MI_MARGN，2026-11-17"
   },
   "txf": {
    "signal": "偏空",
    "strength": "中",
-   "data": "臺指期116夜盤 39761（-0.62%，相對日盤收盤 40011）",
+   "data": "臺指期116夜盤 39792（-0.55%，相對日盤收盤 40011）",
    "source": "期交所即時行情，夜盤 2026-11-17"
   },
   "futures_oi": {
@@ -5091,15 +5189,15 @@
    "source": "期交所 OpenAPI"
   },
   "us_market": {
-   "signal": "缺漏",
-   "strength": null,
-   "data": "尚無 2026-11-17 晚間的美股收盤（最新為 2026-11-16，已反映在台股收盤）",
+   "signal": "偏多",
+   "strength": "弱",
+   "data": "費半 +0.34%、那指 -0.74%、標普 -1.03%（2026-11-17 美股收盤；以費半判斷）",
    "source": "Yahoo Finance"
   },
   "asia": {
    "signal": "偏空",
    "strength": "中",
-   "data": "日經 -1.34%、KOSPI -2.59%（平均 -1.96%，2026-11-17）",
+   "data": "日經 -2.42%、KOSPI -3.59%（平均 -3%，2026-11-16）",
    "source": "Yahoo Finance"
   },
   "revenue": {
@@ -5111,7 +5209,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.9，新台幣貶值 0.07%",
+   "data": "美元兌新台幣 32.9，新台幣貶值 0.06%",
    "source": "Yahoo Finance TWD=X，2026-11-17"
   }
  }
