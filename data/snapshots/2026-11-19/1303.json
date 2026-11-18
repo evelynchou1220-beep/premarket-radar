@@ -1,13 +1,93 @@
 {
  "news": {
-  "fetchedAt": "2026-11-18T09:44:10.723Z",
+  "fetchedAt": "2026-11-18T21:47:54.164Z",
   "since": "2026-11-18T13:30+08:00",
   "stock": [
+   {
+    "title": "記憶體多頭變天？南亞科崩46％「華邦電、群聯也猛跌」專家示警1大變數：短線別碰、跌深適合存股",
+    "source": "旺得富理財網",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBiRVBQTGQyVFBPOFdGY0pZb0NTUFpocGhiTUJxeXRVUnFnb1RHUFNvZ2ZGQ3NzM29kWjc5c0U0b0l1YUlZN3lyVHR3RWNkaVQ3THpxVmRiQl9MZGY4M2o4cWdGX1o4XzhTS3c?oc=5",
+    "time": "2026-11-18T21:28:07.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "別只盯台積電！00418A從傳產挖AI黑馬 南亞、川湖卡進前十大",
+    "source": "ENN台灣電報",
+    "url": "https://news.google.com/rss/articles/CBMiOkFVX3lxTE1zalRZYl84QUhfR2JrRG5PZWZsT2VsbHVtaF95TDFQNGV6LXpBa0pUSjJ5aGp4eHh1VkE?oc=5",
+    "time": "2026-11-18T17:17:33.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "【動物農莊】南亞科、華邦電攻EUV先進製程 三星、SK海力士緊張了？",
+    "source": "DIGITIMES",
+    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5oUGp2bVFqSEtqb3lyVERYUTlWdnVQZWlpRFFkbVZSY2F1X1RTYzVQRmJOcHdSQjh6MEgteDRwdWdmRkN6QzVZTHVnc0Y0OGctQW1qM2xydnhvOTJVdUNJanhSbW9KWDNkS2U4?oc=5",
+    "time": "2026-11-18T16:42:10.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "玻纖布遭遇亂流！「這2檔」今日遭外資合砍逾4萬張台玻連挨4刀再被出清2.8萬張、抽走18.6億元",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMizwNBVV95cUxQTlNsSWIxRTFzV0Vna25zd1hNOFI0SGdZWU10TjBHcy1IOFZ3WFM4a20tVmE2Tzc0VXkxVEZRQkhfNTJYMDZsWmItSU5WS3FhN1FoU2J0QWRNU1hRbU02VWQwLUZHd09kVm1qRk5EMmxIdVBGdlJvUVZyendHdFBMMmpVZlVGa2dBeHZ5bm5hX05rMU9SM3lsN3pyRGE2SHF6azVwenhWQnN1TnRjSGVsMGpkM0xrUzJLVUhiTXk0dk4wMlFuVkFmczJ0VWs3X0RIbmJ2Z3JSWGRaSnc2RERyQkFOUGtlWVNpQlNLOWx6d2lid25ERzJSYXdhOHZXSjJSOFlBSldaY1FHbkRqTy1HM050RTN0aTFSQVRfVnh2YlUtY1h4V3JlY3pxMmFsYUlwU3RzQ19CRlFPbjB4U0lUXzdxVVRyVE5rejhTc1h2aThWYzBVc3VOY3V2TjBGRnJjNGg5Vm5oZFRBSmVpWXJONFRjYm1YTlpPTG1DOHRRUGZOVWRDa1JMWlVCeldoc3k5TW03dG4xMGkwVUZmNm9KVzhDLURoVkZGc1pLenB4RUlBUEJwU0duRktEaXlSVjdSVDZTZ043ZDMzWnRiRFhv?oc=5",
+    "time": "2026-11-18T12:30:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "2408 南亞科- 記憶體大利多!!!蘋果認了\"DRAM漲價是長期趨勢\"!!! - 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA0bnpyZU11cGtoak5WWGhyeXQxNV9uOTZ6TVlMZ0d3WGlMWXhabVV4R1oxTzZZX0hfcTlKUXVvZm8zYjFlbGI0dW1VUEVad1ZKRms3S3diMGE?oc=5",
+    "time": "2026-11-18T11:47:10.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台積電、南亞科高層站台 美設備巨頭搶下一代晶片研發",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi3wJBVV95cUxNMGF3Mi1HVW5ET2V1NE0tTGIteThzYy1iNnBJbTBMZW5WanBaa1JuRXo1dThJVlkzXzJ5c25wRDZWS1pnR3JHbk16bW5EZWhXaHRfZE5ycWg2alRxSUJHQjBMTEFlSjVjdEZZSE0zd2hVZFlBNktDbF9hWmhrVlJCWEs2UWVLLU5IV21xV1ZZQW5Ed3FGN1FFUDFqSEFWZ0FlUWJVU3FpT2tBWVRIZzZPb05hTjkyeXl5T1dBUndIUDY1VXFjWU9tRjVNRkcxU2k0ckh6RnBCQU1YTG9WbmdlWmtvRVBLYTZqNDZBVUlEZHdLQzZwUWRldk8yd3drNDZ0SHM0dWg0bDFlR092dG01SkF6Z3hUakxLcEJfTVh4NXJzeTdvNE5sdS1Ib1lqNEExNUxYdTByUkRoV3VfOHVWcTR5S05oT2NfRVA0U0FzaEpneFQ0WGV4MGxqMkxuOUU?oc=5",
+    "time": "2026-11-18T11:00:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "3026 禾伸堂- 這對專門在搞錢的垃圾夫妻.... - 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE84dy1FcWhDb0Eyd3JQZE1RUzFheG1Ub2YwSkVGaVU0SVg2emlLMGx5T2RfajNQSXU3X1RuSm1zd3FuUjRTdWVFVGVIY1h6Y2kxVlNsYXdTN18?oc=5",
+    "time": "2026-11-18T10:44:47.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "1815 富喬- 🥰週四南亞科富喬敬鵬華通京元電啟碁事欣科臻鼎元晶定穎日月光- 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE56U1NCTXJ4cTVockFXMlBwQldvUFVSVG1ZOF9LOG1JZW1xQ041TkZhdUoxV1M3dkpuWDZHWTdaUVdiVGRSXzdadzI3WS1pd1hyYUxOMThlNEs?oc=5",
+    "time": "2026-11-18T10:31:12.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台股大跌買什麼？台玻、南亞二選一「玻纖布買它最穩」！欣興景碩台光電、奇鋐雙鴻...PCB散熱暴跌能搶？",
+    "source": "今周刊",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxObHFpYTFRZE93ZlpBWFhSck1HMXhpa1lFcWw5aXdSMXNkdU5UVHYzMUpvUVJ3SDJ2Uk5tbUdEdmItVWJaeS10UF81Zi1Hc09tU3VQWHRMbWkxRkRDRDF1am5Dd3d3ZEhQZEpBY3FwU0F3RUF3SjBFTWtZOE1uZm1tcw?oc=5",
+    "time": "2026-11-18T10:20:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
    {
     "title": "《塑膠股》南亞11月19日受邀參加康和證券舉辦法人說明會",
     "source": "富聯網",
     "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPYVh6YUFNRnktemdhMW5WMi1BSVZPUng4dnB5Z0k0ZUlmWi1fR3dCTWhYa0ZJMldmWVBNMkx3b0xTR1ZfaXpzVjlMZlFYWUVySkhhX3htVkczSXNiRERoMHJEVGUxZmFHUy1vdWZ2Q19Oc0g4T2daQ0xMcmo5eXpKLW5GZUZEMXJB?oc=5",
     "time": "2026-11-18T09:03:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台玻股價連跌3天，玻纖布怎麼了？富喬、南亞、建榮還能買？外資連4天砍它6.5萬張，後市還有戲？",
+    "source": "今周刊",
+    "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPcVppNHNRaXVfNE5yYmtwc0h0cUZVbnNYRC1fNFpMM2c4RWNXTl9PNnF2eXp2ZENkTzVyNXV2eDNzLUxnOGl6WTExaW80N2c2UWdHRXZFTEoxcnNQSWNLcjk5NmpBQjN6Q2UwQnhMU1ZOYXF5QXZjdnFKNVhzTEpMbw?oc=5",
+    "time": "2026-11-18T09:00:00.000Z",
     "tags": [],
     "trusted": false
    },
@@ -18,51 +98,49 @@
     "time": "2026-11-18T08:36:00.000Z",
     "tags": [],
     "trusted": false
-   },
+   }
+  ],
+  "market": [
    {
-    "title": "記憶體行情持續疲軟！「DRAM雙雄」均收連5黑、旺宏跌2.78% 南茂、力成逆勢收紅、巨虹今起停牌",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiwwJBVV95cUxPVVItZjlWdDE0VXA1Z0F2YlphcjNqZVlHa3dqZkJMNkpuZ2hxeTEyX2NaNmI0MThwdHl2Wkh4SXVXd1NxMGdxSnZSMTFBOHdsWnVvcXNZcGNhamItRVdHdjk0cW5heUE4Z3IxUTdPOEI5ajRRYmFuWE1Yei1IejVuWFVIa2N0MjItWnlsUFlhUmJBakFxS29HaWZLMlE0MFBySEFmaENia29CNFc2ajdUSG9MSmhvVWhCTWdfZDFLaWF4ZGFrUTlPYkY4RGxHRExWR1I1akhjSjVTQ1M4SUpxWDZxNU56TXo0Rmg0ZHU1S2lrV3BZUnowLXRVSXNYVGZESE0tcVN6TngyeDVTSC0waGFQSU8xS0hEZEUwMjlyLXBpWE41TFNoSFgwMWhDUXdnZ3dGdkR4YlFzYjE3VW9hT19naw?oc=5",
-    "time": "2026-11-18T08:30:00.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "【即時新聞】南亞今日爆出龐大成交量股價卻顯疲軟，台股震盪收漲102點！",
-    "source": "CMoney投資網誌",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPLXRyUEpOM0h0RzJXV2RBdDFuVGI2Y01qajYxNmRud2dwbGNxNGc5aEhkaWQxc3F3NXd0QUZ1RnhORmVzU0ZOSS1uVXVDTHZOSWtpMU9XS09ZSDE4XzhrcGRSMUIxQ3pVOEhnZDd3Rk5SWWlaWmFONHJBU0NoTTRIMHpkV1lSTVJjNEhkQXN5OFQ?oc=5",
-    "time": "2026-11-18T08:05:18.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "玻纖布跌不停！「這檔」一度跌停挫逾5%炸19.3萬張 南亞吞連3跌也噴12.6萬張",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxOdlFDaEpERjZkWHpHS2VyTC1CelJnb2Q0aEJhaV9LWjlST0lxSzJLQmhvaDdEcVJIWkxmOEN0a0gxQXYwcVB3MmlDNUcwZTdDTi1QRkFXbWFtMUk0cjh3Y21XaHpQQUplOGh1cGdSTXQtSUN5Q0VTa3BUdVhTTjFYQTFQZGFRUWNlejdYYUFVdVlnZUxzdEtNaGc3Mm1XQVIxeEU3RUhyQWhJRFRzVlB0V0dfODlLc3dqU1ZvY01Ldi1CNi1lSzQ5dVVBVFhXRFlMN1QtczVfTGRDS1cyLU91SnM1VGgwWHd2akpCRHdwQjd6ME9kWV85cFBaNEE5VE96TEFRbUVqcnJSbUZhRy1vNWN2YkY5LUdaMV9xRThQMnpWZ3djakE?oc=5",
-    "time": "2026-11-18T08:00:00.000Z",
+    "title": "連三天護盤 國安基金買什麼？大揭祕",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE04eXJZUlZzQWxBbGV0MTlOcEpTaG1Lb0NTWkdJRFRlZTVIY1Q1T0JYeHRoS0xSWjlwSktSZ21IV3VNUkxiNVB3emJsRzVlT3FZbThnQUdnLUgyd9IBX0FVX3lxTFB5bkxYV3o4emhtb2h4NnBmMDZhNHRURldrSTI0dVI4aDVMYkNKM3d5YnhKSzdFamQ2TE80SFVYYk56d2lMYWtvbFk1bXV3M2tBNkxnbVhOc1FHa25wdDh3?oc=5",
+    "time": "2026-11-18T20:46:42.000Z",
     "tags": [
-     "風險事件"
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "台股三天狂飆6000點、國安基金第十度護盤準備退場了？財長莊翠雲說明了",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5sR25hUm9QaklWenhxYm5lalU3eU5NWG5Kem1ROVFranRKeTIyZXdyZnhDNXJudDlUaXBoVEFsODhKSGZkQUlkTUt2QXVmSk5mYTFYaDF4b2phd9IBX0FVX3lxTE9ZRDJsXzduZ3lfSzZyMUFTZmVXV0N5RURFblMwMUNsUHZsNGxERXJ6dWVQd2F4WXJPUHdkWngxRDFyRmRGMkIwaEVKT2JfU19WRmhKZnoxdmREY1ZkZDFj?oc=5",
+    "time": "2026-11-18T18:29:37.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "台股本周兩天重挫3,583點、外資提款千億 莊翠雲說明國安基金護盤動向",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMirANBVV95cUxQbVFkYXZfYTBaaWViTE4xZ3ZkSktzdlhLcERLVDl0VnoxTjlfVTJnaklTb2ZYQm1tNEdKcGxUM0hxaTlGM0xMVTVTcHN6RUtZTzUyNmdfbmJmYVFldkZtZ2g4TmtMRnlBSFM0dnFQQ0tfTDlwVURLTHg3NVdGdXNkU2liM3hQODN3NDRlNWs0RDFkV3NkSUl0QVhWOXJkTW1TcGM0OUlBd05ScmJvcFJCR0tCVnRXVFJVZGRsbkRaYi1ldTR6M1V2RDF5QU1UWHMxaVJaeS1oTDRNZWpjbkNyVjV5UEJHV2lUX081UW5xLWtpNHptNEwzajVoMFNueVB5aUtBb0NBTkw5ZmQwMTAwRDl5ZE1yYTRUVFFYblRJZUkxV21yTnd1dVE5YW5mQ0FsQTlxYkJMVEY3SUZTbVhGLTF5QXdfdEI4STcwdkswZkdBQ2R6djBLUmw2U2lDaXdGZVlnZjJ1eVdtbEY0QWFKZHZVMnJoVjZXXzEwampEWGdaMVVqb1kyaTZTbE1nNzFWek1CSXhKanBDM1N5enhuYVZyU05oT3RqT2h6OA?oc=5",
+    "time": "2026-11-18T11:24:35.000Z",
+    "tags": [
+     "國安基金"
     ],
     "trusted": false
    },
    {
-    "title": "剛買記憶體就套牢！現貨暴跌20％幕後黑手曝「群聯、十銓反擊：砍價空間有限」南亞科竟被外資點名基本面沒事？",
-    "source": "旺得富理財網",
-    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1sbThkUGs0Y0twWFlib3dDOFJQenhzYnFGeTVsazZlSExSb0cxYmcyTU5zOUM5SUdLQmU0Y1VFU3N4X0lMVzhXVmlxT2dHRFVpaXRJOVplTlFNOENtU2xTV3gwcWU0MG9NVGc?oc=5",
-    "time": "2026-11-18T06:44:15.000Z",
-    "tags": [],
+    "title": "選前4萬點是國安基金防線？分析師這麼說",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMitAJBVV95cUxPelN5YUprTUhBSWxncXhhMUFVQ1hVUUU1dHNDbUlha054Q1ZPQW05b3o1U2lWTDhweFVPLWNVdUFVS2JuYWlpOGNKSnFHUmJqWWFKM3J0V3NPVHIwZjZEb0V0Mk10STE0SWRTdDdsaUFwTTlpc3dsbkhNQ2kweVd4QXBWWXV1dW5KSG1FelhPck1DMXFVWnliUXVhTDlMaWFNdy1ZTmVsU3FJMXY5VUZQZGhqR0Y3Vlh1c3pVZkQwSWRmRDFyZFc1T2k4RU5SQlozT1owdmMyWkNGRWlFT1FucktscE5YaGhsbnNsQ3Fsam1fdDZJdVBuYXl4bVhoazQyZVV4V3FfVTJRWjdCdTRjR2xKMXZRU3J0eEZqOEY4ZzlwTHlnNVF4RHRYdmRyQi1UYWxJQg?oc=5",
+    "time": "2026-11-18T10:09:49.000Z",
+    "tags": [
+     "國安基金"
+    ],
     "trusted": false
    },
-   {
-    "title": "DRAM喊漲股價卻不漲！南亞科、華邦電、旺宏收盤全黑",
-    "source": "聚財網",
-    "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE56djZyQ1NodTVMbDc1WUNxajNORFF3Tm8zNC1GU05leE5vbFZaMWJxdy1IdXgyenhkN25ubW9NNHdJSG04QkstNnhWRF8?oc=5",
-    "time": "2026-11-18T05:53:58.000Z",
-    "tags": [],
-    "trusted": false
-   }
-  ],
-  "market": [
    {
     "title": "國安糖漿失靈？台股回檔逾萬點、AI股腰斬 財長認了「主因」是它",
     "source": "鉅亨網",
@@ -72,10 +150,10 @@
     "trusted": true
    },
    {
-    "title": "救台股出奇招！民眾衝台南武廟幫黃仁勳「斬爛桃花」 網笑：比國安基金還猛",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMiwANBVV95cUxNREQzVkxoTVV1cjloaC1DcHFnOEdSS3RYSlVxYkgwTkNnVFBTckprdWVjZEt2QUpmZ0FyTlB5dlFDQ0U4cmlRUy11WGlaYVB1TEE1bnVuT0hNUWJIUnVRSFRtYlF4TFYtdGd3dzZ0OXRWTXJVVzVoTjloQk1yZ3NxVnM4ZVEwUnhORldfclVCcF9nOUtfZkt0dklzRVVqXzgzLWVlaUVXZVRHT3hTN29kVzA0aHBxOU1tWjNCckhtVW83NXRrSGkzem85b2RMVVVrS3E3WlJCcjFabjhFdkZYM1lSYTFtWm5OeVhQZDVmNlRzMFlTQWVOQWdQVkl5NTU3LW11WTk0dXBmaHJ6dzV4M2tkb21LamtmMXVWeUY4Q3NyWk1ZY0RQdnFUZzNXWVB6QjVMTjVGSUgydmRldGtKYm40YXRiT3d6cU96VFp1dzVMOGlmd05XN0xmZ1ZMOUFBZ25BUDR6Tnk3a2U4UzdyeWV4SllnVUJTWGM1UThJcUFEWVBjRkpnVkJkRzJQNUd3YkU1VGVFUEJmT0RPQktDemRQa2NFSVlHVzV5Q01VXy1uSGtSQkRLdkZVSFVudkFZ?oc=5",
-    "time": "2026-11-18T06:29:19.000Z",
+    "title": "救台股出奇招！民眾衝台南武廟幫黃仁勳「斬爛桃花」 網笑：比國安基金還猛| 文化",
+    "source": "太報 TaiSounds",
+    "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1tSG1icmRXNVhuZVBoaFlQd3BXcDZBOGFIMWxKZnJQRTBZSWFRVmM2U1FnMjd3dEVQVy1ZWkZQWm5fejZ4elk5aVl5UDAzSVZpX1FIQ05oRFBGajNkY3c?oc=5",
+    "time": "2026-11-18T05:58:57.000Z",
     "tags": [
      "國安基金"
     ],
@@ -85,7 +163,7 @@
     "title": "國安基金 25 年進場 9 次，台股都一定會漲嗎？看懂這套邏輯再跟單，才是真正的投資機會｜超馬芭樂",
     "source": "永豐金證券",
     "url": "https://news.google.com/rss/articles/CBMi0ARBVV95cUxORFFPQ3RYbVRfRzdNZ1k5cFZ4bTV4ZGc5S2NvLTdhZUMwajRpaVg5ZldVX01hYjBjNE1lLVhycFdQb3VPdmdRZGJwVHVlR2NBb2ZrZ1RpS3daQlFoZnpUOUpING1GdUhjWDdKVlZrV19MRV9wTmJXQ3hCMXNiSGtkenV1VlFnN1Jja2w2RkNsV2wzSU1GQUN6Mkc0NEd5RkotT3JjXy1BcFhabTQwa3RNNU56QnczaWJvQ0pUa3ZKU0tXZXkxQ05CYUJPZ3BJTjBERVJvR1hxSk5XcW1MeXNBamcxc1BFSmJLNDRiU1VtYjM2UEc5cGRDYm9TRGhyQ1FlT041N3NqRy1SUEVaY0d1a0ppcURJcHJLQm5qdC1pZW11ZnI2bDZzNVZ4czVoNlpsbjV4VXE2Ykc4NUJ4dkVaWUtXaGtjTUhhOHV2WXU3NXVNVl9OXzNDOWZZeTd5ZEpDN2Q3VXpUbWhYS2xFMFc5ZjRrSzl0Zm1EQ0NIbk5aNlRnTDMwY1dCSGlSOGdjNG9xMEwxYk1fOUE5UmhqeXBIb2trQ1NydWkxVm52UVpzN0REUDdZckxldHpQb2QtRzRUeFRGYjNBN1QyQlNlNlo3RVdxUEpMRnAtdks0R1U2YmxNM0VXcldOZjcxQnZldzdEVzZTMG9mb2wxMkwyeFhPU3NvTlVtS19QZkdRTjhGU0RuQVZBaHBtNWl4SHpKZWpjcTE2a2RMY3dkRTNvNWV0aWxRamhvbjhlQ0o0eTlDX01kR3Jia1NTWTJfMUFfQktx?oc=5",
-    "time": "2026-11-18T05:41:09.000Z",
+    "time": "2026-11-18T05:52:46.000Z",
     "tags": [
      "國安基金"
     ],
@@ -100,6 +178,16 @@
      "國安基金"
     ],
     "trusted": false
+   },
+   {
+    "title": "黃仁勳辭職回鍋1／美國升息輝達掌門人變數 台股情緒高度擠壓兩極化",
+    "source": "三立新聞網SETN.com",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9EejRDMVV6WENUS2R2MlRyV2tpcWRfb1VlMGVfSE44bml1a0drMEMxWkFtNjB6SGo5dGRTazhTM0Q5eDRrTU9FYWxxMA?oc=5",
+    "time": "2026-11-18T05:34:05.000Z",
+    "tags": [
+     "利率"
+    ],
+    "trusted": false
    }
   ]
  },
@@ -110,17 +198,11 @@
   "basedOn": "2026-11-18",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-18T09:44:10.723Z",
+  "fetchedAt": "2026-11-18T21:47:54.164Z",
   "newsSince": "2026-11-18T13:30+08:00",
-  "timingOk": false,
-  "stale": [
-   "美股（2026-11-17）早於台股最後收盤日 2026-11-18"
-  ],
-  "warnings": [
-   "證交所尚未公布 2026-11-18 借券賣出餘額",
-   "證交所尚未公布 2026-11-18 融資融券",
-   "⏰ 時序檢查未通過：美股（2026-11-17）早於台股最後收盤日 2026-11-18。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
-  ],
+  "timingOk": true,
+  "stale": [],
+  "warnings": [],
   "sources": [
    {
     "name": "證交所 STOCK_DAY（股票名稱）",
@@ -4738,8 +4820,21 @@
    "dealerHedge": 1905
   }
  ],
- "margin": null,
- "lending": null,
+ "margin": {
+  "date": "2026-11-18",
+  "marginPrev": 38568,
+  "marginToday": 39155,
+  "shortPrev": 3423,
+  "shortToday": 3351
+ },
+ "lending": {
+  "date": "2026-11-18",
+  "prev": 186100,
+  "today": 188970,
+  "change": 2870,
+  "sold": 2913,
+  "returned": 43
+ },
  "revenue": {
   "month": "2026-10",
   "revenue": 34942477,
@@ -4755,11 +4850,11 @@
   "institutional": {
    "date": "2026-11-18",
    "foreign": -765.6,
-   "trust": 175.6,
+   "trust": 166.1,
    "dealer": -42,
    "dealerSelf": 54.7,
    "dealerHedge": -96.7,
-   "total": -632.1
+   "total": -641.5
   },
   "txf": {
    "date": "2026-11-18",
@@ -4774,9 +4869,9 @@
    "night": {
     "session": "2026-11-18",
     "contract": "臺指期126",
-    "close": 40647,
+    "close": 39987,
     "ref": 40332,
-    "changePct": 0.78
+    "changePct": -0.86
    }
   },
   "foreignFuturesOI": {
@@ -4802,9 +4897,9 @@
       "dealerSelf": -303,
       "dealerHedge": -167699
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": 48725,
+     "marginBalance": 415551,
+     "lendingChange": 5088
     },
     {
      "code": "00632R",
@@ -4822,9 +4917,9 @@
       "dealerSelf": 5988,
       "dealerHedge": 68316
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": -23864,
+     "marginBalance": 229091,
+     "lendingChange": -143
     }
    ]
   },
@@ -4944,81 +5039,81 @@
    {
     "date": "2026-11-18",
     "foreign": -765.6,
-    "usdtwd": 32.923
+    "usdtwd": 32.936
    }
   ]
  },
  "global": {
   "sox": {
    "symbol": "^SOX",
-   "date": "2026-11-17",
-   "close": 9642.88,
-   "prevClose": 9610.65,
-   "changePct": 0.34,
+   "date": "2026-11-18",
+   "close": 9652.8,
+   "prevClose": 9642.88,
+   "changePct": 0.1,
    "label": "費城半導體"
   },
   "nasdaq": {
    "symbol": "^IXIC",
-   "date": "2026-11-17",
-   "close": 24328.38,
-   "prevClose": 24509.76,
-   "changePct": -0.74,
+   "date": "2026-11-18",
+   "close": 24429.88,
+   "prevClose": 24328.38,
+   "changePct": 0.42,
    "label": "那斯達克"
   },
   "sp500": {
    "symbol": "^GSPC",
-   "date": "2026-11-17",
-   "close": 7340.53,
-   "prevClose": 7416.59,
-   "changePct": -1.03,
+   "date": "2026-11-18",
+   "close": 7323.63,
+   "prevClose": 7340.53,
+   "changePct": -0.23,
    "label": "標普 500"
   },
   "dow": {
    "symbol": "^DJI",
-   "date": "2026-11-17",
-   "close": 50759.42,
-   "prevClose": 51608.17,
-   "changePct": -1.64,
+   "date": "2026-11-18",
+   "close": 50198.17,
+   "prevClose": 50759.42,
+   "changePct": -1.11,
    "label": "道瓊"
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-17",
-   "close": 25.46,
-   "prevClose": 22.91,
-   "changePct": 11.13,
+   "date": "2026-11-18",
+   "close": 24.56,
+   "prevClose": 25.46,
+   "changePct": -3.53,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
    "symbol": "^N225",
-   "date": "2026-11-18",
-   "close": 59024.28,
-   "prevClose": 58860.43,
-   "changePct": 0.28,
+   "date": "2026-11-17",
+   "close": 58860.43,
+   "prevClose": 59662.02,
+   "changePct": -1.34,
    "label": "日經 225"
   },
   "kospi": {
    "symbol": "^KS11",
-   "date": "2026-11-18",
-   "close": 5067.44,
-   "prevClose": 4968.48,
-   "changePct": 1.99,
+   "date": "2026-11-17",
+   "close": 4968.48,
+   "prevClose": 5100.5,
+   "changePct": -2.59,
    "label": "韓國 KOSPI"
   },
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-18",
-   "close": 32.92,
+   "close": 32.94,
    "prevClose": 32.96,
-   "changePct": -0.12,
+   "changePct": -0.08,
    "label": "美元／新台幣"
   },
   "taiex": {
    "symbol": "^TWII",
-   "date": "2026-11-18",
-   "close": 40194.91,
-   "prevClose": 40092.11,
-   "changePct": 0.26,
+   "date": "2026-11-17",
+   "close": 40092.11,
+   "prevClose": 41040.08,
+   "changePct": -2.31,
    "label": "台灣加權指數"
   }
  },
@@ -5067,15 +5162,15 @@
    "source": "證交所 T86，2026-11-18"
   },
   "margin": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "證交所尚未公布 2026-11-18 融資融券資料",
-   "source": "證交所 MI_MARGN"
+   "data": "融資餘額 39,155 張（+1.52%），融券餘額 3,351 張",
+   "source": "證交所 MI_MARGN，2026-11-18"
   },
   "txf": {
-   "signal": "偏多",
+   "signal": "偏空",
    "strength": "中",
-   "data": "臺指期116夜盤 40647（+0.78%，相對日盤收盤 40332）",
+   "data": "臺指期116夜盤 39987（-0.86%，相對日盤收盤 40332）",
    "source": "期交所即時行情，夜盤 2026-11-18"
   },
   "futures_oi": {
@@ -5085,15 +5180,15 @@
    "source": "期交所 OpenAPI，2026-11-17"
   },
   "us_market": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "尚無 2026-11-18 晚間的美股收盤（最新為 2026-11-17，已反映在台股收盤）",
+   "data": "費半 +0.1%、那指 +0.42%、標普 -0.23%（2026-11-18 美股收盤；以費半判斷）",
    "source": "Yahoo Finance"
   },
   "asia": {
-   "signal": "偏多",
-   "strength": "弱",
-   "data": "日經 +0.28%、KOSPI +1.99%（平均 +1.14%，2026-11-18）",
+   "signal": "偏空",
+   "strength": "中",
+   "data": "日經 -1.34%、KOSPI -2.59%（平均 -1.96%，2026-11-17）",
    "source": "Yahoo Finance"
   },
   "revenue": {
@@ -5105,7 +5200,7 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "美元兌新台幣 32.92，新台幣升值 0.12%",
+   "data": "美元兌新台幣 32.94，新台幣升值 0.08%",
    "source": "Yahoo Finance TWD=X，2026-11-18"
   }
  }
