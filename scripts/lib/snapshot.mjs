@@ -46,6 +46,19 @@ async function yahooChart(symbol, range, interval) {
   return { meta: r.meta, rows };
 }
 
+/**
+ * 新台幣在「台股最後收盤後」的變動（CLAUDE.md §5.1 fx）：basedOn 台北 13:00～14:00 那根小時 K 的收盤 → 最新報價。
+ * 回測（2024/02～2026/11）：這段變動才是台股收盤價還沒反映的新資訊；整天的日 K 變動有一部分已經在收盤價裡。
+ */
+async function usdtwdAfterClose(basedOn) {
+  const { rows } = await yahooChart('TWD=X', '1mo', '60m');
+  const refTs = Date.parse(`${basedOn}T05:00:00Z`) / 1000;
+  const ref = rows.filter((r) => r.ts <= refTs).at(-1), last = rows.at(-1);
+  if (!ref || refTs - ref.ts > 3 * 3600 || last.ts <= ref.ts) return null;
+  const t = (ts) => new Date((ts + 8 * 3600) * 1000).toISOString().slice(0, 16).replace('T', ' ');
+  return { from: round(ref.close, 3), to: round(last.close, 3), fromTime: t(ref.ts + 3600), toTime: t(last.ts), changePct: round(((last.close - ref.close) / ref.close) * 100) };
+}
+
 async function yahooQuote(symbol) {
   const { meta, rows } = await yahooChart(symbol, '10d', '1d');
   const last = rows.at(-1), prev = rows.at(-2);
@@ -415,6 +428,10 @@ const { global, globalWarnings } = await once('global', async () => {
   return { global, globalWarnings };
 });
 warnings.push(...globalWarnings);
+if (global.usdtwd) {
+  try { global.usdtwd.afterClose = await once(`fxac-${basedOn}`, () => usdtwdAfterClose(basedOn)); }
+  catch (e) { warnings.push(`收盤後匯率取得失敗：${e.message}`); }
+}
 log(`國際行情：${Object.keys(global).length}/${GLOBAL.length} 項`);
 sources.push({ name: 'Yahoo Finance 國際指數與匯率', url: 'https://finance.yahoo.com/' });
 

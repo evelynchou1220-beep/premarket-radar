@@ -189,13 +189,17 @@ export function buildHints(s) {
     }
   }
 
-  // 匯率（TWD=X 上漲代表新台幣貶值）
+  // 匯率：台股收盤後到現在新台幣的變動（TWD=X 上漲＝新台幣貶值）。2026-11-19 起，門檻依兩年小時資料回測（§8.7）
   {
-    const twdPct = -s.global.usdtwd.changePct;
-    const strength = Math.abs(twdPct) >= 0.8 ? '中' : Math.abs(twdPct) >= 0.3 ? '弱' : null;
-    h.fx = hint(strength ? sign(twdPct) : '中性', strength,
-      `美元兌新台幣 ${s.global.usdtwd.close}，新台幣${twdPct >= 0 ? '升值' : '貶值'} ${Math.abs(round(twdPct))}%`,
-      `Yahoo Finance TWD=X，${s.global.usdtwd.date}`);
+    const ac = s.global.usdtwd?.afterClose;
+    if (!ac) h.fx = missing('台股收盤後的匯率資料取得失敗', 'Yahoo Finance TWD=X 每小時報價');
+    else {
+      const twdPct = -ac.changePct;
+      const strength = Math.abs(twdPct) >= 0.5 ? '中' : Math.abs(twdPct) >= 0.2 ? '弱' : null;
+      h.fx = hint(strength ? sign(twdPct) : '中性', strength,
+        `台股收盤後新台幣${twdPct >= 0 ? '升值' : '貶值'} ${Math.abs(round(twdPct))}%（美元兌台幣 ${ac.from} → ${ac.to}）`,
+        `Yahoo Finance TWD=X 每小時報價，${ac.fromTime}～${ac.toTime}`);
+    }
   }
 
   return h;

@@ -91,8 +91,8 @@
     {
       "key": "fx", "category": "fx", "label": "新台幣匯率", "required": true, "auto": true,
       "why": "新台幣升值代表熱錢流入（利多大盤），但會壓低出口商的匯兌收益；貶值則相反。",
-      "source": "Yahoo Finance TWD=X（美元兌新台幣）",
-      "rule": "新台幣單日升值 ≥ 0.3% 為弱偏多（資金流入）、貶值 ≥ 0.3% 為弱偏空；≥ 0.8% 升為中。出口比重高的公司，報告中須在 reason 說明匯損影響。"
+      "source": "Yahoo Finance TWD=X（美元兌新台幣，每小時報價）",
+      "rule": "看台股收盤後（最後收盤日 14:00）到產生預測時新台幣的變動：升值 ≥ 0.2% 為弱偏多（資金流入）、貶值 ≥ 0.2% 為弱偏空；≥ 0.5% 升為中（2026-11-19 起；之前是整天日 K 變動 0.3%／0.8%）。出口比重高的公司，報告中須在 reason 說明匯損影響。"
     },
     {
       "key": "tariff", "category": "policy", "label": "美國關稅／貿易政策", "required": true, "auto": false,
