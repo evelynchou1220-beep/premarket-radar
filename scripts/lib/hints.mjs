@@ -161,8 +161,10 @@ export function buildHints(s) {
       `Yahoo Finance ${a.symbol}，${a.date}`);
   }
 
-  // 日韓
-  {
+  // 日韓：日期早於台股最後收盤日 → 是已經反映在台股收盤價的舊數字，判缺漏
+  const asiaDate = [s.global.nikkei.date, s.global.kospi.date].sort()[0];
+  if (asiaDate < s.meta.basedOn) h.asia = missing(`尚無 ${s.meta.basedOn} 的日韓收盤（最新為 ${asiaDate}，已反映在台股收盤）`, 'Yahoo Finance');
+  else {
     const avg = (s.global.nikkei.changePct + s.global.kospi.changePct) / 2;
     const strength = tier(Math.abs(avg), [Infinity, 1.5, 0.5]);
     h.asia = hint(strength ? sign(avg) : '中性', strength,

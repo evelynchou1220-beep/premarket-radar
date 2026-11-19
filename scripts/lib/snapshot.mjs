@@ -26,12 +26,21 @@ async function yahooChart(symbol, range, interval) {
   const r = j.chart?.result?.[0];
   if (!r?.timestamp) throw new Error(`Yahoo 無資料：${symbol}`);
   const q = r.indicators.quote[0];
-  const rows = r.timestamp.map((t, i) => ({
+  const all = r.timestamp.map((t, i) => ({
     ts: t, open: q.open[i], high: q.high[i], low: q.low[i], close: q.close[i], volume: q.volume[i] ?? 0,
-  })).filter((x) => x.close != null && x.open != null);
-  // 日 K：市場還在交易時，最後一根是「盤中」價格，不是收盤。丟掉它，避免把盤中數字當成收盤（時序檢查也會因此正確判斷）
+  }));
   const reg = r.meta?.currentTradingPeriod?.regular;
   const now = Date.now() / 1000;
+  // 日經、KOSPI 等指數：收盤後 Yahoo 的當天日 K 常常整天都是空值（2026-11-17～19 的日韓因子因此一直用到前一天的數字），
+  // 收盤價改用 meta.regularMarketPrice 補上（只在那根的日期內、且現在不是交易時間時）
+  const tail = all.at(-1), m = r.meta ?? {};
+  if (interval === '1d' && tail && tail.close == null && m.regularMarketPrice != null && m.regularMarketTime >= tail.ts && m.regularMarketTime < tail.ts + 86400
+    && !(reg && now >= reg.start && now < reg.end)) {
+    tail.close = m.regularMarketPrice;
+    tail.open ??= m.regularMarketPrice; tail.high ??= m.regularMarketDayHigh ?? m.regularMarketPrice; tail.low ??= m.regularMarketDayLow ?? m.regularMarketPrice;
+  }
+  const rows = all.filter((x) => x.close != null && x.open != null);
+  // 日 K：市場還在交易時，最後一根是「盤中」價格，不是收盤。丟掉它，避免把盤中數字當成收盤（時序檢查也會因此正確判斷）
   // 外匯（=X）平日 24 小時交易，沒有「收盤」，不適用
   if (interval === '1d' && !symbol.endsWith('=X') && reg && now >= reg.start && now < reg.end && rows.at(-1)?.ts >= reg.start - 86400) rows.pop();
   return { meta: r.meta, rows };
