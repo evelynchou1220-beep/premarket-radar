@@ -1,181 +1,227 @@
 {
  "news": {
-  "fetchedAt": "2026-11-23T09:44:05.716Z",
+  "fetchedAt": "2026-11-23T21:47:18.809Z",
   "since": "2026-11-23T13:30+08:00",
   "stock": [
    {
-    "title": "2317 鴻海 - 在價值區內用零股慢慢撿，其實也很開心- 股市爆料同學會",
+    "title": "AI伺服器出貨衝刺！「這大廠」目標價上看300元 明年EPS達24.8元",
+    "source": "三立新聞",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBvanZ5WW5zV1ZMWWZVSE56bFI3d1R0YkxJZ0lGMzdtT0xOb0twTkVaNlZiQ3Vva3lRUnJUSHQtZXMxWG5XM3g2R21RNA?oc=5",
+    "time": "2026-11-23T18:26:36.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "鴻海目標價上看300元 明年EPS達24.8元",
+    "source": "鏡週刊Mirror Media",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFA2QjdhU1U3UVB4VzZaZV82dDNFOGs2ZFRXTGJpalhWX2hyT2RteHY5eFJOMHZTaGlxb1VYd1VkSWhIZlhRV3ZkTkRHWVpOM3hwMTVxY19JRkVmZ3NV?oc=5",
+    "time": "2026-11-23T18:22:00.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "2317 鴻海 - AI教父王者回歸- 股市爆料同學會",
     "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBUYkxQVmlERncwV2Nwb0g5NDE2MllRbWF6bHRhZ1ptZWZGa0dKMTRBc253NkRfQ1FxcXBQUXAtMU1tTTRKeUJLQU9Sei1oUlJpdW51bUJEWXI?oc=5",
-    "time": "2026-11-23T09:20:27.000Z",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1XOUViMjk4NW9US2FoT3Z5YlUyLWNURXJISUNMQWEwQWV2cTgwV1BXV1FqTmNXTXI1TGJiNlhsakM4UjBmWGtGMFdFb21VSFFqdzlueWZWM1I?oc=5",
+    "time": "2026-11-23T16:01:17.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "2317 鴻海 - 2317受委屈了，鴻海的長期價值投資者一起加油- 股市爆料同學會",
-    "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE03X1laQWNMZ2xLXzRlWldNZE1PUWUxRFhVWjdwakxfRzRDOFhqWFNRSmVvdGNfVlhVTnZGbGt2OVhWZ0hOTzdiR3hmanktLU4xWEVQTzlTZ3k?oc=5",
-    "time": "2026-11-23T08:31:56.000Z",
+    "title": "台股重挫是短期波動！鴻海劉揚偉：相信黃仁勳眼光",
+    "source": "東森電視",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE8yak9Db0hfR2ZrRnFfRlV6ODF3bFhmamN4ZHlqenhpMDVEcFYtUmFCa21pQ2VadWRWNUFWZXFSQzdNTjNsVHJDbFZHMVF5dEh0Y2kxVVllMmRPZw?oc=5",
+    "time": "2026-11-23T15:49:00.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "《投信買超7-5》世芯KY(289)、鴻海(249)、信邦(245)",
-    "source": "富聯網",
-    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNNXpNYzMwSW9TNFFtajVBVHhWeVB0TGFoYWtfVG1QYlRrQi1RanhCYkZiQVlTejgtcFBUUnNSMUhlOEZER2UxV1pJSmJrc2wtWHFCZTJMWnR3a01TUTZEbEI1eXpXWmtUc2lZTHIwMHFDM0JqTEg4emszc0tRY0JSeTdINW92UFBB?oc=5",
-    "time": "2026-11-23T07:52:00.000Z",
+    "title": "鴻海董座劉揚偉才高呼「相信黃仁勳眼光」 輝達宣布：AI教父將回歸",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMikgNBVV95cUxORUxFRXZpUnRrWXVXb21DN3RSeUpZRnJtNkZlQnVORlBZLXF1RDVOdmd4cHZQWklJOWJnQVl5V216d2FYNjNYVlJsUlAxeDlVckl6UV9tRUVkRGQ2amdqdzRGOVZOMmNPNG9lUmxCbnB0aWhwbFBxODRLX3FPTnRDODVYaG8xYUVmVVZieU9aVU94aGtTZEdVOVZkNmJ0VzhlVXpPUUNuQV9CX29UTGs4Zk81Y3pabDlpd25IdXpzemhxWDFDamF0SzQ2cDhnVVZoOXFaYVdjUUJwcUYzaktkeEhvWENnM19CdkRpZGt0ZG9MakR4VVN4WjdVM2tzdDNTX2tSbmd1OHdqa0FLTUR0N3dlV2NEUGdVMTRjenEwZjF4N1RhWlJSa05WWlVDbWd4Y19uNmtSVHNQVXU2RU9haEQ5aURfVjg3aDNpQmQ1bjEwR1lDTFp2c0RhYlZ1d29oZWdzcWoxTFlUWFQwb1ZtbVdORlhpY2c3cldLMm5iU1ktcmxWekNWZ01LOTRmc0ZmMHc?oc=5",
+    "time": "2026-11-23T14:29:00.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "2317 鴻海 - 今天的賣壓是大摩、永豐金-匯立、富邦， 還好有瑞銀、元大接住... - 股市爆料同學會",
+    "title": "2317 鴻海 - 鴻海劉揚偉提「四個相信」：我們相信黃仁勳的眼光- 股市爆料同學會",
     "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBYLTRZMnNONXNhZWVPZE9qMFUzak9LTlpCUTdGc0JBODRYbzFRLWFJQ0k2Q3FPR0c2bFFDUHFZQUlCRXJrS01pWXZEUmx1STd1Uk1NdVQ3N24?oc=5",
-    "time": "2026-11-23T07:33:54.000Z",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBhc2RBc3k5TmJlM1c0NkVWb3NIeFJjRlB3Yk9NTFBNbmtBWkpfRHBXRDduRVZEUUtwV0V0cUdMZWEzRU1uTHRKYXFjd3pqakY1WUVJbWQyOVE?oc=5",
+    "time": "2026-11-23T13:12:09.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "2317 鴻海 - 投信+248 緯創+335 廣達+1,457 - 股市爆料同學會",
+    "title": "2317 鴻海 - 認同好公司，但別把身家全壓在一艘船上：我的鴻海配置哲學- 股市爆料同學會",
     "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1BSnZWcEtvRTA5MGxsejF0Wkd6VWNEcGxHZnRTRFlTQ2ktM3ltREN4OFBWOG14RWxTbVhIdENudllCcVA4Ykd2WU5zdUNBZXItUTFRcUREZTI?oc=5",
-    "time": "2026-11-23T06:58:34.000Z",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9mc3lNNXpYZG9TZ254ZVl6QVowdUY5TkR4YlI0bk5pV3UyaFRPX1k1bWlMMGcwU21tdEZBTDVLWXJzVG15LWE3dDJUQWE1ZDBaUUJYX2pOblM?oc=5",
+    "time": "2026-11-23T13:09:27.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "沒前瞻性公司目標價，最多給90~120",
+    "title": "2317 鴻海 - 千金股大立光群聯都有庫藏股- 股市爆料同學會",
     "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE50R1BBTDVfZlN6YnNLNUltZEtUTFFaQW9KRndnVTNiQ0p0b3lDWFhPanVhdUJGOGtuNnhhUXVFTTlOcXJVbG1iN05SRWFtUGhfZVVUYnVOOFY?oc=5",
-    "time": "2026-11-23T06:23:30.000Z",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBZQzdBcFM4bm5SLS1PZjFOQVZRMzdpSmRtSHl3YWJHc2pmWV9uZmV1ZTRZOHVWLWdXVmRjN2g1MThvdkg1cUJQQ0lNUUQ2RzhSMFVMRjFhSGM?oc=5",
+    "time": "2026-11-23T12:48:09.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "2317 鴻海 - 抗跌=抗漲2 - 股市爆料同學會",
-    "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9JNDdaeEJMZXdHOEdRWURfbzJ3RXlKSUFoaXhzMmtEZGQ5VzhaRWtRdkRZSFBqZ1p0eTdlUnJqS3ltTlJsZ1ZndWR1czNRRmp0eDVWTklOcVE?oc=5",
-    "time": "2026-11-23T05:58:20.000Z",
+    "title": "台股重挫7600點是短期波動！鴻海董座出席政院救股市會議 劉揚偉高呼：相信黃仁勳眼光",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMigARBVV95cUxOdUY5WXF2MDhTRG85dW1tUVFybmNqSVJFUlhnUWQwS2p6bGthU1Z1dU1TWnJOSlNhdVB2eGE4Sk9hTEhreUMzUEt2U0tNejFuVXQ4SEVpdzlzS0NwYUdMU21sdHNiTWdRTmNxc1gzRHJwS1RDUGpWLVpsTS1tNm8waWotdWE2QVNfWjlFa21jd2t5dWt5dGVEeGhiSVdzNnM4NW42eFFuMVJLTUZURUtrbVRFdGlqM3h1V2tLT3dxVEgzbFRfU2U1dk4zaFoyNEJzOGF4ZlNVdDhzRmRuSHdic0xKS0RIWmk2RGFaRnZNMHlmdGhld1lTWUxsOWxVRFJ5b0FPWjZnMXQ2SHBhNDVMVzdHaHQ3VWg4WTZ1QzYtbzFLcDFyY2FuLTBYbnRSWGlLRlJnSGh5NUNDdWJ6eE1tTTVDam5QNS1qTHpwMTdFbGd1eUJCcGtZaDhvZ2VLYk1UU3QtUjRMMHFSLXFEQjNQQ1RzM1pQUnVEaWpuRjhyazZkOWJ6d0p5YTlENF9pQVVMQTBQYUtJaXlLTHQzU0djNlRSS0llaTZZeno2U0dheEY4VXprWnNQQkdEVUFHT3o4d1lYT3V1VDJSZmVpQmdIS0R1S3RUOHpUVDJJU0dRdXhOS2ZvRFdsRUFNcFNhMVM0dktENm9yX0ZJWjRpNEVQcg?oc=5",
+    "time": "2026-11-23T10:59:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "鴻海劉揚偉提「四個相信」：我們相信黃仁勳的眼光",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5EcWVxV0V4RDNicWp1SWRaclFqZVJNclE1U0ZiQUp3VjNTeXRQSjJYeGY3TU5NRFhldzFUZ05yam84SlVzSl92Q0d3UFo4d1p1MG9HTGRQVXNUUdIBX0FVX3lxTE5NUE1Idno2WTAyT2dKWVplckR3REV2MUFHeHFVREFmZk5qRTU4aGlQby1yRUlCN19NTXRXN2hrTUdZMkl2MlJ1eWxpVDB2eVNkMm5zVUpmeVdSV1NWblNV?oc=5",
+    "time": "2026-11-23T10:44:13.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "外資提款289億！買超前10名竟有9檔ETF入列「官股護盤名單完整看」重金敲進台積電、旺宏、鴻海反手狠倒2檔金融- 上市櫃",
+    "source": "旺得富理財網",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFAydV9tQ29BcW1QZ3oxT0hLeHNpMjhYSEZmc3RGMW9sUTFKSlM5LXVPS05CZDFNZmpQelpfZU5JV0toWVpOYVFxUGRfdFhSQmxDaHRsVm9DdWxOek1OeTJRTXVKRXdpRmtfamc?oc=5",
+    "time": "2026-11-23T10:30:20.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "後黃仁勳時代迎亂流 鴻海劉揚偉提「四個相信」力挺：AI需求至少再旺2至3年",
+    "source": "鏡報",
+    "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBBeXZQZTVaY2d5UkhHMEc2cXRVTDNvRXhCQ0wxNkljRnFwczctdGpCMVIxSDVacXU2MUpoTlJhVTc5dUdYbDNUaVctMjN5NXpTdVE?oc=5",
+    "time": "2026-11-23T10:13:00.000Z",
     "tags": [],
     "trusted": false
    }
   ],
   "market": [
    {
-    "title": "禁空令與國安基金齊發威！龔明鑫解析台股震盪明年出口拚破1兆美元- 股市爆料同學會",
-    "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5ZdkNHVWNSakZDZlpLc2RBbXFucmRGNVYwb3FaYTloUk5kV0dIb2ItR2xaTkdQRnhtZTJTQVNrdDRMdmxxZ29Yck5Rejk5N2lSMHNjal9lVzM?oc=5",
-    "time": "2026-11-23T09:30:44.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "禁空令與國安基金齊發威！龔明鑫解析台股震盪 明年出口拚破1兆美元",
-    "source": "鉅亨網",
-    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE40SnJNMXF2UXhYVFdEeHJROXZObEEwTDV2RGJtRjlYWW80SVRPbUV2VF9UTFR3cUhCY1Q4R2w3S0NpbEFpc1RZNE5DaFRNbVk?oc=5",
-    "time": "2026-11-23T09:04:50.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": true
-   },
-   {
-    "title": "台股慘崩政府出手！卓榮泰邀金融、產業大咖會談「國安基金規模仍有餘裕」",
-    "source": "知新聞",
-    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE95b0RZWnhMVVZZVVM5TFJib21ZcFRwTVM2YkphS1lhZm5BcVp3bUNnQmNHVERvaVpzT2VmSDZzekRNZWFtdzBUNzdlUmt4QnRhNUF3MS1heDBKRkRybnM1a190ZjRJRVRvb1RnRWFPcw?oc=5",
-    "time": "2026-11-23T09:04:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台股震盪「融資擔保維持率降至120%」 卓揆信心喊話：國安基金有餘裕",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMikwNBVV95cUxPVkpZOWJqbnViWm83MEZzZkhUT1hnT1pRSG1VOF8xUy1qMzU5anNrSkptblVzWGI4SHM3ZXhGVFhzb3cyUTVEeWhzYkdUalZmb3lOemFHenlWU1NFTjU3Ty1fSFp3eVJybjM3YlBhdFF1WmJmLVI1UkpKZERmREd4NWJEaTRneFhicmdnamF6Y2ZQOGpIQ0Y3VXlRNFBsWlgxR0NzQXotSWNsWnVvU2FjWkRiamtNWVhUTERaVmI0WF80NTVNSGN0ZTMzUnRXMF8zbW9rODYyOW82TThSYzFia1VpWTBYcThnbHJiZUlnZUNyaTlWbVk4TklPV0E3dGNlbWUyUnJKS2hVdHVBOUU1dDBEU3FnOC1qbE1acTFyZndMU0pWYnNTdGt1cU1LWEpBTnBBUEJ1aGhMMVFXUy1rRmY0LUpiOG15UVA2Rjk1ajlYZWJGUjhLck9KSWxEODNDa01YNjBxU3dPOTdOOHpOU2M2QUZtVXBLRDZ4dnhjdVhhTVdvMi1TX3VIemI4c3JCQ053?oc=5",
-    "time": "2026-11-23T08:38:09.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "不只國安基金出手？專家揭台股87度往上噴關鍵：那個男人救援- 財經",
-    "source": "中時新聞網",
-    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1zT3ZjcmRCdmUwUHZHVnFRV055RjgwR3FEVDlzV0JaTVdGeFdFbzJwTV9oQ292MWN0a1Fpand3N3VQRF80VlNnaXdGZ2o0WWZpaWNCbmdpOTFpMmxXcllYNG5GWm1NZUlkZ0dWdEZB?oc=5",
-    "time": "2026-11-23T08:35:23.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": true
-   },
-   {
-    "title": "國安基金護盤還不夠？葉育碩揭台股噴漲真相：全靠「那個男人」神助攻",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMiqANBVV95cUxOSlQwNi1Jbnh1MlIxSVFJeG1paXM1R2V4a041QnI4anNlMTA0X0VESERYcXVqSVJUZFNYd1h2aVpkWi1LZkstZHctYXlYQVRJdGRPOHZ2a01FUUtWX291XzE1ME1pMU9jbHY1VEI1dldLWE5GaWEwSlpYSXZOa1BNTDY3YzI2TXQ2SFJqdnBCMXpQbmxLVERjTFZHNkNfMjJWMnBEZDRrTHlCZmRvTUJOS1JOcFdEUzNORVR2bndXaVlTdlBaRVpOWDd6MW51amEyZnhWanIzNzVMZU5YandLa0hYTTEwQllDVno5SzNxeWhoYzMtSlRQUk95Uk9NeTBHUDdyWXNzRFVDMDF2S1hUWW8wdEJiMzJMRWhTeTEtcHhEUTBra1ExSTNWUHFTRmw3Z1l4ZnNpM1F4d1J6anBpYzZJeHI5aDZwbXVnSERIUTZKWG1IYlhTblk2bXlNa3VyeC1xUGd5dE5MeGMweHVvbXl6SUtuMHBmbXEwWFktUkZzT1RMM1BCckRZXzdRcTNwcTVUQUJLQnM4aU5fLUtSbXJDZVB2VGxU?oc=5",
-    "time": "2026-11-23T08:23:00.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國安基金規模擬檢討 卓揆：政府願正面積極看待 | 政經焦點 | 要聞",
-    "source": "經濟日報",
-    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFA2UDhWN2xhU0MtUFY2WXRXaHVqN29NRzhiVS1fbXlfLWxHMXk2a1Fpc1JDLW01QXpYY2RIdVNjSHhWcGdTLXQ1Qk82aEl5dGloek92SVZ1ZFhrdw?oc=5",
-    "time": "2026-11-23T08:22:01.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": true
-   },
-   {
-    "title": "擴大國安基金規模 卓榮泰：正面樂觀全面檢討",
+    "title": "限空令3.0+國安基金發威 台股大漲778點",
     "source": "自由財經",
-    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBSM2VCWF9sajZPTDJBMzE4aE5kYkU2eGN2ZENQYzBqc2JPOV96QUFSY2I4ck1Uc3ZMOVBlSFVRSzByTmN3N2h4WHBpZFZ5Uko5Mk1uRnNJRGxUOFdpYXJB0gFkQVVfeXFMUGZ0MnlpcElrNlB2dWMtMlBVWlFJVGs5eC1MdEJxWnpmX1UwRzR1ZG43SjlZMC1QaUZ1WU92V3MtSkRmT3M3LWVOQ3lCOFJvbTNOOFE5TktKX3VzUUU2Y3FUMUVINQ?oc=5",
-    "time": "2026-11-23T08:20:36.000Z",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBONGFweUdBb281a25feFEwSXZtOUd4dmMtOXVzSm02M1VlTXowZjZyMWRjRWpjUnBEVFk0cHhvUEVKRGVHeXJyWnNCRi14Mk9WMDhCdkx30gFbQVVfeXFMUEk3aFlMRG81TXEyS3ZYWXVWNUNfM0U3eWlGNHFENVB3YUNIa0t6ak4xQUhXR2E2MVBNQTJiT3haLXVDSXdCLS1td0EtTHE2YXBVdHJqa0pKUHQ0aw?oc=5",
+    "time": "2026-11-23T21:30:00.000Z",
     "tags": [
      "國安基金"
     ],
     "trusted": true
    },
    {
-    "title": "台股止跌「最壞的已過去」？專家揭華爾街拋售內情：有人快坐不住了 | 張庭維 | 新聞",
-    "source": "風傳媒",
-    "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE1OQ1FxWEFMWUx0T0pqMmxWX0ZCX1hTajlGUjF3VkhZZTBlQlVFNWNmVFNuTVRwTFVWXzdMYXhpYmV2b19UWGtySE82VHlpdw?oc=5",
-    "time": "2026-11-23T08:15:00.000Z",
+    "title": "國安基金護盤神話！近5次進場漲幅逾10％ 明年挾3大題材助攻",
+    "source": "三立新聞",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9pODVxNlJmTjRld2wzeHc1MmZjc0ZvU1VOZ0VZaW90NGFCbXdYWGxjeHB5RThxQjF4X0prM3oyaWhYNEEzWmt2RVNBWQ?oc=5",
+    "time": "2026-11-23T17:57:36.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "台股震盪「國安基金規模將擴大」？ 卓揆：願正面樂觀檢視｜#鏡新聞",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMihANBVV95cUxOQnhRVi1KaE82VndjRHd4NUROempWX3oxLVd0aU9sRXRJUFhEUzJMQjVsUFctanRmVHZqZW82LUxiN3J0OVRQU3Jna2NfVm9lRG9iSDZxSWtIOTVvSGYyMmJOaUZRV3hWUzdSakNUcDZ5cUhob1pUN0JmS2ZGOFAtLVBGSEtRMXY5d3ZnRVoyZlF4ejJKTHU5aGhUbXZWY3lxR1g4NVNtRGwwNnQ2MDlWWmQyUDR5UnlsT1lPdHYtSGFtYldTS0VfVVVtckVCbnY3TWwxUDhYRXEzYVJWSnlDc2xRMlVQM1gyVzM5SGZTYVF6WnVyaVpEZDRxaXdyTDQ1V2tBSUpJRUdIek1pVC1xY2R2MjF0U3RqRy0xUE5WZEZsbm1IY1dxZy1qeHJYa1ZyUHBiaFNlTk5uS2pjVU5iTklOYlRwZmdZQ1M1RFBhVjBCUG5wc1VaWlRydE1Cc3RLdy1JeThaMUhoUWJPT1NUYWduWHh5Zl81WkhrT1FScjlDM1RX?oc=5",
+    "time": "2026-11-23T14:40:25.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "【國安基金出手！台股飆778點 政府再端3兆元融資挺企業】 加油！！ （#起啵）",
+    "source": "Facebook",
+    "url": "https://news.google.com/rss/articles/CBMingNBVV95cUxOUjlHbnExSXFXbUZycldUemZjUDJqTzJ5WExzeExsOXNSSlROU1owcG9JeGgzSmhBeEo5dnBKYkFpRUptam15VDBBbWRZRTlXb1hHT3BpQ1ZvVlI4bU1EekZDeDV5U200VzlpaDRwWXkzQTJOSmhxYVhkbTdpN2tDMmtPRGdxaXd6dXBDYWwzNElQN3J4T2RiMXI2ODZpN0JJTFBFX2EzTGV4cXVIaUpoZEt3LV9HQVNtcEZmajZseXFnTUNFWW5CbzVEVzFROW1DWjZqeXhnRWRHanlVOEdnUmNwV0ttMmlXN214d3VzUGY3b3F2QnRwUFozcWtvS0xqMU9SeFRPcmE1R1Vtek1WVEVvMWg5YWZaNEdXd0w2c2hwUktIRGNtZFIwb0hybHRmY0JKbFB5RW9adHVHTzN0VzFabkdzUU9Wa1lsNlZsekFPclNnbVpVaXZYMTlDVnBfQUtHejFMTlFvdGxNZXJJVEtIWnZEd2ZHSXNVSHRfUF9NRk80WHBOZnNFdy0yM3J1UVoxTUJOaEU1UlZpOEE?oc=5",
+    "time": "2026-11-23T12:17:59.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金出手！台股飆778點　政府再端3兆元融資挺企業",
+    "source": "ETtoday財經雲",
+    "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5UNXd4bHRicGRIR3g0MnhtX01NcnBEUlh1SmFjZnZkWnZ5X2htLWlidVVCQnpEV0REQmhwWWNvdzdzLUxuZGF6THBEaXd5cFF3X3fSAVBBVV95cUxQWDZ3b3dlWF9YZ0JnbjQ5dWgybmRLUlJwTV9kLUp0RGxkWHZ4UHFuN0NBalVNd2JWOW9lMllBLXlQZU1WMk5PRy1sMWJab1R0dA?oc=5",
+    "time": "2026-11-23T12:01:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金穩盤台股收漲778.6點 財政部喊話：買盤回流投資信心回穩",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMinANBVV95cUxOVVB0NGd5REp5T2VOdHZwMk1NVUZKYUVYOXVFT2t0d0UyMFN2QjhvOEt0WTRKQ0tqMC1xek1NeTd6YWEtVFNld28xSTUtUC1TYjd2elBteXBTUEZieXhuU0NRbEFvQmoxS3RzSUtsbnhTS19MazdTVGphX2xvck9CcEV5emEwalBQS3U3WGZxNXc3TW51b3AxRW0wYWRzS0RJSzd0ZDBxV3hnczE3Rjl6bDdjdzBpeVM2SlVEdjNpY1VwNGlDdUYyQlpENVl3ajl6MVZseW4yQ1lZX1NVR1lpXzRYMWYzeFJoNzVqSWJqTXRkWjc0cGhFbDB4cjVTOUV4U0NmMktoQktrZ2tIb0wxVFp4Z0l5MjNISlZDLUh1X05qTEYtaGMzcU1CNzNnYUUySFhuZ1RSaXhrQ1gyc2E4bWdjb29ybUwwaTNObllibWlPTGkxWVhUUkMwRnFWX1EwYWZHNXJEcFItcTdnX3drc05CcmpvRUhQMnZJR3pSc0xta0llX05ZOW1EcW1NZ0ZZdDhIVzJSUkVickNs?oc=5",
+    "time": "2026-11-23T11:51:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "光靠國安基金護盤不夠？專家揭台股「87度往上噴」關鍵：那個男人神救援",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMiqwNBVV95cUxQREgtaXVsMG9nTlNMcm1FcC1mWDNvU0YxRHNqaGN4eGQ2QjIzQkdhS3BEOS1KdWpNeWt0T21icUpvSHdZR3pJZzJ5TGRvS0hYSkg1MHNNaFNHazhuYkRKQzRkUUxSZTRVRkhpd1hHdUVTV2c4WHhHWjhFaU5Fd214WTVqVFNORnVGdF9mdHV6QUdvZjVwM190cGd2Zk53TF9SeHdJNk80VHhXRU9Kc2dNdEd6WTdUN0gxNXltUUJNTnVqVmVmeVU5Y2FwSXNFTGRpSmI4VHZEWUg5OF91UFZRVVFWTHB3TzI2YjhxM1hDUFhvVUcyRVlldTFPdTVyLWhMS0V4U1dQS0FzQTFMSGlQUHdjRE1jSTFZdlkwZUlKNU11bElzQVVGSXFVblR6S0F1Q2NkSlI3MmJQUldZWWV1N256NUxTQVZvSzNDWmJ4S0JSR3RSMUV1cHhqc3NKWVpQWF9oV1Q1cGJ5b2NaV1dET2R2SU9rNWN3RUg3LWJQSThIM013LUxGV2lGdHdLbXpkYXpsUUlka19tekxKMkV5ZF9hUnNDNlQ3aTY0?oc=5",
+    "time": "2026-11-23T11:42:12.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金點火！財部：市場買盤逐步回流 投資信心呈回穩跡象",
+    "source": "自由財經",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9jQWhZZXpnSjZnb055dEhsajBXTGNsMDdOREFzRWZTUlNNNjR2eUZ5NmNvdEdKaUcwejNqNUdLZlM4U2dxb001azFnOFJLV1QxVmhqdkVnNzIyQVNka2FB0gFkQVVfeXFMTzg5R2pzM3ZIWTJWYmx2cEZ0REcydDBJNzZpODRyZXVWZEt4ckUzcW9VYlNfS3o0MEFIc0hraXlUY1ZJVmxnQWE5VjRkT09EYnNaVlZvbFl4WWlZY0tQMEo2Y1hDTg?oc=5",
+    "time": "2026-11-23T11:38:06.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "台股收漲778點！ 財政部：顯示國安基金適時進場點火已讓投資信心回穩",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMiqgNBVV95cUxPQlB1d0NsSDdvWGg2NEtXN0hTSXJ5TXFSX25fRnJjVmtzeDlzWGVHOWd3Ukt6ci1SY09teW85OHNpWDN6ek16VlZOcm9Jemx2MHVZRFpRZTRMUjh2SVBCUXpyR1phNkxxVm1jbVpjZmRIU3h1blZOT1d0c1hwaTRGOHA4THp2Y3VPV1hIeEZrcG02VzdtenFiRDhPWWpjdnBtenJWbUxzNGFVVVY1NDFDcVhDMGpYSUllQXNKcERPMGtxRG1DX2pCVUF6YkpUeWpTUTNwd3VxSVRudFc1UmQ5WWszX2xlaFJQNFlJel8yUXdPTDhVV0s0b1dnb0NYMjBNSjBrZThoRlp6cWRUOFhmOXVpdDBfQUQ5QTRHOWdpWVNMSWlELXhFTnR3TnUtcFNlR1hONFdXeUFGRWs3Q2dvRFZnaVZBWWRYUXVSYlU1dWw0Tk9meEloTk5lOXMxdkNRMGNraGhRVVNWOFVWLUtyaWpucm9KMm5TelZqVWVfdWdOM0FtNl9obzZ0Q1hyU0hoNWRXVHdhektoT0JQVloxWTJHTXpIdG83bmc?oc=5",
+    "time": "2026-11-23T11:36:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "國安基金喊話台股：進場點火發揮穩盤功能 買盤回流成交額逾1兆",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9WQUprNVg4bWZOR1NSUFgtdGpwODFKdmgwNlNBWmJCaW1ES1BDYkNtWkgxWTRBWkxlSFZ6ODROclhIZHBKQ25pVFdRYVNqUnNO0gFWQVVfeXFMTkNlTmNnSi1VamplS3JMQ3AyMDc0Z0FmRVpZaTI4c1ZYdXFfelBkdjdwVEw1QW1iVjh5SDVta3UzN1NUQWR4Vmh6Nkg4SXNoVW1aUHZjeHc?oc=5",
+    "time": "2026-11-23T11:33:53.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "台股近5萬高點墜落1.4萬點 明起擔保維持率降至120%",
+    "source": "公視新聞",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE8wUVpWOXlmNkVWVjFPOWZxS0pqVGxSWmZ0d20yWmRDYTJUVVl3UVNxRHh1ZENmRXE3TTlWTkZGYUY5LTlycGxIS1NpaHlMUGc?oc=5",
+    "time": "2026-11-23T11:12:13.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "台股反彈778點救不了「它」！投信2天狂砍2.29萬張 股價崩逾8％",
-    "source": "自由財經",
-    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9MM2tMUXV4YnFuTW10Q011S3Rwdmd2U05hOVlud1hHRjE3TkNEeWpjVDBqV3VzWnJnOWdZZ0Y2UTMwWnZHUy1VNERmYzlWbHVhNEZlYU5tRWJJRGY0azhV0gFkQVVfeXFMTXhqSzM3RjJQYWo3WVFKeFdoeFlvSzJvdTNnbmdzTWU5eVZJbS1aTHlzSHhuZDJwRzFkMDVObUhKNnhfN3AyaDU4WWZsVjJZcGlQS1FYb3lpczZxUk1SQTdBaWlGdA?oc=5",
-    "time": "2026-11-23T08:08:28.000Z",
-    "tags": [],
-    "trusted": true
-   },
-   {
-    "title": "國安基金規模將增至兆元？ 卓榮泰：願正面樂觀檢視",
-    "source": "Rti 中央廣播電臺",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE4xREEyZEhpTXJjaFVlanRZY2ZUQXJtSHZ3Y241eHozQnl1WnlnUXFXNVlrZHp4Q0FONURnRThQeUQyQkdrS2JYbUtDZ01TcVhfSGgtWEU3S1k?oc=5",
-    "time": "2026-11-23T08:06:39.000Z",
+    "title": "台股連日重挫 卓榮泰召集金融產業座談提6方向：研議擴大國安基金、鬆綁處置股",
+    "source": "Yahoo新聞",
+    "url": "https://news.google.com/rss/articles/CBMi5ANBVV95cUxOdHdla2lqNmIxRjItblJrUTgzZ2pibkYtNHlCbnV0bUI2aTZfdXd0NDZxbW9VbUtfWkhDUXhmbnBoenh5RXdWOU4zVFU5WV8xc25ZYmVYZUk5TGc4QmJhcFlHS29KTkwwNHliWE9MclZyWnBSdVZGSkFVSWxHWC1VaEVwVkVQUFVKQnBla3QzZ0ZtNDU2WjVVNHJ4UlBnNXR0M1JnUnlWenRCSm1acXRVWGZmS2toLTBxR2UxeTZOcF9qX0pfOUgtaTY0SThJaExVb25MNi1zcUZ5eGtxRXNmdFIzNHlfX3ZHNG5SSzl4RnJ3ZFBQTFVNeEw5bkh1RVY2Q0pqVDVzRjRna2VHZ1I3b0l3NEt2X2RMWHhFOUo4Z2JmRlAxOERHelJuSS0zVWpoTVFWNkVJbllpdGZiZlRRSXdNNTY3YmhJUEw4emZOeWhUUmlTY1VpSGZfb1R2S25IZTN5RnkxN2F2WnlaeFhycTFWWDZnMHNjeHo2R2hTUnFpS2lWR09hYk93a3JRbmVFLThmaGxkVGQzdUdaNHdoQ29rZm5kdy1OaXB1YmhxTWg2cTFvdlJsV2pLMEtITzdGUURTU3JrRXBtWWdMVkNHbjkxa0ktajZfaWlQWFhqTzVCc1JP?oc=5",
+    "time": "2026-11-23T10:58:13.000Z",
     "tags": [
      "國安基金"
     ],
     "trusted": false
-   },
-   {
-    "title": "別再只買台積電？十大券商喊擴大國安基金銀彈、改買中小型股與 ETF",
-    "source": "經濟日報",
-    "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBfXy00bkp3UEZrc0FJcFZLOFprd29rR01jM3dVcTZYS2JZclRTN0J3ZXFiRE1ZSUpMMlVkbm5OcC1BMm5RYndHQ19CUUVrb1c4ZFFlUmVBRFo3d9IBX0FVX3lxTE9oc0x0WnBkbGZBLV9wVWVqS3hHZm1Nc1k3cHY3dWhYOXdHa1oydGVOOFBxVVRZU3V5bUxPMWJsUV9RUUs1YkxjTUVDdlFJWnpEaTZ4RUZDcmlWU3R3SVZr?oc=5",
-    "time": "2026-11-23T07:58:27.000Z",
-    "tags": [
-     "國安基金"
-    ],
-    "trusted": true
    }
   ]
  },
@@ -186,17 +232,11 @@
   "basedOn": "2026-11-23",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-23T09:44:05.716Z",
+  "fetchedAt": "2026-11-23T21:47:18.809Z",
   "newsSince": "2026-11-23T13:30+08:00",
-  "timingOk": false,
-  "stale": [
-   "美股（2026-11-20）早於台股最後收盤日 2026-11-23"
-  ],
-  "warnings": [
-   "證交所尚未公布 2026-11-23 借券賣出餘額",
-   "證交所尚未公布 2026-11-23 融資融券",
-   "⏰ 時序檢查未通過：美股（2026-11-20）早於台股最後收盤日 2026-11-23。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
-  ],
+  "timingOk": true,
+  "stale": [],
+  "warnings": [],
   "sources": [
    {
     "name": "證交所 STOCK_DAY（股票名稱）",
@@ -4273,7 +4313,7 @@
   {
    "time": "09:05",
    "ts": 1795395900,
-   "open": 212.5,
+   "open": 213,
    "high": 214.5,
    "low": 209,
    "close": 209,
@@ -4839,8 +4879,21 @@
    "dealerHedge": 1662
   }
  ],
- "margin": null,
- "lending": null,
+ "margin": {
+  "date": "2026-11-23",
+  "marginPrev": 48802,
+  "marginToday": 49422,
+  "shortPrev": 903,
+  "shortToday": 585
+ },
+ "lending": {
+  "date": "2026-11-23",
+  "prev": 104711,
+  "today": 105066,
+  "change": 355,
+  "sold": 355,
+  "returned": 0
+ },
  "revenue": {
   "month": "2026-10",
   "revenue": 1305319612,
@@ -4856,11 +4909,11 @@
   "institutional": {
    "date": "2026-11-23",
    "foreign": -289.5,
-   "trust": -32.3,
+   "trust": -41.5,
    "dealer": -190,
    "dealerSelf": -29,
    "dealerHedge": -161,
-   "total": -511.8
+   "total": -521
   },
   "txf": {
    "date": "2026-11-23",
@@ -4875,9 +4928,9 @@
    "night": {
     "session": "2026-11-23",
     "contract": "臺指期126",
-    "close": 36831,
+    "close": 39829,
     "ref": 36659,
-    "changePct": 0.47
+    "changePct": 8.65
    }
   },
   "foreignFuturesOI": {
@@ -4903,9 +4956,9 @@
       "dealerSelf": 8301,
       "dealerHedge": -311058
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": 89847,
+     "marginBalance": 499488,
+     "lendingChange": -1272
     },
     {
      "code": "00632R",
@@ -4923,9 +4976,9 @@
       "dealerSelf": 3535,
       "dealerHedge": 169766
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": -62172,
+     "marginBalance": 198411,
+     "lendingChange": -3468
     }
    ]
   },
@@ -5045,49 +5098,49 @@
    {
     "date": "2026-11-23",
     "foreign": -289.5,
-    "usdtwd": 32.834
+    "usdtwd": null
    }
   ]
  },
  "global": {
   "sox": {
    "symbol": "^SOX",
-   "date": "2026-11-20",
-   "close": 8408.59,
-   "prevClose": 9419.72,
-   "changePct": -10.73,
+   "date": "2026-11-23",
+   "close": 9588.05,
+   "prevClose": 8408.59,
+   "changePct": 14.03,
    "label": "費城半導體"
   },
   "nasdaq": {
    "symbol": "^IXIC",
-   "date": "2026-11-20",
-   "close": 22617.73,
-   "prevClose": 23879.2,
-   "changePct": -5.28,
+   "date": "2026-11-23",
+   "close": 24089.56,
+   "prevClose": 22617.73,
+   "changePct": 6.51,
    "label": "那斯達克"
   },
   "sp500": {
    "symbol": "^GSPC",
-   "date": "2026-11-20",
-   "close": 6910.39,
-   "prevClose": 7175.83,
-   "changePct": -3.7,
+   "date": "2026-11-23",
+   "close": 7237.17,
+   "prevClose": 6910.39,
+   "changePct": 4.73,
    "label": "標普 500"
   },
   "dow": {
    "symbol": "^DJI",
-   "date": "2026-11-20",
-   "close": 48147.33,
-   "prevClose": 49097.06,
-   "changePct": -1.93,
+   "date": "2026-11-23",
+   "close": 49595.31,
+   "prevClose": 48147.33,
+   "changePct": 3.01,
    "label": "道瓊"
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-20",
-   "close": 35.89,
-   "prevClose": 28.44,
-   "changePct": 26.2,
+   "date": "2026-11-23",
+   "close": 26.62,
+   "prevClose": 35.89,
+   "changePct": -25.83,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -5109,16 +5162,16 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-23",
-   "close": 32.84,
+   "close": 32.8,
    "prevClose": 33.03,
-   "changePct": -0.57,
+   "changePct": -0.67,
    "label": "美元／新台幣",
    "afterClose": {
     "from": 32.898,
-    "to": 32.839,
+    "to": 32.804,
     "fromTime": "2026-11-23 14:00",
-    "toTime": "2026-11-23 17:43",
-    "changePct": -0.18
+    "toTime": "2026-11-24 05:46",
+    "changePct": -0.29
    }
   },
   "taiex": {
@@ -5175,15 +5228,15 @@
    "source": "證交所 T86，2026-11-23"
   },
   "margin": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "證交所尚未公布 2026-11-23 融資融券資料",
-   "source": "證交所 MI_MARGN"
+   "data": "融資餘額 49,422 張（+1.27%），融券餘額 585 張",
+   "source": "證交所 MI_MARGN，2026-11-23"
   },
   "txf": {
    "signal": "偏多",
-   "strength": "弱",
-   "data": "臺指期126夜盤 36831（+0.47%，相對日盤收盤 36659）",
+   "strength": "強",
+   "data": "臺指期126夜盤 39829（+8.65%，相對日盤收盤 36659）",
    "source": "期交所即時行情，夜盤 2026-11-23"
   },
   "futures_oi": {
@@ -5193,9 +5246,9 @@
    "source": "期交所 OpenAPI，2026-11-20"
   },
   "us_market": {
-   "signal": "缺漏",
-   "strength": null,
-   "data": "尚無 2026-11-23 晚間的美股收盤（最新為 2026-11-20，已反映在台股收盤）",
+   "signal": "偏多",
+   "strength": "強",
+   "data": "費半 +14.03%、那指 +6.51%、標普 +4.73%（2026-11-23 美股收盤；以費半判斷）",
    "source": "Yahoo Finance"
   },
   "asia": {
@@ -5211,10 +5264,10 @@
    "source": "公開資訊觀測站 月營收，2026-10"
   },
   "fx": {
-   "signal": "中性",
-   "strength": null,
-   "data": "台股收盤後新台幣升值 0.18%（美元兌台幣 32.898 → 32.839）",
-   "source": "Yahoo Finance TWD=X 每小時報價，2026-11-23 14:00～2026-11-23 17:43"
+   "signal": "偏多",
+   "strength": "弱",
+   "data": "台股收盤後新台幣升值 0.29%（美元兌台幣 32.898 → 32.804）",
+   "source": "Yahoo Finance TWD=X 每小時報價，2026-11-23 14:00～2026-11-24 05:46"
   }
  }
 }
