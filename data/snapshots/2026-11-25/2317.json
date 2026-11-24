@@ -1,13 +1,95 @@
 {
  "news": {
-  "fetchedAt": "2026-11-24T09:43:31.430Z",
+  "fetchedAt": "2026-11-24T21:47:34.435Z",
   "since": "2026-11-24T13:30+08:00",
   "stock": [
+   {
+    "title": "熱門股－鴻海 明年業績有看頭",
+    "source": "中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE54dXdQUHkyU1B0VTNVWldCOVhZUzB0TEU2T1Y0TEVsM3prZVJXak5KMUJ6VWVScGZQZGVOR3VSSHhUOHVMbVljYThmYko0ODJPQmJpSWZWVkVtcWFwSEtOa1lsTjhFWEFqYkNB?oc=5",
+    "time": "2026-11-24T20:10:00.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "2317 鴻海 - 今天帳戶翻紅幾百沒賣，現在的心情和星期一停損的人一樣幹- 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9ncjJsY3dtMU12cjN1c0hFbUQ3TkxJZ0IzRE1jcVhmcmQ4eDlVM1UtZEVmaUpwd1BsdEtMbEowRmVaMGpZRFhlYzRmUjZxc1p2MVBvb25teUQ?oc=5",
+    "time": "2026-11-24T15:14:10.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "2317 鴻海 - 財務成本對AI伺服器代工廠的本業獲利侵蝕的分析- 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBOY0MxNFZ0RmJ0QzM4NzJUMHhrcXBXNXZ1Z3VKandvV01ISGpnY0thLWxHZHY1LVhZUHhhYm9haVRRaUVnYVo2Rlh3TWhqdEh4QzY1eS1aek0?oc=5",
+    "time": "2026-11-24T13:58:39.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "鴻海擬發可轉債籌資額上看15億美元| 科技產業| 產經",
+    "source": "UDN",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9vMUlxY3pYemtXbVdpSl9DRTU3UGt4dmpiVVVSOVJwVnQyUXFtdmQtbHpHaV9qRTJveV9sY0l0S2U0STlNTFFzUTFBWHlabF91?oc=5",
+    "time": "2026-11-24T13:30:46.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "【即時新聞】輝達黃仁勳回歸穩固AI伺服器供應鏈，法人看好鴻海營運後市！",
+    "source": "CMoney投資網誌",
+    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOOGtDckp0eC1wUm5hMFQ4VmxGRDVTRGtGZ19vdThhWWdsZmlGNUdacVFKZ0Vocm11TEFsNjlUOFEyRW9HMV9oSGxGT0pKRzZBSDZCVnpBYWVibHBUZjZ3Q1hleTFHbzBzVko0Nk94Z3dxdDQwV0lMSWJ6ZVFoM25zcTlzR1Y5MFNqVlNMZzhra1E?oc=5",
+    "time": "2026-11-24T12:52:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "2317 鴻海 - 借券賣出+477（連續8天增6,681），融資-404 - 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBOcnFOZFBzYU43OGFxUkZ0TnBSbGJvWE0ya0o3aHB1M3JiUzBYMGZxZml0eXZrQks0X05DdGppWDN5VWhfUkxGNEFIR1RnWU1BNEkxaEhOR1k?oc=5",
+    "time": "2026-11-24T12:46:59.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "黃仁勳重返輝達激勵AI概念股 台積電鴻海強彈但市場疑慮未消",
+    "source": "民視新聞網",
+    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9KVVpYUGlCd1JFa3JTdFF6bkhLTHdRbW91TnRCTURlQXQtbldfMzd5aUdFOWtfT3Y5Q0Rta09DVWxkc2loU1A0RlRTdl9PUGxveDFJRjZURVZiTlpkNTg0dA?oc=5",
+    "time": "2026-11-24T12:01:20.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "11／24台股雷達｜台股絕地大反攻鴻海、台積電強勢亮燈漲停- 證券",
+    "source": "工商時報",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBSSnVhY3F2eVUyczc5N1ZrWHVyZ2JUMkIzdTFCVld5aW15VmZPMmZPOWNqc0Fsd0pGcVZsbFcwcTNtajNjbFpwWTVBS2NlNElJYm0wYWw5V3N2MjN0Ukkw?oc=5",
+    "time": "2026-11-24T11:28:00.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "鴻海旗下工業富聯宣布配息 前三季股利年增3％",
+    "source": "自由財經",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE15V2V1TjkxTUdmN2taU21pY2pLaVpkZVJDRXJ2TV9xdWZuRWJIU2hEVU9GS01hLS05ZUJTSU5CZW9UZUJFN1JmZ3gzSU83c2xFZnQ1MGkzY28tZFhtZWF30gFkQVVfeXFMTXRjSHJaYWhuc29iM2ZHckNFRjFmaTBrQjJJSTZmcXM5ck85UWFDVHBTckNpZlB6NzhtMk5pOTUzUXlCTW9zeFk5Zzd4eUFGQUtGUEZOTHFmeGx5dWpqU3N4cEllUw?oc=5",
+    "time": "2026-11-24T11:16:19.000Z",
+    "tags": [
+     "公司事件"
+    ],
+    "trusted": true
+   },
    {
     "title": "黃仁勳回歸！鴻海、台積電、聯發科等556檔都漲停 金控總座曝供應鏈鬆口氣",
     "source": "Yahoo股市",
     "url": "https://news.google.com/rss/articles/CBMiwANBVV95cUxObzFDYURvTXZYbFJlc1hYQjFBMG10X3REVGxIVDFPZE1LYUhPVGtQOVNPdmNicVdvU0swcWhnd2thRmRjcjBpbTR1MHVERmRLdktsTWNubnJMSkRPZHNfYlBuQlVmQndKc215aDkxVTJ0UXlINUFrTU9IMzVxLTJtWmFBazN0MVJLNTRiRnBZWHdqQmVPVC04Z0xWVVBVc0hpN3BGT3lWbVF1VTFiNWRPaDBlQzJycHhCYU1ta19IRHQyUU90WkpvWmxkVkd2VUJJNE5ESGMxWnMtUWdhckd4WWtCYzRRUGdtbTkxSVpvamc2czVKRVAtX1FCN2lFN0RLeTRvOHE0OG8yVmJSN0xzbmJYSVYzbE9KUjhwaEIzUjlJQ3ZheGNqem12MWdkRmItYkNMTzZaRUNaekRUNnhaQlFBb2hiMkxFTWh0Y2NlTV9wanE0eF9nd3Rtb3plb1pzazVjWWk0UkRBRG5odWZwRGZIcjN2N3pyVml4UzZjWXZCaUV0QVBKQ1JXaXNqeEZfbFZiVGFLOVliYlBfUlQ1YUxqZUZ1N1NvOXRrbEhPQ09zaHpTQmpvQlVUMFBFYktQ?oc=5",
     "time": "2026-11-24T09:23:44.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "黃仁勳回歸！鴻海、台積電、聯發科等556檔都漲停 金控總座曝供應鏈「這樣說」",
+    "source": "民視財經網",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFAzaklZYzkyb01MZFQ4YW1Pek9xUHlkS3VfZmVSUVVzWjJ0eDdGSmVVREhpeVgzYzZTazVyUnhnRC1DY0Jvel9OanNnMlVsTXZVM2FUeThfci0tS1U0eTZodmxvNmxlZw?oc=5",
+    "time": "2026-11-24T09:23:43.000Z",
     "tags": [],
     "trusted": false
    },
@@ -18,81 +100,64 @@
     "time": "2026-11-24T09:12:57.000Z",
     "tags": [],
     "trusted": true
+   }
+  ],
+  "market": [
+   {
+    "title": "財經青紅燈》多給國安基金一些子彈吧!",
+    "source": "自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBXOEIxSWJFNkI2M3FoWmVjR2RHbW9tSHNxYjFQYjdCc3BhQ09VaTB3d0lfdU9DWUlqN2FWZHRBZmI1anhWT1hxWU90RllqbjlISUpVYlJSQjU?oc=5",
+    "time": "2026-11-24T21:30:00.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
    },
    {
-    "title": "11/24(二)明天會震盪!!換股時機?台積電⊕、鴻海⊕、台達電⊕、國巨⊕、金像電⊕",
-    "source": "鉅亨號",
-    "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5lei1qcnM3M2ZVejNjN2dpTi14YXJOVWpCVWNveEMtcnlHNm1OdXptSEhqN29ZdnFfSVRaUVRMblRVLXdRZFpxVg?oc=5",
-    "time": "2026-11-24T09:09:04.000Z",
+    "title": "民進黨在護台股的盤還是選舉的盤？ | 觀傳媒",
+    "source": "LINE TODAY",
+    "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9KbVh5NGtBaEtKSzV6N0NrRTY4MG9JbzVXLV9YSkhSQ3dta0UxdGplTzFLajBGbWVRZmJ0dG5YQnIwOWtjUkYzcldlYi0wUnBQa2ZHU0hn?oc=5",
+    "time": "2026-11-24T15:15:10.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "AI 總司令回歸！鴻海、廣達、台積電漲停，輝達概念股還能追？五大 AI 供應鏈全盤點【黃仁勳11天回鍋懶人包】｜美股觀察",
-    "source": "永豐金證券",
-    "url": "https://news.google.com/rss/articles/CBMilwVBVV95cUxObE5PY0J2eG9YSy0yTUtLdHRVaUpEN0p2WWJFekNJdlQxZVEtelpFUUFsV3hvUHV4SG9yQ1pyMXE1VE5JN1A2WElmR1BndHJ4RjVScEowSS1jeWZJemdDQmNwUTR5ZGtvY0ZxWEhEdVJuMmNSNFJzTllOU0xmZUhjR0VBT0RTcWxCXzZpaW5YNUhwT2p4c0lNMG14OWlLOEllSkJzbk5RblJJUEkzSlhscHVCZ1lYTGFrVWxSZnprbk84OUFYaU9sV29mY0hMcV9GcjE0TDNQWVFTOUc0enIwQy1CaUc0U1FTTnZMMHA2MkJDOFVsRzc2YXpwQ0lmNjgzVmc0NFNreVpmbDlqMGZOQjVnYWY2SjVHRmM4NEZtUEVVNXA3NzZOZjZZYTdYSUxmUXdYYlFyTXFsa2p4VDhqdUhvTDZFaGJMczhUSVZOdHVMVWl3Z1hwZEJsUGJhWGV0WEFhS0dDS0dHbUlfbU5odHJVdkdyN1B0R1EzTXpkZk8tTjlpMEREb1d6cEUtaVFlZ1N6cWNlT095ZkNFQnBTN2lqZDhCUVpWU2lqUDZHd3lmVktCWWs3d3EtTlRwNmJTQzRFM1dFdXl2NnloS3lGX1E5MHZKcGZhekxkT3V6azRaRDliYUQ5UG9OdkUxbEJFaUhKb0NmRkh0UHI1aTA5X0o3TnJHQzlWQTkxb1hvR09kdGhDVjBqbTdZaGlSdnJVaHNOQWRIeV8ta0ZaU0hTMWhkdXNEcjFYX3VnYVpNNjFpTVhNak5aTFh4VjV0ZE9PS2ZFWDluWlVBcEtuWktFOTd1c05OZXR5ZTBvcFoxMzdwbzZLVE5nTG5nR25wNXIxcGhrc2JtMkhRYl9mXzVFcUpRQnpQYkk?oc=5",
-    "time": "2026-11-24T08:56:34.000Z",
+    "title": "快訊／台指期夜盤失守39K！狂殺近1500點　費半重挫逾7%",
+    "source": "ETtoday財經雲",
+    "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBuLXd3X1pfQjZZQXo4SlhhVmVmRVRFSksyalJMYzNYODlGLUhnLVU5SGtQVDY2Qm0wZnV0YXVMRG5pVmJ3MnZBbUVUYmFCc1d6WUHSAVBBVV95cUxNTmJGUEgwQkE4eWtncGV6Ty0xU21lQ2NnQzhhYzZMQ2xRZW80Skptb252X0tSdkhxWkswWmxkajhNcDJyM2R1U3BhZV9aOXNFTQ?oc=5",
+    "time": "2026-11-24T15:15:00.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "2317 鴻海 - 唷~你真的是酸不得欸! 昨天酸你一下，今天尿布包緊緊- 股市爆料同學會",
-    "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBLdkc0SUdSUy1ncEI4cDl0aXlzbkhVLU1NcUJ0bjJTalV5b05JNE9UT0JfOTlMZGFCcVJ0X0JOcUZyN2ZUaUN5cDE2Qk04dGVPVGlxc0wwbTc?oc=5",
-    "time": "2026-11-24T08:51:13.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "AI 總司令回歸！台積電、台達電、鴻海漲停，概念股還能追？五大 AI 供應鏈全盤點【黃仁勳11天回鍋懶人包】｜美股觀察",
-    "source": "永豐金證券",
-    "url": "https://news.google.com/rss/articles/CBMiiwVBVV95cUxNM1ZYOFY4bFNHTUpkWEVJTWdRWlllenVPdE02clRTZ2R6OXZ4UVpSY2xkSERBYUM1RENnOEs1ejZuekR6N1AxandBQlRWdHVhajJ6a3pkMGh2SjdrUTlGNVdWdE1mSWcwU3pBTmllOEt2QUdLRDVfemk0RHA1S3ZFUnQ2cklpTGpORHFLS1lnSGhtb0FtUjgzOW5ZMndiQW5aRnFYZS0wM19fZ2UxZzlnUzVlcWNVWVRrRHVwYkZaTGg3QUxLakpjOFlHMkpGV29OQ21oaVRlR0xvUkkxeFdDOVQzMzdyVGhrY1FyV2ZNbXlWNkRsbEtQNW5XQlAxRjc5M0RVOXJpYmVVOVVyVkJZbmIwVXFQQzdUY1ZDOWQyN1Mzckl1RnRTNHFLZEdHRWhsOHJKR1dhSEl4eTR0NEhEZkF5VDRIcFp1M3F1enFlMmRPY1o2S29obmJPeFpRV3BfdGtyWFBOUm5HQnZ0Tm1WdHpKYnpmRkRnaDE2cEdfbWNjMHpKRkhKdENQY1FoY0ljT1lYbDdId21pSVNtM2k4OGc1dGk3dWI3ejIxc1FqVWxsZmVsQ1pEQ1ZMTUNDLW42TENMZUZIOU9BVTh6bVBRTlJ1ZVRScldXR0dGS21WRm5QQlVRaF9ORXlUbkxyaEtMNFl4MEJYQ3JiT1llRGk3blplRjlzSmVXaHFwQWZhWWVqeEo3Mjg4SUtLZUxTOVVNc1NJOTZyQTk5d1prVXBHNzItQzk4Q2xzNXh6d0NjRzZPOVBVekNFWjJHX21nQ3loaDZjaERlVlVIazJwSl9iQ0J5ZHlOOGtQX3otcURnRjQxVGo4SUNKdUdfd1Axc3ZudW1GQ1gxTTZMQzg?oc=5",
-    "time": "2026-11-24T08:41:36.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "為何今天大漲、外資卻大賣500億",
-    "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFAySXJmU2kzU3Q2eEhXSnltY3RKclpkUWIxc0lrZUtyVVlwYXNBME9pUXhNRi0yTWR6cjVZVHA1UXQzMllEQ2RMa2RhWXMtVzFWaUFIdk54OVg?oc=5",
-    "time": "2026-11-24T08:26:35.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "2317 鴻海 - 資策會攜資安業助金融業加速後量子密碼遷移強化風險盤點、系統升級- 股市爆料同學會",
-    "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9kXzlRal9CSHUwYkxiaVhqSHNIVG9uTE1TcG9Ed0dFY2V3dnRtTzdzRHdDQzdKSWZua2diY0FVU19aU2hadVRsRGVnczdsY3g1cUtMR2hrREg?oc=5",
-    "time": "2026-11-24T07:15:18.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "台積電漲停到底！2萬多張買單高掛 市值一天暴增鴻海+日月光",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMilgNBVV95cUxNQ25ieEwtNHJnZ2c3cTZ2M2lzODExTUk2S3lMbXlyNjZNVExtd0lUSG94U1FlTzFNSTBZTEdxX2hkWm1qVkZBbDNudGxORVhLejlQS1FveE1qd0tzMDVwU2V0U1ZXektfVDg2RTRLOWtGWkxzR3dodHM3Y1A1b0dkZExLYkFmSHZxSkxTamlPUzhxMzNDbnFvSkNmN0xrVVpENXAyaWFGQjF3UXVDLWNMWW5xUkxMQVVoV001el9NbFdOMFBvdk5YVmF6a2tua0ZOS0hTRHZvTU5TTEk2d0ZBbms0RTNqaklPazVXenBHakRfOWwwbVhxcFlmSHIyZllPbUIwaHRlQ0FSLUt2djRDbG5lbEdwTTU5MjFueGlfOUY5dWV2V1VlbnNmdG9LTGNKRjA2U3hEdUIzTU9meFlzSE5fRktTVnlROE1fQ1pxbHRuT1JKekZvaXhlbVRicDhHOTJBYXk2cV9takNaa2ZjaTQwQW9DMlBQTnpBdm9ZYWs4eWdCZjdmc0YySTlUc3lVcTc3RDln?oc=5",
-    "time": "2026-11-24T06:37:46.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "2317 鴻海 - 黃仁勳 11 日風暴： 台灣媒體落井下石與翻臉實錄- 股市爆料同學會",
-    "source": "CMoney",
-    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1JTWp4TnNUN05SNktlZW5CdDFaQkxNU0RqelNCLWZrelRjc2J6cTZXNUFfOGRPb3ZzUVZ5LUFFR0didzkxZFAzNWFDX0U5cHF3ZElLRFZWZHM?oc=5",
-    "time": "2026-11-24T06:06:15.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "【即時新聞】最新宣布！黃仁勳回歸輝達穩居AI霸主，法人看好鴻海等供應鏈受惠！",
+    "title": "美股回檔！NVIDIA 獨角獸燒起又降溫，半導體與雲端股回吐漲幅、PCE 將決定聯準會下一步",
     "source": "CMoney投資網誌",
-    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPNi1Qa1VxSnRhTzlvSmFISFhKZGJ5OTJnSFlNc255NW9uUWRPNEp0ckxNOE93X0dYaVdjSU9zdTJFNmtJMVM4WVU3b09ZQUJDZW1qc0dmSFdJaUJ2c1ZrXzFYR3h3MmtqOGRYRGFfY1NHQThjWExxYkh1S0ZMXzZ2T0VwR3NMbGlMU3NJMHJ5aUQ?oc=5",
-    "time": "2026-11-24T05:56:33.000Z",
+    "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNGhyUjVjSWlEZ1RVZFBJUG9ibkFwaFlDUG9mMk01akRDVGhjTVdnc0RyTk1yUEs2Y0RkTERyMm1pVXhJTTBpZnNmczR0TU1SVUtGX2hTblFTbkx0VFp1RVJPOGpMTDhIX3NSVEo0MnFfZk8xMnUwY2hsTTJBNU5VY19paVVkNkY3OFJOYlFB?oc=5",
+    "time": "2026-11-24T11:24:15.000Z",
+    "tags": [
+     "利率"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "台股救市措施再加碼！證交所鼓勵庫藏股、融資維持率降至 120%，政院研議擴大國安基金",
+    "source": "果仁家",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1keEhUc1ZMOEd6QjhSWFRPd3J4SW1FVGpFOS1QS1dWakNMemNncXZxR29YSHRIcExLYk1nWFNuajlkNWc0RktDN0kyeUVxaXlMaGxJ?oc=5",
+    "time": "2026-11-24T08:51:32.000Z",
+    "tags": [
+     "國安基金"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "台股狂飆3310點「漲點歷史第一、漲幅第二」！PTT嗨：歷史留名",
+    "source": "ETtoday財經雲",
+    "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1iMmdDWlJYM2lwVmpDX3ZURmZqb0tWZ2pSMWlEMzZwR2t0S0RHTWZ2ZDFBVnliNUphdTViUlJXZFJHZUloNHFRdzVCbENEMXZ0dFHSAVBBVV95cUxPWVNWRzA4NkZZTlhHWWQtUkhFS2xiRXBkRm15Q2g1Z18tUmdhVTZWaHJGR05rbm1ZMlNSa0ZacmlxVjRRcHFOZ2dtbVlncGNWMw?oc=5",
+    "time": "2026-11-24T06:46:00.000Z",
     "tags": [],
     "trusted": false
    }
-  ],
-  "market": []
+  ]
  },
  "meta": {
   "code": "2317",
@@ -101,18 +166,11 @@
   "basedOn": "2026-11-24",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-24T09:43:31.430Z",
+  "fetchedAt": "2026-11-24T21:47:34.435Z",
   "newsSince": "2026-11-24T13:30+08:00",
-  "timingOk": false,
-  "stale": [
-   "美股（2026-11-23）早於台股最後收盤日 2026-11-24"
-  ],
-  "warnings": [
-   "證交所尚未公布 2026-11-24 借券賣出餘額",
-   "證交所尚未公布 2026-11-24 融資融券",
-   "選擇權資料取得失敗：抓取失敗 https://openapi.taifex.com.tw/v1/MarketDataOfMajorInstitutionalTradersDetailsOfCallsAndPutsBytheDate：Unexpected token '日', \"日期,商品名稱,買賣\"... is not valid JSON",
-   "⏰ 時序檢查未通過：美股（2026-11-23）早於台股最後收盤日 2026-11-24。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
-  ],
+  "timingOk": true,
+  "stale": [],
+  "warnings": [],
   "sources": [
    {
     "name": "證交所 STOCK_DAY（股票名稱）",
@@ -4754,8 +4812,21 @@
    "dealerHedge": 786
   }
  ],
- "margin": null,
- "lending": null,
+ "margin": {
+  "date": "2026-11-24",
+  "marginPrev": 49422,
+  "marginToday": 49018,
+  "shortPrev": 585,
+  "shortToday": 589
+ },
+ "lending": {
+  "date": "2026-11-24",
+  "prev": 105066,
+  "today": 105543,
+  "change": 477,
+  "sold": 477,
+  "returned": 0
+ },
  "revenue": {
   "month": "2026-10",
   "revenue": 1305319612,
@@ -4771,11 +4842,11 @@
   "institutional": {
    "date": "2026-11-24",
    "foreign": -503.9,
-   "trust": 84,
+   "trust": 97.6,
    "dealer": -810.3,
    "dealerSelf": 15.9,
    "dealerHedge": -826.1,
-   "total": -1230.1
+   "total": -1216.5
   },
   "txf": {
    "date": "2026-11-24",
@@ -4790,9 +4861,9 @@
    "night": {
     "session": "2026-11-24",
     "contract": "臺指期126",
-    "close": 40016,
+    "close": 38482,
     "ref": 40324,
-    "changePct": -0.76
+    "changePct": -4.57
    }
   },
   "foreignFuturesOI": {
@@ -4818,9 +4889,9 @@
       "dealerSelf": -1499,
       "dealerHedge": -15289
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": 6212,
+     "marginBalance": 505700,
+     "lendingChange": 1000
     },
     {
      "code": "00632R",
@@ -4838,13 +4909,29 @@
       "dealerSelf": 0,
       "dealerHedge": 13203
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": -11192,
+     "marginBalance": 187219,
+     "lendingChange": -811
     }
    ]
   },
-  "options": null,
+  "options": {
+   "date": "2026-11-23",
+   "foreign": {
+    "callOI": 13425,
+    "callValue": 1240202,
+    "putOI": 751,
+    "putValue": 256665
+   },
+   "dealer": {
+    "callOI": 11023,
+    "callValue": 621162,
+    "putOI": -625,
+    "putValue": 167144
+   },
+   "putCallOIRatio": 30.9,
+   "putCallVolumeRatio": 54.21
+  },
   "flows": [
    {
     "date": "2026-10-28",
@@ -4944,49 +5031,49 @@
    {
     "date": "2026-11-24",
     "foreign": -503.9,
-    "usdtwd": 32.931
+    "usdtwd": 32.953
    }
   ]
  },
  "global": {
   "sox": {
    "symbol": "^SOX",
-   "date": "2026-11-23",
-   "close": 9588.05,
-   "prevClose": 8408.59,
-   "changePct": 14.03,
+   "date": "2026-11-24",
+   "close": 8832.5,
+   "prevClose": 9588.05,
+   "changePct": -7.88,
    "label": "費城半導體"
   },
   "nasdaq": {
    "symbol": "^IXIC",
-   "date": "2026-11-23",
-   "close": 24089.56,
-   "prevClose": 22617.73,
-   "changePct": 6.51,
+   "date": "2026-11-24",
+   "close": 23733.54,
+   "prevClose": 24089.56,
+   "changePct": -1.48,
    "label": "那斯達克"
   },
   "sp500": {
    "symbol": "^GSPC",
-   "date": "2026-11-23",
-   "close": 7237.17,
-   "prevClose": 6910.39,
-   "changePct": 4.73,
+   "date": "2026-11-24",
+   "close": 7201.09,
+   "prevClose": 7237.17,
+   "changePct": -0.5,
    "label": "標普 500"
   },
   "dow": {
    "symbol": "^DJI",
-   "date": "2026-11-23",
-   "close": 49595.31,
-   "prevClose": 48147.33,
-   "changePct": 3.01,
+   "date": "2026-11-24",
+   "close": 50018.7,
+   "prevClose": 49595.31,
+   "changePct": 0.85,
    "label": "道瓊"
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-23",
-   "close": 26.62,
-   "prevClose": 35.89,
-   "changePct": -25.83,
+   "date": "2026-11-24",
+   "close": 26.36,
+   "prevClose": 26.62,
+   "changePct": -0.98,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -5008,16 +5095,16 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-24",
-   "close": 32.93,
+   "close": 32.95,
    "prevClose": 32.95,
-   "changePct": -0.07,
+   "changePct": 0,
    "label": "美元／新台幣",
    "afterClose": {
     "from": 32.851,
-    "to": 32.931,
+    "to": 32.953,
     "fromTime": "2026-11-24 14:00",
-    "toTime": "2026-11-24 17:43",
-    "changePct": 0.24
+    "toTime": "2026-11-25 05:46",
+    "changePct": 0.31
    }
   },
   "taiex": {
@@ -5074,15 +5161,15 @@
    "source": "證交所 T86，2026-11-24"
   },
   "margin": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "證交所尚未公布 2026-11-24 融資融券資料",
-   "source": "證交所 MI_MARGN"
+   "data": "融資餘額 49,018 張（-0.82%），融券餘額 589 張",
+   "source": "證交所 MI_MARGN，2026-11-24"
   },
   "txf": {
    "signal": "偏空",
-   "strength": "中",
-   "data": "臺指期126夜盤 40016（-0.76%，相對日盤收盤 40324）",
+   "strength": "強",
+   "data": "臺指期126夜盤 38482（-4.57%，相對日盤收盤 40324）",
    "source": "期交所即時行情，夜盤 2026-11-24"
   },
   "futures_oi": {
@@ -5092,9 +5179,9 @@
    "source": "期交所 OpenAPI，2026-11-23"
   },
   "us_market": {
-   "signal": "缺漏",
-   "strength": null,
-   "data": "尚無 2026-11-24 晚間的美股收盤（最新為 2026-11-23，已反映在台股收盤）",
+   "signal": "偏空",
+   "strength": "強",
+   "data": "費半 -7.88%、那指 -1.48%、標普 -0.5%（2026-11-24 美股收盤；以費半判斷）",
    "source": "Yahoo Finance"
   },
   "asia": {
@@ -5112,8 +5199,8 @@
   "fx": {
    "signal": "偏空",
    "strength": "弱",
-   "data": "台股收盤後新台幣貶值 0.24%（美元兌台幣 32.851 → 32.931）",
-   "source": "Yahoo Finance TWD=X 每小時報價，2026-11-24 14:00～2026-11-24 17:43"
+   "data": "台股收盤後新台幣貶值 0.31%（美元兌台幣 32.851 → 32.953）",
+   "source": "Yahoo Finance TWD=X 每小時報價，2026-11-24 14:00～2026-11-25 05:46"
   }
  }
 }
