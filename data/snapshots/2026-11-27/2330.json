@@ -1,42 +1,164 @@
 {
  "news": {
-  "fetchedAt": "2026-11-26T09:44:03.409Z",
+  "fetchedAt": "2026-11-26T21:47:18.942Z",
   "since": "2026-11-26T13:30+08:00",
   "stock": [
    {
-    "title": "【Follow法人】外資提款台積電392億元！同步翻臉重砍台玻8萬張 中華電也難逃萬張賣超",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiggRBVV95cUxQSHNncVJnMWFUUUxPSWxUSjhIVHZNWC1lMlJoMEVzQlc0WTdlRkphazhxbEFqWFRVSmNYZ2hLMmxmSy1uZ19qdFNtUjg4b3A1WXRVZGpuZjhRSWw3SkRJeEVoRlJOMnhmdTNmNDJsTDBTeUJha2tpY2JDOVRRV1k4R1NyQkZlWFByUDNLQ0JCcTRxbkNLRks1TG1GVnFqVENqaWROcTlRUHdVZVFKUGtZVFFkR3hfUW9BQnA2aUtCc1FHVGZuek1VX3dlNmZORDJkVFR3UnZoUzlmX3J6TzZfbzJuUFJSUGhzaXZnM2JFXzllLVlZTTlWeHlDdjlWTGhpUTN0Wl9yQjVCN1RDQUQ1VHZjZjB2YVZVOUtzOW5JckZmaDd2QUNwWnR2M3pRRDlBa2ZTY2RyLWZvb3dfNkM0MUhjOUlzMDNBdldITS15NWNJNlNPdGJpM1R3TjF5RmVIYy1JMmNHQjFnZTZQWWNRU3ZOVmdPRVE3S1dVakhyNjgwRnZCWnhNSnFEMmRXcU9Bdi1nVHJoNU5qZGdRcnpTdEhjRU92RlBvbm42RGtQeTM4dDZ4b2wzX1JQNlJLd1lLX0FFRWU5NGtiU1ZSNWRuOWdKTzBIVTE4TDd3VEdWQjNQZnJJT2tsS3lDWU9DaHF6aGJrYi04ajFHU21rMHVwaDZn?oc=5",
-    "time": "2026-11-26T08:36:40.000Z",
+    "title": "台積電德州廠細節曝光！擬砸226 億美元建2 奈米廠，10年減稅成設廠關鍵｜股市話題｜豐雲學堂2026 年 11 月",
+    "source": "永豐金證券",
+    "url": "https://news.google.com/rss/articles/CBMiggRBVV95cUxQNll2dGVEVHBOSGJYTmNqNF9kSHRKZ3Q0b2l6NmFHdktMcmdtOWNwTW9HYzdITFNiOWFzeEFrdXY0M2V1RmZOdVBQLTZuaWJDZDRyNk84RGtHUkNxSG85REdYR3JRN2k5U01VRW1pdEE2TTJoZUhpU3RPcC1hbEtlTjlWV0VKR3lGMzJ4ZURvQVB0OFlySVBPUk5acndrT29YSXFTamI1TXl4RVVmMHBabXVPTGg2YUJMQXJJMXBFWktqM1FVa0xNYUk2alBkVElhbGtnZjdhcl9MSWpSU0tUdHhEeE9QeFFHUUk4WTBGU3hXYjZBUnRIbU1oNjdfMkFVRVFseHBNV1FJaWNWaFRhcXFEYjE5MG1HY2tGQnR4Wmo0V2sySjBPaFlOU1lVZXJMRjEtRU9BZ2NhVjlCdUV6TTVWMnkyLWota19XVkVRaUVrTUNoZEE2cUVxX0RneUJTMnNuckZ6YmVBbmVTb05kcjExMnc0bmd1bGRRYUd5NWM3SFYtbjkwUzRTeTNuUzE0NmN0UUp2bHoxQ09KdHFjckQ3Z1I5NUcyYWVGb2ZKem12VE5oSGNvX1l2dTZFdWxvV0xpemNXeWpTUWtzUHd1dExUNVZka3NDSlA1SGlueFlOYjU5VTZzSkM4bDZFcU41RWRYWms4a21KdFlHWENEWXV3?oc=5",
+    "time": "2026-11-26T17:41:37.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "尾盤遭2千多張賣單狙擊！台積電又失守10日線 跌5元收2145元",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMi-wJBVV95cUxPdEFyMk9QS1JQMlo1cUEzcW9faG50UDZlOGFFd0JTUmJBTm1zM0hsalI5cUktLWVTUENmSzRSNDdLVEd4UkZTVXNNVGtfM0lwWHhjNktySTMzWDllVTUtYlNCTkxYaVpzNnNCWjNGc19QMWhCUjB2cTA1blMwMngtNko1N2xVYkRDOFRZbkhqVVF4eDg2T0w5LTlqbkZ3aERsV2ZqQmZNVGVvcE15VlNQalJMVElzbDQzbHgwY1BMLUJ0WHpmamVtSzF2NDVjVEJJd3gzVU5KYnpOQzFHejlFUHdnY2FlZjQ0YVhEc2ZGUUVacU11QmVFTG92dzhESmNZQ25qc0pISEtfOE9mZWlOT203elN0VWJvWWV0YmZ3ejVpQ3ZXYTNjOUdBVmhFS01oeWxqR0ZocUs5YlBScmRWSzlqY2k0ZHR1cHhzc0lfV0ZDcWVSZkozeGU1SktUWHRTRDAybUFEWG1YT1pfQ0R1VGhPRUx1WWthX3g4?oc=5",
-    "time": "2026-11-26T06:56:05.000Z",
+    "title": "【即時新聞】台積電獲法人點名AI核心，投顧預估明年台股獲利成長30%！",
+    "source": "CMoney投資網誌",
+    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOVk5TUjJiLUlqWTRBY3FVdFNkaHdXSnZ2M2tnSzN1Ty1RajFTbVBmcW5GMFQzT21pU2tZcGhlVnVwc3hfczJkOEdQek4wRWNtcTR6Wk1jYVBWLUtuM2lOdXZIM2NPNE5DNWNoZGVEVXNoX1hBN2ZtWE5TTWtoM0cwNzFfXzBfMS1PWjNzamtYM00?oc=5",
+    "time": "2026-11-26T15:52:30.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "台積電尾盤被偷襲！台股收漲956點 被動元件、PCB大噴漲",
+    "title": "388億元賣廠給台積電！「面板大廠」加速營運轉型 自營商砸逾2,700萬元買進",
     "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMi1wJBVV95cUxNdWRzOTRpRm9FLWxVMV9sOS1pbGZzNVdteWY3bmdIUm1QQW1ULXdnR0NKUkh5MlI4aG5xN3hUTnlDc0lFNl9aZXUtYkQ5NFJIdVlBVExEMWthbGxPRmE4R3JqbS1sTGxLdEFkNzNKQThwTEhzRkVqOS1jV0dyNV80aW8tMHRnUXRlREwzend2NFBVRTZLalVDZUtFNmstZk1ReGt6bUNYb2xwSm9hM0tfTjVqNzNJR1hFdG93czgwcnlFMWJTV3h3aWxvTzZLbWJJUWdmMDFNaU1JRjhBaVJTNDVHc0RYTnpWVHRVRm9HMlBrbERpaGNCZkVJZE05Rm51cDRfUWxQVkZ2Qk5lMnItNUFRZzlSM1AwRHRZVkxLQmZTTWNKajhGZnJsMXZ6cTVQdzZidmtTUURMVWoycmx1TzJGdUJqdVpOajd3VU05QW8tOUxpamNZ?oc=5",
-    "time": "2026-11-26T06:32:32.000Z",
+    "url": "https://news.google.com/rss/articles/CBMirgNBVV95cUxOUWdZcjhIVHprdEc2ODJYRE5samNtenRWc0NpYkhmZWNTdEZaYVRZQ3FPSGZieWpPOGx6S1NuTFBtT2RxWlpEVTBwR3FXdUdBRzF4TGp1YS0tZ0pCUGRXVkNfUkNobmFIc1QzbnIyTlpVSzBSZllrZU1nTDQ2YnZrOXczSnllTGgxdWNZRDZseG9Ta2pwREdSMnpqejB5aFl3ZFcyUzZoUzVibl9sT2J6LXJiaU1Wb2p4TkVXNTF4Q3BmVEZoRFJNNVNsNnRBUmZiZEV5WWhRZDNoNnpLd2N0TVFVbmc4ZjdlOHVZX3R3SGFqTktSWEZuQnNRUzJNdXpXYW5sQmVySG5fVjJ3U3BSWHotdHdoVUp6OGJYbTJVcU5scW4zTEd3UFdXXzZKZTk1YWFrX2ktWkpvTWpUU2t4SlFZeFZ6QmcwUE9TRFlIWFNVc18tQjdiaXBwNDZGVGRVNGlxVGVMOXBrQ2ZOdzRsRmNCRXZVYmNvOFNaRExCcXhKM1QyUFliUU9Id2RhQWRJb2QzZDQ0SThDZWJLMUNSeXB0Q1RDeXdIWkhnd1N3?oc=5",
+    "time": "2026-11-26T14:45:00.000Z",
     "tags": [],
     "trusted": false
    },
    {
-    "title": "台積電正是甜甜價？外媒點名「逢低值得買入」 理由全說了",
-    "source": "自由財經",
-    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9MaWhva1VyYXNlNXZSMDVvYmhqZC1tTDJrRE5jdGcxb1BNUUhXZWF2ZzUzSjlZQlhpdHB3VFpBeG81ZGlhalQ2QV9LbkgteDVURE5jWFd1dzBaTlpReDdJ0gFkQVVfeXFMTjVCQm0xWTdKd0Z1M3F0MHlDTUsybFRBWFpnNERnSEFrMUdmcjV1bEROTFp0emZDenJlTkNyMDdFMFoyMTJZay1nOVFEOTVFb2NJMk1YTFdDX3AwNWx2OGhxRkctTw?oc=5",
-    "time": "2026-11-26T06:14:46.000Z",
+    "title": "連續9天追著殺！台積電今再遭三大法人提款333億元 台玻、聯電、景碩齊入出貨名單",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMi5gNBVV95cUxQMjdabVNXbnA0ZXpUcHJycTdfSE8xbUQ5c0NudFNySkh4azZ5SVRNd3Z1NnRCOTdRLVR6dmJnbjZHZVlMMDdIWFBNczVkc2hVR3FCb2dSbFNhd0lPdDVPdU8taWFiNlFyNlZ6SnRHSGplZVpGLTlud2MwLV9MQzlXZ3UwcDc0RDFtdEZWTUNFS2ZmbHJTaFI5TXlGN3ZFZDFQNVBjMTQ2UDZoWkFHbWpSTjlPZ24tUDEwNmk3SnRSVlRKREZtdWlxcVhPQ3VwYTVWSlM5blpEOWRqU3pjOGFvLVpROFg2ZndjUjNMdnVCM3NNcllYeE1iWkl6S2tpaUF6OGs1eGQyUHdvMmJ6TTRkUFpEZHFrMXBxWjdRYS1jcXNqNXNzS3g5Ti0xZWFUVFg4TkRzeDBPMkhLbEh0c1d2amFFMjgybzFlWkVxblBsbDhtaGIzRnM5RTkyZXVISFRjbzBjSjdneHB3Ulh6MXN0YkFJWTJZbURGRWZXT01rZlZuTDRaOWdpUGdpSkxqTXdLbnlFZ2ptcUZRcE8zV1N3dFhhLW1SaTdFNmFmVklxZVNSQnZmLS1oenpkYjNBVnlkUEtzemg0SVEyeWtmdmU4RUJwTUNGbnV6TG91WTFKYWtwbXB1dFE?oc=5",
+    "time": "2026-11-26T13:36:00.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "2330 台積電 - 【台積電(2330)盤後解析】外資連賣官股撐，量縮整理 今... - 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE8yUXlCVjk2VkpzSE5ieHBRS3Bta1Q4ZmtXdVdXNDBQZ0prRWFEazJ1Q0RBcmhtLVFJZzJrM0xoV0VTeFFrcUFNdXQ0U3pyaENQT09zUmlnS2k?oc=5",
+    "time": "2026-11-26T12:25:34.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "義大利半導體人才搖籃年年向台積電取經| 產經",
+    "source": "非凡新聞台",
+    "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBYVzdOTGFRTnJTQkhGYUpaaWtPSjhpUUVvc19QY2x0dzBmX0t1d2ljNWpsYVJWNms4bVF5UDZjVEpEVG1uOEU2MVh0MHYyd2JfZDhEOGpUU1Vvbms?oc=5",
+    "time": "2026-11-26T10:45:44.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台積電效應延燒！高雄左營4.5萬坪拚重劃 預售仍見3字頭",
+    "source": "自由時報",
+    "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFB3eGtMcXU5U3hiMDBnZ0kta01LdlVrLXl0bnBsdmZwMzN1NUR3b2xac3pxT1FnV0t0TG9COUN0WW4xS1J3SVhzTmk3TjhfckRr?oc=5",
+    "time": "2026-11-26T10:40:53.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "台積電亞利桑那擴建、評估德州建廠台灣仍是研發與先進製程核心－中央社",
+    "source": "商業周刊",
+    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9aZlJiR1JZVjE0bnJwV3JoQ1lUQnVyQVdDejFMTWk4TnNGeWlRa0RybzVPbFN3QVI2cnNKc3FDVURBbnJ4NkxJV0wyNWdKWkZ1WVF0ampPdGpzSkhIYV9nQnJYMGNLdw?oc=5",
+    "time": "2026-11-26T10:04:23.000Z",
     "tags": [],
     "trusted": true
+   },
+   {
+    "title": "【即時新聞】台積電建廠能見度達2030年，AI算力迭代引領半導體迎新成長",
+    "source": "CMoney投資網誌",
+    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNSVdrdWdHd3hBcUJDaTc2T0FXcURscWNVSkhIR2F4X0tabF9XR251aGM3b3BUVGs1TldoTmcwWkotOTk5b2VtaF9uV205SmUxb3JOcTZIc3BkLVd0Uzdsa2FpQ1M2UXRMYVl5U1VIWUcydWNVREg0aEVtY0pYMVBmNHdRYjZZdXByT3VyT2lwbTY?oc=5",
+    "time": "2026-11-26T09:53:50.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "【2026亞股大車拚2】台股贏韓股...台積電卻輸三星、海力士！分析師曝2關鍵：它仍無可取代",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMinwRBVV95cUxOc0xEVThOUzFZalpTLW5Pd2ZyQW5WM05FcVZjN09IVjI3ZzFzU3hiMV94S1gwNlNnRHhSVFRfVXdVMUZtVVVxRHEtSEg3VkVlRWJsaWk3S2I1UHBLXzZQV3J4MW1BLUFvRm9xQU9ZT0lvdXpNQjNLcGZoOWJWMV8zSmVsUE5ycFZnNWE4Yk1mWmpkN20xMHBSQWFDaU5mb1RKY3p2TlF2LUlzVkVFQzlwT2Rad0NMZGtxUkJPbjFJSklrZTV1SlpjV1ptN1cwTU8xcnpxd29RTThXV25NOGo0dG4zNVRPTEpfTWpRUTRpVm9IczJlc09GUnNub2lCcElhWGhDY1NSaDNhX1NUMUt4TUFRZ05TZ0lEMTVUbmI2TVotQjhlQ09OWGFaUTFxamRGemJmRmxNN2YyR01rNW9MUWFobG0zVG1XWXNoTUwwUzM0ZVdGdEF3bkVlc0dRdl92T2x6RHVYMWZiN3dCTWRZV0xwQzVPMUVCbWhlRi1PYXlmMUJKTTVzdV9wcmdrbFpnQm0tdXRyUnpHaWtzRXY2cjU4NFpPclVmYlNLdm4xX19yVmhuQzFhWHY1Tl9SbWg0cGpDeWpiR3Jha0hUSUU2MlA1VXExV2s0T0R3d1QybW9lT2FGWDA1VUlwbEw4b2xoTkxXdkM3al9LRHFOY2ZPMjNsXzVISGFNdEJVaXRZN2hwZW1JREV5STc2Ql9jSjQ?oc=5",
+    "time": "2026-11-26T09:52:16.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "微軟大當機.台積電鴻海遭駭 台灣下半年資安事件暴增近3倍",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMiiwNBVV95cUxNYjJicGhhR0NOVVZ1ODNyS1NwRzE5YVBGSWdRQjFzdW9pdElzS3BrZjlVaWtObzBkbHB5VlY2SkNOV3cxd0wyOWRTNlZNSkItVDFFTWF6bkZ3Skx1UFRUTWc0MkxmbG5GQXRneFpvdThMeTZmZTQxZElTdDBySTVTNkE3QS1UbEUxQ21aSExwdXNLZm1LY0lITmt6RzVFMUFlR2QyWGthbFVKLWNFUHNtLVNvSWZlbXk3djd0UHZTNFo5UmVLcVdMQ2ljeHlZeGx4Mm50cW5fNXgtOGZIUGxrOGRCZzRyZGF3MncwU3gxcHlWOXVISWkzcFh0VVllQ2diaFF3TzdnOEc2cjh3Q2x4UmVtR2JKSjZFa0NLN2MxbGlkVzd2Q2RlQ1pJZTV6VVlxSkxTenBWejR2N1dIX05Kdmp1Mi0zMmlVTDZ2N0c1RWNmVmI4c2xxSUVxV1I0M1ZLMGhwLXRCVTBQczRnRHgwdm9ja3RoQ3pGVU81YUJwbnRUM05TTTRGVW1JNA?oc=5",
+    "time": "2026-11-26T09:46:04.000Z",
+    "tags": [],
+    "trusted": false
+   },
+   {
+    "title": "太空AI引爆資金潮！「這檔」飆逾9%炸307億元躍居前五 聯發科爆量552億緊追台積電",
+    "source": "Yahoo股市",
+    "url": "https://news.google.com/rss/articles/CBMiyANBVV95cUxPYzZWMTZsZVduZlpqMlAyY3ZXVVAzYjZNN1BheklLWVRQdjNXZjhKdjQ1NmRFVllpMTZmRlhQd09ibDRNbkl3MFA1RWR1Zmo1azU0RU5YNkJ1cmo4LWNSWUtNcG1rWkRiUGVEaWwwWExSYjZFQ0FMX2FqUS11VHdCek9SN3JXZUk4NWNFQUMwWXAwZUs2S3ZxdW96Zlg0d3dCXy1NZmJ0R2cwbjBmUzRwTi0yTzNQMXBaUEM3Z01XWDJCOTYzV01wS042NWN2WGFmQXE2dUwxUi1VUm15X3phdEpVbDFsU3hmWU16N0NwdUtqbERFamVSdWxMaFhuRXJ1UUhMSDNZNzRaQkhiZGNmNWdydmZYQjEwaHhNNXpkUi1VNzdtb3p2SEJNQzUxbHBobk9VM2Zadm5fQ1AyQVNHSFBsVld5bWJmbXF0UEFZQ1ZORzdkQk9uY2VFa2hQTUpPZnIzWThueW5kYTA5T3ZGcHlHOVBna2V2NlJYZVpVaVVGblo4SVFXN0dtcFlxWWtnVjQtTlByRm1wXzA5YUhRSDRDN1FYZGExZ1NKWUk3VGNpOWt6dTk3NFk5NWlwU3FIa1kxVWMxMXU?oc=5",
+    "time": "2026-11-26T09:33:00.000Z",
+    "tags": [],
+    "trusted": false
    }
   ],
   "market": [
+   {
+    "title": "台股出現感恩節行情？法人研判 最壞情況已過",
+    "source": "經濟日報",
+    "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNMXNhTGVsZWZsNy1XNWxVbXV5TlF6WDF0eHBnRE92dTVCRTd2ZGFTTjBnazR6MnpfY2ZNLUJLR1RhUzQ3MFBDcEtUXzh4US01UFdkcG4tTi1Yb2hFN0VkVlZMMjcwblhKVFpkRzRUUFpFeVlHVlNGRFpJRGxRdk1zR2RKR3UzdWlnYXdIU0pObk3SAV9BVV95cUxNaklGTmgzelBkQ2FyNTFobUJiQ1BVMURTODRUdFdiN3NKRUg1cVM2LXJtN21fd3IyUm5oWGxYS3ZFUmd6RS10SHU5Ni1vTUlUWVhhRU8xakFFRHdKU29paw?oc=5",
+    "time": "2026-11-26T19:32:26.000Z",
+    "tags": [],
+    "trusted": true
+   },
+   {
+    "title": "301關稅15%不疊加 台股量縮漲956點重回3萬9",
+    "source": "非凡新聞台",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBNR3YyTFBDcUdCcDRhMm9MUWdId24xaXp0NDhNNktNbkRQWGJQdnM0NE40Skx0em1PRHFyUXZmc0dqSXJiLW9EVlN1QjRyNVhyUm43dXdqeC1nSTlU?oc=5",
+    "time": "2026-11-26T18:26:31.000Z",
+    "tags": [
+     "關稅貿易"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "別指望聯準會出手救市？Fed傳聲筒：AI股暴跌拉高升息門檻 華許陷政策兩難",
+    "source": "鉅亨網",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFAzZlZOZDRCNnRUczg2cVlFRzhrTDJDTHpERHZpUHJEekQ5azVUYlhFQl9RWkNSdS1ueU1ZTWRhNllTVXlTUjNUR1QzdnZSSFU?oc=5",
+    "time": "2026-11-26T14:00:06.000Z",
+    "tags": [
+     "利率"
+    ],
+    "trusted": true
+   },
+   {
+    "title": "TWA00 加權指數- 🔥台股反彈956點！關稅15%利空鬆綁，外資仍賣491億~ - 股市爆料同學會",
+    "source": "CMoney",
+    "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE43aGttZVBZcGFRelBjbS1xVjdKWk81aF80bHZoaUFZeHU2NDZmdnhfVjlRc3NIdTJ3YTJNbV9zSXp4Q29HczY5eUVfanUxMGhnSXNaQjh5OFg?oc=5",
+    "time": "2026-11-26T13:28:14.000Z",
+    "tags": [
+     "關稅貿易"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "關稅利空淡化，台股反彈 956 點仍卡年線下！跟上主動式ETF挑「投信真愛股」",
+    "source": "CMoney投資網誌",
+    "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBYZ0VlS1dWTjhiQTZIVk5NWFhoTGxDUUU0cmRRaEgza09XYjlhNzFXdDNlUkVWeXNXU0s0MnFZUmtnZDRYYnUtbHZpVUg3VU41NTFNMjZSQ1lFTWppQmRaZE9iQXFCVmRIRFc5c0JxU3k1TjQ2NWgzbm1LRUh4dw?oc=5",
+    "time": "2026-11-26T10:01:19.000Z",
+    "tags": [
+     "關稅貿易"
+    ],
+    "trusted": false
+   },
+   {
+    "title": "台股狂彈956點算落底？關稅拆彈了沒？專家曝接下來最折磨走勢- 財經",
+    "source": "中時新聞網",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5uUTE5SXpkd3NSOUhPM1hpam02Y2lhTlNFLTNFWWRaYTFmcnBsUUtHR2kwN21WeDVJRWtxSFVfbTFXN3hkSDNGZkRaYTdkNEFDeTRRbEpONjNQYm44a1NsRDhZS2RLRU11VVdISWZn?oc=5",
+    "time": "2026-11-26T09:51:18.000Z",
+    "tags": [
+     "關稅貿易"
+    ],
+    "trusted": true
+   },
    {
     "title": "TWA00 加權指數- 11/26｜301 關稅台灣維持15%，台股反彈956 點 - 股市爆料同學會",
     "source": "CMoney",
@@ -58,10 +180,10 @@
     "trusted": true
    },
    {
-    "title": "美國擬對中國等經濟體加徵301關稅 中國商務部、外交部回應！",
+    "title": "232半導體關稅未定！鄭麗君：台灣已握MOU保障 配額內免稅、配額外不疊加",
     "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMiggNBVV95cUxQbFpLc3ZzLU9zSW1sSUJtb3dCd3RBVnZJNjg5WGo5Yk5NS3pGRnFiVW43ZGZ5WFdsYjl6TzY4VVVEeE9ZaXd0ZVhMSmowa2VVNDV3bkpzQW41SzdvSldHWUd5SWh3WG5YcGxMYUtZb1h5dWpxTlZVekVPRFVVZU1QNkdyZjBidHdwaDNvZzRfRXVTaFNZM0c3U2RTcHRYaklqcUVPb2tRWm9KRnZsaWpUbXdQTlVVNXcwSDNVX1B3Vnk0V0tVVEdIQ2pQTVZpel9DZm11TG5MX281Z1ZGUGZTWlFoVjBnaF9QaE5jTDg0Q0xtNmJubi04X09idU1LY0hZVW82TkM1emlod3ItVE5aNmU0R3FXNDNDMlhhRlA2QVhXYWtlcVNRX2I4SjlVVzNnR2hNZ2lRT2wxQ1psWUFsbDdZRGVzb04zVVdVOG1TdlQ5VGZSNkg1aXA2NjFxMjNlUVUxWEVESFhzc2VyamZSQVhYT2twb0NPdkFENDNiVGpIUQ?oc=5",
-    "time": "2026-11-26T08:18:14.000Z",
+    "url": "https://news.google.com/rss/articles/CBMi2ANBVV95cUxNU3VCLS11Um9kbk5hLXNQbVFpT2RaRzZtdmZXd1ZiejZTdU4tRTE2NnNuTzl0eGkyWDNkVHFsT0luM05SLXFrX196NHN5NWdGaEg5cHBMMXJDdWhRTGNkZWsxb09oOW5DTEJmVk5nM0piak5LeHd2X0JCbGpkU2pMS3RZQkZzYnByRnFidGtfS012eVpsVmY3U2hCQjBQOGFoT1VCMEZQRXRGSVppa0tkRkRuWnI1ZnNJRnVBVXVNcnVncnIzNUctMWVQYWZGbGRFN2ZxWGdNdFA2aGhuTHA5czR3Umlra2FSbGZVLUk5bHc2YTVkanJBWDZ4V3dlRy03M0ZLc1oyS1JCMVBMczlsUXNGSUJpMWNlWS1mRFZ3RUVuZHgxZDJsSzl4WEo2RnZVd1FPZWhUemtiS3BzYWg2Y2dNdWpieWdMSUdqaE5QSGctQjc0dm9OXzIzeGlQeWRkeDlXOTBheDJtQ3VkQkZSb3BQVU5OcUh0c0JBX2pFczZLN2oyUDlsRjlFaUVCNHRqU1ZBekViN2F2Sko2YTJRT3d1RXl5X3I2QlpmRzB6M0dIcWN0SjlfMDFYaE9oQ2dlZXU5Rk55V2xFX3VwaURpaVgyTzYyMVNG?oc=5",
+    "time": "2026-11-26T08:27:39.000Z",
     "tags": [
      "關稅貿易"
     ],
@@ -88,68 +210,14 @@
     "trusted": false
    },
    {
-    "title": "【11/26台股收盤】川湖漲停漲650元，台股反彈956點",
-    "source": "口袋證券",
-    "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5BT1hjejg0czdJMWluZnFnSW9vTkJrOTBmVHk5WHpVcU9SeEN1dE1udTNHSU9WX0lIaVV4OXFVZkVjeW5CaUpvdm9CSFdETS1iSEQ4X3BiVVFvQlVGRWlzeFg4Yl9fUQ?oc=5",
-    "time": "2026-11-26T07:20:26.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "301關稅台製筆電有望豁免 海外生產恐難逃",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxOMnVhdEJrLVhoOHRwdEstcFlkcy1zcnhmYzlMOW9XWWo3d01fdVcxZWk2VlE4Umxocy1jOWdGak05N3JxeGI1Z2I3bXZmbkhxd2dVX25INElhZGtMWXhER2J2dmFNeTVSNnN0akRIdzZiRnI0SFpZV01fb3RaWlJGRXlxUnhRQklKeGpTVExGNXlud2JycWRhNzVHZWFFcHd1LWpTU1JQVzlVUk92LTRlbUc2Z3pGTk9BNi1WQVRuTy1YMlpxajZzR2JwYzhYbUEzejlpeXFIVnJ5LTBrbS1KZThiNFdqY1RsZWZueXhWYWwyeHZpWkYxeHBjLUJZQmJ6Vm1Qb0tOUnpDUlZqOWdDbUl1Vi12ZmM4dkp2NElDYkF2YnhOUzc5a1lBOFo?oc=5",
-    "time": "2026-11-26T07:02:20.000Z",
+    "title": "美國擬對中國等經濟體加徵301關稅 中國商務部、外交部回應！",
+    "source": "鉅亨網",
+    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE41NnhFcllzeThEMDNNeUd1cnBDRS1jMUlzcHk1WDNVTjNkcF92TFl6eEZCOTI1WUZLb3J2anZYTnVXOXF2LTVLeXRPUXNfOWc?oc=5",
+    "time": "2026-11-26T07:29:46.000Z",
     "tags": [
      "關稅貿易"
     ],
-    "trusted": false
-   },
-   {
-    "title": "美通膨升溫.新關稅夾擊! 外資押注Fed連三升",
-    "source": "Yahoo股市",
-    "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxQZW41eWhEdERMTjRaLXhMc3NLR01URmsyWlpDUU5vU2twY1lHVms5R2xaZVQ1aTBxWVZzWXVKNmdjeDlGYTV5VXRHRFZEUURNRkVmOXc1QW1WZVhKbDhya3JhVjlTRkpDemJuS0Y2LVZlWFNXSS1xUExnZ1RKRlRCWGVnYlZoMHlmQmphTWpGTWlUQlBXdzF2cUM4MWVlbWEzUUNTekhOM0NycndTbVlmRmVPeXRybTY3UWNDNjRveXhyX1Z0MElsajI0YUtYWEZVRVEtOF80VEhlN1BkQ3RPQUU4VXZ4cXBqWlJTT0lkTVdmY0lsRlJKVVVYMm93UFBVSDFDNG1IZjFMcGx5dnRnWHBXSTZTVDhQNnRNZUdtcnhUU0hSdlp1N1hjYUNEQQ?oc=5",
-    "time": "2026-11-26T07:02:20.000Z",
-    "tags": [
-     "關稅貿易"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "國家隊全力捍衛台股買超1,359億元創紀錄| 金融",
-    "source": "非凡新聞台",
-    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1fMFRJeWNIOGw2WlNKMTllZlZOdlo1dWpyVTU4aVNHRTFVQl92NGtabEJRbWtWTW4zTWdsNE5pVlQyLVhHcVBZVW04TkNPOGhFOFRreVlHRFR4UWZuaS1qNg?oc=5",
-    "time": "2026-11-26T07:02:06.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "利空消化！專家估台股有望回黃仁勳辭前價位- 財經新聞",
-    "source": "PChome Online 新聞",
-    "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOQmJrWkVfTEFxMXhiX1ZuNktfTjl5VzJ4REhJdVRRZS1hTlZSSzBDSXZtNlZPZWdRekVpQmJ4MjRiYkxlX1M0eUtfVlZ6bWdfLVo4S1JDeW9mTW9aeVktUW96bi1iUWRDeHY4cDZyUG54WTJyc2Z3LTZlQlh0R2tRZ2JhREZ3eGhVWVlr?oc=5",
-    "time": "2026-11-26T06:50:33.000Z",
-    "tags": [],
-    "trusted": false
-   },
-   {
-    "title": "301關稅15%不疊加 台股量縮漲956點重回3萬9",
-    "source": "非凡新聞台",
-    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBNR3YyTFBDcUdCcDRhMm9MUWdId24xaXp0NDhNNktNbkRQWGJQdnM0NE40Skx0em1PRHFyUXZmc0dqSXJiLW9EVlN1QjRyNVhyUm43dXdqeC1nSTlU?oc=5",
-    "time": "2026-11-26T06:33:48.000Z",
-    "tags": [
-     "關稅貿易"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "台美關稅利多激勵台股！終場強漲956點、重返39K 台積電跌5元",
-    "source": "Yahoo新聞",
-    "url": "https://news.google.com/rss/articles/CBMi6AJBVV95cUxPa05fVUVEUUF4MnkwWEt1QjY2RFZUOC1PMF8yN0RkZjlqTjB0V0NWYWRheGxJRVM2aGFIUXBHa1JnOGFlcUt3cEpORlRPTmNYRWZUZnV6T016bV9BWGhZNHZnZkVWN0owS2NOWkxUdmxEVWtwUm40LXJHSllwdjZ2cks3MlJzaWpfYTVmYjBGWUtWOE9CUmZPUHhnVUU3OE9xMzdyU1hqcDR3MVFHMndwUjJzWWR0ZDhNM2ZMNUNXQ3J3QVVtRlA4ci1PRjU0b25hZ05RdVM4TEJodVZ6ejdicTZ3SGc4bmNTYkhtX1dLZmQ1WnB5OTgwOFdGb1BETUd1RUhwMWFkWjBVWEtYczFhU0hPMDU2VkRab1lHbTU1Q25lcEhzc3NUWXF5aG5yRHZCak9xRDV3US03b3BvMXUyVmVBRE5JTnQwdVV0QUhRUkh1T0Q5dTN4dEpVZWFZT3FaOEUya0tHNWY?oc=5",
-    "time": "2026-11-26T06:21:39.000Z",
-    "tags": [
-     "關稅貿易"
-    ],
-    "trusted": false
+    "trusted": true
    }
   ]
  },
@@ -160,7 +228,7 @@
   "basedOn": "2026-11-26",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-26T09:44:03.409Z",
+  "fetchedAt": "2026-11-26T21:47:18.942Z",
   "newsSince": "2026-11-26T13:30+08:00",
   "timingOk": false,
   "stale": [
@@ -168,8 +236,6 @@
    "ADR（2026-11-25）早於台股最後收盤日 2026-11-26"
   ],
   "warnings": [
-   "證交所尚未公布 2026-11-26 借券賣出餘額",
-   "證交所尚未公布 2026-11-26 融資融券",
    "⏰ 時序檢查未通過：美股（2026-11-25）早於台股最後收盤日 2026-11-26；ADR（2026-11-25）早於台股最後收盤日 2026-11-26。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
   ],
   "sources": [
@@ -4518,7 +4584,7 @@
    "high": 2160,
    "low": 2150,
    "close": 2155,
-   "volume": 348021
+   "volume": 346021
   },
   {
    "time": "11:20",
@@ -4527,7 +4593,7 @@
    "high": 2155,
    "low": 2150,
    "close": 2155,
-   "volume": 427195
+   "volume": 429195
   },
   {
    "time": "11:25",
@@ -4831,14 +4897,27 @@
   {
    "date": "2026-11-26",
    "foreign": -18134,
-   "trust": 1119,
+   "trust": 1176,
    "dealer": 1461,
    "dealerSelf": 332,
    "dealerHedge": 1129
   }
  ],
- "margin": null,
- "lending": null,
+ "margin": {
+  "date": "2026-11-26",
+  "marginPrev": 29305,
+  "marginToday": 29267,
+  "shortPrev": 46,
+  "shortToday": 27
+ },
+ "lending": {
+  "date": "2026-11-26",
+  "prev": 17287,
+  "today": 17411,
+  "change": 124,
+  "sold": 136,
+  "returned": 12
+ },
  "revenue": {
   "month": "2026-10",
   "revenue": 586890319,
@@ -4854,11 +4933,11 @@
   "institutional": {
    "date": "2026-11-26",
    "foreign": -491.8,
-   "trust": 230.5,
+   "trust": 212.1,
    "dealer": 128.7,
    "dealerSelf": 40,
    "dealerHedge": 88.6,
-   "total": -132.7
+   "total": -151
   },
   "txf": {
    "date": "2026-11-26",
@@ -4873,9 +4952,9 @@
    "night": {
     "session": "2026-11-26",
     "contract": "臺指期126",
-    "close": 39297,
+    "close": 39492,
     "ref": 39492,
-    "changePct": -0.49
+    "changePct": 0
    }
   },
   "foreignFuturesOI": {
@@ -4901,9 +4980,9 @@
       "dealerSelf": -558,
       "dealerHedge": 4594
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": -6024,
+     "marginBalance": 432435,
+     "lendingChange": 0
     },
     {
      "code": "00632R",
@@ -4921,9 +5000,9 @@
       "dealerSelf": 5086,
       "dealerHedge": -60246
      },
-     "marginChange": null,
-     "marginBalance": null,
-     "lendingChange": null
+     "marginChange": 2719,
+     "marginBalance": 223645,
+     "lendingChange": -381
     }
    ]
   },
@@ -5043,7 +5122,7 @@
    {
     "date": "2026-11-26",
     "foreign": -491.8,
-    "usdtwd": 32.947
+    "usdtwd": 32.939
    }
   ]
  },
@@ -5082,10 +5161,10 @@
   },
   "vix": {
    "symbol": "^VIX",
-   "date": "2026-11-25",
-   "close": 28.29,
-   "prevClose": 26.36,
-   "changePct": 7.32,
+   "date": "2026-11-26",
+   "close": 26.8,
+   "prevClose": 28.29,
+   "changePct": -5.27,
    "label": "VIX 恐慌指數"
   },
   "nikkei": {
@@ -5107,16 +5186,16 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-26",
-   "close": 32.95,
+   "close": 32.94,
    "prevClose": 32.92,
-   "changePct": 0.08,
+   "changePct": 0.05,
    "label": "美元／新台幣",
    "afterClose": {
     "from": 32.982,
-    "to": 32.947,
+    "to": 32.939,
     "fromTime": "2026-11-26 14:00",
-    "toTime": "2026-11-26 17:43",
-    "changePct": -0.11
+    "toTime": "2026-11-27 05:46",
+    "changePct": -0.13
    }
   },
   "taiex": {
@@ -5136,7 +5215,7 @@
   "changePct": -1.96,
   "name": "台積電 ADR",
   "ratio": 5,
-  "impliedTwd": 2256
+  "impliedTwd": 2255.3
  },
  "hints": {
   "kline": {
@@ -5171,8 +5250,8 @@
   },
   "trust": {
    "signal": "偏多",
-   "strength": "中",
-   "data": "2026-11-26 投信買超 1,119 張（占成交量 2.4%），連 3 日同向；近 5 日合計買超 4,274 張",
+   "strength": "強",
+   "data": "2026-11-26 投信買超 1,176 張（占成交量 2.6%），連 3 日同向；近 5 日合計買超 4,331 張",
    "source": "證交所 T86，2026-11-26"
   },
   "dealer": {
@@ -5182,15 +5261,15 @@
    "source": "證交所 T86，2026-11-26"
   },
   "margin": {
-   "signal": "缺漏",
+   "signal": "中性",
    "strength": null,
-   "data": "證交所尚未公布 2026-11-26 融資融券資料",
-   "source": "證交所 MI_MARGN"
+   "data": "融資餘額 29,267 張（-0.13%），融券餘額 27 張",
+   "source": "證交所 MI_MARGN，2026-11-26"
   },
   "txf": {
-   "signal": "偏空",
-   "strength": "弱",
-   "data": "臺指期126夜盤 39297（-0.49%，相對日盤收盤 39492）",
+   "signal": "中性",
+   "strength": null,
+   "data": "臺指期126夜盤 39492（0%，相對日盤收盤 39492）",
    "source": "期交所即時行情，夜盤 2026-11-26"
   },
   "futures_oi": {
@@ -5226,8 +5305,8 @@
   "fx": {
    "signal": "中性",
    "strength": null,
-   "data": "台股收盤後新台幣升值 0.11%（美元兌台幣 32.982 → 32.947）",
-   "source": "Yahoo Finance TWD=X 每小時報價，2026-11-26 14:00～2026-11-26 17:43"
+   "data": "台股收盤後新台幣升值 0.13%（美元兌台幣 32.982 → 32.939）",
+   "source": "Yahoo Finance TWD=X 每小時報價，2026-11-26 14:00～2026-11-27 05:46"
   }
  }
 }
