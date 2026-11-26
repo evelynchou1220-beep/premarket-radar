@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-26",
+  "createdAt": "2026-11-26T17:55+08:00",
+  "headline": "關稅消息帶動反彈，加權漲956點收39,152、外資賣超491.8億",
+  "points": [
+    "加權指數收 39,151.81（+2.5%），媒體報導單日漲 956 點、重返 3 萬 9；台指期日盤收 39,455（+3.49%）",
+    "外資賣超 491.8 億、投信買超 230.5 億、自營商自行買賣買超 40 億，三大法人合計賣超 132.7 億",
+    "六檔中南亞 +7.73%、台達電 +6.16%、日月光 +4.71%、鴻海 +4.84% 領漲；台積電 −0.23% 收 2,145，聯發科 +1.65%",
+    "外資在台積電賣超 18,134 張、日月光賣超 6,782 張；投信買超南亞 6,256 張、日月光 4,664 張；外資買超鴻海 12,691 張",
+    "正2 +7.23%、外資買超 11,146 張；反1 −4.44%；外資台指期淨部位 −105,709 口（11/25）；美元兌台幣 32.947"
+  ],
+  "watch": [
+    "美方對各經濟體 301 關稅的後續公告，及台灣適用稅率是否有更新",
+    "台積電能否站回月線 2,222.5（今日收 2,145）",
+    "外資賣超是否延續，及美元兌台幣 32.947 的走勢"
+  ],
+  "news": [
+    {
+      "title": "〈陸股盤後〉美擬對14國課產能過剩關稅 三大指數漲跌互見",
+      "source": "鉅亨網",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1YVm5PUXY0b2M5OHA1LWZLNi0wTkhNRDNHZDV0elRNbmtWZDNmejh1Mk00MlNYYVdlcFdIN3JtWkNMTUFRdm85MDNOZlZRVEk?oc=5"
+    },
+    {
+      "title": "台美關稅利多激勵台股！終場強漲956點、重返39K 台積電跌5元",
+      "source": "Yahoo新聞",
+      "url": "https://news.google.com/rss/articles/CBMi6AJBVV95cUxPa05fVUVEUUF4MnkwWEt1QjY2RFZUOC1PMF8yN0RkZjlqTjB0V0NWYWRheGxJRVM2aGFIUXBHa1JnOGFlcUt3cEpORlRPTmNYRWZUZnV6T016bV9BWGhZNHZnZkVWN0owS2NOWkxUdmxEVWtwUm40LXJHSllwdjZ2cks3MlJzaWpfYTVmYjBGWUtWOE9CUmZPUHhnVUU3OE9xMzdyU1hqcDR3MVFHMndwUjJzWWR0ZDhNM2ZMNUNXQ3J3QVVtRlA4ci1PRjU0b25hZ05RdVM4TEJodVZ6ejdicTZ3SGc4bmNTYkhtX1dLZmQ1WnB5OTgwOFdGb1BETUd1RUhwMWFkWjBVWEtYczFhU0hPMDU2VkRab1lHbTU1Q25lcEhzc3NUWXF5aG5yRHZCak9xRDV3US03b3BvMXUyVmVBRE5JTnQwdVV0QUhRUkh1T0Q5dTN4dEpVZWFZT3FaOEUya0tHNWY?oc=5"
+    },
+    {
+      "title": "301關稅15%不疊加 台股量縮漲956點重回3萬9",
+      "source": "非凡新聞台",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBNR3YyTFBDcUdCcDRhMm9MUWdId24xaXp0NDhNNktNbkRQWGJQdnM0NE40Skx0em1PRHFyUXZmc0dqSXJiLW9EVlN1QjRyNVhyUm43dXdqeC1nSTlU?oc=5"
+    }
+  ]
+}
