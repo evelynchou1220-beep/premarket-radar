@@ -1,6 +1,6 @@
 {
  "news": {
-  "fetchedAt": "2026-11-26T21:47:24.693Z",
+  "fetchedAt": "2026-11-26T23:22:40.434Z",
   "since": "2026-11-26T13:30+08:00",
   "stock": [
    {
@@ -31,6 +31,14 @@
    }
   ],
   "market": [
+   {
+    "title": "慢牛來了！台股回測跳空缺口 台新投顧：聚焦「8大」主軸",
+    "source": "三立新聞",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9UR2FWTTFzdzdqenNKTHQwZWRnWDI3ZzdsS19kU29DY2pxelVRYnQzaUluRVVYSzJuNktxUFNRYTFlMGxBLWt6VnVXZw?oc=5",
+    "time": "2026-11-26T22:35:11.000Z",
+    "tags": [],
+    "trusted": false
+   },
    {
     "title": "台股出現感恩節行情？法人研判 最壞情況已過",
     "source": "經濟日報",
@@ -68,6 +76,16 @@
      "關稅貿易"
     ],
     "trusted": false
+   },
+   {
+    "title": "關稅利空淡化股匯齊揚！新台幣勁揚1.79角收32.947元 漲幅稱霸亞幣",
+    "source": "自由財經",
+    "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1lSXFvakRUVTVPZnJwdlY1VXVrVmJVU2x4WFFTa3dtYXQtZDhJYWQyVFFaSFhjVUUtNW4xYnNWamtQNWxQUG5GU1VvQTZvQ0JFWXIyeGpsZTBOZTNaUnZn0gFkQVVfeXFMUGFMY2lSOVBZeGwyd2lUQ2FGT3loMFY5YU1oWmFtc3FLeEE2Zm82NVVRVmRlRFFOazBXQkVTRXdDUGJGQWk0aHFGOHdNTWFKNHVfQmhBcGpDZTI4WDh5NGtpTEtjVA?oc=5",
+    "time": "2026-11-26T11:27:02.000Z",
+    "tags": [
+     "關稅貿易"
+    ],
+    "trusted": true
    },
    {
     "title": "關稅利空淡化，台股反彈 956 點仍卡年線下！跟上主動式ETF挑「投信真愛股」",
@@ -128,26 +146,6 @@
      "關稅貿易"
     ],
     "trusted": false
-   },
-   {
-    "title": "301關稅台灣15%！千金股集體漲停！股后川湖一天狂噴650元！｜口袋日報｜2026.11.26",
-    "source": "口袋證券",
-    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE03d3d3NGVHWmc4c2RHNmVETkRiNTNteFZMUXp3aTFMcUJ4dkxGUXpLRXR6d1ZpTGZUVzc1c1NFYjI3VUI0c3M3SURwUDluM1B5cXF0eDBaZWtsZmZaX0x2RQ?oc=5",
-    "time": "2026-11-26T07:36:04.000Z",
-    "tags": [
-     "關稅貿易"
-    ],
-    "trusted": false
-   },
-   {
-    "title": "美國擬對中國等經濟體加徵301關稅 中國商務部、外交部回應！",
-    "source": "鉅亨網",
-    "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE41NnhFcllzeThEMDNNeUd1cnBDRS1jMUlzcHk1WDNVTjNkcF92TFl6eEZCOTI1WUZLb3J2anZYTnVXOXF2LTVLeXRPUXNfOWc?oc=5",
-    "time": "2026-11-26T07:29:46.000Z",
-    "tags": [
-     "關稅貿易"
-    ],
-    "trusted": true
    }
   ]
  },
@@ -158,14 +156,15 @@
   "basedOn": "2026-11-26",
   "closedDays": [],
   "isTech": true,
-  "fetchedAt": "2026-11-26T21:47:24.693Z",
+  "fetchedAt": "2026-11-26T23:22:40.434Z",
   "newsSince": "2026-11-26T13:30+08:00",
   "timingOk": false,
   "stale": [
-   "美股（2026-11-25）早於台股最後收盤日 2026-11-26"
+   "美股（2026-11-25）早於台股最後收盤日 2026-11-26",
+   "尚無 2026-11-26 晚間的台指期夜盤"
   ],
   "warnings": [
-   "⏰ 時序檢查未通過：美股（2026-11-25）早於台股最後收盤日 2026-11-26。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
+   "⏰ 時序檢查未通過：美股（2026-11-25）早於台股最後收盤日 2026-11-26；尚無 2026-11-26 晚間的台指期夜盤。請在台灣時間 05:00 之後（美股收盤、夜盤結束）再執行。"
   ],
   "sources": [
    {
@@ -4868,24 +4867,7 @@
    "dealerHedge": 88.6,
    "total": -151
   },
-  "txf": {
-   "date": "2026-11-26",
-   "contract": "臺指期126",
-   "day": {
-    "session": "2026-11-26",
-    "contract": "臺指期126",
-    "close": 39455,
-    "ref": 38123,
-    "changePct": 3.49
-   },
-   "night": {
-    "session": "2026-11-26",
-    "contract": "臺指期126",
-    "close": 39492,
-    "ref": 39492,
-    "changePct": 0
-   }
-  },
+  "txf": null,
   "foreignFuturesOI": {
    "date": "2026-11-25",
    "net": -105709
@@ -4949,8 +4931,8 @@
     "putOI": -3474,
     "putValue": 30157
    },
-   "putCallOIRatio": 39.84,
-   "putCallVolumeRatio": 84.13
+   "putCallOIRatio": 52.53,
+   "putCallVolumeRatio": 85.91
   },
   "flows": [
    {
@@ -5051,7 +5033,7 @@
    {
     "date": "2026-11-26",
     "foreign": -491.8,
-    "usdtwd": 32.939
+    "usdtwd": 32.916
    }
   ]
  },
@@ -5115,16 +5097,16 @@
   "usdtwd": {
    "symbol": "TWD=X",
    "date": "2026-11-26",
-   "close": 32.94,
+   "close": 32.92,
    "prevClose": 32.92,
-   "changePct": 0.05,
+   "changePct": -0.02,
    "label": "美元／新台幣",
    "afterClose": {
     "from": 32.982,
-    "to": 32.939,
+    "to": 32.916,
     "fromTime": "2026-11-26 14:00",
-    "toTime": "2026-11-27 05:46",
-    "changePct": -0.13
+    "toTime": "2026-11-27 07:21",
+    "changePct": -0.2
    }
   },
   "taiex": {
@@ -5187,10 +5169,10 @@
    "source": "證交所 MI_MARGN，2026-11-26"
   },
   "txf": {
-   "signal": "中性",
+   "signal": "缺漏",
    "strength": null,
-   "data": "臺指期126夜盤 39492（0%，相對日盤收盤 39492）",
-   "source": "期交所即時行情，夜盤 2026-11-26"
+   "data": "期交所資料取得失敗",
+   "source": "期交所即時行情"
   },
   "futures_oi": {
    "signal": "偏空",
@@ -5217,10 +5199,10 @@
    "source": "公開資訊觀測站 月營收，2026-10"
   },
   "fx": {
-   "signal": "中性",
-   "strength": null,
-   "data": "台股收盤後新台幣升值 0.13%（美元兌台幣 32.982 → 32.939）",
-   "source": "Yahoo Finance TWD=X 每小時報價，2026-11-26 14:00～2026-11-27 05:46"
+   "signal": "偏多",
+   "strength": "弱",
+   "data": "台股收盤後新台幣升值 0.2%（美元兌台幣 32.982 → 32.916）",
+   "source": "Yahoo Finance TWD=X 每小時報價，2026-11-26 14:00～2026-11-27 07:21"
   }
  }
 }
